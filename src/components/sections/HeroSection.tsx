@@ -19,7 +19,7 @@ import { MagneticButton } from '@/components/animated/MagneticButton'
 gsap.registerPlugin(ScrollTrigger)
 
 // Twinkling star positions
-const stars = Array.from({ length: 35 }, (_, i) => ({
+const stars = Array.from({ length: 18 }, (_, i) => ({
   id: i,
   x: (i * 41 + 7) % 100,
   y: (i * 29 + 13) % 100,
@@ -54,7 +54,7 @@ function HeroSectionFn() {
   return (
     <header
       ref={containerRef}
-      className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-[#050911] noise-overlay"
+      className="relative pt-20 pb-14 lg:pt-28 lg:pb-20 overflow-hidden bg-[#050911] noise-overlay"
     >
       {/* Blueprint grid */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-blueprint-grid" />
@@ -81,7 +81,7 @@ function HeroSectionFn() {
       </div>
 
       {/* Canvas particle field with mouse repel */}
-      <ParticleField count={60} interactive className="absolute inset-0 z-0" />
+      <ParticleField count={35} interactive className="absolute inset-0 z-0" />
 
       {/* Scan line v2 (more dramatic) */}
       <div className="scan-line-v2 pointer-events-none z-0" />
@@ -145,8 +145,8 @@ function HeroSectionFn() {
 
       {/* Orange glow halo — large */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-primary/8 rounded-full pointer-events-none z-0"
-        style={{ filter: 'blur(120px)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/6 rounded-full pointer-events-none z-0"
+        style={{ filter: 'blur(80px)' }}
       />
       {/* Secondary smaller glow */}
       <div
@@ -163,7 +163,7 @@ function HeroSectionFn() {
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.1 }}
-          className="relative inline-flex items-center gap-3 px-6 py-2 mb-12 cursor-default"
+          className="relative inline-flex items-center gap-3 px-6 py-2 mb-8 cursor-default"
         >
           <svg className="absolute inset-0 w-full h-full text-primary/30" preserveAspectRatio="none" viewBox="0 0 200 50" aria-hidden="true">
             <path d="M5,5 L195,5 L195,45 L5,45 Z" fill="none" stroke="currentColor" strokeDasharray="5,2" strokeWidth="1" />
@@ -181,7 +181,7 @@ function HeroSectionFn() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="font-black tracking-tighter mb-8 max-w-6xl mx-auto relative"
+          className="font-black tracking-tighter mb-6 max-w-6xl mx-auto relative"
           style={{ fontSize: 'clamp(3rem, 9vw, 7rem)', lineHeight: '0.9' }}
         >
           <span className="absolute -top-8 -left-8 text-xs font-mono text-primary/40 hidden lg:block" style={{ transform: 'rotate(-15deg)', fontWeight: 400 }}>
@@ -232,7 +232,7 @@ function HeroSectionFn() {
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.55 }}
-          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-14 leading-relaxed font-mono border-l-2 border-primary/40 pl-6 text-left md:text-center md:border-l-0 md:pl-0 relative"
+          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed font-mono border-l-2 border-primary/40 pl-6 text-left md:text-center md:border-l-0 md:pl-0 relative"
         >
           <span className="text-primary font-bold mr-2">&gt;_</span>
           NextX Agency helpt Surinaamse bedrijven professioneel online te groeien —{' '}
@@ -248,7 +248,7 @@ function HeroSectionFn() {
           initial="hidden"
           animate="visible"
           transition={{ delayChildren: 0.72 }}
-          className="flex flex-col sm:flex-row gap-6 sm:gap-8 w-full sm:w-auto justify-center mb-24 relative z-20"
+          className="flex flex-col sm:flex-row gap-6 sm:gap-8 w-full sm:w-auto justify-center mb-14 relative z-20"
         >
           <motion.div variants={fadeInUp}>
             <MagneticButton strength={0.4}>
