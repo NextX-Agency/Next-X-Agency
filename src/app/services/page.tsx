@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { CTABanner } from '@/components/sections/CTABanner'
@@ -11,6 +14,16 @@ import {
   Users,
   Check,
 } from 'lucide-react'
+import {
+  fadeInUp,
+  fadeInDown,
+  slideInLeft,
+  staggerContainer,
+  staggerContainerFast,
+  staggerContainerSlow,
+  cardFlipIn,
+  scaleIn,
+} from '@/lib/animationUtils'
 
 const serviceCategories = [
   {
@@ -200,91 +213,247 @@ export default function ServicesPage() {
     <>
       <Navbar />
       <main>
-        {/* Hero */}
+        {/* ── Hero ─────────────────────────────────────────── */}
         <section className="relative py-20 lg:py-32 overflow-hidden circuit-bg">
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="section-label">— Ons Aanbod —</span>
-            <h1 className="text-display text-white max-w-4xl mx-auto mb-6">
+          {/* Animated SVG circuit overlay — draws in then pulses */}
+          <motion.svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            aria-hidden="true"
+            viewBox="0 0 1200 400"
+            preserveAspectRatio="xMidYMid slice"
+            initial={{ opacity: 0.2 }}
+            animate={{ opacity: [0.2, 0.32, 0.2] }}
+            transition={{ duration: 5, delay: 5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <motion.line x1="0" y1="80" x2="400" y2="80" stroke="#FF6B00" strokeWidth="0.8"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 2, delay: 0.3, ease: 'easeInOut' }} />
+            <motion.line x1="400" y1="80" x2="400" y2="200" stroke="#FF6B00" strokeWidth="0.8"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 1, delay: 2.2, ease: 'easeInOut' }} />
+            <motion.line x1="400" y1="200" x2="900" y2="200" stroke="#FF6B00" strokeWidth="0.8"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 1.8, delay: 3.1, ease: 'easeInOut' }} />
+            <motion.line x1="1200" y1="320" x2="800" y2="320" stroke="#FF6B00" strokeWidth="0.8"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 2, delay: 0.6, ease: 'easeInOut' }} />
+            <motion.line x1="800" y1="320" x2="800" y2="150" stroke="#FF6B00" strokeWidth="0.8"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+              transition={{ duration: 1.2, delay: 2.5, ease: 'easeInOut' }} />
+            {/* Travelling signal dot along circuit */}
+            <motion.circle r="3" fill="#FF6B00"
+              animate={{ cx: [0, 400, 400, 900, 900], cy: [80, 80, 200, 200, 200], opacity: [0, 1, 1, 1, 0] }}
+              transition={{ duration: 4, delay: 5.5, repeat: Infinity, repeatDelay: 4, ease: 'linear' }} />
+            {[
+              [400, 80], [400, 200], [900, 200], [800, 320], [800, 150],
+            ].map(([cx, cy], i) => (
+              <motion.circle key={i} cx={cx} cy={cy} r="4" fill="#FF6B00"
+                initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.6, type: 'spring', stiffness: 300 }} />
+            ))}
+          </motion.svg>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          >
+            <motion.span variants={fadeInDown} className="section-label">— Ons Aanbod —</motion.span>
+            <motion.h1 variants={fadeInUp} className="text-display text-white max-w-4xl mx-auto mb-6">
               Alles wat uw bedrijf digitaal nodig heeft
-            </h1>
-            <p className="text-body-lg text-[#888888] max-w-2xl mx-auto">
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="text-body-lg text-[#888888] max-w-2xl mx-auto">
               Van logo en social media tot complete webshops en maandelijkse
               support. Één partner, complete oplossingen.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </section>
 
-        {/* Service Categories */}
+        {/* ── Service Categories ───────────────────────────── */}
         {serviceCategories.map((category, index) => (
           <section
             key={category.id}
             id={category.id}
-            className={`py-16 lg:py-24 ${index % 2 === 1 ? 'bg-[#111111]' : 'bg-[#0a0a0a]'}`}
+            className={`py-16 lg:py-24 relative overflow-hidden ${index % 2 === 1 ? 'bg-[#111111]' : 'bg-[#0a0a0a]'}`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Decorative corner SVG — circuit crosshair drawing on scroll */}
+            <svg
+              className="absolute top-4 right-4 opacity-8 pointer-events-none"
+              aria-hidden="true"
+              width="160" height="160" viewBox="0 0 160 160"
+            >
+              <motion.circle cx="80" cy="80" r="70" fill="none" stroke="#FF6B00" strokeWidth="1"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 1.8, ease: 'easeInOut', delay: index * 0.1 }} />
+              <motion.circle cx="80" cy="80" r="48" fill="none" stroke="#FF6B00" strokeWidth="0.6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 1.4, ease: 'easeInOut', delay: 0.3 + index * 0.1 }} />
+              <motion.line x1="10" y1="80" x2="150" y2="80" stroke="#FF6B00" strokeWidth="0.5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.7 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }} />
+              <motion.line x1="80" y1="10" x2="80" y2="150" stroke="#FF6B00" strokeWidth="0.5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.7 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.75 + index * 0.1 }} />
+            </svg>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               {/* Category header */}
-              <div className="flex items-start gap-4 mb-10">
-                <div className="w-14 h-14 bg-[#1a1a1a] border border-[#FF6B00]/30 flex items-center justify-center shrink-0" style={{ borderRadius: '2px' }}>
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="flex items-start gap-4 mb-10"
+              >
+                <motion.div
+                  variants={scaleIn}
+                  className="w-14 h-14 bg-[#1a1a1a] border border-[#FF6B00]/30 flex items-center justify-center shrink-0"
+                  style={{ borderRadius: '2px' }}
+                  whileHover={{ scale: 1.1, borderColor: 'rgba(255,107,0,0.8)', transition: { duration: 0.2 } }}
+                >
                   <category.icon size={28} className="text-[#FF6B00]" />
-                </div>
+                </motion.div>
                 <div>
-                  <span className="section-label">— {category.title.toUpperCase()} —</span>
-                  <h2 className="text-headline text-white mb-2">
+                  <motion.span variants={fadeInDown} className="section-label">
+                    — {category.title.toUpperCase()} —
+                  </motion.span>
+                  <motion.h2 variants={slideInLeft} className="text-headline text-white mb-2">
                     {category.title}
-                  </h2>
-                  <p className="text-body-lg text-[#888888]">
+                  </motion.h2>
+                  <motion.p variants={fadeInUp} className="text-body-lg text-[#888888]">
                     {category.description}
-                  </p>
+                  </motion.p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Service cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <motion.div
+                variants={staggerContainerFast}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
                 {category.services.map((service) => (
-                  <div
+                  <motion.div
                     key={service.name}
-                    className="card-service"
+                    variants={cardFlipIn}
+                    className="card-service relative overflow-hidden group"
+                    whileHover={{ y: -8, transition: { duration: 0.25, ease: 'easeOut' } }}
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-title text-white">
-                        {service.name}
-                      </h3>
-                      <span className="price-badge ml-4">
+                    {/* Hover glow */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-[#FF6B00]/0 to-[#FF6B00]/0 pointer-events-none"
+                      whileHover={{ background: 'linear-gradient(to bottom right, rgba(255,107,0,0.05), rgba(255,107,0,0.02))' }}
+                    />
+                    {/* Top accent line */}
+                    <motion.div
+                      className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-[#FF6B00] to-transparent"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      style={{ transformOrigin: 'left', width: '100%' }}
+                    />
+                    <div className="flex items-start justify-between mb-3 relative z-10">
+                      <h3 className="text-title text-white">{service.name}</h3>
+                      <motion.span
+                        className="price-badge ml-4"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 18, delay: 0.2 }}
+                      >
                         {service.price}
-                      </span>
+                      </motion.span>
                     </div>
-                    <p className="text-body text-[#888888]">
-                      {service.includes}
-                    </p>
-                  </div>
+                    <p className="text-body text-[#888888] relative z-10">{service.includes}</p>
+                    {/* Corner accent */}
+                    <span className="absolute bottom-2 right-2 w-3 h-3 border-r border-b border-[#FF6B00]/30" />
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Note */}
               {'note' in category && category.note && (
-                <p className="text-caption text-[#888888] mt-6 bg-[#1a1a1a] border-l-2 border-[#FF6B00] p-4" style={{ borderRadius: '2px' }}>
+                <motion.p
+                  className="text-caption text-[#888888] mt-6 bg-[#1a1a1a] border-l-2 border-[#FF6B00] p-4"
+                  style={{ borderRadius: '2px' }}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <strong className="text-white">Let op:</strong>{' '}
                   {category.note}
-                </p>
+                </motion.p>
               )}
             </div>
           </section>
         ))}
 
-        {/* Always included section */}
-        <section className="py-16 lg:py-24 bg-[#111111]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="section-label">— Standaard —</span>
-              <h2 className="text-headline text-white mb-4">
+        {/* ── Always Included ──────────────────────────────── */}
+        <section className="py-16 lg:py-24 bg-[#111111] relative overflow-hidden">
+          {/* Decorative SVG left — drawing on scroll */}
+          <svg className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" width="200" height="300" viewBox="0 0 200 300">
+            <motion.circle cx="0" cy="150" r="120" fill="none" stroke="#FF6B00" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 0.08 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 2, ease: 'easeInOut' }} />
+            <motion.circle cx="0" cy="150" r="80" fill="none" stroke="#FF6B00" strokeWidth="0.6"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 0.06 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.4 }} />
+          </svg>
+          {/* Decorative SVG right — drawing on scroll */}
+          <svg className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" width="200" height="300" viewBox="0 0 200 300">
+            <motion.circle cx="200" cy="150" r="120" fill="none" stroke="#FF6B00" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 0.08 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 2, ease: 'easeInOut', delay: 0.2 }} />
+            <motion.circle cx="200" cy="150" r="80" fill="none" stroke="#FF6B00" strokeWidth="0.6"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 0.06 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.6 }} />
+          </svg>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+              className="text-center mb-12"
+            >
+              <motion.span variants={fadeInDown} className="section-label">— Standaard —</motion.span>
+              <motion.h2 variants={fadeInUp} className="text-headline text-white mb-4">
                 Altijd inbegrepen
-              </h2>
-              <p className="text-body-lg text-[#888888] max-w-2xl mx-auto">
-                Bij elke service ontvangt u standaard het volgende — zonder extra
-                kosten.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              </motion.h2>
+              <motion.p variants={fadeInUp} className="text-body-lg text-[#888888] max-w-2xl mx-auto">
+                Bij elke service ontvangt u standaard het volgende — zonder extra kosten.
+              </motion.p>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainerSlow}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto"
+            >
               {[
                 'Template-based professional design gepersonaliseerd naar huisstijl',
                 'Implementatie van alle aangeleverde content',
@@ -292,16 +461,26 @@ export default function ServicesPage() {
                 'Gratis minor revisions volgens revision policy',
                 'Basis instructies voor gebruik/beheer',
                 'Email support tijdens project',
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3 p-3">
-                  <Check
-                    size={16}
-                    className="text-[#FF6B00] shrink-0 mt-0.5"
-                  />
+              ].map((item, i) => (
+                <motion.div
+                  key={item}
+                  variants={fadeInUp}
+                  className="flex items-start gap-3 p-3 rounded-lg group"
+                  whileHover={{ backgroundColor: 'rgba(255,107,0,0.04)', transition: { duration: 0.2 } }}
+                >
+                  <motion.div
+                    initial={{ scale: 0, rotate: -20 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 12, delay: i * 0.08 }}
+                    className="shrink-0 mt-0.5"
+                  >
+                    <Check size={16} className="text-[#FF6B00]" />
+                  </motion.div>
                   <span className="text-sm text-[#888888]">{item}</span>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
