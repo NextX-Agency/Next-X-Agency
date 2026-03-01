@@ -218,4 +218,4 @@ function PricingSectionFn() {
 }
 
 export const PricingSection = memo(PricingSectionFn)
-
+

@@ -140,8 +140,28 @@ const services = [
 function ServicesSectionFn() {
   return (
     <section className="py-24 bg-[#050911] relative overflow-hidden" id="services">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120] via-[#0F172A] to-[#050911] pointer-events-none" />
       {/* Grid */}
       <div className="absolute inset-0 bg-blueprint-grid pointer-events-none" />
+      {/* Decorative right border */}
+      <div className="absolute right-0 top-0 h-full w-1/3 border-l border-dashed border-primary/10 hidden lg:block pointer-events-none" />
+      {/* Decorative annotation */}
+      <span
+        className="absolute top-1/4 left-10 -rotate-90 origin-left hidden lg:block text-xl opacity-30 select-none"
+        style={{ fontFamily: "'Architects Daughter', cursive", color: '#94a3b8' }}
+      >
+        concept_phase_v3
+      </span>
+      {/* Bottom decorative SVG circle */}
+      <div className="absolute bottom-10 left-10 opacity-15 pointer-events-none rotate-12" aria-hidden="true">
+        <svg className="w-64 h-64 text-primary" fill="none" viewBox="0 0 200 200">
+          <path d="M20,100 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0" stroke="currentColor" strokeDasharray="8 4" strokeWidth="1" />
+          <path d="M100,20 L100,180 M20,100 L180,100" stroke="currentColor" strokeWidth="0.5" />
+          <text fill="currentColor" fontSize="8" fontFamily="monospace" x="110" y="30">AXIS_Y</text>
+          <text fill="currentColor" fontSize="8" fontFamily="monospace" x="170" y="95">AXIS_X</text>
+        </svg>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -174,12 +194,11 @@ function ServicesSectionFn() {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <Link
               key={service.name}
               href={service.href}
-              className="concept-card rough-border p-6 flex flex-col h-full relative group hover:-translate-y-2 transition-transform duration-300 anim-fade-up"
-              style={{ animationDelay: `${index * 0.07}s` }}
+              className="concept-card rough-border p-6 flex flex-col h-full relative group hover:-translate-y-2 transition-transform duration-300"
             >
               {/* Technical label */}
               <div className="absolute -top-3 left-4 bg-[#1e293b] px-3 font-mono text-[10px] text-primary border border-primary/30 z-20">
@@ -192,6 +211,16 @@ function ServicesSectionFn() {
                   RECOMMENDED_BUILD
                 </div>
               )}
+
+              {/* Construction lines */}
+              <div className="construction-line w-px h-full left-8 top-0" />
+              <div className="construction-line h-px w-full top-32 left-0" />
+
+              {/* Brush stroke glow */}
+              <div
+                className="absolute -top-10 -left-10 w-40 h-40 rounded-full pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(249,112,21,0.3) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(8px)', opacity: 0.5, zIndex: 0 }}
+              />
 
               {/* SVG Wireframe preview */}
               <div className="h-40 relative overflow-hidden flex items-center justify-center border-b border-white/5 mb-5">

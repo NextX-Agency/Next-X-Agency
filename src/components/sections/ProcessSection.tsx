@@ -44,6 +44,18 @@ function ProcessSectionFn() {
       {/* Grid paper background */}
       <div className="absolute inset-0 bg-grid-paper opacity-60 pointer-events-none" />
 
+      {/* Scribble corners */}
+      <svg className="absolute top-0 left-0 w-36 h-36 text-gray-400 opacity-15 pointer-events-none" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M20,20 Q50,10 80,40 T150,50" fill="none" stroke="currentColor" strokeDasharray="5,5" strokeWidth="2" />
+        <circle cx="40" cy="60" fill="none" r="10" stroke="currentColor" strokeWidth="1" />
+        <path d="M10,80 L60,120" fill="none" stroke="currentColor" strokeWidth="1" />
+        <path d="M15,85 L65,125" fill="none" stroke="currentColor" strokeWidth="1" />
+      </svg>
+      <svg className="absolute bottom-0 right-0 w-36 h-36 text-primary opacity-15 transform rotate-180 pointer-events-none" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100,100 C150,150 50,150 100,200" fill="none" stroke="currentColor" strokeWidth="3" />
+        <rect fill="none" height="40" stroke="currentColor" strokeWidth="1" width="40" x="120" y="120" />
+      </svg>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-24 relative">
@@ -102,7 +114,7 @@ function ProcessSectionFn() {
           {/* Step cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {steps.map((step, index) => (
-              <div key={step.number} className={`relative group anim-fade-up ${step.staggerClass}`} style={{ animationDelay: `${index * 0.1}s` }}>
+              <div key={step.number} className={`relative group ${step.staggerClass}`}>
                 <div className="bg-white dark:bg-[#0F172A] p-2 rounded-2xl relative z-10 transition-all hover:-translate-y-3 duration-300">
                   <div className="sketched-border p-6 h-full flex flex-col items-center text-center">
                     {/* Icon with number badge */}
