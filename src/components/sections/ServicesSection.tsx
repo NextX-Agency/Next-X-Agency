@@ -10,7 +10,10 @@ import {
   staggerContainerSlow,
   cardFlipIn,
   drawPathFast,
+  blurFadeIn,
+  springPopIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 // ── Inline line-art icons ─────────────────────────────────────────────────────
 
@@ -247,92 +250,94 @@ function ServiceCard({ service }: { service: ServiceItem }) {
   return (
     <motion.div
       variants={cardFlipIn}
-      whileHover={{ y: -6, transition: { duration: 0.2, ease: 'easeOut' } }}
       className="h-full"
     >
-      <Link
-        href={href}
-        className="group flex flex-col h-full bg-[#0B1120] border border-white/5 hover:border-primary/25 transition-colors duration-300 p-6 relative overflow-hidden"
-      >
-        {/* Hover glow */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at 15% 15%, rgba(249,112,21,0.07) 0%, transparent 65%)' }}
-        />
+      <SpotlightCard className="h-full hover-lift">
+        <Link
+          href={href}
+          className="group flex flex-col h-full bg-[#0B1120] border border-white/5 hover:border-primary/30 transition-colors duration-300 p-6 relative overflow-hidden"
+        >
+          {/* Recommended badge */}
+          {recommended && (
+            <motion.span
+              className="absolute top-4 right-4 bg-primary text-black px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase z-10 badge-float"
+              variants={springPopIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              AANBEVOLEN
+            </motion.span>
+          )}
 
-        {/* Recommended badge */}
-        {recommended && (
-          <motion.span
-            className="absolute top-4 right-4 bg-primary text-black px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase z-10"
-            initial={{ opacity: 0, y: -6 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.35 }}
-          >
-            AANBEVOLEN
-          </motion.span>
-        )}
-
-        {/* Icon */}
-        <div className="mb-5 flex-shrink-0">
-          <div className="relative w-14 h-14 border border-white/8 bg-white/[0.02] flex items-center justify-center text-[#94a3b8] group-hover:text-primary group-hover:border-primary/30 transition-colors duration-300">
-            <div className="w-9 h-9">
-              <Icon />
+          {/* Icon */}
+          <div className="mb-5 flex-shrink-0">
+            <div className="relative w-14 h-14 border border-white/8 bg-white/[0.02] flex items-center justify-center text-[#94a3b8] group-hover:text-primary group-hover:border-primary/40 transition-colors duration-300 icon-glow">
+              <div className="w-9 h-9">
+                <Icon />
+              </div>
+              <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-r border-b border-primary/50" />
+              <span className="absolute -top-px -left-px w-2.5 h-2.5 border-l border-t border-primary/50" />
             </div>
-            <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-r border-b border-primary/50" />
-            <span className="absolute -top-px -left-px w-2.5 h-2.5 border-l border-t border-primary/50" />
           </div>
-        </div>
 
-        {/* Tags */}
-        <div className="flex items-center gap-2 mb-3 relative z-10">
-          <span className="font-mono text-[9px] text-primary tracking-widest border border-primary/20 px-1.5 py-0.5 bg-primary/5">
-            {label}
-          </span>
-          <span className="font-mono text-[9px] text-gray-600 tracking-widest uppercase">
-            // {tag}
-          </span>
-        </div>
-
-        {/* Name + description */}
-        <h3 className={`text-base font-bold font-mono uppercase tracking-wider mb-2 transition-colors duration-200 relative z-10 ${recommended ? 'text-primary' : 'text-white group-hover:text-primary'}`}>
-          {name}
-        </h3>
-        <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow relative z-10">
-          {description}
-        </p>
-
-        {/* Features */}
-        {features.length > 0 && (
-          <ul className="mb-4 space-y-1 font-mono text-xs relative z-10">
-            {features.map((f) => (
-              <li key={f} className="flex items-center text-gray-300">
-                <span className="text-primary mr-2 font-bold leading-none">&rsaquo;</span>
-                {f}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {/* Price + CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto relative z-10">
-          <div>
-            <span className="font-mono text-[9px] text-gray-600 uppercase tracking-widest block">EST_COST</span>
-            <span className={`font-mono font-bold text-lg ${recommended ? 'text-primary' : 'text-white'}`}>
-              {priceRaw}<span className="text-primary text-xs">.00</span>
+          {/* Tags */}
+          <div className="flex items-center gap-2 mb-3 relative z-10">
+            <span className="font-mono text-[9px] text-primary tracking-widest border border-primary/20 px-1.5 py-0.5 bg-primary/5 feature-tag">
+              {label}
+            </span>
+            <span className="font-mono text-[9px] text-gray-600 tracking-widest uppercase">
+              // {tag}
             </span>
           </div>
-          <motion.div
-            className="w-7 h-7 border border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-colors duration-200"
-            whileHover={{ rotate: 45, scale: 1.1 }}
-            transition={{ duration: 0.18 }}
-          >
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </motion.div>
-        </div>
-      </Link>
+
+          {/* Name + description */}
+          <h3 className={`text-base font-bold font-mono uppercase tracking-wider mb-2 transition-colors duration-200 relative z-10 ${recommended ? 'text-primary' : 'text-white group-hover:text-primary'}`}>
+            {name}
+          </h3>
+          <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow relative z-10">
+            {description}
+          </p>
+
+          {/* Features */}
+          {features.length > 0 && (
+            <ul className="mb-4 space-y-1.5 font-mono text-xs relative z-10">
+              {features.map((f, i) => (
+                <motion.li
+                  key={f}
+                  className="flex items-center text-gray-300"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                >
+                  <span className="text-primary mr-2 font-bold leading-none">&rsaquo;</span>
+                  {f}
+                </motion.li>
+              ))}
+            </ul>
+          )}
+
+          {/* Price + CTA */}
+          <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto relative z-10">
+            <div>
+              <span className="font-mono text-[9px] text-gray-600 uppercase tracking-widest block">EST_COST</span>
+              <span className={`font-mono font-bold text-lg counter-glow ${recommended ? 'text-primary' : 'text-white'}`}>
+                {priceRaw}<span className="text-primary text-xs">.00</span>
+              </span>
+            </div>
+            <motion.div
+              className="w-7 h-7 border border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-colors duration-200"
+              whileHover={{ rotate: 45, scale: 1.15 }}
+              transition={{ duration: 0.18 }}
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.div>
+          </div>
+        </Link>
+      </SpotlightCard>
     </motion.div>
   )
 }
@@ -389,6 +394,10 @@ function ServicesSectionFn() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120] via-[#0F172A] to-[#050911] pointer-events-none" />
       {/* Blueprint grid */}
       <div className="absolute inset-0 bg-blueprint-grid opacity-40 pointer-events-none" />
+      {/* Dot pattern on right side */}
+      <div className="absolute right-0 top-0 w-1/3 h-full bg-dots opacity-40 pointer-events-none" />
+      {/* Aurora glow */}
+      <div className="aurora-bg absolute inset-0 pointer-events-none opacity-60" />
       {/* Decorative annotation */}
       <span
         className="absolute top-1/4 left-10 -rotate-90 origin-left hidden lg:block text-xl opacity-20 select-none"
@@ -418,7 +427,7 @@ function ServicesSectionFn() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white font-mono">
               Schaalbare{' '}
-              <span className="relative inline-block text-primary">
+              <span className="gradient-text-animated relative inline-block">
                 Oplossingen
                 <svg className="absolute w-full h-2 -bottom-1 left-0 text-primary opacity-50 pointer-events-none" fill="none" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
                   <motion.path
@@ -432,14 +441,14 @@ function ServicesSectionFn() {
                 </svg>
               </span>
             </h2>
-            <p className="mt-4 text-gray-500 text-sm font-mono">
+            <motion.p variants={blurFadeIn} className="mt-4 text-gray-500 text-sm font-mono">
               &gt; 3 categories &mdash; 7 modules &mdash; one scalable stack
-            </p>
+            </motion.p>
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Link
               href="/portfolio"
-              className="inline-flex items-center text-primary font-semibold hover:text-white transition-colors font-mono border-b border-primary pb-1 tracking-wider whitespace-nowrap text-sm"
+              className="inline-flex items-center text-primary font-semibold hover:text-white transition-colors font-mono border-b border-primary pb-1 tracking-wider whitespace-nowrap text-sm neon-underline"
             >
               [ VIEW_PORTFOLIO ]
             </Link>

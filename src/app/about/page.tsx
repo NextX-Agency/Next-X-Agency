@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import {
   fadeInUp,
+  blurFadeIn,
   fadeInDown,
   slideInLeft,
   slideInRight,
@@ -24,6 +25,7 @@ import {
   staggerContainerSlow,
   cardFlipIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 const values = [
   {
@@ -79,6 +81,9 @@ export default function AboutPage() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,112,21,0.12) 0%, transparent 60%)' }}
           />
+          {/* Aurora + dots */}
+          <div className="aurora-bg absolute inset-0 pointer-events-none opacity-25" />
+          <div className="absolute right-0 top-0 w-1/3 h-full bg-dots opacity-15 pointer-events-none" />
           {/* Decorative split circle SVG — draw + subtle loop */}
           <svg className="absolute left-0 top-0 w-[320px] h-[320px] opacity-8 pointer-events-none" aria-hidden="true" viewBox="0 0 320 320">
             <motion.circle cx="0" cy="160" r="200" fill="none" stroke="#FF6B00" strokeWidth="0.8"
@@ -151,13 +156,13 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="bg-card border border-border rounded-xl p-8 relative overflow-hidden"
+                className="bg-card border border-border rounded-xl p-8 relative overflow-hidden hover-lift"
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
               >
                 {/* Corner accent */}
                 <span className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl" />
                 <motion.div
-                  className="w-14 h-14 rounded-xl bg-primary-muted flex items-center justify-center mb-6"
+                  className="w-14 h-14 rounded-xl bg-primary-muted flex items-center justify-center mb-6 icon-glow"
                   initial={{ scale: 0, rotate: -20 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
@@ -165,7 +170,7 @@ export default function AboutPage() {
                 >
                   <Target size={28} className="text-primary" />
                 </motion.div>
-                <h2 className="text-headline text-foreground mb-4">Onze Missie</h2>
+                <h2 className="text-headline text-foreground mb-4"><span className="gradient-text-animated">Onze</span> Missie</h2>
                 <p className="text-body-lg text-muted-foreground">
                   Bedrijven niet alleen online brengen, maar hen structureel
                   laten groeien door professionele digitale oplossingen
@@ -193,7 +198,7 @@ export default function AboutPage() {
               >
                 <span className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl" />
                 <motion.div
-                  className="w-14 h-14 rounded-xl bg-primary-muted flex items-center justify-center mb-6"
+                  className="w-14 h-14 rounded-xl bg-primary-muted flex items-center justify-center mb-6 icon-glow"
                   initial={{ scale: 0, rotate: -20 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
@@ -201,7 +206,7 @@ export default function AboutPage() {
                 >
                   <Eye size={28} className="text-primary" />
                 </motion.div>
-                <h2 className="text-headline text-foreground mb-4">Onze Visie</h2>
+                <h2 className="text-headline text-foreground mb-4"><span className="gradient-text-animated">Onze</span> Visie</h2>
                 <p className="text-body-lg text-muted-foreground">
                   De go-to digitale partner zijn voor ondernemers die hun online
                   aanwezigheid willen professionaliseren zonder de hoge kosten

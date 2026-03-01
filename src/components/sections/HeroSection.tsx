@@ -11,18 +11,21 @@ import {
   fadeInDown,
   scaleIn,
   staggerContainer,
+  blurFadeIn,
 } from '@/lib/animationUtils'
+import { ParticleField } from '@/components/animated/ParticleField'
+import { MagneticButton } from '@/components/animated/MagneticButton'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Decorative floating particles
-const particles = Array.from({ length: 20 }, (_, i) => ({
+// Twinkling star positions
+const stars = Array.from({ length: 35 }, (_, i) => ({
   id: i,
-  x: (i * 37 + 11) % 100,
-  y: (i * 53 + 7) % 100,
-  delay: (i * 0.31) % 4,
-  dx: ((i % 5) - 2) * 18,
-  size: (i % 3) + 1.5,
+  x: (i * 41 + 7) % 100,
+  y: (i * 29 + 13) % 100,
+  size: 1 + (i % 3) * 0.6,
+  dur: 2 + (i % 5),
+  delay: (i * 0.4) % 4,
 }))
 
 function HeroSectionFn() {
@@ -51,34 +54,47 @@ function HeroSectionFn() {
   return (
     <header
       ref={containerRef}
-      className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-[#050911]"
+      className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-[#050911] noise-overlay"
     >
       {/* Blueprint grid */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-blueprint-grid" />
 
-      {/* Scan line effect */}
-      <div
-        className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/15 to-transparent pointer-events-none z-0 scan-line"
-      />
+      {/* Aurora ambient glow */}
+      <div className="aurora-bg absolute inset-0 z-0 pointer-events-none" />
 
-      {/* Floating particles */}
+      {/* Twinkling stars */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {particles.map((p) => (
+        {stars.map((s) => (
           <div
-            key={p.id}
-            className="absolute rounded-full bg-primary particle"
+            key={s.id}
+            className="twinkle-star absolute rounded-full bg-primary"
             style={{
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              width: `${p.size}px`,
-              height: `${p.size}px`,
-              animationDelay: `${p.delay}s`,
-              '--dx': `${p.dx}px`,
-              opacity: 0.45,
+              left: `${s.x}%`,
+              top: `${s.y}%`,
+              width: `${s.size}px`,
+              height: `${s.size}px`,
+              '--twinkle-dur': `${s.dur}s`,
+              '--twinkle-delay': `${s.delay}s`,
             } as React.CSSProperties}
           />
         ))}
       </div>
+
+      {/* Canvas particle field with mouse repel */}
+      <ParticleField count={60} interactive className="absolute inset-0 z-0" />
+
+      {/* Scan line v2 (more dramatic) */}
+      <div className="scan-line-v2 pointer-events-none z-0" />
+
+      {/* Scan line original (offset timing) */}
+      <div
+        className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/15 to-transparent pointer-events-none z-0 scan-line"
+        style={{ animationDelay: '2.5s' }}
+      />
+
+      {/* Morphing background blobs */}
+      <div className="absolute top-1/4 right-[5%] w-72 h-72 blob pointer-events-none z-0" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-[5%] w-48 h-48 blob pointer-events-none z-0" style={{ animationDelay: '-4s' }} aria-hidden="true" />
 
       {/* Floating technical annotations with GSAP parallax */}
       <div
@@ -127,10 +143,15 @@ function HeroSectionFn() {
         <line stroke="#f97015" strokeOpacity="0.06" strokeWidth="1" x1="0" x2="100%" y1="50%" y2="50%" />
       </svg>
 
-      {/* Orange glow halo */}
+      {/* Orange glow halo — large */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full pointer-events-none z-0"
-        style={{ filter: 'blur(100px)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-primary/8 rounded-full pointer-events-none z-0"
+        style={{ filter: 'blur(120px)' }}
+      />
+      {/* Secondary smaller glow */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-primary/12 rounded-full pointer-events-none z-0"
+        style={{ filter: 'blur(60px)' }}
       />
 
       {/* Main content */}
@@ -172,8 +193,8 @@ function HeroSectionFn() {
           <motion.span variants={scaleIn} className="relative inline-block mt-4">
             <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 -skew-x-12 scale-110" style={{ filter: 'blur(4px)' }} />
             <span
-              className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#ffb347] via-[#f97015] to-[#ff8c42] pb-2"
-              style={{ filter: 'drop-shadow(0 0 15px rgba(249,112,21,0.5))', display: 'inline-block' }}
+              className="relative z-10 shimmer-text pb-2"
+              style={{ display: 'inline-block' }}
             >
               begint hier
             </span>
@@ -207,7 +228,7 @@ function HeroSectionFn() {
 
         {/* Subtext */}
         <motion.p
-          variants={fadeInUp}
+          variants={blurFadeIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.55 }}
@@ -230,33 +251,37 @@ function HeroSectionFn() {
           className="flex flex-col sm:flex-row gap-6 sm:gap-8 w-full sm:w-auto justify-center mb-24 relative z-20"
         >
           <motion.div variants={fadeInUp}>
-            <Link
-              href="/contact"
-              className="group relative inline-flex items-center justify-center px-10 py-4 text-base font-bold text-white focus:outline-none min-h-[52px] glow-pulse"
-            >
-              <span className="absolute inset-0 bg-primary transform skew-x-[-10deg] group-hover:skew-x-[-5deg] transition-all duration-300" />
-              <span className="font-mono uppercase tracking-wider relative z-10 flex items-center gap-2">
-                Start Project
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </Link>
+            <MagneticButton strength={0.4}>
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center justify-center px-10 py-4 text-base font-bold text-white focus:outline-none min-h-[52px] glow-pulse"
+              >
+                <span className="absolute inset-0 bg-primary transform skew-x-[-10deg] group-hover:skew-x-[-5deg] transition-all duration-300" />
+                <span className="font-mono uppercase tracking-wider relative z-10 flex items-center gap-2">
+                  Start Project
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
+            </MagneticButton>
           </motion.div>
 
           <motion.div variants={fadeInUp}>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center px-10 py-4 text-base font-bold text-gray-300 bg-transparent focus:outline-none relative group overflow-hidden min-h-[52px]"
-            >
-              <span className="absolute inset-0 border border-gray-600 skew-x-[-10deg] group-hover:border-primary transition-colors duration-300" />
-              <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-primary skew-x-[-10deg]" />
-              <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-primary skew-x-[-10deg]" />
-              <span className="absolute inset-0 w-full h-full bg-primary/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 skew-x-[-10deg]" />
-              <span className="font-mono uppercase tracking-wider relative z-10 group-hover:text-white transition-colors duration-300">
-                Bekijk services
-              </span>
-            </Link>
+            <MagneticButton strength={0.3}>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center px-10 py-4 text-base font-bold text-gray-300 bg-transparent focus:outline-none relative group overflow-hidden min-h-[52px]"
+              >
+                <span className="absolute inset-0 border border-gray-600 skew-x-[-10deg] group-hover:border-primary transition-colors duration-300" />
+                <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-primary skew-x-[-10deg]" />
+                <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-primary skew-x-[-10deg]" />
+                <span className="absolute inset-0 w-full h-full bg-primary/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 skew-x-[-10deg]" />
+                <span className="font-mono uppercase tracking-wider relative z-10 group-hover:text-white transition-colors duration-300">
+                  Bekijk services
+                </span>
+              </Link>
+            </MagneticButton>
           </motion.div>
         </motion.div>
 

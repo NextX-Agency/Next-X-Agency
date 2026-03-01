@@ -7,6 +7,7 @@ import { ContactForm } from '@/components/ContactForm'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import {
   fadeInUp,
+  blurFadeIn,
   fadeInDown,
   slideInLeft,
   slideInRight,
@@ -15,6 +16,7 @@ import {
   staggerContainerFast,
   cardFlipIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 const contactItems = [
   { icon: Mail, label: 'Email', value: 'lranoesendjojo@gmail.com', href: 'mailto:lranoesendjojo@gmail.com', isExternal: false },
@@ -34,6 +36,7 @@ export default function ContactPage() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,112,21,0.12) 0%, transparent 60%)' }}
           />
+          <div className="aurora-bg absolute inset-0 pointer-events-none opacity-25" />
           {/* Animated signal circles — draw in then pulse forever */}
           <motion.svg className="absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[340px] pointer-events-none" aria-hidden="true" viewBox="0 0 340 340"
             initial={{ opacity: 0.08 }}
@@ -67,7 +70,7 @@ export default function ContactPage() {
             <motion.div variants={scaleIn} className="inline-flex badge bg-primary-muted text-primary border border-primary/30 mb-8">
               Neem Contact Op
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-display text-foreground max-w-4xl mx-auto mb-6">
+            <motion.h1 variants={blurFadeIn} className="text-display text-foreground max-w-4xl mx-auto mb-6">
               Laten we samenwerken
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
@@ -168,11 +171,11 @@ export default function ContactPage() {
                     <motion.div
                       key={label}
                       variants={cardFlipIn}
-                      className="flex items-start gap-4 bg-card border border-border rounded-xl p-4 relative overflow-hidden"
-                      whileHover={{ x: 4, transition: { duration: 0.2 } }}
                     >
+                      <SpotlightCard className="rounded-xl hover-lift">
+                      <div className="flex items-start gap-4 bg-card border border-border rounded-xl p-4 relative overflow-hidden">
                       <motion.div
-                        className="w-11 h-11 rounded-xl bg-primary-muted flex items-center justify-center shrink-0"
+                        className="w-11 h-11 rounded-xl bg-primary-muted flex items-center justify-center shrink-0 icon-glow"
                         initial={{ scale: 0, rotate: -20 }}
                         whileInView={{ scale: 1, rotate: 0 }}
                         viewport={{ once: true }}
@@ -204,6 +207,8 @@ export default function ContactPage() {
                         transition={{ duration: 0.4, delay: 0.3 }}
                         style={{ transformOrigin: 'top' }}
                       />
+                      </div>
+                      </SpotlightCard>
                     </motion.div>
                   ))}
                 </motion.div>

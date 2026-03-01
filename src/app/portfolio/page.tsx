@@ -6,12 +6,14 @@ import { Footer } from '@/components/Footer'
 import { CTABanner } from '@/components/sections/CTABanner'
 import {
   fadeInUp,
+  blurFadeIn,
   fadeInDown,
   scaleIn,
   staggerContainer,
   staggerContainerFast,
   cardFlipIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 // Per-project SVG illustration colours & shapes
 const projectVisuals = [
@@ -79,6 +81,7 @@ export default function PortfolioPage() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,112,21,0.12) 0%, transparent 60%)' }}
           />
+          <div className="aurora-bg absolute inset-0 pointer-events-none opacity-25" />
           {/* Left-side mirrored decoration */}
           <svg className="absolute left-0 top-0 w-[340px] h-[340px] opacity-8 pointer-events-none" aria-hidden="true" viewBox="0 0 420 420">
             <motion.circle cx="0" cy="210" r="180" fill="none" stroke="#FF6B00" strokeWidth="0.6"
@@ -178,9 +181,10 @@ export default function PortfolioPage() {
                   <motion.div
                     key={project.title}
                     variants={cardFlipIn}
-                    className="bg-card border border-border rounded-xl overflow-hidden shadow-sm group"
-                    whileHover={{ y: -10, scale: 1.01, transition: { duration: 0.25, ease: 'easeOut' } }}
+                    className="group"
                   >
+                    <SpotlightCard className="rounded-xl hover-lift holo-card">
+                    <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
                     {/* Illustrated preview area */}
                     <div className={`aspect-[16/9] bg-gradient-to-br ${vis.bg} relative overflow-hidden flex items-center justify-center`}>
                     {/* SVG illustration per project type — draws in on scroll */}
@@ -342,6 +346,8 @@ export default function PortfolioPage() {
                         ))}
                       </motion.div>
                     </div>
+                    </div>
+                    </SpotlightCard>
                   </motion.div>
                 )
               })}

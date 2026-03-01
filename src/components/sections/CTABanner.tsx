@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { fadeInUp, staggerContainer, scaleIn } from '@/lib/animationUtils'
+import { fadeInUp, blurFadeIn, staggerContainer, scaleIn } from '@/lib/animationUtils'
+import { MagneticButton } from '@/components/animated/MagneticButton'
 
 function CTABannerFn() {
   return (
-    <section className="bg-[#FF6B00] py-16 lg:py-20 relative overflow-hidden">
+    <section className="py-16 lg:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #FF6B00 0%, #f97015 40%, #ff8c00 70%, #FF6B00 100%)" }}>
       {/* Decorative SVG background shapes */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -75,6 +76,8 @@ function CTABannerFn() {
         />
       </svg>
 
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(0,0,0,0.1) 0%, transparent 60%)' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
           variants={staggerContainer}
@@ -82,7 +85,7 @@ function CTABannerFn() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
         >
-          <motion.h2 variants={fadeInUp} className="text-headline text-[#0a0a0a] mb-4">
+          <motion.h2 variants={blurFadeIn} className="text-headline text-[#0a0a0a] mb-4">
             Klaar om uw bedrijf online te laten groeien?
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-body-lg text-[#0a0a0a]/70 max-w-2xl mx-auto mb-10">
@@ -94,29 +97,31 @@ function CTABannerFn() {
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <motion.div variants={scaleIn}>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <motion.div variants={scaleIn} className="relative">
+              {/* Pulse ring decoration */}
+              <span className="pulse-ring absolute inset-0 pointer-events-none" style={{ borderRadius: '2px' }} />
+              <MagneticButton strength={0.4}>
                 <Link
                   href="/contact"
-                  className="inline-block bg-[#0a0a0a] text-white hover:bg-[#1a1a1a] font-bold uppercase tracking-[0.12em] text-xs px-8 py-4 transition-colors duration-150 min-h-[44px]"
+                  className="inline-block bg-[#0a0a0a] text-white font-bold uppercase tracking-[0.12em] text-xs px-8 py-4 transition-all duration-200 min-h-[44px] hover:bg-[#1a1a1a] hover:shadow-[0_0_20px_rgba(0,0,0,0.4)] relative overflow-hidden"
                   style={{ borderRadius: '2px' }}
                 >
                   Stuur een aanvraag
                 </Link>
-              </motion.div>
+              </MagneticButton>
             </motion.div>
             <motion.div variants={scaleIn}>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              <MagneticButton strength={0.3}>
                 <a
                   href="https://wa.me/5978318508"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-white text-[#0a0a0a] hover:bg-white/90 font-bold uppercase tracking-[0.12em] text-xs px-8 py-4 transition-colors duration-150 min-h-[44px]"
+                  className="inline-block bg-white text-[#0a0a0a] hover:bg-white/90 font-bold uppercase tracking-[0.12em] text-xs px-8 py-4 transition-all duration-200 min-h-[44px] hover:shadow-[0_4px_16px_rgba(255,255,255,0.4)]"
                   style={{ borderRadius: '2px' }}
                 >
                   WhatsApp ons
                 </a>
-              </motion.div>
+              </MagneticButton>
             </motion.div>
           </motion.div>
         </motion.div>

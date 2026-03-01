@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { CursorTracker } from '@/components/animated/CursorTracker'
 
 export const metadata: Metadata = {
   title: 'NextX Agency — Complete Digital Solutions for Modern Businesses',
@@ -38,6 +39,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-foreground antialiased">
+        <CursorTracker />
         {children}
       </body>
     </html>

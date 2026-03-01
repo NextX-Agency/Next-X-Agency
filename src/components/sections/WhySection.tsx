@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion'
 import {
   fadeInUp,
-  slideInLeft,
   staggerContainer,
   staggerContainerSlow,
   cardFlipIn,
+  blurFadeIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 const features = [
   {
@@ -108,8 +109,8 @@ function WhySectionFn() {
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary" />
             <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-primary" />
           </motion.div>
-          <motion.h2 variants={fadeInUp} className="mt-6 text-4xl md:text-5xl font-bold text-white tracking-tight font-mono">
-            LOGIC_FLOW: <span className="text-primary">NextX</span>
+          <motion.h2 variants={blurFadeIn} className="mt-6 text-4xl md:text-5xl font-bold text-white tracking-tight font-mono">
+            LOGIC_FLOW: <span className="gradient-text-animated">NextX</span>
           </motion.h2>
         </motion.div>
 
@@ -175,34 +176,36 @@ function WhySectionFn() {
             <motion.div
               key={feature.label}
               variants={cardFlipIn}
-              className="group sketch-card p-6 z-10 relative"
-              whileHover={{ y: -10, transition: { duration: 0.25, ease: 'easeOut' } }}
+              className="z-10"
             >
-              {/* Technical label tab */}
-              <div className="absolute -top-3 left-4 bg-[#0B1120] px-2 technical-label border border-primary/30">
-                {feature.label}
-              </div>
+              <SpotlightCard className="h-full sketch-card p-6 hover-lift transition-all duration-300">
+                {/* Technical label tab */}
+                <div className="absolute -top-3 left-4 bg-[#0B1120] px-2 technical-label border border-primary/30">
+                  {feature.label}
+                </div>
 
-              {/* Icon — scale on hover */}
-              <motion.div
-                className="w-12 h-12 mb-4"
-                whileHover={{ scale: 1.18, rotate: 3 }}
-                transition={{ duration: 0.25 }}
-              >
-                {feature.icon}
-              </motion.div>
+                {/* Icon — float + glow on hover */}
+                <motion.div
+                  className="w-12 h-12 mb-4 icon-glow"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                >
+                  {feature.icon}
+                </motion.div>
 
-              <h3 className="text-lg font-bold text-white mb-3 font-mono uppercase tracking-wider">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 text-xs leading-relaxed font-mono">
-                {feature.lines.map((line) => (
-                  <span key={line} className="block">{line}</span>
-                ))}
-              </p>
+                <h3 className="text-lg font-bold text-white mb-3 font-mono uppercase tracking-wider group-hover:text-primary transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 text-xs leading-relaxed font-mono">
+                  {feature.lines.map((line) => (
+                    <span key={line} className="block">{line}</span>
+                  ))}
+                </p>
 
-              {/* Corner accent */}
-              <span className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-primary/50" />
+                {/* Neon corner accents */}
+                <span className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-primary/50 transition-all duration-300 group-hover:border-primary" />
+                <span className="absolute top-2 left-2 w-3 h-3 border-l border-t border-primary/30 transition-all duration-300 group-hover:border-primary/70" />
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>

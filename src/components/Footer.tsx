@@ -2,6 +2,7 @@ import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const serviceLinks = [
   { href: '/services#graphic-design', label: 'Graphic Design' },
@@ -20,7 +21,9 @@ const companyLinks = [
 
 function FooterFn() {
   return (
-    <footer className="bg-[#0a0a0a] border-t-2 border-[#FF6B00]">
+    <footer className="bg-[#0a0a0a] border-t-2 border-[#FF6B00] relative overflow-hidden">
+      {/* Aurora hint */}
+      <div className="absolute top-0 left-0 right-0 h-40 opacity-20 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,112,21,0.2), transparent 70%)' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand column */}
@@ -43,29 +46,29 @@ function FooterFn() {
                 href="https://wa.me/5978318508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-[#1a1a1a] hover:bg-[#FF6B00]/20 border border-[#FF6B00]/30 hover:border-[#FF6B00] flex items-center justify-center text-[#888888] hover:text-[#FF6B00] transition-all"
+                className="w-9 h-9 bg-[#1a1a1a] hover:bg-[#FF6B00]/20 border border-[#FF6B00]/30 hover:border-[#FF6B00] flex items-center justify-center text-[#888888] hover:text-[#FF6B00] transition-all hover-lift"
                 style={{ borderRadius: '2px' }}
                 aria-label="WhatsApp"
               >
-                <Phone size={16} />
+                <Phone size={16} className="icon-glow-hover" />
               </a>
               <a
                 href="mailto:lranoesendjojo@gmail.com"
-                className="w-9 h-9 bg-[#1a1a1a] hover:bg-[#FF6B00]/20 border border-[#FF6B00]/30 hover:border-[#FF6B00] flex items-center justify-center text-[#888888] hover:text-[#FF6B00] transition-all"
+                className="w-9 h-9 bg-[#1a1a1a] hover:bg-[#FF6B00]/20 border border-[#FF6B00]/30 hover:border-[#FF6B00] flex items-center justify-center text-[#888888] hover:text-[#FF6B00] transition-all hover-lift"
                 style={{ borderRadius: '2px' }}
                 aria-label="Email"
               >
-                <Mail size={16} />
+                <Mail size={16} className="icon-glow-hover" />
               </a>
               <a
                 href="https://www.shop-nextx.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-[#1a1a1a] hover:bg-[#FF6B00]/20 border border-[#FF6B00]/30 hover:border-[#FF6B00] flex items-center justify-center text-[#888888] hover:text-[#FF6B00] transition-all"
+                className="w-9 h-9 bg-[#1a1a1a] hover:bg-[#FF6B00]/20 border border-[#FF6B00]/30 hover:border-[#FF6B00] flex items-center justify-center text-[#888888] hover:text-[#FF6B00] transition-all hover-lift"
                 style={{ borderRadius: '2px' }}
                 aria-label="Website"
               >
-                <ExternalLink size={16} />
+                <ExternalLink size={16} className="icon-glow-hover" />
               </a>
             </div>
           </div>
@@ -80,9 +83,10 @@ function FooterFn() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#888888] hover:text-white transition-colors text-sm"
+                    className="text-[#888888] hover:text-white transition-colors text-sm relative group/link"
                   >
                     {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-primary group-hover/link:w-full transition-all duration-300" />
                   </Link>
                 </li>
               ))}
@@ -99,9 +103,10 @@ function FooterFn() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#888888] hover:text-white transition-colors text-sm"
+                    className="text-[#888888] hover:text-white transition-colors text-sm relative group/link"
                   >
                     {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-primary group-hover/link:w-full transition-all duration-300" />
                   </Link>
                 </li>
               ))}
@@ -151,7 +156,7 @@ function FooterFn() {
           </p>
           <p className="text-caption text-[#888888]">
             Gemaakt door{' '}
-            <span className="text-[#FF6B00] font-medium">NextX</span>
+<span className="gradient-text-animated font-medium">NextX</span>
           </p>
         </div>
       </div>

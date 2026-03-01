@@ -4,11 +4,13 @@ import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
 import {
   fadeInUp,
+  blurFadeIn,
   staggerContainer,
   staggerContainerSlow,
   cardFlipIn,
   scaleIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 const testimonials = [
   {
@@ -39,6 +41,10 @@ function TestimonialsSectionFn() {
     <section className="py-16 lg:py-24 relative overflow-hidden bg-[#050911]">
       {/* Subtle background grid */}
       <div className="absolute inset-0 bg-blueprint-grid pointer-events-none opacity-50" />
+      {/* Aurora overlay */}
+      <div className="aurora-bg absolute inset-0 pointer-events-none opacity-40" />
+      {/* Dot pattern */}
+      <div className="absolute right-0 top-0 w-1/3 h-full bg-dots opacity-20 pointer-events-none" />
       {/* Top glow line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -53,8 +59,9 @@ function TestimonialsSectionFn() {
           <motion.div variants={scaleIn} className="inline-flex badge bg-primary-muted text-primary border border-primary/30 mb-4">
             Klantervaring
           </motion.div>
-          <motion.h2 variants={fadeInUp} className="text-headline text-foreground mb-4">
-            Wat onze klanten zeggen
+          <motion.h2 variants={blurFadeIn} className="text-headline text-foreground mb-4">
+            Wat onze klanten{" "}
+            <span className="gradient-text-animated">zeggen</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
             Wij bouwen langdurige relaties met onze klanten. Hier zijn enkele
@@ -74,14 +81,15 @@ function TestimonialsSectionFn() {
             <motion.div
               key={testimonial.name}
               variants={cardFlipIn}
-              className="bg-card border border-border rounded-xl p-6 relative overflow-hidden"
-              whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.25, ease: 'easeOut' } }}
+              className="group"
             >
-              {/* Hover glow overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 pointer-events-none transition-all duration-500" />
-              {/* Animated SVG quote mark */}
-              <div className="relative mb-2">
-                <svg className="w-10 h-10 text-primary/25" viewBox="0 0 40 30" fill="none" aria-hidden="true">
+              <SpotlightCard className="h-full hover-lift holo-card rounded-xl">
+                <div className="bg-card border border-border rounded-xl p-6 relative overflow-hidden h-full flex flex-col">
+                  {/* Hover glow overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 pointer-events-none transition-all duration-500 rounded-xl" />
+                  {/* Animated SVG quote mark */}
+                  <div className="relative mb-2">
+                    <svg className="w-14 h-14 text-primary/30 icon-glow" viewBox="0 0 40 30" fill="none" aria-hidden="true">
                   <motion.path
                     d="M5 28 C 2 22, 2 16, 8 10 C 12 6, 16 5, 18 6 L 16 12 C 13 11, 11 13, 10 16 L 16 16 L 16 28 Z"
                     fill="currentColor"
@@ -104,8 +112,8 @@ function TestimonialsSectionFn() {
               </div>
 
               {/* Quote text */}
-              <motion.p
-                className="text-muted-foreground italic mb-6 text-sm leading-relaxed"
+                  <motion.p
+                    className="text-muted-foreground italic mb-6 text-sm leading-relaxed flex-1"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -141,8 +149,10 @@ function TestimonialsSectionFn() {
                 <p className="text-caption text-muted-foreground">{testimonial.role}</p>
               </div>
 
-              {/* Corner accent */}
-              <span className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-primary/30" />
+                  {/* Corner accent */}
+                  <span className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-primary/40 group-hover:border-primary/80 transition-colors duration-300" />
+                </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>

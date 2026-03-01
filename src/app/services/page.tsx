@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import {
   fadeInUp,
+  blurFadeIn,
   fadeInDown,
   slideInLeft,
   staggerContainer,
@@ -24,6 +25,7 @@ import {
   cardFlipIn,
   scaleIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 const serviceCategories = [
   {
@@ -215,6 +217,9 @@ export default function ServicesPage() {
       <main>
         {/* ── Hero ─────────────────────────────────────────── */}
         <section className="relative py-20 lg:py-32 overflow-hidden circuit-bg">
+          {/* Aurora + dots */}
+          <div className="aurora-bg absolute inset-0 pointer-events-none opacity-25" />
+          <div className="absolute left-0 top-0 w-1/4 h-full bg-dots opacity-15 pointer-events-none" />
           {/* Animated SVG circuit overlay — draws in then pulses */}
           <motion.svg
             className="absolute inset-0 w-full h-full pointer-events-none"

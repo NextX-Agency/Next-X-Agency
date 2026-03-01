@@ -8,6 +8,7 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { fadeInDown, scaleIn, navItemVariant, staggerContainerFast } from '@/lib/animationUtils'
+import { MagneticButton } from '@/components/animated/MagneticButton'
 
 const navLinks = [
   { href: '/services', label: 'Services' },
@@ -21,7 +22,9 @@ function NavbarFn() {
   const pathname = usePathname()
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#0a0a0a] border-b border-[#FF6B00]/20">
+    <nav className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#FF6B00]/20 relative">
+      {/* Subtle bottom glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo — page-load entrance */}
@@ -65,7 +68,7 @@ function NavbarFn() {
                   {/* Animated underline on active */}
                   {pathname === link.href && (
                     <motion.span
-                      className="absolute -bottom-1 left-0 h-[2px] bg-[#FF6B00] w-full"
+                      className="absolute -bottom-1 left-0 h-[2px] bg-[#FF6B00] w-full" style={{ boxShadow: '0 0 8px rgba(249,112,21,0.8)' }}
                       layoutId="nav-active-pill"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
@@ -83,15 +86,16 @@ function NavbarFn() {
             transition={{ duration: 0.45, delay: 0.35 }}
             className="hidden lg:flex items-center gap-4"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <MagneticButton strength={0.35}>
               <Link
                 href="/contact"
-                className="bg-[#FF6B00] hover:bg-[#e86200] text-white text-xs font-bold uppercase tracking-[0.12em] px-5 py-2.5 transition-colors duration-150"
+                data-cursor-hover
+                className="btn-shimmer text-white text-xs font-bold uppercase tracking-[0.12em] px-5 py-2.5 transition-all duration-200 inline-block"
                 style={{ borderRadius: '2px' }}
               >
                 Aanvraag sturen
               </Link>
-            </motion.div>
+            </MagneticButton>
           </motion.div>
 
           {/* Mobile Menu Button */}

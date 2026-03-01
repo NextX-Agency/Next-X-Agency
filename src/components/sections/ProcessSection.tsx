@@ -9,7 +9,10 @@ import {
   fadeInUp,
   staggerContainerSlow,
   scaleIn,
+  blurFadeIn,
+  springPopIn,
 } from '@/lib/animationUtils'
+import { SpotlightCard } from '@/components/animated/SpotlightCard'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -112,9 +115,9 @@ function ProcessSectionFn() {
               />
             </svg>
           </motion.span>
-          <motion.h2 variants={fadeInUp} className="mt-4 text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          <motion.h2 variants={blurFadeIn} className="mt-4 text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white tracking-tight">
             Living{' '}
-            <span className="text-primary relative inline-block">
+            <span className="gradient-text-animated relative inline-block">
               Blueprint
               <svg className="absolute w-[110%] h-[120%] -top-[10%] -left-[5%] text-primary opacity-40 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 60" aria-hidden="true">
                 <motion.ellipse
@@ -164,7 +167,7 @@ function ProcessSectionFn() {
                 stroke="url(#neonGradient)"
                 strokeLinecap="round"
                 strokeWidth="3"
-                style={{ filter: 'drop-shadow(0 0 8px rgba(249,112,21,0.7)) drop-shadow(0 0 16px rgba(249,112,21,0.4))' }}
+                style={{ filter: 'drop-shadow(0 0 12px rgba(249,112,21,0.9)) drop-shadow(0 0 24px rgba(249,112,21,0.6)) drop-shadow(0 0 40px rgba(249,112,21,0.3))' }}
               />
             </svg>
           </div>
@@ -183,42 +186,41 @@ function ProcessSectionFn() {
                 variants={fadeInUp}
                 className={`relative group ${step.staggerClass}`}
               >
-                <motion.div
-                  className="bg-white dark:bg-[#0F172A] p-2 rounded-2xl relative z-10"
-                  whileHover={{ y: -12, scale: 1.02, transition: { duration: 0.25, ease: 'easeOut' } }}
-                >
+                <SpotlightCard className="bg-white dark:bg-[#0F172A] rounded-2xl p-2 relative z-10 hover-lift">
                   <div className="sketched-border p-6 h-full flex flex-col items-center text-center">
                     {/* Icon with number badge */}
                     <motion.div
-                      className="w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4 border-2 border-dashed border-primary relative"
+                      className="w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4 border-2 border-dashed border-primary relative icon-glow"
                       initial={{ scale: 0, rotate: -20 }}
                       whileInView={{ scale: 1, rotate: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
-                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      whileHover={{ scale: 1.18, rotate: 8 }}
                     >
                       <svg className="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d={step.icon} />
                       </svg>
                       <motion.span
-                        className="absolute -right-2 -top-2 w-6 h-6 bg-gray-900 text-white flex items-center justify-center text-xs font-bold font-mono"
-                        style={{ borderRadius: '50%' }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="absolute -right-2 -top-2 w-7 h-7 bg-primary text-white flex items-center justify-center text-xs font-black font-mono badge-float"
+                        style={{ borderRadius: '50%', boxShadow: '0 0 12px rgba(249,112,21,0.7)' }}
+                        variants={springPopIn}
+                        initial="hidden"
+                        whileInView="visible"
                         viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.15 + 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+                        custom={index}
+                        transition={{ delay: index * 0.15 + 0.45 }}
                       >
                         {step.number}
                       </motion.span>
                     </motion.div>
-                    <h3 className="text-base font-bold text-gray-900 dark:text-white font-mono mb-2">
+                    <h3 className="text-base font-bold text-gray-900 dark:text-white font-mono mb-2 group-hover:text-primary transition-colors duration-300">
                       {step.title}
                     </h3>
                     <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-mono">
                       {step.description}
                     </p>
                   </div>
-                </motion.div>
+                </SpotlightCard>
 
                 {/* Mobile connector */}
                 {index < steps.length - 1 && (
@@ -228,6 +230,7 @@ function ProcessSectionFn() {
                     whileInView={{ scaleY: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    style={{ boxShadow: '0 0 6px rgba(249,112,21,0.5)' }}
                   />
                 )}
               </motion.div>
