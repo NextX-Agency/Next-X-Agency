@@ -1,4 +1,13 @@
-import { memo } from 'react'
+'use client'
+
+import { motion } from 'framer-motion'
+import {
+  fadeInUp,
+  slideInLeft,
+  staggerContainer,
+  staggerContainerSlow,
+  cardFlipIn,
+} from '@/lib/animationUtils'
 
 const features = [
   {
@@ -68,7 +77,7 @@ const features = [
 
 function WhySectionFn() {
   return (
-    <section className="py-24 relative bg-[#0B1120] overflow-hidden">
+    <section className="py-24 relative bg-[#0B1120] overflow-hidden" id="why">
       {/* Grid background */}
       <div className="absolute inset-0 bg-grid-slate opacity-50 pointer-events-none" />
 
@@ -81,53 +90,107 @@ function WhySectionFn() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-24 relative">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-24 relative"
+        >
           <span
             className="absolute -top-8 left-1/2 -translate-x-1/2 -rotate-6 text-primary text-xl select-none hidden md:block"
             style={{ fontFamily: "'Architects Daughter', cursive" }}
           >
             Why choose us?
           </span>
-          <div className="inline-block border-2 border-gray-800 bg-black px-4 py-1 relative">
+          <motion.div variants={fadeInUp} className="inline-block border-2 border-gray-800 bg-black px-4 py-1 relative">
             <span className="font-mono text-white text-sm tracking-widest uppercase">AGENCY_MODULE</span>
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary" />
             <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-primary" />
-          </div>
-          <h2 className="mt-6 text-4xl md:text-5xl font-bold text-white tracking-tight font-mono">
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="mt-6 text-4xl md:text-5xl font-bold text-white tracking-tight font-mono">
             LOGIC_FLOW: <span className="text-primary">NextX</span>
-          </h2>
-        </div>
+          </motion.h2>
+        </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {/* SVG connectors between cards (desktop) */}
+        <motion.div
+          variants={staggerContainerSlow}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative"
+        >
+          {/* Animated SVG connectors between cards (desktop) */}
           <svg
             className="hidden lg:block absolute top-1/2 left-0 w-full h-24 -translate-y-1/2 pointer-events-none z-0"
             style={{ overflow: 'visible' }}
             aria-hidden="true"
           >
-            <path className="scribble-path" d="M260 40 C 290 40, 310 40, 340 40" fill="none" stroke="#f97015" strokeDasharray="5,5" strokeWidth="2" />
-            <circle cx="300" cy="40" r="4" fill="#0B1120" stroke="#f97015" strokeWidth="2" />
-            <path className="scribble-path" d="M570 40 C 600 40, 620 40, 650 40" fill="none" stroke="#f97015" strokeDasharray="5,5" strokeWidth="2" />
-            <circle cx="610" cy="40" r="4" fill="#0B1120" stroke="#f97015" strokeWidth="2" />
-            <path className="scribble-path" d="M880 40 C 910 40, 930 40, 960 40" fill="none" stroke="#f97015" strokeDasharray="5,5" strokeWidth="2" />
-            <circle cx="920" cy="40" r="4" fill="#0B1120" stroke="#f97015" strokeWidth="2" />
+            <motion.path
+              d="M260 40 C 290 40, 310 40, 340 40"
+              fill="none" stroke="#f97015" strokeDasharray="5,5" strokeWidth="2"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3, ease: 'easeInOut' }}
+            />
+            <motion.circle
+              cx="300" cy="40" r="4" fill="#0B1120" stroke="#f97015" strokeWidth="2"
+              initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.9 }}
+              style={{ transformOrigin: '300px 40px' }}
+            />
+            <motion.path
+              d="M570 40 C 600 40, 620 40, 650 40"
+              fill="none" stroke="#f97015" strokeDasharray="5,5" strokeWidth="2"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.55, ease: 'easeInOut' }}
+            />
+            <motion.circle
+              cx="610" cy="40" r="4" fill="#0B1120" stroke="#f97015" strokeWidth="2"
+              initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 1.1 }}
+              style={{ transformOrigin: '610px 40px' }}
+            />
+            <motion.path
+              d="M880 40 C 910 40, 930 40, 960 40"
+              fill="none" stroke="#f97015" strokeDasharray="5,5" strokeWidth="2"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.8, ease: 'easeInOut' }}
+            />
+            <motion.circle
+              cx="920" cy="40" r="4" fill="#0B1120" stroke="#f97015" strokeWidth="2"
+              initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 1.35 }}
+              style={{ transformOrigin: '920px 40px' }}
+            />
           </svg>
 
           {features.map((feature) => (
-            <div
+            <motion.div
               key={feature.label}
-              className="group sketch-card p-6 transition-all duration-300 hover:-translate-y-2 z-10 relative"
+              variants={cardFlipIn}
+              className="group sketch-card p-6 z-10 relative"
+              whileHover={{ y: -10, transition: { duration: 0.25, ease: 'easeOut' } }}
             >
               {/* Technical label tab */}
               <div className="absolute -top-3 left-4 bg-[#0B1120] px-2 technical-label border border-primary/30">
                 {feature.label}
               </div>
 
-              {/* Icon */}
-              <div className="w-12 h-12 mb-4">
+              {/* Icon — scale on hover */}
+              <motion.div
+                className="w-12 h-12 mb-4"
+                whileHover={{ scale: 1.18, rotate: 3 }}
+                transition={{ duration: 0.25 }}
+              >
                 {feature.icon}
-              </div>
+              </motion.div>
 
               <h3 className="text-lg font-bold text-white mb-3 font-mono uppercase tracking-wider">
                 {feature.title}
@@ -140,12 +203,12 @@ function WhySectionFn() {
 
               {/* Corner accent */}
               <span className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-primary/50" />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-export const WhySection = memo(WhySectionFn)
+export { WhySectionFn as WhySection }

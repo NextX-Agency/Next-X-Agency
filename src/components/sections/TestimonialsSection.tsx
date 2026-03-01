@@ -1,5 +1,14 @@
-import { memo } from 'react'
+'use client'
+
+import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
+import {
+  fadeInUp,
+  staggerContainer,
+  staggerContainerSlow,
+  cardFlipIn,
+  scaleIn,
+} from '@/lib/animationUtils'
 
 const testimonials = [
   {
@@ -27,65 +36,120 @@ const testimonials = [
 
 function TestimonialsSectionFn() {
   return (
-    <section className="py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-24 relative overflow-hidden bg-[#050911]">
+      {/* Subtle background grid */}
+      <div className="absolute inset-0 bg-blueprint-grid pointer-events-none opacity-50" />
+      {/* Top glow line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <div className="inline-flex badge bg-primary-muted text-primary border border-primary/30 mb-4">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          className="text-center mb-12 lg:mb-16"
+        >
+          <motion.div variants={scaleIn} className="inline-flex badge bg-primary-muted text-primary border border-primary/30 mb-4">
             Klantervaring
-          </div>
-          <h2 className="text-headline text-foreground mb-4">
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="text-headline text-foreground mb-4">
             Wat onze klanten zeggen
-          </h2>
-          <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
             Wij bouwen langdurige relaties met onze klanten. Hier zijn enkele
             ervaringen.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Testimonials grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={staggerContainerSlow}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {testimonials.map((testimonial) => (
-            <div
+            <motion.div
               key={testimonial.name}
-              className="bg-card border border-border rounded-xl p-6"
+              variants={cardFlipIn}
+              className="bg-card border border-border rounded-xl p-6 relative overflow-hidden"
+              whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.25, ease: 'easeOut' } }}
             >
-              {/* Quote mark */}
-              <div className="text-primary/20 text-6xl font-serif leading-none mb-2 select-none">
-                &ldquo;
+              {/* Hover glow overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 pointer-events-none transition-all duration-500" />
+              {/* Animated SVG quote mark */}
+              <div className="relative mb-2">
+                <svg className="w-10 h-10 text-primary/25" viewBox="0 0 40 30" fill="none" aria-hidden="true">
+                  <motion.path
+                    d="M5 28 C 2 22, 2 16, 8 10 C 12 6, 16 5, 18 6 L 16 12 C 13 11, 11 13, 10 16 L 16 16 L 16 28 Z"
+                    fill="currentColor"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
+                    style={{ transformOrigin: '10px 18px' }}
+                  />
+                  <motion.path
+                    d="M25 28 C 22 22, 22 16, 28 10 C 32 6, 36 5, 38 6 L 36 12 C 33 11, 31 13, 30 16 L 36 16 L 36 28 Z"
+                    fill="currentColor"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                    style={{ transformOrigin: '30px 18px' }}
+                  />
+                </svg>
               </div>
 
               {/* Quote text */}
-              <p className="text-muted-foreground italic mb-6">
+              <motion.p
+                className="text-muted-foreground italic mb-6 text-sm leading-relaxed"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
                 {testimonial.quote}
-              </p>
+              </motion.p>
 
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              {/* Stars — staggered */}
+              <motion.div
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex gap-1 mb-4"
+              >
                 {Array.from({ length: testimonial.stars }).map((_, i) => (
-                  <Star
+                  <motion.div
                     key={i}
-                    size={16}
-                    className="text-primary fill-primary"
-                  />
+                    initial={{ scale: 0, rotate: -20 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 12, delay: i * 0.07 }}
+                  >
+                    <Star size={16} className="text-primary fill-primary" />
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Author */}
               <div>
-                <p className="font-semibold text-foreground">
-                  {testimonial.name}
-                </p>
-                <p className="text-caption text-muted-foreground">
-                  {testimonial.role}
-                </p>
+                <p className="font-semibold text-foreground">{testimonial.name}</p>
+                <p className="text-caption text-muted-foreground">{testimonial.role}</p>
               </div>
-            </div>
+
+              {/* Corner accent */}
+              <span className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-primary/30" />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-export const TestimonialsSection = memo(TestimonialsSectionFn)
+
+export { TestimonialsSectionFn as TestimonialsSection }

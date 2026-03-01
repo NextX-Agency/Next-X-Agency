@@ -304,13 +304,13 @@ body {
   left: 2px;
   text-shadow: -1px 0 #ff00c1;
   clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim 5s infinite linear alternate-reverse;
+  animation: glitch-anim 9s infinite linear alternate-reverse;
 }
 .glitch-text::after {
   left: -2px;
   text-shadow: -1px 0 #00fff9;
   clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim2 5s infinite linear alternate-reverse;
+  animation: glitch-anim2 9s infinite linear alternate-reverse;
 }
 @keyframes glitch-anim {
   0%   { clip: rect(14px, 9999px, 86px, 0); }
@@ -334,7 +334,7 @@ body {
 .hero-sketch-path {
   stroke-dasharray: 600;
   stroke-dashoffset: 600;
-  animation: hero-dash 4s ease-out forwards;
+  animation: hero-dash 8s ease-out forwards;
 }
 
 /* Neon path (process connector) */
@@ -346,7 +346,7 @@ body {
   filter: drop-shadow(0 0 8px rgba(249,112,21,0.6)) drop-shadow(0 0 15px rgba(249,112,21,0.4));
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: drawNeonPath 4s ease-out forwards infinite alternate;
+  animation: drawNeonPath 8s ease-out forwards infinite alternate;
 }
 
 /* Scribble path (why section connector dots) */
@@ -357,7 +357,60 @@ body {
 .scribble-path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: drawScribble 2s ease-out forwards;
+  animation: drawScribble 3s ease-out forwards;
+}
+
+/* ===== EXTRA KEYFRAMES ===== */
+
+/* Particle float upwards and fade */
+@keyframes particleDrift {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { transform: translate(var(--dx, 0px), -60px) scale(0); opacity: 0; }
+}
+.particle {
+  animation: particleDrift 3.5s ease-in-out infinite;
+}
+
+/* Slow horizontal scan line */
+@keyframes scanLine {
+  0%   { top: -4px; opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+.scan-line {
+  animation: scanLine 5s linear infinite;
+}
+
+/* Spinning orbit ring */
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.orbit-ring {
+  animation: orbitSpin 12s linear infinite;
+}
+.orbit-ring-reverse {
+  animation: orbitSpin 18s linear infinite reverse;
+}
+
+/* Blueprint grid pulse */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.04; }
+  50%       { opacity: 0.09; }
+}
+.bg-blueprint-grid {
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+/* Glow pulsing for CTA buttons */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(249,112,21,0.4), 0 0 40px rgba(249,112,21,0.15); }
+  50%       { box-shadow: 0 0 35px rgba(249,112,21,0.7), 0 0 70px rgba(249,112,21,0.3); }
+}
+.glow-pulse {
+  animation: glowPulse 2.5s ease-in-out infinite;
 }
 
 /* Technical label */

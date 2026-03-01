@@ -1,5 +1,16 @@
-import { memo } from 'react'
+'use client'
+
+import { motion } from 'framer-motion'
 import Link from 'next/link'
+import {
+  fadeInUp,
+  fadeInDown,
+  slideInLeft,
+  staggerContainer,
+  staggerContainerFast,
+  cardFlipIn,
+  scaleIn,
+} from '@/lib/animationUtils'
 
 const services = [
   {
@@ -165,8 +176,14 @@ function ServicesSectionFn() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+        >
+          <motion.div variants={slideInLeft} className="max-w-2xl">
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="text-primary font-bold tracking-widest uppercase text-xs border border-primary px-2 py-0.5 bg-black/40 font-mono">Services_Module</span>
               <div className="h-px w-20 bg-primary/50" />
@@ -176,103 +193,145 @@ function ServicesSectionFn() {
               <span className="relative inline-block text-primary">
                 Oplossingen
                 <svg className="absolute w-full h-full -top-2 -left-2 text-primary opacity-40 pointer-events-none" fill="none" viewBox="0 0 100 20" aria-hidden="true">
-                  <path d="M0 20 C 20 5, 80 5, 100 20" stroke="currentColor" strokeWidth="2" />
+                  <motion.path
+                    d="M0 20 C 20 5, 80 5, 100 20"
+                    stroke="currentColor" strokeWidth="2" fill="none"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, delay: 0.4, ease: 'easeInOut' }}
+                  />
                 </svg>
               </span>
             </h2>
             <p className="mt-4 text-gray-400 text-base font-mono">
               &gt; Initiating modular services for exponential growth...
             </p>
-          </div>
-          <Link
-            href="/portfolio"
-            className="inline-flex items-center text-primary font-semibold hover:text-white transition-colors group font-mono border-b border-primary pb-1 tracking-wider whitespace-nowrap"
-          >
-            [ VIEW_PORTFOLIO ]
-          </Link>
-        </div>
-
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {services.map((service) => (
+          </motion.div>
+          <motion.div variants={fadeInUp}>
             <Link
-              key={service.name}
-              href={service.href}
-              className="concept-card rough-border p-6 flex flex-col h-full relative group hover:-translate-y-2 transition-transform duration-300"
+              href="/portfolio"
+              className="inline-flex items-center text-primary font-semibold hover:text-white transition-colors group font-mono border-b border-primary pb-1 tracking-wider whitespace-nowrap"
             >
-              {/* Technical label */}
-              <div className="absolute -top-3 left-4 bg-[#1e293b] px-3 font-mono text-[10px] text-primary border border-primary/30 z-20">
-                {service.label}
-              </div>
+              [ VIEW_PORTFOLIO ]
+            </Link>
+          </motion.div>
+        </motion.div>
 
-              {/* Recommended badge */}
-              {service.recommended && (
-                <div className="absolute -top-3 right-4 bg-primary text-black px-3 py-0.5 font-mono text-[10px] font-bold z-20 transform rotate-2">
-                  RECOMMENDED_BUILD
+        {/* Cards grid — staggered entrance */}
+        <motion.div
+          variants={staggerContainerFast}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.05 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10"
+        >
+          {services.map((service) => (
+            <motion.div
+              key={service.name}
+              variants={cardFlipIn}
+              whileHover={{ y: -10, scale: 1.01, transition: { duration: 0.25, ease: 'easeOut' } }}
+              className="h-full"
+            >
+              <Link
+                href={service.href}
+                className="concept-card rough-border p-6 flex flex-col h-full relative group"
+              >
+                {/* Technical label */}
+                <div className="absolute -top-3 left-4 bg-[#1e293b] px-3 font-mono text-[10px] text-primary border border-primary/30 z-20">
+                  {service.label}
                 </div>
-              )}
 
-              {/* Construction lines */}
-              <div className="construction-line w-px h-full left-8 top-0" />
-              <div className="construction-line h-px w-full top-32 left-0" />
-
-              {/* Brush stroke glow */}
-              <div
-                className="absolute -top-10 -left-10 w-40 h-40 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(249,112,21,0.3) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(8px)', opacity: 0.5, zIndex: 0 }}
-              />
-
-              {/* SVG Wireframe preview */}
-              <div className="h-40 relative overflow-hidden flex items-center justify-center border-b border-white/5 mb-5">
-                <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-primary/10 via-transparent to-transparent" />
-                <div className="relative w-28 h-28 group-hover:scale-105 transition-transform duration-500">
-                  {service.icon}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10 flex flex-col flex-grow">
-                <h3 className={`text-lg font-bold mb-2 font-mono uppercase tracking-widest ${service.recommended ? 'text-primary' : 'text-white'}`}>
-                  {service.name}
-                </h3>
-                <p className="text-gray-400 mb-4 flex-grow text-sm leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Feature list for recommended */}
-                {'features' in service && (
-                  <ul className="mb-4 space-y-1.5 font-mono text-xs tracking-wider">
-                    {(service as typeof services[1]).features.map((f) => (
-                      <li key={f} className="flex items-center text-gray-300">
-                        <span className="text-primary mr-2 font-bold">&gt;</span> {f}
-                      </li>
-                    ))}
-                  </ul>
+                {/* Recommended badge — animated */}
+                {service.recommended && (
+                  <motion.div
+                    className="absolute -top-3 right-4 bg-primary text-black px-3 py-0.5 font-mono text-[10px] font-bold z-20"
+                    initial={{ opacity: 0, scale: 0.6, rotate: 0 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 2 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1], delay: 0.4 }}
+                    animate={{ rotate: [2, 4, 2], transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' } }}
+                  >
+                    RECOMMENDED_BUILD
+                  </motion.div>
                 )}
 
-                {/* Price footer */}
-                <div className="pt-4 mt-auto border-t border-dashed border-gray-700">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-[9px] text-gray-500 uppercase tracking-widest font-mono block">EST_COST</span>
-                      <div className={`text-xl font-bold font-mono ${service.recommended ? 'text-primary' : 'text-white'}`}>
-                        {service.priceRaw}<span className={service.recommended ? 'text-white text-sm' : 'text-primary text-sm'}>.00</span>
+                {/* Construction lines */}
+                <div className="construction-line w-px h-full left-8 top-0" />
+                <div className="construction-line h-px w-full top-32 left-0" />
+
+                {/* Brush stroke glow */}
+                <div
+                  className="absolute -top-10 -left-10 w-40 h-40 rounded-full pointer-events-none"
+                  style={{ background: 'radial-gradient(circle, rgba(249,112,21,0.3) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(8px)', opacity: 0.5, zIndex: 0 }}
+                />
+
+                {/* SVG Wireframe preview */}
+                <div className="h-40 relative overflow-hidden flex items-center justify-center border-b border-white/5 mb-5">
+                  <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-primary/10 via-transparent to-transparent" />
+                  <motion.div
+                    className="relative w-28 h-28"
+                    whileHover={{ scale: 1.1, rotate: 2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {service.icon}
+                  </motion.div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col flex-grow">
+                  <h3 className={`text-lg font-bold mb-2 font-mono uppercase tracking-widest ${service.recommended ? 'text-primary' : 'text-white'}`}>
+                    {service.name}
+                  </h3>
+                  <p className="text-gray-400 mb-4 flex-grow text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Feature list for recommended */}
+                  {'features' in service && (
+                    <motion.ul
+                      variants={staggerContainerFast}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="mb-4 space-y-1.5 font-mono text-xs tracking-wider"
+                    >
+                      {(service as typeof services[1]).features.map((f) => (
+                        <motion.li key={f} variants={fadeInUp} className="flex items-center text-gray-300">
+                          <span className="text-primary mr-2 font-bold">&gt;</span> {f}
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+
+                  {/* Price footer */}
+                  <div className="pt-4 mt-auto border-t border-dashed border-gray-700">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-[9px] text-gray-500 uppercase tracking-widest font-mono block">EST_COST</span>
+                        <div className={`text-xl font-bold font-mono ${service.recommended ? 'text-primary' : 'text-white'}`}>
+                          {service.priceRaw}<span className={service.recommended ? 'text-white text-sm' : 'text-primary text-sm'}>.00</span>
+                        </div>
                       </div>
-                    </div>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer ${service.recommended ? 'bg-primary text-black hover:bg-white shadow-[0_0_10px_rgba(249,112,21,0.5)]' : 'border border-primary/50 text-primary hover:bg-primary hover:text-white'}`}>
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
+                      <motion.div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center cursor-pointer ${service.recommended ? 'bg-primary text-black hover:bg-white shadow-[0_0_10px_rgba(249,112,21,0.5)]' : 'border border-primary/50 text-primary hover:bg-primary hover:text-white'}`}
+                        whileHover={{ scale: 1.2, rotate: 90 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-export const ServicesSection = memo(ServicesSectionFn)
+export { ServicesSectionFn as ServicesSection }
