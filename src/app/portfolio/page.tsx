@@ -64,7 +64,7 @@ export default function PortfolioPage() {
               className="flex items-center gap-4 mb-10"
             >
               <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-400">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
                 Ons Werk
               </span>
             </motion.div>
@@ -72,7 +72,7 @@ export default function PortfolioPage() {
             <div className="overflow-hidden">
               <motion.h1
                 variants={clipRevealUp}
-                className="text-5xl md:text-7xl font-black tracking-tight text-white leading-[0.95] mb-1"
+                className="text-5xl md:text-7xl font-black tracking-tight text-foreground leading-[0.95] mb-1"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Recente
@@ -88,7 +88,7 @@ export default function PortfolioPage() {
               </motion.h1>
             </div>
 
-            <motion.p variants={fadeInUp} className="text-neutral-400 text-lg max-w-xl leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-muted-foreground text-lg max-w-xl leading-relaxed">
               Een selectie van recente projecten. Elk project begint als template
               en wordt volledig gepersonaliseerd naar de wensen van de klant.
             </motion.p>
@@ -109,7 +109,7 @@ export default function PortfolioPage() {
                 <motion.article
                   key={project.title}
                   variants={fadeInUp}
-                  className="group flex flex-col rounded-2xl bg-card border border-white/[0.07] overflow-hidden hover:border-primary/35 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
+                  className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/35 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
                 >
                   {/* Clickable overlay */}
                   <Link
@@ -123,15 +123,15 @@ export default function PortfolioPage() {
                   {/* Browser mockup */}
                   <div className="relative bg-background-elevated overflow-hidden" style={{ height: '280px' }}>
                     {/* Chrome bar */}
-                    <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#1a1a1a] border-b border-white/5">
+                    <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[var(--browser-bar)] border-b border-border">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
                       <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
                       <span className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
-                      <div className="ml-2 flex-1 rounded-md bg-white/5 h-5 flex items-center px-2.5 gap-1.5">
+                      <div className="ml-2 flex-1 rounded-md bg-[var(--browser-field)] h-5 flex items-center px-2.5 gap-1.5">
                         <svg className="w-2.5 h-2.5 text-emerald-400/70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
-                        <span className="text-[9px] text-neutral-400 font-mono truncate">{project.url}</span>
+                        <span className="text-[9px] text-muted-foreground font-mono truncate">{project.url}</span>
                       </div>
                     </div>
 
@@ -153,7 +153,7 @@ export default function PortfolioPage() {
 
                     {/* Large ghost index */}
                     <span
-                      className="absolute bottom-1 right-3 text-6xl font-black text-white/4 leading-none select-none pointer-events-none z-10"
+                      className="absolute bottom-1 right-3 text-6xl font-black text-foreground/5 leading-none select-none pointer-events-none z-10"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {project.index}
@@ -176,26 +176,26 @@ export default function PortfolioPage() {
                         {project.category}
                       </span>
                       <span
-                        className="text-xs font-black text-white/15 tracking-widest"
+                        className="text-xs font-black text-muted-foreground/50 tracking-widest"
                         style={{ fontFamily: 'var(--font-heading)' }}
                       >
                         {project.index}
                       </span>
                     </div>
                     <h3
-                      className="text-lg font-black text-white tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
+                      className="text-lg font-black text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {project.title}
                     </h3>
-                    <p className="text-sm text-neutral-400 leading-relaxed flex-1 mb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-neutral-400 text-[11px] font-medium"
+                          className="px-2.5 py-0.5 rounded-md bg-muted border border-border text-muted-foreground text-[11px] font-medium"
                         >
                           {tag}
                         </span>

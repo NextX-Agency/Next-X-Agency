@@ -75,7 +75,7 @@ export default function DentaCarePage() {
   const [apptStep, setApptStep] = useState(0)
   const [selectedService, setSelectedService] = useState('')
   const [form, setForm] = useState({ naam: '', email: '', telefoon: '', datum: '', tijd: '', bericht: '' })
-  const apptRef = `DC-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000 + 1000))}`
+  const [apptRef, setApptRef] = useState('')
 
   // Scroll spy
   useEffect(() => {
@@ -106,6 +106,9 @@ export default function DentaCarePage() {
       if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) errs.email = 'Geldig e-mail vereist'
     }
     if (Object.keys(errs).length > 0) { toast.error('Vul alle verplichte velden in'); return }
+    if (apptStep === 2) {
+      setApptRef(`DC-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000 + 1000))}`)
+    }
     if (apptStep < 3) setApptStep(apptStep + 1)
   }
 
@@ -419,7 +422,7 @@ export default function DentaCarePage() {
                       <svg className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Afspraak bevestigd!</h3>
-                    <p className="text-sm text-slate-500 mb-4">Referentienummer: <span className="font-mono font-bold text-sky-600">DC-2025-{String(Math.floor(1000 + Math.random() * 9000))}</span></p>
+                    <p className="text-sm text-slate-500 mb-4">Referentienummer: <span className="font-mono font-bold text-sky-600">{apptRef}</span></p>
                     <div className="bg-slate-50 rounded-xl p-4 text-left text-sm space-y-2 mb-4">
                       <div className="flex justify-between"><span className="text-slate-500">Behandeling</span><span className="font-bold text-slate-900">{selectedService}</span></div>
                       <div className="flex justify-between"><span className="text-slate-500">Datum</span><span className="font-bold text-slate-900">{form.datum}</span></div>

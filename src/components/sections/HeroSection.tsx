@@ -234,7 +234,7 @@ function HeroSectionFn() {
               className="flex items-center gap-4 mb-10"
             >
               <div className="h-px w-8 bg-primary" style={{ opacity: 0.6 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-500">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
                 Digitale Bureau · Suriname
               </span>
             </motion.div>
@@ -250,7 +250,7 @@ function HeroSectionFn() {
               <span className="block overflow-hidden">
                 <motion.span
                   variants={clipRevealUp}
-                  className="block font-bold text-white leading-[0.95] tracking-tighter"
+                  className="block font-bold text-foreground leading-[0.95] tracking-tighter"
                   style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.6rem)' }}
                 >
                   Uw digitale succes
@@ -259,7 +259,7 @@ function HeroSectionFn() {
               <span className="block overflow-visible">
                 <motion.span
                   variants={clipRevealUp}
-                  className="block font-bold text-white leading-[0.95] tracking-tighter"
+                  className="block font-bold text-foreground leading-[0.95] tracking-tighter"
                   style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.6rem)' }}
                 >
                   begint{' '}
@@ -305,7 +305,7 @@ function HeroSectionFn() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.85 }}
-              className="text-base md:text-lg text-neutral-400 max-w-md mb-8 sm:mb-12 leading-relaxed font-medium"
+              className="text-base md:text-lg text-muted-foreground max-w-md mb-8 sm:mb-12 leading-relaxed font-medium"
             >
               NextX Agency helpt Surinaamse bedrijven professioneel online te groeien —
               snel, betaalbaar en volledig op maat.
@@ -339,7 +339,7 @@ function HeroSectionFn() {
 
               <Link
                 href="/services"
-                className="group inline-flex items-center gap-2 text-neutral-400 hover:text-primary font-semibold text-base transition-colors duration-300"
+                className="group inline-flex items-center gap-2 text-muted-foreground hover:text-primary font-semibold text-base transition-colors duration-300"
               >
                 Bekijk diensten
                 <svg
@@ -367,12 +367,12 @@ function HeroSectionFn() {
       </div>
 
       {/* Services marquee — full-bleed ticker at bottom of hero, pauses on hover */}
-      <div className="marquee-hover-pause relative z-10 w-full overflow-hidden border-t border-white/[0.06] bg-background-elevated/70 backdrop-blur-sm">
+      <div className="marquee-hover-pause relative z-10 w-full overflow-hidden border-t border-border bg-background-elevated/70 backdrop-blur-sm">
         <div className="marquee-track flex whitespace-nowrap py-4 select-none" aria-hidden="true">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-5 px-7 text-[11px] font-bold tracking-[0.2em] uppercase text-neutral-500"
+              className="inline-flex items-center gap-5 px-7 text-[11px] font-bold tracking-[0.2em] uppercase text-muted-foreground"
             >
               {item}
               <span className="text-primary opacity-60 font-light text-base leading-none">×</span>

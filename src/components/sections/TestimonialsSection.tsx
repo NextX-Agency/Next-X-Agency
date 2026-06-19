@@ -34,27 +34,27 @@ function TestimonialsSectionFn() {
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               Early Adopter
             </motion.div>
-            <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+            <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
               Wij bouwen samen{' '}
               <span className="text-primary">met u</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-neutral-400 leading-relaxed mb-10">
+            <motion.p variants={fadeInUp} className="text-lg text-muted-foreground leading-relaxed mb-10">
               NextX Agency is een jong en ambitieus bureau. Wij geloven in eerlijkheid: wij zijn net gestart en bouwen ons portfolio op met echte klanten. Dat betekent dat u als vroege klant extra voordelen krijgt — en direct impact heeft op hoe wij groeien.
             </motion.p>
 
             {/* Stats row */}
             <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-2 sm:gap-4">
-              <div className="card-glow text-center p-3 sm:p-5 rounded-2xl border border-white/[0.07] bg-card">
+              <div className="card-glow text-center p-3 sm:p-5 rounded-2xl border border-border bg-card">
                 <p className="text-lg sm:text-2xl font-bold text-primary counter-glow" style={{ fontFamily: 'var(--font-heading)' }}>100%</p>
-                <p className="text-[10px] sm:text-xs text-neutral-400 mt-1">Persoonlijke aandacht</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Persoonlijke aandacht</p>
               </div>
-              <div className="card-glow text-center p-3 sm:p-5 rounded-2xl border border-white/[0.07] bg-card">
+              <div className="card-glow text-center p-3 sm:p-5 rounded-2xl border border-border bg-card">
                 <p className="text-lg sm:text-2xl font-bold text-primary counter-glow" style={{ fontFamily: 'var(--font-heading)' }}>48u</p>
-                <p className="text-[10px] sm:text-xs text-neutral-400 mt-1">Reactietijd</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Reactietijd</p>
               </div>
-              <div className="card-glow text-center p-3 sm:p-5 rounded-2xl border border-white/[0.07] bg-card">
+              <div className="card-glow text-center p-3 sm:p-5 rounded-2xl border border-border bg-card">
                 <p className="text-lg sm:text-2xl font-bold text-primary counter-glow" style={{ fontFamily: 'var(--font-heading)' }}>Gratis</p>
-                <p className="text-[10px] sm:text-xs text-neutral-400 mt-1">Extra revisieronde</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Extra revisieronde</p>
               </div>
             </motion.div>
           </motion.div>
@@ -77,12 +77,12 @@ function TestimonialsSectionFn() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>Early Adopter Aanbod</p>
-                  <p className="text-neutral-400 text-sm">Beperkt beschikbaar</p>
+                  <p className="text-foreground font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>Early Adopter Aanbod</p>
+                  <p className="text-muted-foreground text-sm">Beperkt beschikbaar</p>
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+              <h3 className="text-2xl font-bold text-foreground mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
                 Wees een van onze eerste klanten en profiteer van{' '}
                 <span className="text-primary">exclusieve voordelen</span>{' '}
                 op uw eerste project.
@@ -95,7 +95,7 @@ function TestimonialsSectionFn() {
                   'Prioriteit bij toekomstige updates',
                   'Uw feedback helpt ons verbeteren',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-neutral-300 text-sm">
+                  <li key={item} className="flex items-start gap-3 text-muted-foreground text-sm">
                     <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>

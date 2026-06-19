@@ -18,6 +18,23 @@ const inter = Inter({
 
 const SITE_URL = 'https://nextxagency.com'
 
+const themeInitScript = `
+(() => {
+  try {
+    const storedTheme = window.localStorage.getItem('nextx-theme')
+    const theme = storedTheme === 'light' || storedTheme === 'dark'
+      ? storedTheme
+      : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+  } catch {
+    document.documentElement.dataset.theme = 'dark'
+    document.documentElement.style.colorScheme = 'dark'
+  }
+})()
+`
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -118,8 +135,13 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="nl" className={`scroll-smooth ${spaceGrotesk.variable} ${inter.variable}`}>
+    <html
+      lang="nl"
+      className={`scroll-smooth ${spaceGrotesk.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-background text-foreground antialiased">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

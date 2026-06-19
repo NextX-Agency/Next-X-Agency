@@ -127,10 +127,10 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
   return (
     <Link
       href={href}
-      className="group flex items-center gap-4 py-5 px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-primary/5 active:bg-primary/8 border-b border-white/5 last:border-0 border-l-2 border-l-transparent md:border-l-transparent active:border-l-primary/40 md:active:border-l-transparent"
+      className="group flex items-center gap-4 py-5 px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-primary/5 active:bg-primary/8 border-b border-border last:border-0 border-l-2 border-l-transparent md:border-l-transparent active:border-l-primary/40 md:active:border-l-transparent"
     >
       {/* Row index */}
-      <span className="text-[11px] font-black tabular-nums text-neutral-600 tracking-wider w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
+      <span className="text-[11px] font-black tabular-nums text-muted-foreground/70 tracking-wider w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
         {String(index + 1).padStart(2, '0')}
       </span>
 
@@ -138,7 +138,7 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2.5">
           <span
-            className="text-[15px] font-bold text-white tracking-tight group-hover:text-primary transition-colors duration-300"
+            className="text-[15px] font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-300"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {name}
@@ -149,7 +149,7 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
             </span>
           )}
         </div>
-        <p className="text-sm text-neutral-500 leading-snug mt-0.5 truncate max-w-xs">
+        <p className="text-sm text-muted-foreground leading-snug mt-0.5 truncate max-w-xs">
           {description}
         </p>
         {/* Mobile price row */}
@@ -157,24 +157,24 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
           className="md:hidden inline-block mt-1.5 text-[13px] font-bold text-primary"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {price}<span className="text-neutral-500 text-xs font-medium ml-0.5">/ start</span>
+          {price}<span className="text-muted-foreground text-xs font-medium ml-0.5">/ start</span>
         </span>
       </div>
 
       {/* Dotted connector line — hidden on mobile */}
-      <div className="hidden md:block flex-1 border-b border-dashed border-white/10 mx-4 group-hover:border-primary/40 transition-colors duration-300" />
+      <div className="hidden md:block flex-1 border-b border-dashed border-border mx-4 group-hover:border-primary/40 transition-colors duration-300" />
 
       {/* Price — hidden on mobile (shown inline above) */}
       <span
-        className="hidden md:inline text-[15px] font-bold text-neutral-200 shrink-0 group-hover:text-primary transition-colors duration-300"
+        className="hidden md:inline text-[15px] font-bold text-foreground shrink-0 group-hover:text-primary transition-colors duration-300"
         style={{ fontFamily: 'var(--font-heading)' }}
       >
         {price}
-        <span className="text-neutral-500 text-xs font-medium ml-0.5">/ start</span>
+        <span className="text-muted-foreground text-xs font-medium ml-0.5">/ start</span>
       </span>
 
       {/* Arrow */}
-      <div className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white group-hover:translate-x-0.5 group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+      <div className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white group-hover:translate-x-0.5 group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
         <svg
           className="w-3.5 h-3.5"
           fill="none"
@@ -216,17 +216,17 @@ function CategoryBlock({
             {String(catIndex + 1).padStart(2, '0')}
           </span>
           <h3
-            className="text-2xl md:text-3xl font-bold text-white tracking-tight"
+            className="text-2xl md:text-3xl font-bold text-foreground tracking-tight"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {cat.title}
           </h3>
-          <span className="text-xs font-bold tracking-[0.16em] uppercase text-neutral-500 pb-1">
+          <span className="text-xs font-bold tracking-[0.16em] uppercase text-muted-foreground pb-1">
             — {cat.tag}
           </span>
         </div>
-        <div className="w-full h-px bg-linear-to-r from-primary/40 via-white/10 to-transparent" />
-        <p className="text-sm text-neutral-500 mt-4 leading-relaxed">{cat.subtitle}</p>
+        <div className="w-full h-px bg-linear-to-r from-primary/40 via-border to-transparent" />
+        <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{cat.subtitle}</p>
       </motion.div>
 
       {/* Service rows */}
@@ -264,18 +264,18 @@ function ServicesSectionFn() {
           <motion.div variants={slideInLeft} className="max-w-xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-7 bg-primary opacity-60" />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-500">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
                 Diensten
               </span>
             </div>
             <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               Schaalbare{' '}
               <span className="text-primary">Oplossingen</span>
             </h2>
-            <motion.p variants={blurFadeIn} className="mt-5 text-neutral-400 text-lg leading-relaxed">
+            <motion.p variants={blurFadeIn} className="mt-5 text-muted-foreground text-lg leading-relaxed">
               3 categorieën — 7 services — één schaalbare aanpak
             </motion.p>
           </motion.div>
