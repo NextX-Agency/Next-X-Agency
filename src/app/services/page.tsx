@@ -217,13 +217,13 @@ export default function ServicesPage() {
         {/* ── Hero ── */}
         <section className="relative pt-36 pb-20 overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
           {/* Decorative arc */}
           <div className="absolute -top-40 -right-40 w-160 h-160 pointer-events-none z-0" aria-hidden="true">
             <svg viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="320" cy="320" r="290" stroke="#f97015" strokeWidth="1.5" opacity="0.06" />
-              <circle cx="320" cy="320" r="210" stroke="#f97015" strokeWidth="1" opacity="0.035" />
+              <circle cx="320" cy="320" r="290" stroke="#f97316" strokeWidth="1.5" opacity="0.06" />
+              <circle cx="320" cy="320" r="210" stroke="#f97316" strokeWidth="1" opacity="0.035" />
             </svg>
           </div>
 
@@ -241,7 +241,7 @@ export default function ServicesPage() {
               className="flex items-center gap-4 mb-10"
             >
               <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-slate-400">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-400">
                 7 Diensten · 3 Categorieën · 1 Partner
               </span>
             </motion.div>
@@ -257,7 +257,7 @@ export default function ServicesPage() {
                   <motion.span
                     variants={clipRevealUp}
                     transition={{ delay: i * 0.12 }}
-                    className="block font-bold text-slate-900 leading-[0.92] tracking-tighter"
+                    className="block font-bold text-white leading-[0.92] tracking-tighter"
                     style={{ fontSize: 'clamp(2.6rem, 6vw, 5.5rem)' }}
                   >
                     {line}
@@ -269,7 +269,7 @@ export default function ServicesPage() {
             {/* Subtext */}
             <motion.p
               variants={blurFadeIn}
-              className="text-base md:text-lg text-slate-400 max-w-md leading-relaxed font-medium"
+              className="text-base md:text-lg text-neutral-400 max-w-md leading-relaxed font-medium"
             >
               Één partner, complete oplossingen — van logo en social media tot
               complete webshops en maandelijkse support.
@@ -290,7 +290,7 @@ export default function ServicesPage() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.07 }}
                   variants={staggerContainerFast}
-                  className="mb-20 last:mb-0 pt-16 border-t border-slate-100 first:border-0 first:pt-0"
+                  className="mb-20 last:mb-0 pt-16 border-t border-white/[0.07] first:border-0 first:pt-0"
                 >
                   {/* Category header */}
                   <motion.div variants={fadeInUp} className="mb-8">
@@ -299,7 +299,7 @@ export default function ServicesPage() {
                         {String(catIndex + 1).padStart(2, '0')}
                       </span>
                       <h2
-                        className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight"
+                        className="text-2xl md:text-3xl font-bold text-white tracking-tight"
                         style={{ fontFamily: 'var(--font-heading)' }}
                       >
                         {category.title}
@@ -309,7 +309,7 @@ export default function ServicesPage() {
                       </span>
                     </div>
                     <div className={`w-full h-px ${accent.bg} border-b ${accent.border} border-opacity-30`} />
-                    <p className="text-sm text-slate-400 mt-3 max-w-2xl leading-relaxed">
+                    <p className="text-sm text-neutral-400 mt-3 max-w-2xl leading-relaxed">
                       {category.description}
                     </p>
                   </motion.div>
@@ -320,31 +320,31 @@ export default function ServicesPage() {
                       <motion.div
                         key={service.name}
                         variants={fadeInUp}
-                        className={`relative flex flex-col rounded-2xl bg-white border transition-all duration-300 hover:shadow-lg overflow-hidden
+                        className={`relative flex flex-col card-glow rounded-2xl bg-card border transition-all duration-300 hover:shadow-lg overflow-hidden
                           ${'popular' in service && service.popular
                             ? `${accent.border} border-2 shadow-md`
-                            : 'border-slate-200 hover:border-slate-300'
+                            : 'border-white/10 hover:border-primary/30'
                           }`}
                       >
                         {/* Card header */}
-                        <div className={`px-5 pt-5 pb-4 ${('popular' in service && service.popular) ? accent.bg : 'bg-slate-50/60'}`}>
+                        <div className={`px-5 pt-5 pb-4 ${('popular' in service && service.popular) ? accent.bg : 'bg-white/3'}`}>
                           <div className="flex items-start justify-between gap-3 mb-1">
                             {/* Index circle */}
                             <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black shrink-0 mt-0.5
-                              ${('popular' in service && service.popular) ? 'bg-primary text-white' : 'bg-slate-200 text-slate-500'}`}
+                              ${('popular' in service && service.popular) ? 'bg-primary text-white' : 'bg-white/10 text-neutral-400'}`}
                             >
                               {String(i + 1).padStart(2, '0')}
                             </span>
                             {/* Price badge */}
                             <span className={`text-sm font-black tracking-tight whitespace-nowrap
-                              ${('popular' in service && service.popular) ? accent.text : 'text-slate-700'}`}
+                              ${('popular' in service && service.popular) ? accent.text : 'text-neutral-200'}`}
                               style={{ fontFamily: 'var(--font-heading)' }}
                             >
                               {service.price}
                             </span>
                           </div>
                           <h3
-                            className="text-[15px] font-bold text-slate-900 tracking-tight leading-snug mt-2"
+                            className="text-[15px] font-bold text-white tracking-tight leading-snug mt-2"
                             style={{ fontFamily: 'var(--font-heading)' }}
                           >
                             {service.name}
@@ -358,14 +358,14 @@ export default function ServicesPage() {
                         </div>
 
                         {/* Divider */}
-                        <div className={`h-px mx-5 ${('popular' in service && service.popular) ? `${accent.border} opacity-30` : 'bg-slate-100'}`} />
+                        <div className={`h-px mx-5 ${('popular' in service && service.popular) ? `${accent.border} opacity-30` : 'bg-white/10'}`} />
 
                         {/* Feature bullets */}
                         <ul className="flex-1 px-5 py-4 space-y-2.5">
                           {service.items.map((item) => (
-                            <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                            <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-300">
                               <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5
-                                ${('popular' in service && service.popular) ? 'bg-primary' : 'bg-slate-300'}`}
+                                ${('popular' in service && service.popular) ? 'bg-primary' : 'bg-white/20'}`}
                               />
                               {item}
                             </li>
@@ -378,8 +378,8 @@ export default function ServicesPage() {
                             href={`/contact?dienst=${encodeURIComponent(service.name)}`}
                             className={`block w-full text-center text-sm font-bold py-2.5 rounded-xl transition-all duration-300
                               ${('popular' in service && service.popular)
-                                ? 'bg-primary text-white hover:bg-orange-600 shadow-sm shadow-orange-500/20'
-                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                ? 'bg-primary text-white hover:bg-primary-hover shadow-sm shadow-orange-500/20'
+                                : 'bg-white/5 text-neutral-200 hover:bg-white/10'
                               }`}
                             style={{ fontFamily: 'var(--font-heading)' }}
                           >
@@ -407,9 +407,9 @@ export default function ServicesPage() {
                   {'note' in category && category.note && (
                     <motion.p
                       variants={fadeInUp}
-                      className="text-xs text-slate-500 mt-6 bg-slate-50 border-l-2 border-primary/50 rounded-r-xl px-4 py-3 leading-relaxed"
+                      className="text-xs text-neutral-500 mt-6 bg-card border-l-2 border-primary/50 rounded-r-xl px-4 py-3 leading-relaxed"
                     >
-                      <strong className="text-slate-700 font-bold">Let op: </strong>
+                      <strong className="text-neutral-200 font-bold">Let op: </strong>
                       {category.note}
                     </motion.p>
                   )}
@@ -420,7 +420,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ── Altijd Inbegrepen — dark band ── */}
-        <section className="py-24 lg:py-28 bg-slate-900 relative overflow-hidden mt-20">
+        <section className="py-24 lg:py-28 bg-background-elevated relative overflow-hidden mt-20">
           {/* Subtle orange glow */}
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
@@ -436,7 +436,7 @@ export default function ServicesPage() {
               {/* Header */}
               <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-6">
                 <div className="h-px w-8 bg-primary opacity-60" />
-                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-slate-500">
+                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-500">
                   Standaard
                 </span>
               </motion.div>
@@ -448,7 +448,7 @@ export default function ServicesPage() {
               >
                 Altijd inbegrepen
               </motion.h2>
-              <motion.p variants={blurFadeIn} className="text-slate-400 text-base mb-14 max-w-lg leading-relaxed">
+              <motion.p variants={blurFadeIn} className="text-neutral-400 text-base mb-14 max-w-lg leading-relaxed">
                 Bij elke service ontvangt u standaard het volgende — zonder extra kosten.
               </motion.p>
 
@@ -480,7 +480,7 @@ export default function ServicesPage() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                    <span className="text-sm text-neutral-300 leading-relaxed">{item}</span>
                   </motion.div>
                 ))}
               </motion.div>

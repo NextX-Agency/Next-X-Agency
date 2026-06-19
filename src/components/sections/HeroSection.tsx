@@ -111,13 +111,13 @@ function CodeWindow() {
       className="relative w-full max-w-[340px] sm:max-w-lg mx-auto lg:mx-0"
     >
       {/* Outer glow */}
-      <div className="absolute -inset-px rounded-2xl bg-linear-to-br from-primary/20 via-transparent to-violet-500/10 blur-sm pointer-events-none" />
+      <div className="absolute -inset-px rounded-2xl bg-linear-to-br from-primary/25 via-transparent to-violet-500/10 blur-sm pointer-events-none" />
 
       <motion.div
         variants={floatY}
         initial="initial"
         animate="animate"
-        className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
+        className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/60"
         style={{ background: '#0f1117' }}
       >
         {/* Title bar */}
@@ -178,15 +178,15 @@ function CodeWindow() {
         </div>
       </motion.div>
 
-      {/* Floating badge — "Live Preview" */}
+      {/* Floating badge — "Klaar in 48u" */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 1.6, ease: [0.34, 1.56, 0.64, 1] }}
-        className="absolute bottom-2 right-2 sm:-bottom-4 sm:-right-4 bg-white rounded-2xl shadow-lg border border-slate-100 px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2 sm:gap-2.5"
+        className="absolute bottom-2 right-2 sm:-bottom-4 sm:-right-4 bg-[#141414] rounded-2xl shadow-lg shadow-black/50 border border-white/10 px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2 sm:gap-2.5"
       >
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-        <span className="text-[12px] font-bold text-slate-800" style={{ fontFamily: 'var(--font-heading)' }}>Klaar in 48u</span>
+        <span className="text-[12px] font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>Klaar in 48u</span>
       </motion.div>
     </motion.div>
   )
@@ -194,11 +194,19 @@ function CodeWindow() {
 
 function HeroSectionFn() {
   return (
-    <header className="relative flex flex-col min-h-[90vh] justify-center pt-28 overflow-hidden">
+    <header className="relative flex flex-col min-h-[94vh] justify-center pt-28 overflow-hidden bg-background">
       {/* Background grid */}
-      <div className="absolute inset-0 pointer-events-none z-0 bg-grid-pattern opacity-60" />
+      <div className="absolute inset-0 pointer-events-none z-0 bg-grid-pattern" />
+      {/* Circuit texture — felt, not seen */}
+      <div className="absolute inset-0 pointer-events-none z-0 bg-circuit" aria-hidden="true" />
       {/* Top decorative gradient bar */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      {/* Ambient orange glow — upper left */}
+      <div
+        className="absolute -top-40 -left-40 w-[480px] h-[480px] rounded-full pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%)' }}
+        aria-hidden="true"
+      />
 
       {/* Decorative concentric arcs — upper right */}
       <div
@@ -206,9 +214,9 @@ function HeroSectionFn() {
         aria-hidden="true"
       >
         <svg viewBox="0 0 680 680" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="340" cy="340" r="310" stroke="#f97015" strokeWidth="1.5" opacity="0.07" />
-          <circle cx="340" cy="340" r="240" stroke="#f97015" strokeWidth="1" opacity="0.045" />
-          <circle cx="340" cy="340" r="170" stroke="#f97015" strokeWidth="0.5" opacity="0.025" />
+          <circle cx="340" cy="340" r="310" stroke="#f97316" strokeWidth="1.5" opacity="0.1" />
+          <circle cx="340" cy="340" r="240" stroke="#f97316" strokeWidth="1" opacity="0.06" />
+          <circle cx="340" cy="340" r="170" stroke="#f97316" strokeWidth="0.5" opacity="0.035" />
         </svg>
       </div>
 
@@ -225,8 +233,8 @@ function HeroSectionFn() {
               transition={{ duration: 0.55, delay: 0.1 }}
               className="flex items-center gap-4 mb-10"
             >
-              <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-slate-400">
+              <div className="h-px w-8 bg-primary" style={{ opacity: 0.6 }} />
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-500">
                 Digitale Bureau · Suriname
               </span>
             </motion.div>
@@ -242,16 +250,36 @@ function HeroSectionFn() {
               <span className="block overflow-hidden">
                 <motion.span
                   variants={clipRevealUp}
-                  className="block font-bold text-slate-900 leading-[0.9] tracking-tighter"
-                  style={{ fontSize: 'clamp(2.8rem, 7.5vw, 6.8rem)' }}
+                  className="block font-bold text-white leading-[0.95] tracking-tighter"
+                  style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.6rem)' }}
                 >
-                  Uw digitale succes begint{' '}
-                  <span className="relative inline-block">
-                    <span className="text-primary text-glow-orange">hier.</span>
+                  Uw digitale succes
+                </motion.span>
+              </span>
+              <span className="block overflow-visible">
+                <motion.span
+                  variants={clipRevealUp}
+                  className="block font-bold text-white leading-[0.95] tracking-tighter"
+                  style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.6rem)' }}
+                >
+                  begint{' '}
+                  {/* "hier." — oversized, breaks the grid */}
+                  <span
+                    className="relative inline-block align-baseline"
+                    style={{ fontSize: '1.22em' }}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, y: 24, rotate: 0 }}
+                      animate={{ opacity: 1, y: 0, rotate: -2 }}
+                      transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                      className="inline-block text-primary text-glow-orange font-black"
+                    >
+                      hier.
+                    </motion.span>
                     {/* Animated wavy underline */}
                     <svg
                       className="absolute left-0 overflow-visible pointer-events-none"
-                      style={{ bottom: '-0.08em', width: '100%', height: '0.22em' }}
+                      style={{ bottom: '-0.1em', width: '100%', height: '0.22em' }}
                       viewBox="0 0 200 14"
                       fill="none"
                       preserveAspectRatio="none"
@@ -259,7 +287,7 @@ function HeroSectionFn() {
                     >
                       <AnimatedSVGPath
                         d="M2 9 Q50 3 100 9 Q150 15 198 9"
-                        stroke="#f97015"
+                        stroke="#f97316"
                         strokeWidth="4"
                         strokeLinecap="round"
                         opacity={0.85}
@@ -277,7 +305,7 @@ function HeroSectionFn() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.85 }}
-              className="text-base md:text-lg text-slate-400 max-w-md mb-8 sm:mb-12 leading-relaxed font-medium"
+              className="text-base md:text-lg text-neutral-400 max-w-md mb-8 sm:mb-12 leading-relaxed font-medium"
             >
               NextX Agency helpt Surinaamse bedrijven professioneel online te groeien —
               snel, betaalbaar en volledig op maat.
@@ -293,11 +321,11 @@ function HeroSectionFn() {
               <MagneticButton>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-300 hover:scale-[1.04] shadow-lg shadow-orange-500/20"
+                  className="group inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-300 hover:scale-[1.04] shadow-lg shadow-primary/25"
                 >
                   Start Project
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -311,7 +339,7 @@ function HeroSectionFn() {
 
               <Link
                 href="/services"
-                className="group inline-flex items-center gap-2 text-slate-500 hover:text-primary font-semibold text-base transition-colors duration-300"
+                className="group inline-flex items-center gap-2 text-neutral-400 hover:text-primary font-semibold text-base transition-colors duration-300"
               >
                 Bekijk diensten
                 <svg
@@ -338,16 +366,16 @@ function HeroSectionFn() {
         </div>
       </div>
 
-      {/* Services marquee — full-bleed ticker at bottom of hero */}
-      <div className="relative z-10 w-full overflow-hidden border-t border-slate-100 bg-white/70 backdrop-blur-sm">
+      {/* Services marquee — full-bleed ticker at bottom of hero, pauses on hover */}
+      <div className="marquee-hover-pause relative z-10 w-full overflow-hidden border-t border-white/[0.06] bg-background-elevated/70 backdrop-blur-sm">
         <div className="marquee-track flex whitespace-nowrap py-4 select-none" aria-hidden="true">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-5 px-7 text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400"
+              className="inline-flex items-center gap-5 px-7 text-[11px] font-bold tracking-[0.2em] uppercase text-neutral-500"
             >
               {item}
-              <span className="text-primary opacity-50 font-light text-base leading-none">×</span>
+              <span className="text-primary opacity-60 font-light text-base leading-none">×</span>
             </span>
           ))}
         </div>

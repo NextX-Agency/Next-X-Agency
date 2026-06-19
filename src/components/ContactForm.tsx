@@ -98,25 +98,25 @@ function ContactFormFn({ className = '' }: { className?: string }) {
 
   if (submitted) {
     return (
-      <div className={cn('bg-white rounded-3xl p-10 text-center shadow-xl shadow-slate-900/5 border border-slate-100', className)}>
+      <div className={cn('bg-card rounded-3xl p-10 text-center shadow-xl shadow-black/40 border border-white/[0.07]', className)}>
         {/* Animated green checkmark ring */}
-        <div className="w-20 h-20 rounded-full bg-emerald-50 border-2 border-emerald-200 flex items-center justify-center mx-auto mb-6">
+        <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center mx-auto mb-6">
           <svg className="w-9 h-9 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+        <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
           Bericht verstuurd!
         </h3>
-        <p className="text-slate-500 text-sm mb-1">
+        <p className="text-neutral-300 text-sm mb-1">
           Bedankt voor uw bericht.
         </p>
-        <p className="text-slate-400 text-sm mb-8">
+        <p className="text-neutral-400 text-sm mb-8">
           Wij nemen binnen 24-48 uur contact met u op met een vrijblijvende quote.
         </p>
         <button
           onClick={() => setSubmitted(false)}
-          className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-orange-600 transition-colors"
+          className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-primary-hover transition-colors"
         >
           <Send size={14} />
           Nog een bericht sturen
@@ -128,7 +128,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={cn('bg-white rounded-3xl p-6 lg:p-8 shadow-xl shadow-slate-900/5 border border-slate-100/80', className)}
+      className={cn('bg-card rounded-3xl p-6 lg:p-8 shadow-xl shadow-black/40 border border-white/[0.07]', className)}
     >
       <div className="space-y-5">
         {/* Name + Email — 2 columns on sm+ */}
@@ -259,7 +259,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-orange-600 active:bg-orange-700 text-white shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 rounded-full font-bold text-sm px-5 py-4 transition-all duration-300 active:scale-[0.97] min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full bg-primary hover:bg-primary-hover active:bg-primary-active text-white shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 rounded-full font-bold text-sm px-5 py-4 transition-all duration-300 active:scale-[0.97] min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
             <>

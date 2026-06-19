@@ -19,7 +19,7 @@ export interface ParticleFieldProps {
 export function ParticleField({
   count = 55,
   interactive = true,
-  color = '#f97015',
+  color = '#f97316',
   className = 'absolute inset-0',
 }: ParticleFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)

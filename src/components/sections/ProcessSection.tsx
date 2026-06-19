@@ -1,20 +1,13 @@
-﻿'use client'
+'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import {
   fadeInUp,
   staggerContainerSlow,
   scaleIn,
   blurFadeIn,
 } from '@/lib/animationUtils'
-
-const phaseColors = [
-  'border-primary',
-  'border-sky-500',
-  'border-violet-500',
-  'border-emerald-500',
-  'border-amber-500',
-] as const
 
 const steps = [
   {
@@ -55,8 +48,23 @@ const steps = [
 ] as const
 
 function ProcessSectionFn() {
+  const timelineRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 75%', 'end 65%'],
+  })
+  const lineProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
+
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-50/50">
+    <section className="py-28 lg:py-40 relative overflow-hidden bg-background-elevated">
+      {/* Circuit texture — felt, not seen */}
+      <div className="absolute inset-0 pointer-events-none bg-circuit" aria-hidden="true" />
+
+      {/* Giant ghost section number */}
+      <span className="section-number absolute top-16 right-6 lg:right-16 hidden sm:block" aria-hidden="true">
+        04
+      </span>
+
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -64,34 +72,45 @@ function ProcessSectionFn() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18 } } }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <motion.div variants={scaleIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+          <motion.div variants={scaleIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/25 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Strategic Workflow
           </motion.div>
-          <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+          <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
             Project{' '}
             <span className="text-primary">Roadmap</span>
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={fadeInUp} className="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
             Helder vijf-fasen proces — zodat u precies weet wat u kunt verwachten.
           </motion.p>
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Desktop vertical center line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-transparent via-primary/20 to-transparent -translate-x-1/2 hidden md:block" />
-          {/* Mobile left line */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-linear-to-b from-transparent via-primary/20 to-transparent md:hidden" />
+        <div className="relative" ref={timelineRef}>
+          {/* Track lines (faint) */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/[0.07] -translate-x-1/2 hidden md:block" aria-hidden="true" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-white/[0.07] md:hidden" aria-hidden="true" />
+
+          {/* Progress lines — draw on scroll */}
+          <motion.div
+            className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden md:block origin-top bg-linear-to-b from-primary via-primary/70 to-primary/30"
+            style={{ scaleY: lineProgress, boxShadow: '0 0 12px rgba(249,115,22,0.35)' }}
+            aria-hidden="true"
+          />
+          <motion.div
+            className="absolute left-6 top-0 bottom-0 w-px md:hidden origin-top bg-linear-to-b from-primary via-primary/70 to-primary/30"
+            style={{ scaleY: lineProgress, boxShadow: '0 0 12px rgba(249,115,22,0.35)' }}
+            aria-hidden="true"
+          />
 
           <motion.div
             variants={staggerContainerSlow}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="space-y-10 md:space-y-24"
+            className="space-y-12 md:space-y-28"
           >
             {steps.map((step, index) => {
               const isLeft = index % 2 === 0
@@ -105,7 +124,7 @@ function ProcessSectionFn() {
                   <div className="flex items-start gap-5 md:hidden">
                     {/* Icon node */}
                     <div className="relative shrink-0 z-10">
-                      <div className={`w-12 h-12 rounded-xl bg-white border-2 ${phaseColors[index]} shadow-sm flex items-center justify-center`}>
+                      <div className="node-embossed w-12 h-12 rounded-xl flex items-center justify-center">
                         <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" d={step.icon} />
                         </svg>
@@ -116,15 +135,15 @@ function ProcessSectionFn() {
                       <span className="text-primary font-bold text-xs tracking-widest uppercase" style={{ fontFamily: 'var(--font-heading)' }}>
                         Fase {String(step.number).padStart(2, '0')}
                       </span>
-                      <h3 className="text-xl font-bold mt-1 mb-2 text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                      <h3 className="text-xl font-bold mt-1 mb-2 text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                         {step.title}
                       </h3>
-                      <p className="text-slate-500 text-sm leading-relaxed mb-3">
+                      <p className="text-neutral-400 text-sm leading-relaxed mb-3">
                         {step.description}
                       </p>
                       <ul className="space-y-2">
                         {step.items.map((item) => (
-                          <li key={item} className="flex items-center gap-2.5 text-slate-600 text-sm">
+                          <li key={item} className="flex items-center gap-2.5 text-neutral-300 text-sm">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                             {item}
                           </li>
@@ -142,17 +161,17 @@ function ProcessSectionFn() {
                           <span className="text-primary font-bold text-sm tracking-widest uppercase" style={{ fontFamily: 'var(--font-heading)' }}>
                             Fase {String(step.number).padStart(2, '0')}
                           </span>
-                          <h3 className="text-2xl font-bold mt-2 text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                          <h3 className="text-2xl font-bold mt-2 text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                             {step.title}
                           </h3>
-                          <p className="text-slate-500 mt-3 leading-relaxed text-sm">
+                          <p className="text-neutral-400 mt-3 leading-relaxed text-sm">
                             {step.description}
                           </p>
                         </>
                       ) : (
                         <ul className="space-y-3">
                           {step.items.map((item) => (
-                            <li key={item} className="flex items-center gap-3 text-slate-600 font-medium text-sm">
+                            <li key={item} className="flex items-center gap-3 text-neutral-300 font-medium text-sm">
                               <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                               {item}
                             </li>
@@ -164,7 +183,7 @@ function ProcessSectionFn() {
                     {/* Center node */}
                     <div className="relative z-10 flex items-center justify-center">
                       <motion.div
-                        className={`w-16 h-16 rounded-2xl bg-white border-2 ${phaseColors[index]} shadow-md flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg`}
+                        className="node-embossed w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
                         whileHover={{ scale: 1.1 }}
                       >
                         <svg className="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -178,7 +197,7 @@ function ProcessSectionFn() {
                       {isLeft ? (
                         <ul className="space-y-3">
                           {step.items.map((item) => (
-                            <li key={item} className="flex items-center gap-3 text-slate-600 font-medium text-sm">
+                            <li key={item} className="flex items-center gap-3 text-neutral-300 font-medium text-sm">
                               <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                               {item}
                             </li>
@@ -189,10 +208,10 @@ function ProcessSectionFn() {
                           <span className="text-primary font-bold text-sm tracking-widest uppercase" style={{ fontFamily: 'var(--font-heading)' }}>
                             Fase {String(step.number).padStart(2, '0')}
                           </span>
-                          <h3 className="text-2xl font-bold mt-2 text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                          <h3 className="text-2xl font-bold mt-2 text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                             {step.title}
                           </h3>
-                          <p className="text-slate-500 mt-3 leading-relaxed text-sm">
+                          <p className="text-neutral-400 mt-3 leading-relaxed text-sm">
                             {step.description}
                           </p>
                         </>

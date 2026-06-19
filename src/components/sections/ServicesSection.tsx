@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React from 'react'
 import { motion } from 'framer-motion'
@@ -10,27 +10,27 @@ import {
   blurFadeIn,
 } from '@/lib/animationUtils'
 
-// Inline icons (simplified for light theme)
+// Inline icons (line style, orange accents)
 const IconBusinessCard = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <rect x="6" y="18" width="52" height="28" rx="4" />
-    <line x1="6" y1="27" x2="58" y2="27" stroke="#f97015" strokeWidth="0.8" />
-    <rect x="12" y="33" width="16" height="2" rx="1" fill="#f97015" opacity="0.7" />
+    <line x1="6" y1="27" x2="58" y2="27" stroke="#f97316" strokeWidth="0.8" />
+    <rect x="12" y="33" width="16" height="2" rx="1" fill="#f97316" opacity="0.7" />
     <rect x="12" y="38" width="10" height="1.5" rx="0.75" fill="currentColor" opacity="0.35" />
-    <circle cx="47" cy="36" r="6" stroke="#f97015" strokeWidth="1" />
+    <circle cx="47" cy="36" r="6" stroke="#f97316" strokeWidth="1" />
   </svg>
 )
 
 const IconServiceWebsite = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <rect x="8" y="12" width="48" height="36" rx="4" />
-    <line x1="8" y1="22" x2="56" y2="22" stroke="#f97015" strokeWidth="0.8" />
-    <circle cx="14" cy="17" r="1.5" fill="#f97015" />
+    <line x1="8" y1="22" x2="56" y2="22" stroke="#f97316" strokeWidth="0.8" />
+    <circle cx="14" cy="17" r="1.5" fill="#f97316" />
     <circle cx="20" cy="17" r="1.5" fill="currentColor" opacity="0.4" />
     <circle cx="26" cy="17" r="1.5" fill="currentColor" opacity="0.25" />
     <rect x="14" y="28" width="36" height="3" rx="1" fill="currentColor" opacity="0.15" />
     <rect x="14" y="34" width="22" height="2" rx="1" fill="currentColor" opacity="0.1" />
-    <path d="M22 56 L42 56" stroke="#f97015" strokeWidth="1" />
+    <path d="M22 56 L42 56" stroke="#f97316" strokeWidth="1" />
   </svg>
 )
 
@@ -38,26 +38,26 @@ const IconWebshop = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <path d="M10 14 L14 14 L19 38 L50 38" />
     <path d="M14 14 L18 30 L50 30 L53 14 Z" />
-    <circle cx="24" cy="44" r="3" stroke="#f97015" strokeWidth="1.2" />
-    <circle cx="44" cy="44" r="3" stroke="#f97015" strokeWidth="1.2" />
-    <path d="M27 20 L37 20 M32 15 L32 25" stroke="#f97015" strokeWidth="1" />
+    <circle cx="24" cy="44" r="3" stroke="#f97316" strokeWidth="1.2" />
+    <circle cx="44" cy="44" r="3" stroke="#f97316" strokeWidth="1.2" />
+    <path d="M27 20 L37 20 M32 15 L32 25" stroke="#f97316" strokeWidth="1" />
   </svg>
 )
 
 const IconLogoBranding = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <path d="M32 10 L52 52 L12 52 Z" />
-    <circle cx="32" cy="38" r="9" stroke="#f97015" strokeWidth="1" strokeDasharray="3 2" />
-    <circle cx="42" cy="26" r="1.5" fill="#f97015" />
+    <circle cx="32" cy="38" r="9" stroke="#f97316" strokeWidth="1" strokeDasharray="3 2" />
+    <circle cx="42" cy="26" r="1.5" fill="#f97316" />
   </svg>
 )
 
 const IconUxUi = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <rect x="6" y="10" width="52" height="36" rx="4" />
-    <line x1="6" y1="20" x2="58" y2="20" stroke="#f97015" strokeWidth="0.8" />
-    <circle cx="12" cy="15" r="1.5" fill="#f97015" />
-    <rect x="12" y="27" width="12" height="12" rx="2" stroke="#f97015" strokeWidth="1" strokeDasharray="2 1.5" />
+    <line x1="6" y1="20" x2="58" y2="20" stroke="#f97316" strokeWidth="0.8" />
+    <circle cx="12" cy="15" r="1.5" fill="#f97316" />
+    <rect x="12" y="27" width="12" height="12" rx="2" stroke="#f97316" strokeWidth="1" strokeDasharray="2 1.5" />
     <rect x="30" y="27" width="22" height="5" rx="2" fill="currentColor" opacity="0.15" />
     <rect x="30" y="35" width="14" height="4" rx="2" fill="currentColor" opacity="0.1" />
   </svg>
@@ -67,8 +67,8 @@ const IconUxKukru = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <circle cx="32" cy="22" r="10" />
     <path d="M14 54 C14 40 50 40 50 54" />
-    <circle cx="14" cy="26" r="6" stroke="#f97015" strokeWidth="1" strokeDasharray="2.5 1.5" />
-    <circle cx="50" cy="26" r="6" stroke="#f97015" strokeWidth="1" strokeDasharray="2.5 1.5" />
+    <circle cx="14" cy="26" r="6" stroke="#f97316" strokeWidth="1" strokeDasharray="2.5 1.5" />
+    <circle cx="50" cy="26" r="6" stroke="#f97316" strokeWidth="1" strokeDasharray="2.5 1.5" />
   </svg>
 )
 
@@ -76,9 +76,9 @@ const IconSeo = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <circle cx="28" cy="28" r="16" />
     <path d="M39 39 L54 54" strokeWidth="2.5" />
-    <path d="M20 28 Q28 18 36 28" fill="none" stroke="#f97015" strokeWidth="1.5" />
-    <line x1="20" y1="33" x2="36" y2="33" stroke="#f97015" strokeWidth="0.8" />
-    <line x1="20" y1="37" x2="36" y2="37" stroke="#f97015" strokeWidth="0.8" />
+    <path d="M20 28 Q28 18 36 28" fill="none" stroke="#f97316" strokeWidth="1.5" />
+    <line x1="20" y1="33" x2="36" y2="33" stroke="#f97316" strokeWidth="0.8" />
+    <line x1="20" y1="37" x2="36" y2="37" stroke="#f97316" strokeWidth="0.8" />
   </svg>
 )
 
@@ -127,10 +127,10 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
   return (
     <Link
       href={href}
-      className="group flex items-center gap-4 py-5 px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-primary/[0.035] active:bg-primary/[0.05] border-b border-slate-100 last:border-0 border-l-2 border-l-transparent md:border-l-transparent active:border-l-primary/40 md:active:border-l-transparent"
+      className="group flex items-center gap-4 py-5 px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-primary/5 active:bg-primary/8 border-b border-white/5 last:border-0 border-l-2 border-l-transparent md:border-l-transparent active:border-l-primary/40 md:active:border-l-transparent"
     >
       {/* Row index */}
-      <span className="text-[11px] font-black tabular-nums text-slate-300 tracking-wider w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
+      <span className="text-[11px] font-black tabular-nums text-neutral-600 tracking-wider w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
         {String(index + 1).padStart(2, '0')}
       </span>
 
@@ -138,18 +138,18 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2.5">
           <span
-            className="text-[15px] font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors duration-300"
+            className="text-[15px] font-bold text-white tracking-tight group-hover:text-primary transition-colors duration-300"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {name}
           </span>
           {recommended && (
-            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 bg-primary text-white rounded-full">
+            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 bg-primary text-white rounded-full shadow-sm shadow-primary/40">
               Aanbevolen
             </span>
           )}
         </div>
-        <p className="text-sm text-slate-400 leading-snug mt-0.5 truncate max-w-xs">
+        <p className="text-sm text-neutral-500 leading-snug mt-0.5 truncate max-w-xs">
           {description}
         </p>
         {/* Mobile price row */}
@@ -157,24 +157,24 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
           className="md:hidden inline-block mt-1.5 text-[13px] font-bold text-primary"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {price}<span className="text-slate-400 text-xs font-medium ml-0.5">/ start</span>
+          {price}<span className="text-neutral-500 text-xs font-medium ml-0.5">/ start</span>
         </span>
       </div>
 
       {/* Dotted connector line — hidden on mobile */}
-      <div className="hidden md:block flex-1 border-b border-dashed border-slate-200 mx-4 group-hover:border-primary/30 transition-colors duration-300" />
+      <div className="hidden md:block flex-1 border-b border-dashed border-white/10 mx-4 group-hover:border-primary/40 transition-colors duration-300" />
 
       {/* Price — hidden on mobile (shown inline above) */}
       <span
-        className="hidden md:inline text-[15px] font-bold text-slate-700 shrink-0 group-hover:text-primary transition-colors duration-300"
+        className="hidden md:inline text-[15px] font-bold text-neutral-200 shrink-0 group-hover:text-primary transition-colors duration-300"
         style={{ fontFamily: 'var(--font-heading)' }}
       >
         {price}
-        <span className="text-slate-400 text-xs font-medium ml-0.5">/ start</span>
+        <span className="text-neutral-500 text-xs font-medium ml-0.5">/ start</span>
       </span>
 
       {/* Arrow */}
-      <div className="w-7 h-7 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300">
+      <div className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white group-hover:translate-x-0.5 group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
         <svg
           className="w-3.5 h-3.5"
           fill="none"
@@ -203,26 +203,30 @@ function CategoryBlock({
       whileInView="visible"
       viewport={{ once: true, amount: 0.08 }}
       variants={staggerContainerFast}
-      className="mb-14 last:mb-0"
+      className="mb-20 last:mb-0"
     >
-      {/* Category editorial header */}
+      {/* Category editorial header — number as design element */}
       <motion.div variants={fadeInUp} className="mb-2">
-        <div className="flex items-baseline flex-wrap gap-x-4 gap-y-1 mb-4">
-          <span className="text-[11px] font-black tracking-[0.28em] uppercase text-primary/70">
+        <div className="flex items-end flex-wrap gap-x-5 gap-y-1 mb-5">
+          <span
+            className="text-4xl md:text-5xl font-black leading-none text-transparent select-none"
+            style={{ fontFamily: 'var(--font-heading)', WebkitTextStroke: '1.5px rgba(249, 115, 22, 0.5)' }}
+            aria-hidden="true"
+          >
             {String(catIndex + 1).padStart(2, '0')}
           </span>
           <h3
-            className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight"
+            className="text-2xl md:text-3xl font-bold text-white tracking-tight"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {cat.title}
           </h3>
-          <span className="text-xs font-bold tracking-[0.16em] uppercase text-slate-400">
+          <span className="text-xs font-bold tracking-[0.16em] uppercase text-neutral-500 pb-1">
             — {cat.tag}
           </span>
         </div>
-        <div className="w-full h-px bg-slate-200" />
-        <p className="text-sm text-slate-400 mt-3 leading-relaxed">{cat.subtitle}</p>
+        <div className="w-full h-px bg-linear-to-r from-primary/40 via-white/10 to-transparent" />
+        <p className="text-sm text-neutral-500 mt-4 leading-relaxed">{cat.subtitle}</p>
       </motion.div>
 
       {/* Service rows */}
@@ -239,7 +243,15 @@ function CategoryBlock({
 
 function ServicesSectionFn() {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden" id="services">
+    <section className="py-28 lg:py-40 relative overflow-hidden bg-background-elevated" id="services">
+      {/* Circuit texture — felt, not seen */}
+      <div className="absolute inset-0 pointer-events-none bg-circuit" aria-hidden="true" />
+
+      {/* Giant ghost section number */}
+      <span className="section-number absolute top-16 right-6 lg:right-16 hidden sm:block" aria-hidden="true">
+        02
+      </span>
+
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section header — editorial style */}
         <motion.div
@@ -247,30 +259,30 @@ function ServicesSectionFn() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6"
         >
           <motion.div variants={slideInLeft} className="max-w-xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="h-px w-7 bg-primary opacity-50" />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-slate-400">
+              <div className="h-px w-7 bg-primary opacity-60" />
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-500">
                 Diensten
               </span>
             </div>
             <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               Schaalbare{' '}
               <span className="text-primary">Oplossingen</span>
             </h2>
-            <motion.p variants={blurFadeIn} className="mt-4 text-slate-500 text-lg leading-relaxed">
+            <motion.p variants={blurFadeIn} className="mt-5 text-neutral-400 text-lg leading-relaxed">
               3 categorieën — 7 services — één schaalbare aanpak
             </motion.p>
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-orange-600 transition-colors group"
+              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover transition-colors group"
             >
               Bekijk portfolio
               <svg

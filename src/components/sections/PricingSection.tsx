@@ -1,12 +1,10 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { AnimatedCounter } from '@/components/animated/AnimatedCounter'
 import {
   fadeInUp,
-  scaleIn,
   staggerContainer,
   staggerContainerFast,
   cardFlipIn,
@@ -17,8 +15,6 @@ const plans = [
   {
     name: 'Starter Support',
     description: 'Foundational Structure',
-    price: '$150',
-    period: '/maand',
     tagline: 'Perfect voor kleine updates en onderhoud.',
     features: [
       '10 uur per maand',
@@ -33,8 +29,6 @@ const plans = [
   {
     name: 'Business Support',
     description: 'Full Scale Development',
-    price: '$280',
-    period: '/maand',
     tagline: 'Ideaal voor groeiende bedrijven met actieve websites.',
     features: [
       '20 uur per maand',
@@ -50,8 +44,6 @@ const plans = [
   {
     name: 'Partner Support',
     description: 'Enterprise Solution',
-    price: '$480',
-    period: '/maand',
     tagline: 'Voor bedrijven die een dedicated digitale partner willen.',
     features: [
       '40 uur per maand',
@@ -68,7 +60,15 @@ const plans = [
 
 function PricingSectionFn() {
   return (
-    <section className="py-24 lg:py-32 relative" id="pricing">
+    <section className="py-28 lg:py-40 relative bg-background overflow-hidden" id="pricing">
+      {/* Circuit texture — felt, not seen */}
+      <div className="absolute inset-0 pointer-events-none bg-circuit" aria-hidden="true" />
+
+      {/* Giant ghost section number */}
+      <span className="section-number absolute top-16 right-6 lg:right-16 hidden sm:block" aria-hidden="true">
+        05
+      </span>
+
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -76,18 +76,18 @@ function PricingSectionFn() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6"
+          className="flex flex-col md:flex-row items-end justify-between mb-20 gap-6"
         >
           <motion.div variants={blurFadeIn} className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/25 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               Pricing
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Structurele{' '}
               <span className="text-primary">Ondersteuning</span>
             </h2>
-            <motion.p variants={blurFadeIn} className="mt-4 text-lg text-slate-500 leading-relaxed">
+            <motion.p variants={blurFadeIn} className="mt-5 text-lg text-neutral-400 leading-relaxed">
               Transparante tarieven zonder verborgen kosten — via UX Kukru.
             </motion.p>
           </motion.div>
@@ -112,40 +112,44 @@ function PricingSectionFn() {
             >
               <div
                 className={cn(
-                  'bg-white rounded-3xl p-8 lg:p-10 h-full flex flex-col relative overflow-hidden transition-all duration-500 hover:-translate-y-2',
+                  'card-glow bg-card rounded-3xl p-8 lg:p-10 h-full flex flex-col relative overflow-hidden',
                   plan.highlighted
-                    ? 'border-2 border-primary/40 shadow-xl shadow-orange-500/5 ring-2 ring-primary/30 shadow-[0_0_32px_rgba(249,112,21,0.12)]'
-                    : 'border border-slate-100 hover:shadow-lg hover:border-primary/20'
+                    ? 'border border-primary/50 ring-1 ring-primary/30 shadow-[0_0_48px_rgba(249,115,22,0.14)]'
+                    : 'border border-white/[0.07]'
                 )}
               >
                 {/* Badge */}
                 {plan.highlighted && 'badge' in plan && (
-                  <div className="absolute top-0 right-0 px-4 py-1.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-bl-2xl">
+                  <div className="absolute top-0 right-0 px-4 py-1.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-bl-2xl shadow-md shadow-primary/30">
                     {plan.badge}
                   </div>
                 )}
 
                 {/* Name & description */}
-                <div className="mb-6 pb-6 border-b border-slate-100">
+                <div className="mb-6 pb-6 border-b border-white/[0.06]">
                   <h3 className={cn(
                     'text-2xl font-bold tracking-tight',
-                    plan.highlighted ? 'text-primary' : 'text-slate-900'
+                    plan.highlighted ? 'text-primary' : 'text-white'
                   )} style={{ fontFamily: 'var(--font-heading)' }}>
                     {plan.name}
                   </h3>
-                  <p className="text-slate-500 text-sm mt-1">{plan.description}</p>
+                  <p className="text-neutral-400 text-sm mt-1">{plan.description}</p>
                 </div>
 
-                {/* Price */}
-                <div className="mb-8 flex items-baseline">
-                  <AnimatedCounter
-                    from={0}
-                    to={parseInt(plan.price.replace(/[$]/g, ''), 10)}
-                    prefix="$"
-                    duration={1.5}
-                    className={cn('text-5xl font-bold tracking-tight', plan.highlighted ? 'text-primary' : 'text-slate-900')}
-                  />
-                  <span className="text-slate-400 ml-2 text-base font-medium">{plan.period}</span>
+                {/* Price — op aanvraag */}
+                <div className="mb-8">
+                  <p
+                    className={cn(
+                      'text-4xl font-bold tracking-tight leading-none',
+                      plan.highlighted ? 'text-primary' : 'text-white'
+                    )}
+                    style={{ fontFamily: 'var(--font-heading)' }}
+                  >
+                    Op aanvraag
+                  </p>
+                  <p className="text-neutral-500 text-sm font-medium mt-2">
+                    maandpakket — {plan.tagline}
+                  </p>
                 </div>
 
                 {/* Features */}
@@ -171,7 +175,7 @@ function PricingSectionFn() {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-slate-600 text-sm">{feature}</span>
+                      <span className="text-neutral-300 text-sm">{feature}</span>
                     </motion.li>
                   ))}
                 </motion.ul>
@@ -182,8 +186,8 @@ function PricingSectionFn() {
                   className={cn(
                     'w-full block text-center py-4 font-bold text-sm rounded-xl transition-all duration-300',
                     plan.highlighted
-                      ? 'bg-primary text-white hover:bg-orange-600 shadow-lg shadow-orange-500/25'
-                      : 'border-2 border-slate-200 text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900'
+                      ? 'bg-primary text-white hover:bg-primary-hover shadow-lg shadow-primary/25'
+                      : 'border border-white/15 text-white hover:bg-primary hover:border-primary hover:shadow-lg hover:shadow-primary/20'
                   )}
                 >
                   {plan.cta}
@@ -199,10 +203,10 @@ function PricingSectionFn() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center text-sm text-slate-500 mt-12"
+          className="text-center text-sm text-neutral-400 mt-14"
         >
-          Extra uren: <strong className="text-slate-900">$18/uur</strong> | Minimaal{' '}
-          <strong className="text-slate-900">3 maanden</strong> commitment vereist.
+          Extra uren: <strong className="text-white">$18/uur</strong> | Minimaal{' '}
+          <strong className="text-white">3 maanden</strong> commitment vereist.
         </motion.p>
       </div>
     </section>

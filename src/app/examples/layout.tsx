@@ -21,10 +21,10 @@ export default function ExamplesLayout({ children }: { children: React.ReactNode
   return (
     <>
       <Toaster position="bottom-right" richColors closeButton />
-      <div className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-2.5 backdrop-blur-md sm:px-6">
+      <div className="sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-background/90 px-4 py-2.5 backdrop-blur-md sm:px-6">
         <Link
           href="/services"
-          className="flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
+          className="flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors hover:text-white"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
             <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
