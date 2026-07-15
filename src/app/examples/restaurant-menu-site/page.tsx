@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Clock, MapPin, Phone, Utensils, Leaf, Flame, Fish, IceCreamCone, Star, Users, CalendarDays, ChevronDown, ChevronUp, Home as HomeIcon, Timer, Wheat, Milk, NutOff } from 'lucide-react'
+import { Clock, MapPin, Phone, Utensils, Leaf, Flame, Fish, IceCreamCone, Star, Users, CalendarDays, ChevronDown, ChevronUp, Home as HomeIcon, Timer, Wheat, Milk, NutOff, Egg, Shell, Bean, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import DemoFeatures from '../_components/DemoFeatures'
@@ -61,11 +61,11 @@ const categoryIcons: Record<string, React.ReactNode> = {
 const allergenIcons: Record<string, { icon: React.ReactNode; color: string }> = {
   'gluten': { icon: <Wheat className="w-3 h-3" />, color: 'bg-amber-50 text-amber-600' },
   'melk': { icon: <Milk className="w-3 h-3" />, color: 'bg-blue-50 text-blue-600' },
-  'ei': { icon: <span className="text-[10px]">🥚</span>, color: 'bg-yellow-50 text-yellow-700' },
+  'ei': { icon: <Egg className="w-3 h-3" />, color: 'bg-yellow-50 text-yellow-700' },
   'noten': { icon: <NutOff className="w-3 h-3" />, color: 'bg-orange-50 text-orange-600' },
   'vis': { icon: <Fish className="w-3 h-3" />, color: 'bg-cyan-50 text-cyan-600' },
-  'schaaldieren': { icon: <span className="text-[10px]">🦐</span>, color: 'bg-pink-50 text-pink-600' },
-  'soja': { icon: <span className="text-[10px]">🫘</span>, color: 'bg-emerald-50 text-emerald-600' },
+  'schaaldieren': { icon: <Shell className="w-3 h-3" />, color: 'bg-pink-50 text-pink-600' },
+  'soja': { icon: <Bean className="w-3 h-3" />, color: 'bg-emerald-50 text-emerald-600' },
 }
 
 const todaysSpecials = [
@@ -129,8 +129,9 @@ export default function WarungIndahPage() {
             <div className="flex items-center gap-3 mb-4">
               <WarungLogo size={44} />
               <span className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>Warung Indah</span>
-              <span className={`ml-3 px-3 py-1 rounded-full text-xs font-bold ${open ? 'bg-green-500/90 text-white' : 'bg-red-500/90 text-white'}`}>
-                {open ? '🟢 Nu open' : '🔴 Gesloten'}
+              <span className={`ml-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${open ? 'bg-green-500/90 text-white' : 'bg-red-500/90 text-white'}`}>
+                <span className={`w-2 h-2 rounded-full ${open ? 'bg-white' : 'bg-white/80'}`} />
+                {open ? 'Nu open' : 'Gesloten'}
               </span>
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[0.95] max-w-2xl mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -142,8 +143,13 @@ export default function WarungIndahPage() {
             {/* Social proof */}
             <div className="flex items-center gap-3 mb-6">
               <div className="flex -space-x-2">
-                {['🧔', '👩', '👨', '👩‍🦱'].map((e, i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-stone-700 border-2 border-stone-900 flex items-center justify-center text-sm">{e}</div>
+                {[
+                  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80',
+                  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&q=80',
+                  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80',
+                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&q=80',
+                ].map((src, i) => (
+                  <img key={i} src={src} alt="Gast" className="w-8 h-8 rounded-full border-2 border-stone-900 object-cover" />
                 ))}
               </div>
               <div className="flex items-center gap-1">
@@ -177,7 +183,7 @@ export default function WarungIndahPage() {
       <section className="py-6 bg-amber-50 border-b border-amber-200">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center gap-3 mb-3">
-            <span className="px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full animate-pulse">🔥 Vandaag</span>
+            <span className="px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full">Vandaag</span>
             <h3 className="text-sm font-bold text-stone-800" style={{ fontFamily: 'var(--font-heading)' }}>Dagspecials</h3>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-2">
@@ -261,9 +267,9 @@ export default function WarungIndahPage() {
                           <div className="px-4 pb-4 pt-2 border-t border-stone-100">
                             <p className="text-sm text-stone-600 mb-3">{item.desc}</p>
                             <div className="flex flex-wrap gap-1.5 mb-2">
-                              {item.spicy && <span className="px-2 py-1 bg-red-50 text-red-600 text-xs font-medium rounded">🌶 Pittig</span>}
-                              {item.vegan && <span className="px-2 py-1 bg-green-50 text-green-600 text-xs font-medium rounded">🌱 Veganistisch</span>}
-                              {item.popular && <span className="px-2 py-1 bg-amber-50 text-amber-600 text-xs font-medium rounded">⭐ Aanrader</span>}
+                              {item.spicy && <span className="inline-flex items-center gap-1 px-2 py-1 bg-red-50 text-red-600 text-xs font-medium rounded"><Flame className="w-3 h-3" />Pittig</span>}
+                              {item.vegan && <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-50 text-green-600 text-xs font-medium rounded"><Leaf className="w-3 h-3" />Veganistisch</span>}
+                              {item.popular && <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-50 text-amber-600 text-xs font-medium rounded"><Star className="w-3 h-3" />Aanrader</span>}
                             </div>
                             {item.allergens && item.allergens.length > 0 && (
                               <div className="mt-2">
@@ -337,7 +343,7 @@ export default function WarungIndahPage() {
             <div className="flex border-b border-stone-200">
               {['Datum & Gasten', 'Gegevens', 'Bevestiging'].map((label, i) => (
                 <div key={label} className={`flex-1 py-3 text-center text-xs font-bold transition-colors ${i < resStep ? 'bg-emerald-50 text-emerald-600' : i === resStep ? 'bg-green-50 text-green-700' : 'text-stone-400'}`}>
-                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] mr-1 ${i < resStep ? 'bg-emerald-500 text-white' : i === resStep ? 'bg-green-600 text-white' : 'bg-stone-300 text-white'}`}>{i < resStep ? '✓' : i + 1}</span>
+                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] mr-1 ${i < resStep ? 'bg-emerald-500 text-white' : i === resStep ? 'bg-green-600 text-white' : 'bg-stone-300 text-white'}`}>{i < resStep ? <Check className="w-3 h-3" /> : i + 1}</span>
                   <span className="hidden sm:inline">{label}</span>
                 </div>
               ))}

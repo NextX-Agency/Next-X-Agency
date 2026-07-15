@@ -31,9 +31,8 @@ export default function ExamplesLayout({ children }: { children: React.ReactNode
           </svg>
           Terug naar diensten
         </Link>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-          DEMO
+        <span className="text-xs font-bold tracking-[0.18em] uppercase text-neutral-500">
+          Demo
         </span>
       </div>
       {children}

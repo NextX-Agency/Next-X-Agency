@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, Baby, Building2, Star, ChevronDown, ChevronRight, CalendarDays, Home as HomeIcon, Users, CheckCircle2 } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, Baby, Building2, Star, ChevronDown, ChevronRight, CalendarDays, Home as HomeIcon, Users, CheckCircle2, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import DemoFeatures from '../_components/DemoFeatures'
@@ -324,7 +324,7 @@ export default function DentaCarePage() {
             <div className="flex border-b border-slate-100">
               {['Behandeling', 'Datum & Tijd', 'Gegevens', 'Bevestiging'].map((label, i) => (
                 <div key={label} className={`flex-1 py-3 text-center text-xs font-bold transition-colors ${i < apptStep ? 'bg-emerald-50 text-emerald-600' : i === apptStep ? 'bg-sky-50 text-sky-600' : 'text-slate-400'}`}>
-                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] mr-1 ${i < apptStep ? 'bg-emerald-500 text-white' : i === apptStep ? 'bg-sky-500 text-white' : 'bg-slate-200 text-slate-500'}`}>{i < apptStep ? '✓' : i + 1}</span>
+                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] mr-1 ${i < apptStep ? 'bg-emerald-500 text-white' : i === apptStep ? 'bg-sky-500 text-white' : 'bg-slate-200 text-slate-500'}`}>{i < apptStep ? <Check className="w-3 h-3" /> : i + 1}</span>
                   <span className="hidden sm:inline">{label}</span>
                 </div>
               ))}

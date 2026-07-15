@@ -244,14 +244,6 @@ function CategoryBlock({
 function ServicesSectionFn() {
   return (
     <section className="py-28 lg:py-40 relative overflow-hidden bg-background-elevated" id="services">
-      {/* Circuit texture — felt, not seen */}
-      <div className="absolute inset-0 pointer-events-none bg-circuit" aria-hidden="true" />
-
-      {/* Giant ghost section number */}
-      <span className="section-number absolute top-16 right-6 lg:right-16 hidden sm:block" aria-hidden="true">
-        02
-      </span>
-
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section header — editorial style */}
         <motion.div

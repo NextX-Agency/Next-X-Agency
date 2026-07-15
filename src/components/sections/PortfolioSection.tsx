@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { SectionLabel } from '@/components/SectionLabel'
 import {
   fadeInUp,
-  blurFadeIn,
   staggerContainerFast,
   clipRevealUp,
 } from '@/lib/animationUtils'
@@ -38,24 +38,6 @@ export function PortfolioSection() {
       {/* Top edge glow */}
       <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent pointer-events-none" />
 
-      {/* Circuit texture — felt, not seen */}
-      <div className="absolute inset-0 pointer-events-none bg-circuit" aria-hidden="true" />
-
-      {/* Background dot texture */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle, #f97316 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      {/* Giant ghost section number */}
-      <span className="section-number absolute top-16 right-6 lg:right-16 hidden sm:block" aria-hidden="true">
-        03
-      </span>
-
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section header */}
         <motion.div
@@ -65,12 +47,8 @@ export function PortfolioSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="mb-20"
         >
-          <motion.div
-            variants={blurFadeIn}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/25 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Ons Werk
+          <motion.div variants={fadeInUp}>
+            <SectionLabel>Ons Werk</SectionLabel>
           </motion.div>
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -179,7 +157,7 @@ export function PortfolioSection() {
 
                 {/* Live project pill */}
                 <span className="absolute top-12 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold tracking-widest uppercase z-10 pointer-events-none">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   Live
                 </span>
 

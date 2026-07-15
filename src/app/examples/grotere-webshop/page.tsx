@@ -108,7 +108,7 @@ export default function TechMartPage() {
       <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 py-10 lg:py-14">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1">
-            <span className="text-xs font-bold tracking-wider uppercase text-blue-200">⚡ Week Deals</span>
+            <span className="text-xs font-bold tracking-wider uppercase text-blue-200">Week Deals</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mt-2 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
               De beste tech, <span className="text-yellow-300">beste prijs</span>
             </h1>

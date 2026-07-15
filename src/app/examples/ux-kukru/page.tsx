@@ -216,10 +216,9 @@ export default function UxKukruPage() {
               <motion.div key={p.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className={`rounded-2xl p-6 border-2 relative ${p.highlight ? 'border-violet-500 bg-white shadow-xl shadow-violet-100' : 'border-slate-200 bg-white'}`}>
                 {p.highlight && (
-                  <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-violet-600 text-white text-[10px] font-bold rounded-full flex items-center gap-1">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-violet-600 text-white text-[10px] font-bold rounded-full flex items-center gap-1">
                     <Heart className="w-3 h-3" /> Meest gekozen
-                  </motion.div>
+                  </div>
                 )}
                 <h3 className="font-bold text-slate-900 text-lg mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{p.name}</h3>
                 <p className="text-xs text-slate-500 mb-3">{p.desc}</p>
@@ -352,7 +351,7 @@ export default function UxKukruPage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['FAQ accordion (AnimatePresence)', 'Team foto\'s met Unsplash', '3 prijspakketten vergelijking', 'Pulserende \'Meest gekozen\' badge', 'Contactformulier + validatie + toast', 'Double Diamond procesvisualisatie']} />
+      <DemoFeatures features={['FAQ accordion (AnimatePresence)', 'Team foto\'s met Unsplash', '3 prijspakketten vergelijking', '\'Meest gekozen\' badge op populairste pakket', 'Contactformulier + validatie + toast', 'Double Diamond procesvisualisatie']} />
     </div>
   )
 }

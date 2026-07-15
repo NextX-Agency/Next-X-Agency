@@ -21,9 +21,6 @@ const companyLinks = [
 function FooterFn() {
   return (
     <footer className="bg-background border-t border-white/[0.07] relative overflow-hidden">
-      {/* Circuit texture — felt, not seen */}
-      <div className="absolute inset-0 pointer-events-none bg-circuit" aria-hidden="true" />
-
       <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand column */}
@@ -179,7 +176,7 @@ function FooterFn() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/[0.05] relative z-10">
+      <div className="border-t border-white/5 relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-neutral-500">
             &copy; {new Date().getFullYear()} NextX Agency. Alle rechten voorbehouden.

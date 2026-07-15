@@ -2,7 +2,7 @@
 
 import { useState, useRef, FormEvent, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, ChevronRight, Hammer, HardHat, Home, PaintBucket, ArrowUp, Shield, Clock, CheckCircle2 } from 'lucide-react'
+import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, ChevronRight, Hammer, HardHat, Home, PaintBucket, ArrowUp, Shield, Clock, CheckCircle2, ClipboardList, Search, Ruler, Construction, KeyRound } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import DemoFeatures from '../_components/DemoFeatures'
@@ -40,11 +40,11 @@ const projects = [
 const projectFilters = ['Alle', 'Nieuwbouw', 'Renovatie', 'Dakwerken', 'Vloeren']
 
 const processSteps = [
-  { icon: '📋', title: 'Offerte', desc: 'Gratis vrijblijvende offerte op maat', days: '1-2 dagen' },
-  { icon: '🔍', title: 'Inspectie', desc: 'Bouwkundige inspectie ter plaatse', days: '3-5 dagen' },
-  { icon: '📐', title: 'Planning', desc: 'Gedetailleerd tijdsplan en materialen', days: '1-2 weken' },
-  { icon: '🏗️', title: 'Uitvoering', desc: 'Vakkundige realisatie door ons team', days: 'Projectafhankelijk' },
-  { icon: '🏠', title: 'Oplevering', desc: 'Eindcontrole en overdracht aan u', days: '1-3 dagen' },
+  { icon: ClipboardList, title: 'Offerte', desc: 'Gratis vrijblijvende offerte op maat', days: '1-2 dagen' },
+  { icon: Search, title: 'Inspectie', desc: 'Bouwkundige inspectie ter plaatse', days: '3-5 dagen' },
+  { icon: Ruler, title: 'Planning', desc: 'Gedetailleerd tijdsplan en materialen', days: '1-2 weken' },
+  { icon: Construction, title: 'Uitvoering', desc: 'Vakkundige realisatie door ons team', days: 'Projectafhankelijk' },
+  { icon: KeyRound, title: 'Oplevering', desc: 'Eindcontrole en overdracht aan u', days: '1-3 dagen' },
 ]
 
 const certifications = [
@@ -240,7 +240,7 @@ export default function KaderBouwPage() {
             {certifications.map((c, i) => (
               <motion.div key={c.label} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 border border-slate-200">
-                <div className="w-10 h-10 rounded-lg bg-[#f97015]/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center flex-shrink-0">
                   <Shield className="w-5 h-5 text-[#f97015]" />
                 </div>
                 <div>
@@ -266,8 +266,8 @@ export default function KaderBouwPage() {
               {processSteps.map((step, i) => (
                 <motion.div key={step.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className="text-center relative">
-                  <div className="w-16 h-16 rounded-full bg-white border-2 border-[#f97015] flex items-center justify-center mx-auto mb-3 text-2xl relative z-10 shadow-sm">
-                    {step.icon}
+                  <div className="w-16 h-16 rounded-full bg-white border-2 border-[#f97015] flex items-center justify-center mx-auto mb-3 relative z-10 shadow-sm">
+                    <step.icon className="w-6 h-6 text-[#f97015]" />
                   </div>
                   <h3 className="font-bold text-slate-900 text-sm" style={{ fontFamily: 'var(--font-heading)' }}>{step.title}</h3>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">{step.desc}</p>

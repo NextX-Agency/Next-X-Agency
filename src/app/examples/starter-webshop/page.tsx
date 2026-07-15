@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ShoppingBag, X, Plus, Minus, Trash2, Search, Heart, Star, ChevronRight, Truck, RefreshCw, Shield, CreditCard, Home as HomeIcon, Eye, Tag } from 'lucide-react'
+import { ShoppingBag, X, Plus, Minus, Trash2, Search, Heart, Star, ChevronRight, Truck, RefreshCw, Shield, CreditCard, Home as HomeIcon, Eye, Tag, Landmark, Banknote } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import DemoFeatures from '../_components/DemoFeatures'
@@ -46,9 +46,9 @@ const products: Product[] = [
 const categories = ['Alle', 'Tops', 'Jurken', 'Rokken', 'Broeken']
 
 const paymentMethods = [
-  { id: 'ideal', name: 'iDEAL', icon: '🏦' },
-  { id: 'card', name: 'Creditcard', icon: '💳' },
-  { id: 'cash', name: 'Bij bezorging', icon: '💵' },
+  { id: 'ideal', name: 'iDEAL', icon: Landmark },
+  { id: 'card', name: 'Creditcard', icon: CreditCard },
+  { id: 'cash', name: 'Bij bezorging', icon: Banknote },
 ]
 
 const shopTestimonials = [
@@ -151,7 +151,7 @@ export default function BloomBoutiquePage() {
       setCheckoutStep(3)
     } else if (checkoutStep === 3) {
       setCheckoutStep(4)
-      toast.success('Bestelling geplaatst! 🎉', { description: `Bedankt ${cForm.naam}! Verwachte levering: 2-4 werkdagen.` })
+      toast.success('Bestelling geplaatst!', { description: `Bedankt ${cForm.naam}! Verwachte levering: 2-4 werkdagen.` })
     }
   }
 
@@ -212,7 +212,7 @@ export default function BloomBoutiquePage() {
                       {paymentMethods.map(pm => (
                         <button key={pm.id} type="button" onClick={() => setPaymentMethod(pm.id)}
                           className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl border-2 transition-all ${paymentMethod === pm.id ? 'border-pink-500 bg-pink-50' : 'border-pink-100 hover:border-pink-200'}`}>
-                          <span className="text-2xl">{pm.icon}</span>
+                          <pm.icon className="w-6 h-6 text-pink-500" />
                           <span className="font-bold text-slate-900">{pm.name}</span>
                           {paymentMethod === pm.id && <span className="ml-auto w-5 h-5 rounded-full bg-pink-500 flex items-center justify-center"><svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg></span>}
                         </button>
@@ -341,7 +341,12 @@ export default function BloomBoutiquePage() {
               </a>
               <div className="flex items-center gap-2 text-sm text-slate-500">
                 <div className="flex -space-x-2">
-                  {['👩🏾', '👩🏽', '👨🏻', '👩🏿'].map((e, i) => <span key={i} className="w-7 h-7 rounded-full bg-pink-100 border-2 border-white flex items-center justify-center text-sm">{e}</span>)}
+                  {[
+                    'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&q=80',
+                  ].map((src, i) => <img key={i} src={src} alt="" className="w-7 h-7 rounded-full object-cover border-2 border-white" />)}
                 </div>
                 <span className="font-bold text-slate-700">2.400+</span> tevreden klanten
               </div>
@@ -569,7 +574,7 @@ export default function BloomBoutiquePage() {
             <div>
               <h4 className="font-bold text-white text-sm mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Betaalmethoden</h4>
               <div className="flex flex-wrap gap-2 mb-4">
-                {paymentMethods.map(pm => <span key={pm.id} className="text-xs px-3 py-1.5 rounded-full bg-slate-800 text-slate-300">{pm.icon} {pm.name}</span>)}
+                {paymentMethods.map(pm => <span key={pm.id} className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-slate-800 text-slate-300"><pm.icon className="w-3.5 h-3.5" /> {pm.name}</span>)}
               </div>
               <h4 className="font-bold text-white text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Adres</h4>
               <p className="text-sm text-slate-400">Domineestraat 18<br/>Paramaribo, Suriname</p>

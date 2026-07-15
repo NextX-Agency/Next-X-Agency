@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ContactForm } from '@/components/ContactForm'
+import { SectionLabel } from '@/components/SectionLabel'
 import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react'
 import {
   fadeInUp,
@@ -28,16 +29,7 @@ export default function ContactPage() {
       <main>
         {/* ── Hero ── */}
         <section className="relative pt-36 pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
           <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
-
-          {/* Decorative arc */}
-          <div className="absolute -top-40 -right-40 w-[480px] h-[480px] pointer-events-none z-0" aria-hidden="true">
-            <svg viewBox="0 0 640 640" fill="none">
-              <circle cx="320" cy="320" r="290" stroke="#f97316" strokeWidth="1.5" opacity="0.06" />
-              <circle cx="320" cy="320" r="210" stroke="#f97316" strokeWidth="1" opacity="0.035" />
-            </svg>
-          </div>
 
           <motion.div
             variants={staggerContainer}
@@ -45,15 +37,8 @@ export default function ContactPage() {
             animate="visible"
             className="relative max-w-6xl mx-auto px-6 text-center z-10"
           >
-            <motion.div
-              variants={scaleIn}
-              className="flex items-center justify-center gap-4 mb-8"
-            >
-              <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-400">
-                Neem Contact Op
-              </span>
-              <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
+            <motion.div variants={scaleIn}>
+              <SectionLabel center>Neem Contact Op</SectionLabel>
             </motion.div>
 
             <motion.h1
@@ -178,7 +163,7 @@ export default function ContactPage() {
                   <div className="h-px bg-linear-to-r from-transparent via-primary/20 to-transparent" />
                 </div>
 
-                {/* WhatsApp CTA — vivid orange gradient */}
+                {/* WhatsApp CTA — solid orange */}
                 <motion.a
                   href="https://wa.me/5978318508"
                   target="_blank"
@@ -187,24 +172,15 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4, duration: 0.45 }}
-                  className="group flex items-center justify-between w-full rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/25 hover:-translate-y-0.5"
-                  style={{ background: 'linear-gradient(135deg, #e55c00 0%, #f97316 45%, #ff9400 100%)' }}
+                  className="group flex items-center justify-between w-full rounded-3xl p-6 bg-primary transition-all duration-300 hover:bg-primary-hover hover:-translate-y-0.5"
                 >
-                  {/* Dot pattern overlay */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-[0.10]"
-                    style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '18px 18px' }}
-                  />
-                  {/* Corner highlight */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-[60px] pointer-events-none" />
-
-                  <div className="relative z-10">
+                  <div>
                     <p className="text-white font-bold text-base mb-0.5" style={{ fontFamily: 'var(--font-heading)' }}>
                       Liever direct chatten?
                     </p>
                     <p className="text-white/70 text-sm">We reageren binnen 1 uur</p>
                   </div>
-                  <div className="relative z-10 w-11 h-11 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 group-hover:scale-105 transition-all duration-300">
+                  <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 group-hover:scale-105 transition-all duration-300">
                     <ArrowRight size={18} className="text-white" />
                   </div>
                 </motion.a>

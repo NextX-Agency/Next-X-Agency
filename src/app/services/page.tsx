@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { SectionLabel } from '@/components/SectionLabel'
 import { CTABanner } from '@/components/sections/CTABanner'
 import {
   fadeInUp,
@@ -216,16 +217,7 @@ export default function ServicesPage() {
       <main>
         {/* ── Hero ── */}
         <section className="relative pt-36 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
           <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
-
-          {/* Decorative arc */}
-          <div className="absolute -top-40 -right-40 w-160 h-160 pointer-events-none z-0" aria-hidden="true">
-            <svg viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="320" cy="320" r="290" stroke="#f97316" strokeWidth="1.5" opacity="0.06" />
-              <circle cx="320" cy="320" r="210" stroke="#f97316" strokeWidth="1" opacity="0.035" />
-            </svg>
-          </div>
 
           <motion.div
             variants={staggerContainer}
@@ -238,12 +230,8 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center gap-4 mb-10"
             >
-              <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-400">
-                7 Diensten · 3 Categorieën · 1 Partner
-              </span>
+              <SectionLabel>7 Diensten · 3 Categorieën · 1 Partner</SectionLabel>
             </motion.div>
 
             {/* Headline — clip-reveal */}
@@ -350,8 +338,11 @@ export default function ServicesPage() {
                             {service.name}
                           </h3>
                           {demoSlugs[service.name] && (
-                            <span className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-black tracking-wider uppercase">
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                            <span className="inline-flex items-center gap-1.5 mt-2 text-primary text-[10px] font-black tracking-wider uppercase">
+                              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                              </svg>
                               Live Demo
                             </span>
                           )}
@@ -434,11 +425,8 @@ export default function ServicesPage() {
               variants={staggerContainer}
             >
               {/* Header */}
-              <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-primary opacity-60" />
-                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-500">
-                  Standaard
-                </span>
+              <motion.div variants={fadeInUp}>
+                <SectionLabel>Standaard</SectionLabel>
               </motion.div>
 
               <motion.h2

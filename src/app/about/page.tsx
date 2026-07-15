@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { SectionLabel } from '@/components/SectionLabel'
 import { CTABanner } from '@/components/sections/CTABanner'
 import {
   Target,
@@ -53,16 +54,14 @@ export default function AboutPage() {
       <main>
         {/* Hero */}
         <section className="relative py-24 lg:py-36 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
             className="relative max-w-6xl mx-auto px-6 text-center"
           >
-            <motion.div variants={scaleIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/25 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Over Ons
+            <motion.div variants={scaleIn}>
+              <SectionLabel center>Over Ons</SectionLabel>
             </motion.div>
             <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl font-bold text-white tracking-tight max-w-4xl mx-auto mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
               Wij zijn NextX Agency

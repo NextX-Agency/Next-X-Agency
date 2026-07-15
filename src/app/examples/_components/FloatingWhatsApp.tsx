@@ -30,7 +30,7 @@ export default function FloatingWhatsApp({ phone, message = 'Hallo, ik heb een v
             </div>
             <div className="p-4 bg-[#ece5dd]">
               <div className="bg-white rounded-lg p-3 shadow-sm text-sm text-slate-700 max-w-[85%]">
-                Hallo! 👋 Hoe kunnen we u helpen?
+                Hallo! Hoe kunnen we u helpen?
               </div>
             </div>
             <div className="p-3 bg-white border-t border-slate-100">

@@ -6,13 +6,7 @@ import { fadeInUp, blurFadeIn, staggerContainer, scaleIn } from '@/lib/animation
 
 function CTABannerFn() {
   return (
-    <section className="py-28 lg:py-36 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FF6B00 0%, #f97316 40%, #ff8c00 70%, #FF6B00 100%)' }}>
-      {/* Subtle decorative circles */}
-      <div className="absolute -left-32 -top-32 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)' }} />
-      <div className="absolute -right-32 -bottom-32 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.12) 0%, transparent 70%)' }} />
-      {/* Dot pattern overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-
+    <section className="py-28 lg:py-36 relative overflow-hidden bg-primary">
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <motion.div
           variants={staggerContainer}
@@ -35,7 +29,7 @@ function CTABannerFn() {
             <motion.div variants={scaleIn} className="w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-neutral-950 text-white font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 hover:bg-neutral-900 hover:shadow-xl hover:shadow-black/25 hover:scale-[1.03] min-h-[44px]"
+                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-neutral-950 text-white font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 hover:bg-neutral-900 hover:shadow-xl hover:shadow-black/25 hover:scale-[1.03] min-h-11"
               >
                 Stuur een aanvraag
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -48,7 +42,7 @@ function CTABannerFn() {
                 href="https://wa.me/5978318508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-white text-neutral-950 font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:scale-[1.03] min-h-[44px]"
+                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-white text-neutral-950 font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:scale-[1.03] min-h-11"
               >
                 WhatsApp ons
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">

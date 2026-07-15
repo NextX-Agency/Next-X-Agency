@@ -140,71 +140,6 @@ body {
 
 /* ===== COMPONENT CLASSES ===== */
 
-/* Section label - pill badge style */
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #f97316;
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 0.375rem 1rem;
-  background: rgba(249, 115, 22, 0.08);
-  border: 1px solid rgba(249, 115, 22, 0.2);
-  border-radius: 9999px;
-  margin-bottom: 1rem;
-}
-
-/* Badges */
-.badge {
-  @apply inline-flex items-center px-4 py-1.5 text-xs font-bold uppercase tracking-wider;
-  border-radius: 9999px;
-}
-
-.badge-success {
-  @apply bg-success-muted text-success-foreground border border-success/30;
-}
-
-.badge-warning {
-  @apply bg-warning-muted text-warning-foreground border border-warning/30;
-}
-
-.badge-neutral {
-  @apply bg-muted text-muted-foreground border border-border;
-}
-
-/* Price badge - solid orange pill */
-.price-badge {
-  display: inline-block;
-  background: #f97316;
-  color: #ffffff;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-}
-
-/* Service card - dark */
-.card-service {
-  background: #121212;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.card-service:hover {
-  border-color: rgba(249, 115, 22, 0.35);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 32px rgba(249, 115, 22, 0.08);
-  transform: translateY(-3px);
-}
-
 /* Input Fields - dark */
 .input-field {
   @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground placeholder:text-muted-foreground transition-all duration-200;
@@ -297,51 +232,12 @@ body {
   background-size: 60px 60px;
 }
 
-/* ===== CIRCUIT BOARD TEXTURE — felt, not seen (max 4% opacity) ===== */
-.bg-circuit {
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f97316' stroke-width='1'%3E%3Cpath d='M10 10h40v30h30'/%3E%3Cpath d='M110 50v40H70'/%3E%3Cpath d='M10 110V70h30'/%3E%3Ccircle cx='10' cy='10' r='2.5'/%3E%3Ccircle cx='80' cy='40' r='2.5'/%3E%3Ccircle cx='110' cy='50' r='2.5'/%3E%3Ccircle cx='70' cy='90' r='2.5'/%3E%3Ccircle cx='40' cy='70' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 120px 120px;
-  opacity: 0.04;
-}
-
-/* Subtle section gradient overlay */
-.section-gradient {
-  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.05), transparent),
-    radial-gradient(circle at bottom left, rgba(249, 115, 22, 0.03), transparent);
-}
-
 /* Glass pill (navbar) — dark */
 .glass-pill {
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   background: rgba(10, 10, 10, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Orange border glow (card hover) */
-.orange-border-glow {
-  border: 1px solid rgba(249, 115, 22, 0.15);
-  transition: all 0.4s ease;
-}
-.orange-border-glow:hover {
-  border-color: rgba(249, 115, 22, 0.45);
-  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.12);
-}
-
-/* ===== GRADIENT TEXT ===== */
-.gradient-text-animated {
-  background: linear-gradient(135deg, #f97316 0%, #ff8c42 50%, #f97316 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 4s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* Horizontal marquee ticker — pauses on hover */
@@ -370,15 +266,6 @@ body {
   text-shadow: 0 0 32px rgba(249, 115, 22, 0.45);
 }
 
-/* ===== HOVER HELPERS ===== */
-.hover-lift {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), 0 0 40px rgba(249, 115, 22, 0.07);
-}
-
 /* Card glow lift — dark card hover with subtle orange aura */
 .card-glow {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
@@ -387,80 +274,6 @@ body {
   transform: translateY(-4px);
   border-color: rgba(249, 115, 22, 0.35);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 36px rgba(249, 115, 22, 0.1);
-}
-
-/* ===== ANIMATION HELPERS ===== */
-
-/* Section underline draw */
-.section-underline {
-  position: relative;
-  display: inline-block;
-}
-.section-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #f97316, #ff8c42);
-  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.section-underline:hover::after,
-.section-underline.active::after {
-  width: 100%;
-}
-
-/* Counter glow text */
-.counter-glow {
-  text-shadow: 0 0 12px rgba(249, 115, 22, 0.35);
-}
-
-/* Staggered list fade-in */
-.stagger-list > * {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-.stagger-list.in-view > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
-.stagger-list.in-view > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
-.stagger-list.in-view > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.19s; }
-.stagger-list.in-view > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.26s; }
-.stagger-list.in-view > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.33s; }
-.stagger-list.in-view > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.40s; }
-
-/* Feature tag pill */
-.feature-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.75rem;
-  background: rgba(249, 115, 22, 0.08);
-  border: 1px solid rgba(249, 115, 22, 0.2);
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-family: var(--font-sans);
-  color: #f97316;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-.feature-tag:hover {
-  background: rgba(249, 115, 22, 0.14);
-  border-color: rgba(249, 115, 22, 0.45);
-}
-
-/* Node embossed (process section) — dark */
-.node-embossed {
-  background: #141414;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(249, 115, 22, 0.15);
-  transition: all 0.4s ease;
-}
-.node-embossed:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 24px rgba(249, 115, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  border-color: rgba(249, 115, 22, 0.4);
 }
 
 /* ===== REDUCED MOTION OVERRIDES ===== */
@@ -495,40 +308,6 @@ body {
 
 /* ===== ENHANCED DESIGN UTILITIES ===== */
 
-/* Giant ghost section number — editorial design element */
-.section-number {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(4.5rem, 10vw, 8.5rem);
-  line-height: 0.8;
-  letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(249, 115, 22, 0.22);
-  user-select: none;
-  pointer-events: none;
-}
-
-/* Project badge overlay */
-.project-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.85rem;
-  background: #f97316;
-  color: #ffffff;
-  font-family: var(--font-heading);
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-radius: 9999px;
-  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
-}
-
 /* Stat chip — dark */
 .stat-chip {
   display: inline-flex;
@@ -549,37 +328,3 @@ body {
   font-weight: 700;
 }
 
-/* Image overlay gradient (for portfolio cards) */
-.image-overlay {
-  position: relative;
-  overflow: hidden;
-}
-.image-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 40%,
-    rgba(10, 10, 10, 0.7) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Section divider line */
-.section-divider {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #f97316, #ff8c42);
-  border-radius: 3px;
-}
-
-/* Early adopter card darkened section */
-.dark-section {
-  background: #0a0a0a;
-  color: #ffffff;
-}
-.dark-section .text-muted {
-  color: #a3a3a3;
-}
