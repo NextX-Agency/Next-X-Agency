@@ -21,11 +21,11 @@ function NavbarFn() {
 
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50">
-      <div className="glass-pill rounded-full px-5 py-3 flex items-center justify-between shadow-lg shadow-black/40">
+      <div className="glass-pill rounded-full px-5 py-3 flex items-center justify-between shadow-lg shadow-black/5">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo-dark.png"
+            src="/logo-light.png"
             alt="NextX Agency"
             width={120}
             height={48}
@@ -44,7 +44,7 @@ function NavbarFn() {
                 'group relative text-sm font-semibold transition-colors duration-300',
                 pathname === link.href
                   ? 'text-primary'
-                  : 'text-neutral-400 hover:text-white'
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               {link.label}
@@ -82,7 +82,7 @@ function NavbarFn() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors"
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? 'Sluit menu' : 'Open menu'}
           >
@@ -122,7 +122,7 @@ function NavbarFn() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="md:hidden mt-3 glass-pill rounded-2xl shadow-xl shadow-black/50 overflow-hidden"
+            className="md:hidden mt-3 glass-pill rounded-2xl shadow-xl shadow-black/10 overflow-hidden"
           >
             <div className="px-4 py-3 space-y-1">
               {navLinks.map((link, i) => (
@@ -139,7 +139,7 @@ function NavbarFn() {
                       'flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl transition-colors',
                       pathname === link.href
                         ? 'text-primary bg-primary/10'
-                        : 'text-neutral-300 hover:text-primary hover:bg-white/5'
+                        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
                     )}
                   >
                     {pathname === link.href && (

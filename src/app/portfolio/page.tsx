@@ -58,7 +58,7 @@ export default function PortfolioPage() {
             <div className="overflow-hidden">
               <motion.h1
                 variants={clipRevealUp}
-                className="text-5xl md:text-7xl font-black tracking-tight text-white leading-[0.95] mb-1"
+                className="text-5xl md:text-7xl font-black tracking-tight text-foreground leading-[0.95] mb-1"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Recente
@@ -74,7 +74,7 @@ export default function PortfolioPage() {
               </motion.h1>
             </div>
 
-            <motion.p variants={fadeInUp} className="text-neutral-400 text-lg max-w-xl leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-muted-foreground text-lg max-w-xl leading-relaxed">
               Een selectie van recente projecten. Elk project begint als template
               en wordt volledig gepersonaliseerd naar de wensen van de klant.
             </motion.p>
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
                 <motion.article
                   key={project.title}
                   variants={fadeInUp}
-                  className="group flex flex-col rounded-2xl bg-card border border-white/[0.07] overflow-hidden hover:border-primary/35 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
+                  className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/35 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
                 >
                   {/* Clickable overlay */}
                   <Link
@@ -154,26 +154,26 @@ export default function PortfolioPage() {
                         {project.category}
                       </span>
                       <span
-                        className="text-xs font-black text-white/15 tracking-widest"
+                        className="text-xs font-black text-foreground/15 tracking-widest"
                         style={{ fontFamily: 'var(--font-heading)' }}
                       >
                         {project.index}
                       </span>
                     </div>
                     <h3
-                      className="text-lg font-black text-white tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
+                      className="text-lg font-black text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {project.title}
                     </h3>
-                    <p className="text-sm text-neutral-400 leading-relaxed flex-1 mb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-neutral-400 text-[11px] font-medium"
+                          className="px-2.5 py-0.5 rounded-md bg-black/3 border border-border text-muted-foreground text-[11px] font-medium"
                         >
                           {tag}
                         </span>

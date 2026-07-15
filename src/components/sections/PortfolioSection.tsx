@@ -56,7 +56,7 @@ export function PortfolioSection() {
               <div className="overflow-hidden">
                 <motion.h2
                   variants={clipRevealUp}
-                  className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[0.95]"
+                  className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[0.95]"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   Recente
@@ -75,7 +75,7 @@ export function PortfolioSection() {
 
             <motion.p
               variants={fadeInUp}
-              className="text-neutral-400 text-sm md:text-base leading-relaxed max-w-sm"
+              className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-sm"
             >
               Van webshops tot restaurant sites — elk project gebouwd met zorg,
               snelheid en resultaat.
@@ -95,7 +95,7 @@ export function PortfolioSection() {
             <motion.div
               key={project.title}
               variants={fadeInUp}
-              className="card-glow group relative flex flex-col rounded-2xl bg-card border border-white/[0.07] transition-all duration-300 overflow-hidden cursor-pointer active:scale-[0.98]"
+              className="card-glow group relative flex flex-col rounded-2xl bg-card border border-border transition-all duration-300 overflow-hidden cursor-pointer active:scale-[0.98]"
             >
               {/* Clickable overlay */}
               <Link
@@ -176,13 +176,13 @@ export function PortfolioSection() {
                 </span>
 
                 <h3
-                  className="text-lg font-black text-white tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
+                  className="text-lg font-black text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   {project.title}
                 </h3>
 
-                <p className="text-sm text-neutral-400 leading-relaxed flex-1 mb-4">
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
                   {project.description}
                 </p>
 
@@ -191,7 +191,7 @@ export function PortfolioSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-neutral-400 text-[11px] font-medium"
+                      className="px-2.5 py-0.5 rounded-md bg-black/3 border border-border text-muted-foreground text-[11px] font-medium"
                     >
                       {tag}
                     </span>
@@ -200,7 +200,7 @@ export function PortfolioSection() {
               </div>
 
               {/* Hover accent line */}
-              <div className="h-px mx-6 bg-white/5 group-hover:bg-primary/30 transition-colors duration-300" />
+              <div className="h-px mx-6 bg-border group-hover:bg-primary/30 transition-colors duration-300" />
               <div className="px-6 py-4">
                 <button
                   type="button"
@@ -208,7 +208,7 @@ export function PortfolioSection() {
                     e.preventDefault()
                     window.open(project.href, '_blank')
                   }}
-                  className="relative z-40 text-xs font-bold text-neutral-500 group-hover:text-primary transition-colors duration-200 tracking-wide uppercase flex items-center gap-1.5"
+                  className="relative z-40 text-xs font-bold text-muted-foreground group-hover:text-primary transition-colors duration-200 tracking-wide uppercase flex items-center gap-1.5"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   Bekijk live
@@ -227,11 +227,11 @@ export function PortfolioSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-white/[0.07]"
+          className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-border"
         >
-          <p className="text-neutral-400 text-sm">
+          <p className="text-muted-foreground text-sm">
             Bekijk alle{' '}
-            <span className="text-white font-bold">projecten</span> in ons
+            <span className="text-foreground font-bold">projecten</span> in ons
             portfolio.
           </p>
           <Link

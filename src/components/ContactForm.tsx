@@ -98,20 +98,20 @@ function ContactFormFn({ className = '' }: { className?: string }) {
 
   if (submitted) {
     return (
-      <div className={cn('bg-card rounded-3xl p-10 text-center shadow-xl shadow-black/40 border border-white/[0.07]', className)}>
+      <div className={cn('bg-card rounded-3xl p-10 text-center shadow-xl shadow-black/5 border border-border', className)}>
         {/* Animated green checkmark ring */}
         <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center mx-auto mb-6">
           <svg className="w-9 h-9 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+        <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
           Bericht verstuurd!
         </h3>
-        <p className="text-neutral-300 text-sm mb-1">
+        <p className="text-foreground/80 text-sm mb-1">
           Bedankt voor uw bericht.
         </p>
-        <p className="text-neutral-400 text-sm mb-8">
+        <p className="text-muted-foreground text-sm mb-8">
           Wij nemen binnen 24-48 uur contact met u op met een vrijblijvende quote.
         </p>
         <button
@@ -128,7 +128,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={cn('bg-card rounded-3xl p-6 lg:p-8 shadow-xl shadow-black/40 border border-white/[0.07]', className)}
+      className={cn('bg-card rounded-3xl p-6 lg:p-8 shadow-xl shadow-black/5 border border-border', className)}
     >
       <div className="space-y-5">
         {/* Name + Email — 2 columns on sm+ */}
