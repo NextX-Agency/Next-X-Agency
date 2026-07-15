@@ -83,11 +83,11 @@ function PricingSectionFn() {
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               Pricing
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Structurele{' '}
               <span className="text-primary">Ondersteuning</span>
             </h2>
-            <motion.p variants={blurFadeIn} className="mt-5 text-lg text-muted-foreground leading-relaxed">
+            <motion.p variants={blurFadeIn} className="mt-5 text-lg text-neutral-400 leading-relaxed">
               Transparante tarieven zonder verborgen kosten — via UX Kukru.
             </motion.p>
           </motion.div>
@@ -115,7 +115,7 @@ function PricingSectionFn() {
                   'card-glow bg-card rounded-3xl p-8 lg:p-10 h-full flex flex-col relative overflow-hidden',
                   plan.highlighted
                     ? 'border border-primary/50 ring-1 ring-primary/30 shadow-[0_0_48px_rgba(249,115,22,0.14)]'
-                    : 'border border-border'
+                    : 'border border-white/[0.07]'
                 )}
               >
                 {/* Badge */}
@@ -126,14 +126,14 @@ function PricingSectionFn() {
                 )}
 
                 {/* Name & description */}
-                <div className="mb-6 pb-6 border-b border-border">
+                <div className="mb-6 pb-6 border-b border-white/[0.06]">
                   <h3 className={cn(
                     'text-2xl font-bold tracking-tight',
-                    plan.highlighted ? 'text-primary' : 'text-foreground'
+                    plan.highlighted ? 'text-primary' : 'text-white'
                   )} style={{ fontFamily: 'var(--font-heading)' }}>
                     {plan.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm mt-1">{plan.description}</p>
+                  <p className="text-neutral-400 text-sm mt-1">{plan.description}</p>
                 </div>
 
                 {/* Price — op aanvraag */}
@@ -141,13 +141,13 @@ function PricingSectionFn() {
                   <p
                     className={cn(
                       'text-4xl font-bold tracking-tight leading-none',
-                      plan.highlighted ? 'text-primary' : 'text-foreground'
+                      plan.highlighted ? 'text-primary' : 'text-white'
                     )}
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     Op aanvraag
                   </p>
-                  <p className="text-muted-foreground text-sm font-medium mt-2">
+                  <p className="text-neutral-500 text-sm font-medium mt-2">
                     maandpakket — {plan.tagline}
                   </p>
                 </div>
@@ -175,7 +175,7 @@ function PricingSectionFn() {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-muted-foreground text-sm">{feature}</span>
+                      <span className="text-neutral-300 text-sm">{feature}</span>
                     </motion.li>
                   ))}
                 </motion.ul>
@@ -187,7 +187,7 @@ function PricingSectionFn() {
                     'w-full block text-center py-4 font-bold text-sm rounded-xl transition-all duration-300',
                     plan.highlighted
                       ? 'bg-primary text-white hover:bg-primary-hover shadow-lg shadow-primary/25'
-                      : 'border border-border text-foreground hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg hover:shadow-primary/20'
+                      : 'border border-white/15 text-white hover:bg-primary hover:border-primary hover:shadow-lg hover:shadow-primary/20'
                   )}
                 >
                   {plan.cta}
@@ -203,10 +203,10 @@ function PricingSectionFn() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center text-sm text-muted-foreground mt-14"
+          className="text-center text-sm text-neutral-400 mt-14"
         >
-          Extra uren: <strong className="text-foreground">$18/uur</strong> | Minimaal{' '}
-          <strong className="text-foreground">3 maanden</strong> commitment vereist.
+          Extra uren: <strong className="text-white">$18/uur</strong> | Minimaal{' '}
+          <strong className="text-white">3 maanden</strong> commitment vereist.
         </motion.p>
       </div>
     </section>

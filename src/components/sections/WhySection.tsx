@@ -95,14 +95,15 @@ function WhySectionFn() {
           viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-20"
         >
-          <motion.div variants={scaleIn} className="section-kicker mb-6">
-            Waarom
+          <motion.div variants={scaleIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/25 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Waarom NextX
           </motion.div>
-          <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
+          <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
             Waarom bedrijven kiezen{' '}
             <span className="text-primary">voor ons</span>
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={fadeInUp} className="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
             Vier kernpijlers die ons onderscheiden in de Surinaamse digitale markt.
           </motion.p>
         </motion.div>
@@ -119,26 +120,26 @@ function WhySectionFn() {
             <motion.div
               key={feature.title}
               variants={fadeInUp}
-              className="clean-card group flex flex-col gap-5 p-6 lg:p-7"
+              className="card-glow group flex flex-col gap-5 p-7 lg:p-8 rounded-2xl bg-card border border-white/[0.07]"
             >
               {/* Icon + title row */}
               <div className="flex items-start gap-4">
-                <div className="icon-tile group-hover:border-primary/35">
+                <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/30 transition-all duration-300">
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-foreground mb-1 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                  <h3 className="text-lg font-bold text-white mb-1 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-neutral-400 text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
               </div>
               {/* Breakdown */}
-              <ul className="space-y-2.5 border-t border-border pt-5">
+              <ul className="space-y-2.5 border-t border-white/[0.06] pt-5">
                 {feature.breakdown.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                  <li key={item} className="flex items-center gap-2.5 text-sm text-neutral-300">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                     {item}
                   </li>

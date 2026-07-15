@@ -50,7 +50,7 @@ export default function ContactPage() {
               className="flex items-center justify-center gap-4 mb-8"
             >
               <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-neutral-400">
                 Neem Contact Op
               </span>
               <div className="h-px w-8 bg-primary" style={{ opacity: 0.45 }} />
@@ -58,7 +58,7 @@ export default function ContactPage() {
 
             <motion.h1
               variants={blurFadeIn}
-              className="font-bold tracking-tight max-w-4xl mx-auto mb-6 text-foreground"
+              className="font-bold tracking-tight max-w-4xl mx-auto mb-6 text-white"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: 'clamp(2.6rem, 7vw, 5.5rem)',
@@ -70,7 +70,7 @@ export default function ContactPage() {
               <span className="text-primary">samenwerken</span>
             </motion.h1>
 
-            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-neutral-400 max-w-xl mx-auto leading-relaxed">
               Beschrijf uw project en wij sturen binnen 24-48 uur een
               vrijblijvende quote. Of stuur direct een WhatsApp bericht.
             </motion.p>
@@ -101,7 +101,7 @@ export default function ContactPage() {
                     <Mail size={17} className="text-white" />
                   </div>
                   <h2
-                    className="text-2xl font-bold text-foreground"
+                    className="text-2xl font-bold text-white"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     Stuur ons een bericht
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     <Phone size={17} className="text-white" />
                   </div>
                   <h2
-                    className="text-2xl font-bold text-foreground"
+                    className="text-2xl font-bold text-white"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     Direct contact
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Light contact card */}
-                <div className="rounded-3xl overflow-hidden mb-4 bg-card border border-border">
+                <div className="rounded-3xl overflow-hidden mb-4 bg-card border border-white/[0.07]">
                   {/* Top orange edge */}
                   <div className="h-px bg-linear-to-r from-transparent via-primary/50 to-transparent" />
 
@@ -148,25 +148,25 @@ export default function ContactPage() {
                           <a
                             href={href}
                             {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                            className="flex items-center gap-4 p-4 rounded-2xl bg-muted border border-border hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 group"
+                            className="flex items-center gap-4 p-4 rounded-2xl bg-white/3 border border-white/[0.07] hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 group"
                           >
                             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
                               <Icon size={18} className="text-primary" />
                             </div>
                             <div className="min-w-0">
-                              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] mb-0.5">{label}</p>
-                              <p className="text-foreground font-semibold text-sm group-hover:text-primary transition-colors truncate">{value}</p>
+                              <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.15em] mb-0.5">{label}</p>
+                              <p className="text-white font-semibold text-sm group-hover:text-primary transition-colors truncate">{value}</p>
                             </div>
-                            <ArrowRight size={14} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-300 ml-auto shrink-0" />
+                            <ArrowRight size={14} className="text-neutral-600 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-300 ml-auto shrink-0" />
                           </a>
                         ) : (
-                          <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted border border-border">
+                          <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/3 border border-white/[0.07]">
                             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                               <Icon size={18} className="text-primary" />
                             </div>
                             <div className="min-w-0">
-                              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] mb-0.5">{label}</p>
-                              <p className="text-foreground font-semibold text-sm">{value}</p>
+                              <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.15em] mb-0.5">{label}</p>
+                              <p className="text-white font-semibold text-sm">{value}</p>
                             </div>
                           </div>
                         )}

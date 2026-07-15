@@ -103,7 +103,6 @@ export default function WarungIndahPage() {
   /* ─── Multi-step reservation ─── */
   const [resStep, setResStep] = useState(0)
   const [form, setForm] = useState({ naam: '', email: '', telefoon: '', datum: '', tijd: '', gasten: '2', opmerking: '' })
-  const [reservationRef, setReservationRef] = useState('')
   const resRef = useRef<HTMLDivElement>(null)
 
   const handleResNext = () => {
@@ -112,7 +111,6 @@ export default function WarungIndahPage() {
       setResStep(1)
     } else if (resStep === 1) {
       if (!form.naam.trim() || !form.email.includes('@') || !form.telefoon.trim()) { toast.error('Vul alle velden correct in'); return }
-      setReservationRef(`WI-${new Date().getFullYear()}-${String(Math.floor(1000 + Math.random() * 9000))}`)
       setResStep(2)
       toast.success('Reservering bevestigd!', { description: `Tafel voor ${form.gasten} op ${form.datum} om ${form.tijd}` })
     }
@@ -424,7 +422,7 @@ export default function WarungIndahPage() {
                       <svg className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <h3 className="text-xl font-bold text-stone-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Reservering bevestigd!</h3>
-                    <p className="text-sm text-stone-500 mb-4">Referentie: <span className="font-mono font-bold text-green-700">{reservationRef}</span></p>
+                    <p className="text-sm text-stone-500 mb-4">Referentie: <span className="font-mono font-bold text-green-700">WI-2025-{String(Math.floor(1000 + Math.random() * 9000))}</span></p>
                     <div className="bg-white rounded-xl p-4 text-left text-sm space-y-2 border border-stone-200 mb-4">
                       <div className="flex justify-between"><span className="text-stone-500">Gasten</span><span className="font-bold text-stone-900">{form.gasten} {parseInt(form.gasten) === 1 ? 'persoon' : 'personen'}</span></div>
                       <div className="flex justify-between"><span className="text-stone-500">Datum</span><span className="font-bold text-stone-900">{form.datum}</span></div>

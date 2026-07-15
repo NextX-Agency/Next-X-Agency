@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useCallback, MouseEvent, TouchEvent, ReactNode } from 'react'
+import { useRef, useState, useEffect, useCallback, MouseEvent, TouchEvent, ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 interface SpotlightCardProps {
@@ -20,10 +20,15 @@ export function SpotlightCard({
   spotColor = 'rgba(249,112,21,0.08)',
 }: SpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
+  const [isTouch, setIsTouch] = useState(false)
   const [spotlightActive, setSpotlightActive] = useState(false)
 
+  useEffect(() => {
+    setIsTouch(window.matchMedia('(hover: none)').matches)
+  }, [])
+
   function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
-    if (!cardRef.current) return
+    if (isTouch || !cardRef.current) return
     const rect = cardRef.current.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
@@ -32,7 +37,7 @@ export function SpotlightCard({
   }
 
   function handleMouseLeave() {
-    if (!cardRef.current) return
+    if (isTouch || !cardRef.current) return
     cardRef.current.style.setProperty('--spotlight-x', '-999px')
     cardRef.current.style.setProperty('--spotlight-y', '-999px')
   }
@@ -77,7 +82,7 @@ export function SpotlightCard({
         className="pointer-events-none absolute inset-0 z-10"
         style={{
           background: `radial-gradient(350px circle at var(--spotlight-x) var(--spotlight-y), ${spotColor}, transparent 80%)`,
-          opacity: spotlightActive ? 1 : undefined,
+          opacity: isTouch ? (spotlightActive ? 1 : 0) : 1,
           transition: 'opacity 0.4s ease',
         }}
       />

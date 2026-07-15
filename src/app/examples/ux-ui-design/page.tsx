@@ -43,7 +43,7 @@ function CompareSlider({ before, after }: { before: string; after: string }) {
       <img src={after} alt="Na redesign" className="absolute inset-0 w-full h-full object-cover" />
       {/* Before (clipped) */}
       <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
-        <img src={before} alt="Voor redesign" className="absolute inset-y-0 left-0 h-full max-w-none object-cover" style={{ width: `${10000 / Math.max(pos, 1)}%` }} />
+        <img src={before} alt="Voor redesign" className="absolute inset-0 w-full h-full object-cover" style={{ minWidth: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%' }} />
       </div>
       {/* Divider */}
       <div className="absolute top-0 bottom-0" style={{ left: `${pos}%`, transform: 'translateX(-50%)' }}>

@@ -93,8 +93,6 @@ export default function BloomBoutiquePage() {
   const [wishlist, setWishlist] = useState<number[]>([])
   const [checkoutStep, setCheckoutStep] = useState(0) // 0=shop 1=shipping 2=payment 3=review 4=confirmed
   const [quickView, setQuickView] = useState<Product | null>(null)
-  const [activeNav, setActiveNav] = useState('home')
-  const [orderNumber, setOrderNumber] = useState('')
 
   const filtered = useMemo(() => {
     let list = filter === 'Alle' ? products : products.filter(p => p.category === filter)
@@ -152,7 +150,6 @@ export default function BloomBoutiquePage() {
       if (!paymentMethod) { toast.error('Kies een betaalmethode'); return }
       setCheckoutStep(3)
     } else if (checkoutStep === 3) {
-      setOrderNumber(`BB-${new Date().getFullYear()}-${String(Math.floor(1000 + Math.random() * 9000))}`)
       setCheckoutStep(4)
       toast.success('Bestelling geplaatst! 🎉', { description: `Bedankt ${cForm.naam}! Verwachte levering: 2-4 werkdagen.` })
     }
@@ -260,7 +257,7 @@ export default function BloomBoutiquePage() {
                       <svg className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Bestelling geplaatst!</h3>
-                    <p className="text-sm text-slate-500 mb-4">Ordernummer: <span className="font-mono font-bold text-pink-600">{orderNumber}</span></p>
+                    <p className="text-sm text-slate-500 mb-4">Ordernummer: <span className="font-mono font-bold text-pink-600">BB-2025-{String(Math.floor(1000 + Math.random() * 9000))}</span></p>
                     <div className="bg-pink-50 rounded-xl p-4 text-sm text-left space-y-2 mb-6">
                       <div className="flex justify-between"><span className="text-slate-500">Artikelen</span><span className="font-bold">{cartCount}</span></div>
                       <div className="flex justify-between"><span className="text-slate-500">Totaal</span><span className="font-bold text-pink-600">SRD {cartTotal.toLocaleString()}</span></div>
@@ -301,6 +298,8 @@ export default function BloomBoutiquePage() {
       </div>
     )
   }
+
+  const [activeNav, setActiveNav] = useState('home')
 
   return (
     <div className="min-h-screen bg-white pb-16 md:pb-0">

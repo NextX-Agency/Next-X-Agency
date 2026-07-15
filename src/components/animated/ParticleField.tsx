@@ -66,7 +66,7 @@ export function ParticleField({
       maxLife: 120 + Math.random() * 180,
     })
 
-    const particles: Particle[] = Array.from({ length: actualCount }, () => {
+    let particles: Particle[] = Array.from({ length: actualCount }, () => {
       const p = makeParticle()
       p.y = Math.random() * H // spread on init
       p.life = Math.random() * p.maxLife
