@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     const agencyTo = process.env.CONTACT_TO_EMAIL ?? 'agencynextx@gmail.com'
-    const from = process.env.RESEND_FROM_EMAIL ?? 'noreply@agencynextx.com'
+    const from = process.env.RESEND_FROM_EMAIL ?? 'noreply@nextxagency.com'
     const receivedAt = new Date().toLocaleString('nl-NL', {
       timeZone: 'America/Paramaribo',
       day: '2-digit',
