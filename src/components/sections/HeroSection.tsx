@@ -15,9 +15,8 @@ const marqueeItems = [
   'Responsive Design',
 ]
 
-// Abstract brand-mark composition — echoes the circuit/dot motifs
-// from the NextX logo (circles, squares, connector lines) around a
-// large stylized X silhouette. Purely decorative, no fake UI/content.
+// Bold brand-mark — a solid gradient card carrying the NextX "X" wordmark,
+// echoing the logo directly instead of an abstract decorative pattern.
 function BrandMark() {
   return (
     <motion.div
@@ -27,51 +26,33 @@ function BrandMark() {
       className="relative w-full max-w-105 aspect-square mx-auto"
       aria-hidden="true"
     >
-      <svg viewBox="0 0 420 420" fill="none" className="w-full h-full">
-        {/* Faint concentric rings */}
-        <circle cx="210" cy="210" r="190" stroke="#f97316" strokeWidth="1" opacity="0.16" />
-        <circle cx="210" cy="210" r="145" stroke="#f97316" strokeWidth="1" opacity="0.2" />
-
-        {/* Large stylized X silhouette */}
-        <path
-          d="M120 110 L210 210 L120 310 M170 210 L235 210 M300 110 L210 210 L300 310"
-          stroke="#f97316"
-          strokeWidth="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity="0.3"
+      <div
+        className="relative w-full h-full rounded-[2.5rem] shadow-2xl shadow-primary/25 overflow-hidden flex items-center justify-center"
+        style={{ background: 'linear-gradient(145deg, #fb923c 0%, #f97316 45%, #c2410c 100%)' }}
+      >
+        {/* subtle sheen */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25) 0%, transparent 55%)' }}
         />
+        <svg viewBox="0 0 200 200" className="w-2/3 h-2/3 relative" fill="none">
+          <path
+            d="M50 40 L150 160 M150 40 L50 160"
+            stroke="#ffffff"
+            strokeWidth="20"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
 
-        {/* Circuit connector lines */}
-        <path d="M60 90 L120 90 L150 120" stroke="#f97316" strokeWidth="1.5" opacity="0.5" fill="none" />
-        <path d="M360 300 L305 300 L280 275" stroke="#f97316" strokeWidth="1.5" opacity="0.5" fill="none" />
-        <path d="M70 320 L110 320 L110 280" stroke="#f97316" strokeWidth="1.5" opacity="0.4" fill="none" />
-
-        {/* Hollow circles */}
-        <circle cx="60" cy="90" r="5" stroke="#f97316" strokeWidth="1.75" />
-        <circle cx="360" cy="300" r="5" stroke="#f97316" strokeWidth="1.75" />
-        <circle cx="330" cy="70" r="4" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
-        <circle cx="70" cy="320" r="4" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
-
-        {/* Filled dots */}
-        <circle cx="150" cy="120" r="3.5" fill="#f97316" opacity="0.85" />
-        <circle cx="280" cy="275" r="3.5" fill="#f97316" opacity="0.85" />
-        <circle cx="345" cy="150" r="3" fill="#f97316" opacity="0.6" />
-        <circle cx="85" cy="250" r="3" fill="#f97316" opacity="0.6" />
-
-        {/* Squares — hollow and filled */}
-        <rect x="320" y="200" width="12" height="12" stroke="#f97316" strokeWidth="1.75" opacity="0.75" />
-        <rect x="90" y="150" width="8" height="8" fill="#f97316" opacity="0.7" transform="rotate(12 94 154)" />
-      </svg>
-
-      {/* Floating micro-dots for subtle life */}
+      {/* Floating accent dots for subtle life */}
       <motion.span
-        className="absolute top-[18%] left-[12%] w-1.5 h-1.5 rounded-full bg-primary/70"
+        className="absolute -top-3 -left-3 w-3 h-3 rounded-full bg-primary"
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.span
-        className="absolute bottom-[22%] right-[16%] w-2 h-2 rounded-full bg-primary/50"
+        className="absolute -bottom-3 -right-3 w-4 h-4 rounded-full bg-primary/60"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
       />
@@ -82,16 +63,16 @@ function BrandMark() {
 function HeroSectionFn() {
   return (
     <header className="relative flex flex-col min-h-[90vh] justify-center pt-28 pb-0 overflow-hidden bg-background">
-      {/* Ambient glow from top-center */}
+      {/* Ambient glow from top-center — subtle wash, not a spotlight */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-225 h-125 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(ellipse at top, rgba(249,115,22,0.20) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(ellipse at top, rgba(249,115,22,0.08) 0%, transparent 65%)' }}
         aria-hidden="true"
       />
-      {/* Secondary soft glow, lower left — adds depth without clutter */}
+      {/* Focused glow behind the brand mark card */}
       <div
-        className="absolute bottom-0 -left-20 w-100 h-100 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)' }}
+        className="absolute top-1/2 right-[8%] -translate-y-1/2 w-100 h-100 pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.14) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
       {/* Top decorative gradient line */}
@@ -107,13 +88,11 @@ function HeroSectionFn() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center justify-center lg:justify-start gap-3 mb-8"
+              className="flex items-center justify-center lg:justify-start gap-4 mb-8"
             >
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/25 px-4 py-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-primary">
-                  Digitale Bureau · Suriname
-                </span>
+              <div className="h-px w-8 bg-primary/60" />
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
+                Digitale Bureau · Suriname
               </span>
             </motion.div>
 
