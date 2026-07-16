@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { AnimatedSVGPath } from '@/components/animated/AnimatedSVGPath'
 
@@ -15,34 +16,26 @@ const marqueeItems = [
   'Responsive Design',
 ]
 
-// Bold brand-mark — a solid gradient card carrying the NextX "X" wordmark,
-// echoing the logo directly instead of an abstract decorative pattern.
+// Presents the actual NextX logo as the hero's visual anchor, on a
+// soft elevated card — no invented shapes standing in for the brand.
 function BrandMark() {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.94 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full max-w-105 aspect-square mx-auto"
+      className="relative w-full max-w-105 mx-auto"
       aria-hidden="true"
     >
-      <div
-        className="relative w-full h-full rounded-[2.5rem] shadow-2xl shadow-primary/25 overflow-hidden flex items-center justify-center"
-        style={{ background: 'linear-gradient(145deg, #fb923c 0%, #f97316 45%, #c2410c 100%)' }}
-      >
-        {/* subtle sheen */}
-        <div
-          className="absolute inset-0"
-          style={{ background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25) 0%, transparent 55%)' }}
+      <div className="relative rounded-4xl bg-white border border-border shadow-2xl shadow-primary/15 px-10 py-14 flex items-center justify-center">
+        <Image
+          src="/logo-dark.png"
+          alt=""
+          width={420}
+          height={210}
+          className="w-full h-auto object-contain"
+          priority
         />
-        <svg viewBox="0 0 200 200" className="w-2/3 h-2/3 relative" fill="none">
-          <path
-            d="M50 40 L150 160 M150 40 L50 160"
-            stroke="#ffffff"
-            strokeWidth="20"
-            strokeLinecap="round"
-          />
-        </svg>
       </div>
 
       {/* Floating accent dots for subtle life */}
