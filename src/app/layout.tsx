@@ -89,7 +89,7 @@ export default function RootLayout({
     description:
       'Professionele digitale oplossingen voor Surinaamse bedrijven. Web design, e-commerce, grafisch ontwerp en meer.',
     url: SITE_URL,
-    email: 'lranoesendjojo@gmail.com',
+    email: 'agencynextx@gmail.com',
     telephone: '+597-831-8508',
     address: {
       '@type': 'PostalAddress',

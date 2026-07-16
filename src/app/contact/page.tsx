@@ -16,7 +16,7 @@ import {
 } from '@/lib/animationUtils'
 
 const contactItems = [
-  { icon: Mail, label: 'Email', value: 'lranoesendjojo@gmail.com', href: 'mailto:lranoesendjojo@gmail.com', isExternal: false },
+  { icon: Mail, label: 'Email', value: 'agencynextx@gmail.com', href: 'mailto:agencynextx@gmail.com', isExternal: false },
   { icon: Phone, label: 'WhatsApp', value: '+597 831-8508', href: 'https://wa.me/5978318508', isExternal: true },
   { icon: MapPin, label: 'Locatie', value: 'Paramaribo, Suriname', href: null, isExternal: false },
   { icon: Clock, label: 'Reactietijd', value: 'Binnen 24-48 uur', href: null, isExternal: false },

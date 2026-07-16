@@ -130,8 +130,8 @@ export function ContactConfirmation({
           <Section style={s.contactBar}>
             <Text style={s.contactBarTitle}>Vragen? Neem direct contact op</Text>
             <Text style={s.contactBarLinks}>
-              <Link href="mailto:lranoesendjojo@gmail.com" style={s.contactLink}>
-                lranoesendjojo@gmail.com
+              <Link href="mailto:agencynextx@gmail.com" style={s.contactLink}>
+                agencynextx@gmail.com
               </Link>
               {'  Â·  '}
               <Link href="https://wa.me/5978318508" style={s.contactLink}>
