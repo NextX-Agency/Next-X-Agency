@@ -24,16 +24,16 @@ function BrandMark() {
       initial={{ opacity: 0, scale: 0.94 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full max-w-105 mx-auto"
+      className="relative w-full max-w-125 mx-auto"
       aria-hidden="true"
     >
-      <div className="relative rounded-4xl bg-white border border-border shadow-2xl shadow-primary/15 px-10 py-14 flex items-center justify-center">
+      <div className="relative rounded-4xl bg-white border border-border shadow-2xl shadow-primary/20 px-12 py-16 flex items-center justify-center transition-transform duration-500 hover:-translate-y-1">
         <Image
           src="/logo-light.png"
           alt=""
           width={420}
           height={210}
-          className="w-full h-auto object-contain"
+          className="w-full h-auto object-contain drop-shadow-sm"
           priority
         />
       </div>
