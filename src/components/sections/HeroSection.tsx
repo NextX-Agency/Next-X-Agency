@@ -29,7 +29,7 @@ function BrandMark() {
     >
       <div className="relative rounded-4xl bg-white border border-border shadow-2xl shadow-primary/15 px-10 py-14 flex items-center justify-center">
         <Image
-          src="/logo-dark.png"
+          src="/logo-light.png"
           alt=""
           width={420}
           height={210}
