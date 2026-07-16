@@ -29,17 +29,17 @@ function BrandMark() {
     >
       <svg viewBox="0 0 420 420" fill="none" className="w-full h-full">
         {/* Faint concentric rings */}
-        <circle cx="210" cy="210" r="190" stroke="#f97316" strokeWidth="1" opacity="0.08" />
-        <circle cx="210" cy="210" r="145" stroke="#f97316" strokeWidth="1" opacity="0.1" />
+        <circle cx="210" cy="210" r="190" stroke="#f97316" strokeWidth="1" opacity="0.16" />
+        <circle cx="210" cy="210" r="145" stroke="#f97316" strokeWidth="1" opacity="0.2" />
 
-        {/* Large stylized X silhouette, offset & low opacity */}
+        {/* Large stylized X silhouette */}
         <path
           d="M120 110 L210 210 L120 310 M170 210 L235 210 M300 110 L210 210 L300 310"
           stroke="#f97316"
           strokeWidth="10"
           strokeLinecap="round"
           strokeLinejoin="round"
-          opacity="0.13"
+          opacity="0.3"
         />
 
         {/* Circuit connector lines */}
@@ -85,13 +85,13 @@ function HeroSectionFn() {
       {/* Ambient glow from top-center */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-225 h-125 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(ellipse at top, rgba(249,115,22,0.10) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(ellipse at top, rgba(249,115,22,0.20) 0%, transparent 65%)' }}
         aria-hidden="true"
       />
       {/* Secondary soft glow, lower left — adds depth without clutter */}
       <div
         className="absolute bottom-0 -left-20 w-100 h-100 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
       {/* Top decorative gradient line */}
@@ -107,11 +107,13 @@ function HeroSectionFn() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center justify-center lg:justify-start gap-4 mb-8"
+              className="flex items-center justify-center lg:justify-start gap-3 mb-8"
             >
-              <div className="h-px w-8 bg-primary/60" />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
-                Digitale Bureau · Suriname
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/25 px-4 py-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-primary">
+                  Digitale Bureau · Suriname
+                </span>
               </span>
             </motion.div>
 
