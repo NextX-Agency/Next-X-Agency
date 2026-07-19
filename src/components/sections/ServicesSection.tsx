@@ -115,7 +115,7 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
   return (
     <Link
       href={href}
-      className="group flex items-center gap-4 py-5 px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-primary/5 active:bg-primary/8 border-b border-border last:border-0 border-l-2 border-l-transparent md:border-l-transparent active:border-l-primary/40 md:active:border-l-transparent"
+      className="group flex items-center gap-4 py-5 px-4 -mx-4 transition-colors duration-300 hover:bg-background border-b border-border last:border-0"
     >
       {/* Row index */}
       <span className="text-[11px] font-black tabular-nums text-muted-foreground tracking-wider w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
@@ -132,7 +132,7 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
             {name}
           </span>
           {recommended && (
-            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 bg-primary text-white rounded-full shadow-sm shadow-primary/40">
+            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 bg-primary text-white">
               Aanbevolen
             </span>
           )}
@@ -162,18 +162,12 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
       </span>
 
       {/* Arrow */}
-      <div className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white group-hover:translate-x-0.5 group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
-        <svg
-          className="w-3.5 h-3.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          aria-hidden="true"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </div>
+      <span
+        className="text-muted-foreground shrink-0 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300"
+        aria-hidden="true"
+      >
+        →
+      </span>
     </Link>
   )
 }
@@ -197,8 +191,8 @@ function CategoryBlock({
       <motion.div variants={fadeInUp} className="mb-2">
         <div className="flex items-end flex-wrap gap-x-5 gap-y-1 mb-5">
           <span
-            className="text-4xl md:text-5xl font-black leading-none text-transparent select-none"
-            style={{ fontFamily: 'var(--font-heading)', WebkitTextStroke: '1.5px rgba(249, 115, 22, 0.5)' }}
+            className="text-4xl md:text-5xl font-bold leading-none text-primary select-none"
+            style={{ fontFamily: 'var(--font-heading)' }}
             aria-hidden="true"
           >
             {String(catIndex + 1).padStart(2, '0')}
@@ -213,7 +207,7 @@ function CategoryBlock({
             — {cat.tag}
           </span>
         </div>
-        <div className="w-full h-px bg-linear-to-r from-primary/40 via-border to-transparent" />
+        <div className="w-full h-px bg-foreground/15" />
         <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{cat.subtitle}</p>
       </motion.div>
 
@@ -241,12 +235,12 @@ function ServicesSectionFn() {
           viewport={{ once: true, amount: 0.3 }}
           className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6"
         >
-          <motion.div variants={slideInLeft} className="max-w-xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-px w-7 bg-primary opacity-60" />
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
+          <motion.div variants={slideInLeft} className="max-w-xl md:min-w-lg">
+            <div className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-8">
+              <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">
                 Diensten
               </span>
+              <span className="text-xs font-medium text-muted-foreground tabular-nums">01</span>
             </div>
             <h2
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight"

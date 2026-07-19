@@ -52,23 +52,26 @@ const features = [
 
 function WhySectionFn() {
   return (
-    <section className="py-28 lg:py-40 bg-background overflow-hidden" id="why">
+    <section className="py-28 lg:py-40 bg-background" id="why">
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* Section header — editorial, left-aligned, no pill */}
+        {/* Section header — editorial rule with caption */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-          className="mb-20"
+          className="mb-16"
         >
-          <motion.p
+          <motion.div
             variants={fadeInUp}
-            className="text-[11px] font-bold tracking-[0.22em] uppercase text-muted-foreground mb-6"
+            className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-10"
           >
-            — Waarom NextX
-          </motion.p>
+            <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">
+              Waarom NextX
+            </span>
+            <span className="text-xs font-medium text-muted-foreground tabular-nums">02</span>
+          </motion.div>
           <motion.h2
             variants={fadeInUp}
             className="text-4xl md:text-5xl lg:text-[3.75rem] font-bold text-foreground tracking-tight leading-[1.05]"
@@ -79,65 +82,50 @@ function WhySectionFn() {
           </motion.h2>
         </motion.div>
 
-        {/* Feature grid — thin dividers, framed in a warm tinted card */}
+        {/* Feature grid — flat, thin dividers */}
         <motion.div
           variants={staggerContainerSlow}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="relative rounded-3xl border border-primary/15 overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, rgba(249,115,22,0.05) 0%, rgba(249,115,22,0.015) 55%, transparent 100%)' }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-foreground/10 border-y border-foreground/10"
         >
-          {/* Corner accent glow */}
-          <div
-            className="absolute -top-24 -right-24 w-72 h-72 rounded-full pointer-events-none"
-            style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)' }}
-            aria-hidden="true"
-          />
+          {features.map((feature) => (
+            <motion.div
+              key={feature.title}
+              variants={fadeInUp}
+              className="flex flex-col gap-5 p-8 lg:p-10 bg-background"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <h3
+                  className="text-xl font-bold text-foreground tracking-tight"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                >
+                  {feature.title}
+                </h3>
+                <span
+                  className="text-xs font-bold text-primary tabular-nums shrink-0 mt-0.5"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                  aria-hidden="true"
+                >
+                  {feature.number}
+                </span>
+              </div>
 
-          <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-px bg-primary/10">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.title}
-                variants={fadeInUp}
-                className="group flex flex-col gap-5 p-8 lg:p-10 bg-background/60 hover:bg-background transition-colors duration-300"
-              >
-                {/* Number + title row */}
-                <div className="flex items-start justify-between gap-4">
-                  <h3
-                    className="text-xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-300"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <span
-                    className="text-xs font-black text-primary/60 tabular-nums shrink-0 mt-0.5"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                    aria-hidden="true"
-                  >
-                    {feature.number}
-                  </span>
-                </div>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {feature.description}
+              </p>
 
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-
-                {/* Expanding accent line on hover */}
-                <div className="w-8 h-px bg-primary/50 group-hover:w-16 group-hover:bg-primary transition-all duration-500" />
-
-                {/* Breakdown list */}
-                <ul className="space-y-2.5">
-                  {feature.breakdown.map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm text-foreground/80">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
+              <ul className="space-y-2.5 mt-auto">
+                {feature.breakdown.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5 text-sm text-foreground/80">
+                    <span className="w-2 h-px bg-primary shrink-0" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </motion.div>
 
       </div>

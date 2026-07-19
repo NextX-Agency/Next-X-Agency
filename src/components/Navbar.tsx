@@ -20,8 +20,8 @@ function NavbarFn() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50">
-      <div className="glass-pill rounded-full px-5 py-3 flex items-center justify-between shadow-lg shadow-black/5">
+    <nav className="fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur-sm border-b border-foreground/10">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -48,13 +48,11 @@ function NavbarFn() {
               )}
             >
               {link.label}
-              {/* Nav dot — scales in on hover, stays for active route */}
+              {/* Underline — grows on hover, stays for active route */}
               <span
                 className={cn(
-                  'absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary transition-transform duration-300 ease-out',
-                  pathname === link.href
-                    ? 'scale-100'
-                    : 'scale-0 group-hover:scale-100'
+                  'absolute -bottom-1.5 left-0 h-0.5 bg-primary transition-all duration-300 ease-out',
+                  pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                 )}
               />
             </Link>
@@ -65,7 +63,7 @@ function NavbarFn() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="group hidden md:inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md shadow-primary/20"
+            className="group hidden md:inline-flex items-center gap-2 bg-foreground hover:bg-primary text-white px-6 py-2.5 text-sm font-bold transition-colors duration-300"
           >
             Start Project
             <svg
@@ -122,7 +120,7 @@ function NavbarFn() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="md:hidden mt-3 glass-pill rounded-2xl shadow-xl shadow-black/10 overflow-hidden"
+            className="md:hidden bg-background border-b border-foreground/10 overflow-hidden"
           >
             <div className="px-4 py-3 space-y-1">
               {navLinks.map((link, i) => (
@@ -136,14 +134,14 @@ function NavbarFn() {
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      'flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl transition-colors',
+                      'flex items-center gap-3 px-4 py-3 text-sm font-semibold transition-colors',
                       pathname === link.href
                         ? 'text-primary bg-primary/10'
                         : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
                     )}
                   >
                     {pathname === link.href && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      <span className="w-3 h-px bg-primary shrink-0" aria-hidden="true" />
                     )}
                     {link.label}
                   </Link>
@@ -158,7 +156,7 @@ function NavbarFn() {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center bg-primary hover:bg-primary-hover text-white font-bold px-5 py-3 rounded-xl text-sm transition-colors"
+                  className="block w-full text-center bg-foreground hover:bg-primary text-white font-bold px-5 py-3 text-sm transition-colors"
                 >
                   Start Project
                 </Link>

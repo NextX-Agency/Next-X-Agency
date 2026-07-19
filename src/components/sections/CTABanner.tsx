@@ -29,7 +29,7 @@ function CTABannerFn() {
             <motion.div variants={scaleIn} className="w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-neutral-950 text-white font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 hover:bg-neutral-900 hover:shadow-xl hover:shadow-black/25 hover:scale-[1.03] min-h-11"
+                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-neutral-950 text-white font-bold text-sm px-8 py-4 transition-colors duration-300 hover:bg-neutral-800 min-h-11"
               >
                 Stuur een aanvraag
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -42,7 +42,7 @@ function CTABannerFn() {
                 href="https://wa.me/5978318508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-white text-neutral-950 font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:scale-[1.03] min-h-11"
+                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-white text-neutral-950 font-bold text-sm px-8 py-4 transition-colors duration-300 hover:bg-neutral-100 min-h-11"
               >
                 WhatsApp ons
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
