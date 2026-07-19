@@ -143,7 +143,7 @@ body {
 /* Input Fields - dark */
 .input-field {
   @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground placeholder:text-muted-foreground transition-all duration-200;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .input-field:focus {
@@ -154,7 +154,7 @@ body {
 
 .select-field {
   @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground transition-all duration-200 appearance-none cursor-pointer;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .select-field:focus {
@@ -230,45 +230,6 @@ body {
   background-image: linear-gradient(to right, rgba(23, 20, 18, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(23, 20, 18, 0.035) 1px, transparent 1px);
   background-size: 60px 60px;
-}
-
-/* Glass pill (navbar) — light */
-.glass-pill {
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(23, 20, 18, 0.08);
-}
-
-/* Horizontal marquee ticker — pauses on hover */
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.marquee-track {
-  animation: marquee 28s linear infinite;
-  will-change: transform;
-}
-
-.marquee-hover-pause:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
-}
-
-/* Card glow lift — light card hover with subtle orange aura */
-.card-glow {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
-}
-.card-glow:hover {
-  transform: translateY(-4px);
-  border-color: rgba(249, 115, 22, 0.35);
-  box-shadow: 0 16px 40px rgba(23, 20, 18, 0.08), 0 0 28px rgba(249, 115, 22, 0.1);
 }
 
 /* ===== REDUCED MOTION OVERRIDES ===== */

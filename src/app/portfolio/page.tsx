@@ -43,7 +43,7 @@ export default function PortfolioPage() {
       <main>
         {/* ── Hero ── */}
         <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
-          <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-foreground/10" />
 
           <motion.div
             variants={staggerContainerFast}
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
                 <motion.article
                   key={project.title}
                   variants={fadeInUp}
-                  className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/35 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
+                  className="group flex flex-col bg-card border border-foreground/15 overflow-hidden hover:border-primary transition-colors duration-300 cursor-pointer relative"
                 >
                   {/* Clickable overlay */}
                   <Link
@@ -138,19 +138,18 @@ export default function PortfolioPage() {
                     </div>
 
                     {/* Live project pill */}
-                    <span className="absolute top-12 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold tracking-widest uppercase z-10 pointer-events-none">
+                    <span className="absolute top-12 right-3 inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold tracking-widest uppercase z-10 pointer-events-none">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                       Live
                     </span>
 
                     {/* Bottom orange glow line */}
-                    <div className="h-px bg-linear-to-r from-transparent via-primary/50 to-transparent" />
                   </div>
 
                   {/* Card body */}
                   <div className="flex flex-col flex-1 p-5 bg-card">
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-primary/8 text-primary text-[10px] font-bold tracking-widest uppercase border border-primary/15">
+                      <span className="text-primary text-[10px] font-bold tracking-widest uppercase">
                         {project.category}
                       </span>
                       <span
@@ -196,7 +195,7 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Hover accent bottom */}
-                  <div className="h-0.5 bg-linear-to-r from-primary/0 via-primary/20 to-primary/0 group-hover:via-primary transition-all duration-300" />
+                  <div className="h-0.5 bg-transparent group-hover:bg-primary transition-colors duration-300" />
                 </motion.article>
               ))}
             </motion.div>

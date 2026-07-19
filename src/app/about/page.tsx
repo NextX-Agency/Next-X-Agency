@@ -82,9 +82,9 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="card-glow bg-card border border-border rounded-3xl p-8 lg:p-10 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:border-primary/20"
+                className="bg-card border border-foreground/15 p-8 lg:p-10"
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                <div className="w-14 h-14 border border-foreground/15 flex items-center justify-center mb-6">
                   <Target size={28} className="text-primary" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -102,9 +102,9 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="card-glow bg-card border border-border rounded-3xl p-8 lg:p-10 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:border-primary/20"
+                className="bg-card border border-foreground/15 p-8 lg:p-10"
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                <div className="w-14 h-14 border border-foreground/15 flex items-center justify-center mb-6">
                   <Eye size={28} className="text-primary" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -131,8 +131,9 @@ export default function AboutPage() {
               className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center"
             >
               {/* Brand mark */}
-              <motion.div variants={slideInLeft} className="lg:col-span-2">
-                <div className="rounded-3xl bg-white border border-border shadow-lg shadow-black/10 px-10 py-24 flex items-center justify-center">
+              <motion.div variants={slideInLeft} className="lg:col-span-2 relative">
+                <div className="absolute -bottom-3 -right-3 w-full h-full bg-primary" aria-hidden="true" />
+                <div className="relative bg-white border border-foreground/15 px-10 py-24 flex items-center justify-center">
                   <Image
                     src="/logo-light.png"
                     alt="NextX Agency logo"
@@ -194,9 +195,9 @@ export default function AboutPage() {
                 <motion.div
                   key={value.title}
                   variants={cardFlipIn}
-                  className="card-glow bg-card border border-border rounded-3xl p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:border-primary/20 group"
+                  className="bg-card border border-foreground/15 hover:border-primary p-8 transition-colors duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 group-hover:bg-primary flex items-center justify-center mb-4 transition-colors duration-300">
+                  <div className="w-12 h-12 border border-foreground/15 group-hover:bg-primary group-hover:border-primary flex items-center justify-center mb-4 transition-colors duration-300">
                     <value.icon size={24} className="text-primary group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{value.title}</h3>
@@ -232,7 +233,7 @@ export default function AboutPage() {
                 <motion.span
                   key={item}
                   variants={{ hidden: { opacity: 0, scale: 0.7, y: 10 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: 'spring', stiffness: 350, damping: 18 } } }}
-                  className="px-4 py-2 rounded-full border border-primary/25 bg-primary/10 text-primary text-sm font-medium cursor-default transition-all hover:scale-105 hover:-translate-y-1"
+                  className="px-4 py-2 border border-foreground/20 text-foreground text-sm font-medium cursor-default hover:border-primary hover:text-primary transition-colors"
                 >
                   {item}
                 </motion.span>

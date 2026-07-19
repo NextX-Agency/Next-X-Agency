@@ -49,14 +49,14 @@ function FooterFn() {
                 href="https://wa.me/5978318508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-black/3 hover:bg-primary/15 border border-border hover:border-primary/40 flex items-center justify-center text-muted-foreground hover:text-primary transition-all rounded-xl"
+                className="w-10 h-10 border border-foreground/15 hover:border-primary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 aria-label="WhatsApp"
               >
                 <Phone size={16} />
               </a>
               <a
                 href="mailto:agencynextx@gmail.com"
-                className="w-10 h-10 bg-black/3 hover:bg-primary/15 border border-border hover:border-primary/40 flex items-center justify-center text-muted-foreground hover:text-primary transition-all rounded-xl"
+                className="w-10 h-10 border border-foreground/15 hover:border-primary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Email"
               >
                 <Mail size={16} />
@@ -65,7 +65,7 @@ function FooterFn() {
                 href="https://www.shop-nextx.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-black/3 hover:bg-primary/15 border border-border hover:border-primary/40 flex items-center justify-center text-muted-foreground hover:text-primary transition-all rounded-xl"
+                className="w-10 h-10 border border-foreground/15 hover:border-primary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Shop NextX"
               >
                 <ExternalLink size={16} />
@@ -150,16 +150,16 @@ function FooterFn() {
           href="https://www.shop-nextx.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="card-glow group mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 sm:p-7"
+          className="group mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-foreground/15 hover:border-primary bg-card p-6 sm:p-7 transition-colors duration-300"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <div className="w-12 h-12 border border-foreground/15 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-colors duration-300">
               <ShoppingBag size={20} />
             </div>
             <div>
               <p className="flex items-center gap-2 text-foreground font-bold text-base" style={{ fontFamily: 'var(--font-heading)' }}>
                 shop-nextx.com
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/25 text-primary text-[9px] font-bold tracking-widest uppercase">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary text-white text-[9px] font-bold tracking-widest uppercase">
                   Sister Platform
                 </span>
               </p>

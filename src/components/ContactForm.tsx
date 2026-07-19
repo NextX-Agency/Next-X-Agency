@@ -98,7 +98,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
 
   if (submitted) {
     return (
-      <div className={cn('bg-card rounded-3xl p-10 text-center shadow-xl shadow-black/5 border border-border', className)}>
+      <div className={cn('bg-card p-10 text-center border border-foreground/15', className)}>
         {/* Animated green checkmark ring */}
         <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center mx-auto mb-6">
           <svg className="w-9 h-9 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -128,7 +128,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={cn('bg-card rounded-3xl p-6 lg:p-8 shadow-xl shadow-black/5 border border-border', className)}
+      className={cn('bg-card p-6 lg:p-8 border border-foreground/15', className)}
     >
       <div className="space-y-5">
         {/* Name + Email — 2 columns on sm+ */}
@@ -259,7 +259,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-primary-hover active:bg-primary-active text-white shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 rounded-full font-bold text-sm px-5 py-4 transition-all duration-300 active:scale-[0.97] min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full bg-foreground hover:bg-primary active:bg-primary-active text-white font-bold text-sm px-5 py-4 transition-colors duration-300 min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
             <>

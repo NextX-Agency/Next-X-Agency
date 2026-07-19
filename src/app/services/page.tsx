@@ -217,7 +217,7 @@ export default function ServicesPage() {
       <main>
         {/* ── Hero ── */}
         <section className="relative pt-36 pb-20 overflow-hidden">
-          <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-foreground/10" />
 
           <motion.div
             variants={staggerContainer}
@@ -308,17 +308,17 @@ export default function ServicesPage() {
                       <motion.div
                         key={service.name}
                         variants={fadeInUp}
-                        className={`relative flex flex-col card-glow rounded-2xl bg-card border transition-all duration-300 hover:shadow-lg overflow-hidden
+                        className={`relative flex flex-col bg-card border transition-colors duration-300 overflow-hidden
                           ${'popular' in service && service.popular
-                            ? `${accent.border} border-2 shadow-md`
-                            : 'border-border hover:border-primary/30'
+                            ? `${accent.border} border-2`
+                            : 'border-foreground/15 hover:border-primary'
                           }`}
                       >
                         {/* Card header */}
                         <div className={`px-5 pt-5 pb-4 ${('popular' in service && service.popular) ? accent.bg : 'bg-black/3'}`}>
                           <div className="flex items-start justify-between gap-3 mb-1">
                             {/* Index circle */}
-                            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black shrink-0 mt-0.5
+                            <span className={`w-7 h-7 flex items-center justify-center text-[11px] font-black shrink-0 mt-0.5
                               ${('popular' in service && service.popular) ? 'bg-primary text-white' : 'bg-black/6 text-muted-foreground'}`}
                             >
                               {String(i + 1).padStart(2, '0')}
@@ -355,7 +355,7 @@ export default function ServicesPage() {
                         <ul className="flex-1 px-5 py-4 space-y-2.5">
                           {service.items.map((item) => (
                             <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
-                              <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5
+                              <span className={`w-2 h-px shrink-0 mt-2.5
                                 ${('popular' in service && service.popular) ? 'bg-primary' : 'bg-black/15'}`}
                               />
                               {item}
@@ -414,7 +414,7 @@ export default function ServicesPage() {
         <section className="py-24 lg:py-28 bg-background-elevated relative overflow-hidden mt-20">
           {/* Subtle orange glow */}
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+            <div className="absolute top-0 inset-x-0 h-px bg-foreground/10" />
           </div>
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">

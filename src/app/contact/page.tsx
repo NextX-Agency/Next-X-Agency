@@ -29,7 +29,7 @@ export default function ContactPage() {
       <main>
         {/* ── Hero ── */}
         <section className="relative pt-36 pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
-          <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-foreground/10" />
 
           <motion.div
             variants={staggerContainer}
@@ -63,13 +63,10 @@ export default function ContactPage() {
         </section>
 
         {/* Edge separator */}
-        <div className="h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="h-px bg-foreground/10" />
 
         {/* ── Main content ── */}
         <section className="py-16 lg:py-24 relative bg-background-elevated">
-          {/* Subtle ambient glow */}
-          <div className="absolute top-0 right-0 w-[500px] h-[400px] rounded-full bg-primary/[0.035] blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full bg-primary/[0.02] blur-3xl pointer-events-none" />
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 lg:gap-14 items-start">
@@ -82,7 +79,7 @@ export default function ContactPage() {
                 viewport={{ once: true, amount: 0.15 }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/30">
+                  <div className="w-9 h-9 bg-primary flex items-center justify-center shrink-0">
                     <Mail size={17} className="text-white" />
                   </div>
                   <h2
@@ -104,7 +101,7 @@ export default function ContactPage() {
                 className="lg:sticky lg:top-28"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 bg-primary flex items-center justify-center shrink-0">
                     <Phone size={17} className="text-white" />
                   </div>
                   <h2
@@ -116,10 +113,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Light contact card */}
-                <div className="rounded-3xl overflow-hidden mb-4 bg-card border border-border">
-                  {/* Top orange edge */}
-                  <div className="h-px bg-linear-to-r from-transparent via-primary/50 to-transparent" />
-
+                <div className="overflow-hidden mb-4 bg-card border border-foreground/15">
                   <div className="p-5 space-y-2">
                     {contactItems.map(({ icon: Icon, label, value, href, isExternal }, i) => (
                       <motion.div
@@ -133,9 +127,9 @@ export default function ContactPage() {
                           <a
                             href={href}
                             {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                            className="flex items-center gap-4 p-4 rounded-2xl bg-black/3 border border-border hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 group"
+                            className="flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors duration-300 group"
                           >
-                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
+                            <div className="w-10 h-10 border border-foreground/15 flex items-center justify-center shrink-0 group-hover:border-primary transition-colors duration-300">
                               <Icon size={18} className="text-primary" />
                             </div>
                             <div className="min-w-0">
@@ -145,8 +139,8 @@ export default function ContactPage() {
                             <ArrowRight size={14} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-300 ml-auto shrink-0" />
                           </a>
                         ) : (
-                          <div className="flex items-center gap-4 p-4 rounded-2xl bg-black/3 border border-border">
-                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                          <div className="flex items-center gap-4 p-4 border border-border">
+                            <div className="w-10 h-10 border border-foreground/15 flex items-center justify-center shrink-0">
                               <Icon size={18} className="text-primary" />
                             </div>
                             <div className="min-w-0">
@@ -158,9 +152,6 @@ export default function ContactPage() {
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* Bottom edge */}
-                  <div className="h-px bg-linear-to-r from-transparent via-primary/20 to-transparent" />
                 </div>
 
                 {/* WhatsApp CTA — solid orange */}
@@ -172,7 +163,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4, duration: 0.45 }}
-                  className="group flex items-center justify-between w-full rounded-3xl p-6 bg-primary transition-all duration-300 hover:bg-primary-hover hover:-translate-y-0.5"
+                  className="group flex items-center justify-between w-full p-6 bg-primary transition-colors duration-300 hover:bg-primary-hover"
                 >
                   <div>
                     <p className="text-white font-bold text-base mb-0.5" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -180,7 +171,7 @@ export default function ContactPage() {
                     </p>
                     <p className="text-white/70 text-sm">We reageren binnen 1 uur</p>
                   </div>
-                  <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 group-hover:scale-105 transition-all duration-300">
+                  <div className="w-11 h-11 bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors duration-300">
                     <ArrowRight size={18} className="text-white" />
                   </div>
                 </motion.a>
