@@ -63,15 +63,6 @@ const IconUxUi = () => (
   </svg>
 )
 
-const IconUxKukru = () => (
-  <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
-    <circle cx="32" cy="22" r="10" />
-    <path d="M14 54 C14 40 50 40 50 54" />
-    <circle cx="14" cy="26" r="6" stroke="#f97316" strokeWidth="1" strokeDasharray="2.5 1.5" />
-    <circle cx="50" cy="26" r="6" stroke="#f97316" strokeWidth="1" strokeDasharray="2.5 1.5" />
-  </svg>
-)
-
 const IconSeo = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <circle cx="28" cy="28" r="16" />
@@ -89,7 +80,6 @@ const categories = [
     tag: 'Web & Platform',
     title: 'Build',
     subtitle: 'Van snelle landingspagina tot volledig e-commerce platform.',
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=250&fit=crop&q=80',
     services: [
       { name: 'Business Card Site', description: 'One-page digitale identiteit. Professioneel en direct inzetbaar.', price: '$150', href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
       { name: 'Service Website', description: 'Responsive multi-page platform met geavanceerde functionaliteiten.', price: '$250', href: '/examples/service-website', recommended: true, features: ["Multi-page design", 'Contactformulier', 'Basis SEO setup'], Icon: IconServiceWebsite },
@@ -101,7 +91,6 @@ const categories = [
     tag: 'Visueel & UX',
     title: 'Design',
     subtitle: 'Merkidentiteit, interface en gebruikerservaring die converteert.',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=250&fit=crop&q=80',
     services: [
       { name: 'Logo Design', description: 'Vector-gebaseerd conceptontwerp. Scherpe merkidentiteit voor elk formaat.', price: '$55', href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
       { name: 'UX Audit & Advies', description: 'Analyse en verbeterpunten voor uw huidige website of platform.', price: '$100', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
@@ -112,8 +101,7 @@ const categories = [
     id: 'marketing',
     tag: 'Zichtbaarheid',
     title: 'Marketing',
-    subtitle: 'Vergroot je online bereik met SEO en zoekwoordstrategie.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&q=80',
+    subtitle: 'Vergroot uw online bereik met SEO en zoekwoordstrategie.',
     services: [
       { name: 'Basic SEO Setup', description: 'Meta tags, sitemap, Google Search Console en robots.txt configuratie.', price: '$75', href: '/examples/seo', recommended: false, features: ['Meta tags optimalisatie', 'Sitemap setup', 'Google Search Console'], Icon: IconSeo },
     ],
@@ -264,11 +252,11 @@ function ServicesSectionFn() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              Schaalbare{' '}
-              <span className="text-primary">Oplossingen</span>
+              Wat wij{' '}
+              <span className="text-primary">maken</span>
             </h2>
             <motion.p variants={blurFadeIn} className="mt-5 text-muted-foreground text-lg leading-relaxed">
-              3 categorieën — 7 services — één schaalbare aanpak
+              Zeven diensten, vaste prijzen. Elk project ontwerpen en bouwen we zelf.
             </motion.p>
           </motion.div>
           <motion.div variants={fadeInUp}>

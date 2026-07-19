@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, FormEvent, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, ChevronRight, Hammer, HardHat, Home, PaintBucket, ArrowUp, Shield, Clock, CheckCircle2, ClipboardList, Search, Ruler, Construction, KeyRound } from 'lucide-react'
 import { toast } from 'sonner'
@@ -104,8 +104,9 @@ export default function KaderBouwPage() {
   const [submitted, setSubmitted] = useState(false)
   const [projectFilter, setProjectFilter] = useState('Alle')
 
+  const [refNumber, setRefNumber] = useState('')
+
   const filteredProjects = projectFilter === 'Alle' ? projects : projects.filter(p => p.cat === projectFilter)
-  const refNumber = `KB-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 900 + 100))}`
 
   function handleFormNext() {
     const errs: Record<string, string> = {}
@@ -120,6 +121,7 @@ export default function KaderBouwPage() {
     setErrors(errs)
     if (Object.keys(errs).length > 0) { toast.error('Vul alle verplichte velden in'); return }
     if (formStep === 1) {
+      setRefNumber(`KB-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 900 + 100))}`)
       setSubmitted(true)
       toast.success('Offerte aanvraag verstuurd!')
       return

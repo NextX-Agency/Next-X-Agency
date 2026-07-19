@@ -41,8 +41,8 @@ function FooterFn() {
               Wij bouwen. Jij groeit.
             </p>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs leading-relaxed">
-              Complete Digital Solutions for Modern Businesses. Lokaal in
-              Paramaribo, Suriname.
+              Digitaal bureau in Paramaribo, Suriname. Websites, webshops en
+              merken — ontworpen op maat.
             </p>
             <div className="flex gap-3">
               <a

@@ -75,8 +75,8 @@ export default function PortfolioPage() {
             </div>
 
             <motion.p variants={fadeInUp} className="text-muted-foreground text-lg max-w-xl leading-relaxed">
-              Een selectie van recente projecten. Elk project begint als template
-              en wordt volledig gepersonaliseerd naar de wensen van de klant.
+              Een selectie van recente projecten. Elk project is ontworpen rond
+              het merk, de klanten en de doelen van de ondernemer erachter.
             </motion.p>
           </motion.div>
         </section>

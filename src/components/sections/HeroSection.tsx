@@ -37,18 +37,6 @@ function BrandMark() {
           priority
         />
       </div>
-
-      {/* Floating accent dots for subtle life */}
-      <motion.span
-        className="absolute -top-3 -left-3 w-3 h-3 rounded-full bg-primary"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.span
-        className="absolute -bottom-3 -right-3 w-4 h-4 rounded-full bg-primary/60"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-      />
     </motion.div>
   )
 }
@@ -101,13 +89,13 @@ function HeroSectionFn() {
                 className="block font-bold text-foreground leading-[0.95] tracking-tighter"
                 style={{ fontSize: 'clamp(2.8rem, 6vw, 5.25rem)' }}
               >
-                Uw digitale succes
+                Websites die
               </span>
               <span
                 className="block font-bold text-foreground leading-[0.95] tracking-tighter"
                 style={{ fontSize: 'clamp(2.8rem, 6vw, 5.25rem)' }}
               >
-                begint{' '}
+                voor u{' '}
                 <span className="relative inline-block align-baseline" style={{ fontSize: '1.18em' }}>
                   <motion.span
                     initial={{ opacity: 0, y: 20 }}
@@ -115,7 +103,7 @@ function HeroSectionFn() {
                     transition={{ duration: 0.65, delay: 0.5 }}
                     className="inline-block text-primary font-black"
                   >
-                    hier.
+                    werken.
                   </motion.span>
                   <svg
                     className="absolute left-0 overflow-visible pointer-events-none"
@@ -146,8 +134,8 @@ function HeroSectionFn() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-base md:text-lg text-muted-foreground max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed"
             >
-              NextX Agency helpt Surinaamse bedrijven professioneel online te groeien —
-              snel, betaalbaar en volledig op maat.
+              Wij ontwerpen en bouwen elke website zelf, op maat van uw bedrijf.
+              Doordacht design, eerlijke prijzen en persoonlijk contact — vanuit Paramaribo.
             </motion.p>
 
             {/* CTAs */}

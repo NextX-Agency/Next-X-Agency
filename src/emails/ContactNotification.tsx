@@ -142,22 +142,6 @@ export function ContactNotification({
   )
 }
 
-function InfoRow({ label, value, href }: { label: string; value: string; href?: string }) {
-  return (
-    <Row style={{ marginBottom: '2px' }}>
-      <Column style={{ width: '88px', verticalAlign: 'top' as const }}>
-        <Text style={{ color: '#94a3b8', fontSize: '13px', margin: '0' }}>{label}</Text>
-      </Column>
-      <Column>
-        {href
-          ? <Link href={href} style={{ color: '#f97015', fontSize: '14px', fontWeight: '600' as const, textDecoration: 'none' }}>{value}</Link>
-          : <Text style={{ color: '#0f172a', fontSize: '14px', fontWeight: '600' as const, margin: '0' }}>{value}</Text>
-        }
-      </Column>
-    </Row>
-  )
-}
-
 // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const s = {

@@ -2,10 +2,10 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'NextX Agency — Complete Digital Solutions',
+    name: 'NextX Agency — Webdesign & Branding op maat',
     short_name: 'NextX Agency',
     description:
-      'Professionele digitale oplossingen voor Surinaamse bedrijven. Web design, e-commerce, grafisch ontwerp en meer.',
+      'Digitaal bureau in Paramaribo. Websites, webshops en merken op maat voor Surinaamse bedrijven.',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',

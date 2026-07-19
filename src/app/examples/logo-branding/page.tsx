@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Palette, Type, BookOpen, Smartphone, Download, Copy, Check, Eye, Layers, Droplets, Grid3X3, Sparkles } from 'lucide-react'
+import { Palette, Type, Download, Copy, Check, Eye, Layers, Droplets, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import DemoFeatures from '../_components/DemoFeatures'
 

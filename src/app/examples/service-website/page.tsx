@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, Baby, Building2, Star, ChevronDown, ChevronRight, CalendarDays, Home as HomeIcon, Users, CheckCircle2, Check } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, Baby, Building2, ChevronDown, CalendarDays, Home as HomeIcon, Users, CheckCircle2, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import DemoFeatures from '../_components/DemoFeatures'
@@ -52,7 +52,6 @@ const dentaTestimonials = [
   { name: 'Kiran Mahabier', role: 'Restauratie kroon', text: 'DentaCare is de beste investering voor je glimlach. Dr. Chen heeft fantastisch werk geleverd met mijn kroon. Ziet er heel natuurlijk uit.', rating: 5, avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80', date: 'Mrt 2025' },
 ]
 
-const timeSlots = ['09:00', '09:30', '10:00', '10:30', '11:00', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00']
 const unavailableDates = ['2026-03-30', '2026-04-02', '2026-04-05', '2026-04-09']
 
 const faqItems = [
@@ -75,7 +74,7 @@ export default function DentaCarePage() {
   const [apptStep, setApptStep] = useState(0)
   const [selectedService, setSelectedService] = useState('')
   const [form, setForm] = useState({ naam: '', email: '', telefoon: '', datum: '', tijd: '', bericht: '' })
-  const apptRef = `DC-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000 + 1000))}`
+  const [apptRef, setApptRef] = useState('')
 
   // Scroll spy
   useEffect(() => {
@@ -106,6 +105,7 @@ export default function DentaCarePage() {
       if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) errs.email = 'Geldig e-mail vereist'
     }
     if (Object.keys(errs).length > 0) { toast.error('Vul alle verplichte velden in'); return }
+    if (apptStep === 2) setApptRef(`DC-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000 + 1000))}`)
     if (apptStep < 3) setApptStep(apptStep + 1)
   }
 
@@ -419,7 +419,7 @@ export default function DentaCarePage() {
                       <svg className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Afspraak bevestigd!</h3>
-                    <p className="text-sm text-slate-500 mb-4">Referentienummer: <span className="font-mono font-bold text-sky-600">DC-2025-{String(Math.floor(1000 + Math.random() * 9000))}</span></p>
+                    <p className="text-sm text-slate-500 mb-4">Referentienummer: <span className="font-mono font-bold text-sky-600">{apptRef}</span></p>
                     <div className="bg-slate-50 rounded-xl p-4 text-left text-sm space-y-2 mb-4">
                       <div className="flex justify-between"><span className="text-slate-500">Behandeling</span><span className="font-bold text-slate-900">{selectedService}</span></div>
                       <div className="flex justify-between"><span className="text-slate-500">Datum</span><span className="font-bold text-slate-900">{form.datum}</span></div>

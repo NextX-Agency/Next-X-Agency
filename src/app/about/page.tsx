@@ -18,7 +18,6 @@ import {
 } from 'lucide-react'
 import {
   fadeInUp,
-  blurFadeIn,
   fadeInDown,
   slideInLeft,
   slideInRight,
@@ -29,12 +28,12 @@ import {
 } from '@/lib/animationUtils'
 
 const values = [
-  { icon: Zap, title: 'Snel Geleverd', description: 'Template-based aanpak \u2014 bouwen niet vanaf nul.' },
-  { icon: DollarSign, title: 'Betaalbaar', description: 'Startup-prijzen zonder kwaliteitsverlies.' },
-  { icon: Palette, title: 'Volledig Gepersonaliseerd', description: 'Volledige aanpassing naar klantwensen.' },
-  { icon: Heart, title: 'Gratis Revisions', description: 'Gratis minor revisions na oplevering.' },
+  { icon: Zap, title: 'Snel Geleverd', description: 'Een strak proces en korte lijnen, dus geen maanden wachten op uw website.' },
+  { icon: DollarSign, title: 'Betaalbaar', description: 'Vaste prijzen die passen bij Surinaamse ondernemers, zonder in te leveren op kwaliteit.' },
+  { icon: Palette, title: 'Eigen Ontwerp', description: 'Elk ontwerp begint bij uw merk en uw klanten, niet bij een kant-en-klaar thema.' },
+  { icon: Heart, title: 'Gratis Revisierondes', description: 'Kleine aanpassingen na oplevering horen er gewoon bij.' },
   { icon: Shield, title: 'Transparant', description: 'Geen verborgen kosten, altijd vooraf gecommuniceerd.' },
-  { icon: MapPin, title: 'Custom-ready', description: 'Mogelijkheid voor custom development en uitbreidingen.' },
+  { icon: MapPin, title: 'Uitbreidbaar', description: 'Uw website groeit mee: maatwerk en uitbreidingen zijn altijd mogelijk.' },
 ] as const
 
 const expertise = [
@@ -67,9 +66,9 @@ export default function AboutPage() {
               Wij zijn NextX Agency
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Een innovatieve digitale startup gevestigd in Paramaribo, Suriname,
-              die bedrijven helpt om professioneel zichtbaar te worden en te
-              groeien in de digitale wereld.
+              Een digitaal bureau uit Paramaribo dat websites en merken ontwerpt
+              met aandacht — voor bedrijven die serieus genomen willen worden
+              online.
             </motion.p>
           </motion.div>
         </section>
@@ -112,11 +111,9 @@ export default function AboutPage() {
                   Onze <span className="text-primary">Visie</span>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  De go-to digitale partner zijn voor ondernemers die hun online
-                  aanwezigheid willen professionaliseren zonder de hoge kosten
-                  van traditionele agencies. Door effici\u00ebntie en kwaliteit te
-                  combineren, maken we professionele digitale services
-                  toegankelijk.
+                  De vaste digitale partner zijn voor Surinaamse ondernemers:
+                  een bureau dat meedenkt over uw bedrijf, ontwerpt met smaak en
+                  levert zonder de hoge kosten van traditionele agencies.
                 </p>
               </motion.div>
             </div>
@@ -133,15 +130,15 @@ export default function AboutPage() {
               viewport={{ once: true, amount: 0.3 }}
               className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center"
             >
-              {/* Photo */}
+              {/* Brand mark */}
               <motion.div variants={slideInLeft} className="lg:col-span-2">
-                <div className="rounded-3xl overflow-hidden shadow-lg shadow-black/10 border border-border">
+                <div className="rounded-3xl bg-white border border-border shadow-lg shadow-black/10 px-10 py-24 flex items-center justify-center">
                   <Image
-                    src="https://images.unsplash.com/photo-1497366754035-f200581f9f2e?w=800&h=900&fit=crop&q=80"
-                    alt="NextX Agency team workspace"
-                    width={800}
-                    height={900}
-                    className="w-full h-auto object-cover"
+                    src="/logo-light.png"
+                    alt="NextX Agency logo"
+                    width={420}
+                    height={210}
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </motion.div>
@@ -152,13 +149,11 @@ export default function AboutPage() {
                   Wie zijn wij?
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  NextX Agency is een innovatieve digitale startup gevestigd in
-                  Paramaribo, Suriname, die bedrijven helpt om professioneel
-                  zichtbaar te worden en te groeien in de digitale wereld. Wij
-                  combineren betaalbaarheid met professionaliteit door te werken met
-                  een slimme template-based aanpak, waarbij we hoogwaardige
-                  basis-templates volledig personaliseren naar de wensen, stijl en
-                  &apos;vibe&apos; van elke klant.
+                  NextX Agency is een digitaal bureau in Paramaribo, Suriname.
+                  Wij geloven niet in websites van de lopende band: elk project
+                  begint met een gesprek over uw bedrijf, uw klanten en wat uw
+                  website moet bereiken. Pas daarna gaan we ontwerpen — en dat
+                  doen we zelf, met oog voor detail, tot het klopt.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-lg text-muted-foreground leading-relaxed">
                   Als lokale Surinaamse startup begrijpen wij de unieke uitdagingen

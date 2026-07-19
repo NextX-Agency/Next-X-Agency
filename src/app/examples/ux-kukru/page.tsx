@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, Users, Zap, Shield, BarChart3, MessageSquare, Star, Check, ArrowRight, Phone, Mail, MapPin, Send, Heart, Globe, Layers } from 'lucide-react'
+import { ChevronDown, Users, Zap, Shield, BarChart3, MessageSquare, Check, ArrowRight, Phone, Mail, MapPin, Send, Heart, Globe, Layers } from 'lucide-react'
 import { toast } from 'sonner'
 import DemoFeatures from '../_components/DemoFeatures'
 

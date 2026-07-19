@@ -7,7 +7,7 @@ const features = [
   {
     number: '01',
     title: 'Snel Geleverd',
-    description: 'Geoptimaliseerde workflows zorgen voor snelle oplevering zonder kwaliteitsverlies.',
+    description: 'Korte lijnen en een helder proces: u weet vooraf wanneer uw site live gaat, en die afspraak halen we.',
     breakdown: [
       'Oplevering binnen 48–72 uur',
       'Vaste afgesproken deadline',
@@ -17,8 +17,8 @@ const features = [
   },
   {
     number: '02',
-    title: 'Smart Budget',
-    description: 'Slimme technologie-integratie zorgt voor premium output tegen competitieve tarieven.',
+    title: 'Eerlijke Prijzen',
+    description: 'U ziet vooraf precies wat het kost en wat u daarvoor krijgt. Geen kleine lettertjes, geen verrassingen achteraf.',
     breakdown: [
       'Transparante, vaste prijzen',
       'Geen verborgen kosten',
@@ -28,8 +28,8 @@ const features = [
   },
   {
     number: '03',
-    title: 'Custom Design',
-    description: 'Elk project wordt volledig gepersonaliseerd naar uw merkidentiteit en doelgroep.',
+    title: 'Eigen Ontwerp',
+    description: 'Wij ontwerpen vanaf een leeg canvas rond uw merk en uw klanten — geen kant-en-klare thema’s of generatoren.',
     breakdown: [
       '100% uniek ontwerp — geen templates',
       'Afgestemd op uw merk en doelgroep',
@@ -39,8 +39,8 @@ const features = [
   },
   {
     number: '04',
-    title: 'Lokaal Netwerk',
-    description: 'Geworteld in Paramaribo met een globaal perspectief en sterke lokale connecties.',
+    title: 'Lokaal Geworteld',
+    description: 'Wij zitten in Paramaribo, kennen de Surinaamse markt en zijn gewoon bereikbaar — ook na de oplevering.',
     breakdown: [
       'Persoonlijk contact met de oprichter',
       'Kennis van de Surinaamse markt',

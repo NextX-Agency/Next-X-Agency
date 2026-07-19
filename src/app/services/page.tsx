@@ -259,8 +259,8 @@ export default function ServicesPage() {
               variants={blurFadeIn}
               className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed font-medium"
             >
-              Één partner, complete oplossingen — van logo en social media tot
-              complete webshops en maandelijkse support.
+              Van logo en huisstijl tot complete webshop en maandelijkse
+              support — alles onder één dak, ontworpen en gebouwd door ons.
             </motion.p>
           </motion.div>
         </section>

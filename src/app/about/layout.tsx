@@ -3,11 +3,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Over Ons',
   description:
-    'Leer meer over NextX Agency — een innovatieve digitale startup in Paramaribo, Suriname. Onze missie, visie en het team achter professionele digitale oplossingen.',
+    'Maak kennis met NextX Agency, een digitaal bureau in Paramaribo, Suriname. Wij ontwerpen websites en merken op maat, met aandacht en vakmanschap.',
   openGraph: {
     title: 'Over Ons — NextX Agency',
     description:
-      'Leer meer over NextX Agency. Innovatieve digitale startup in Paramaribo voor web design, e-commerce en meer.',
+      'Maak kennis met NextX Agency: digitaal bureau in Paramaribo voor webdesign, e-commerce en branding op maat.',
     url: '/about',
   },
   alternates: {

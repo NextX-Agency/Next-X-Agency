@@ -21,11 +21,11 @@ const SITE_URL = 'https://nextxagency.com'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'NextX Agency — Complete Digital Solutions for Modern Businesses',
+    default: 'NextX Agency — Webdesign & Branding op maat in Suriname',
     template: '%s | NextX Agency',
   },
   description:
-    'NextX Agency helpt Surinaamse bedrijven professioneel online te groeien — snel, betaalbaar en volledig op maat. Web design, e-commerce, grafisch ontwerp en meer.',
+    'NextX Agency ontwerpt en bouwt websites, webshops en merken op maat voor Surinaamse bedrijven. Doordacht design, vaste prijzen en persoonlijk contact vanuit Paramaribo.',
   keywords: [
     'NextX Agency',
     'web design Suriname',
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     apple: '/favicon.png',
   },
   openGraph: {
-    title: 'NextX Agency — Complete Digital Solutions',
+    title: 'NextX Agency — Webdesign & Branding op maat',
     description:
-      'Professionele digitale oplossingen voor Surinaamse bedrijven. Snel, betaalbaar en volledig op maat.',
+      'Websites, webshops en merken op maat voor Surinaamse bedrijven. Doordacht design tegen vaste prijzen.',
     url: SITE_URL,
     siteName: 'NextX Agency',
     type: 'website',
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NextX Agency — Complete Digital Solutions',
+    title: 'NextX Agency — Webdesign & Branding op maat',
     description:
-      'Professionele digitale oplossingen voor Surinaamse bedrijven. Snel, betaalbaar en volledig op maat.',
+      'Websites, webshops en merken op maat voor Surinaamse bedrijven. Doordacht design tegen vaste prijzen.',
   },
   robots: {
     index: true,
