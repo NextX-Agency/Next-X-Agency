@@ -250,7 +250,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
 
         {/* Error */}
         {error && (
-          <div className="bg-destructive-muted border border-destructive/30 rounded-xl p-4 text-destructive-foreground text-sm">
+          <div className="bg-destructive-muted border border-destructive/30 p-4 text-destructive-foreground text-sm">
             {error}
           </div>
         )}

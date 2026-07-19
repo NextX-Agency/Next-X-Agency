@@ -234,7 +234,7 @@ const s = {
     paddingBottom: '11px',
   },
   fieldLink: {
-    color: '#f97015',
+    color: '#f97316',
     fontSize: '14px',
     fontWeight: '600' as const,
     textDecoration: 'none',
@@ -267,7 +267,7 @@ const s = {
     paddingTop: '4px',
   },
   ctaBtn: {
-    backgroundColor: '#f97015',
+    backgroundColor: '#f97316',
     color: '#ffffff',
     padding: '12px 24px',
     borderRadius: '8px',

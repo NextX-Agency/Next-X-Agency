@@ -164,8 +164,6 @@ export function PortfolioSection() {
                 </span>
 
 
-                {/* Gradient overlay for richer visual on mobile */}
-                <div className="absolute inset-0 bg-linear-to-t from-background/70 via-transparent to-transparent sm:hidden pointer-events-none z-10" />
               </div>
 
               {/* Card content */}

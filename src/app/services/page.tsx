@@ -231,7 +231,7 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <SectionLabel>7 Diensten · 3 Categorieën · 1 Partner</SectionLabel>
+              <SectionLabel number="01">Diensten & Prijzen</SectionLabel>
             </motion.div>
 
             {/* Headline — clip-reveal */}
@@ -296,7 +296,7 @@ export default function ServicesPage() {
                         — {category.tag}
                       </span>
                     </div>
-                    <div className={`w-full h-px ${accent.bg} border-b ${accent.border} border-opacity-30`} />
+                    <div className="w-full h-px bg-foreground/15" />
                     <p className="text-sm text-muted-foreground mt-3 max-w-2xl leading-relaxed">
                       {category.description}
                     </p>
@@ -367,10 +367,10 @@ export default function ServicesPage() {
                         <div className="px-5 pb-5 pt-2 space-y-2">
                           <Link
                             href={`/contact?dienst=${encodeURIComponent(service.name)}`}
-                            className={`block w-full text-center text-sm font-bold py-2.5 rounded-xl transition-all duration-300
+                            className={`block w-full text-center text-sm font-bold py-2.5 transition-colors duration-300
                               ${('popular' in service && service.popular)
-                                ? 'bg-primary text-white hover:bg-primary-hover shadow-sm shadow-orange-500/20'
-                                : 'bg-black/4 text-foreground/80 hover:bg-black/8'
+                                ? 'bg-primary text-white hover:bg-primary-hover'
+                                : 'bg-foreground text-white hover:bg-primary'
                               }`}
                             style={{ fontFamily: 'var(--font-heading)' }}
                           >
@@ -379,7 +379,7 @@ export default function ServicesPage() {
                           {demoSlugs[service.name] && (
                             <Link
                               href={demoSlugs[service.name]}
-                              className="flex items-center justify-center gap-1.5 w-full text-center text-xs font-bold py-2 rounded-xl border border-primary/30 text-primary hover:bg-primary/5 hover:border-primary/60 transition-all duration-200"
+                              className="flex items-center justify-center gap-1.5 w-full text-center text-xs font-bold py-2 border border-foreground/20 text-foreground hover:border-primary hover:text-primary transition-colors duration-200"
                               style={{ fontFamily: 'var(--font-heading)' }}
                             >
                               <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -398,7 +398,7 @@ export default function ServicesPage() {
                   {'note' in category && category.note && (
                     <motion.p
                       variants={fadeInUp}
-                      className="text-xs text-muted-foreground mt-6 bg-card border-l-2 border-primary/50 rounded-r-xl px-4 py-3 leading-relaxed"
+                      className="text-xs text-muted-foreground mt-6 bg-card border-l-2 border-primary px-4 py-3 leading-relaxed"
                     >
                       <strong className="text-foreground font-bold">Let op: </strong>
                       {category.note}

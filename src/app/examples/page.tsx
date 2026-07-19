@@ -14,7 +14,6 @@ const examples = [
     title: 'KaderBouw NV',
     category: 'Website',
     description: 'One-page digitale identiteit voor een bouwbedrijf met counter-animaties en contactformulier.',
-    accent: 'from-orange-500 to-amber-500',
     img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=340&fit=crop',
   },
   {
@@ -22,7 +21,6 @@ const examples = [
     title: 'DentaCare Paramaribo',
     category: 'Website',
     description: 'Multi-page website voor een tandartspraktijk met scroll-spy, team en afsprakensysteem.',
-    accent: 'from-blue-500 to-cyan-500',
     img: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=340&fit=crop',
   },
   {
@@ -30,7 +28,6 @@ const examples = [
     title: 'Studio Vibe',
     category: 'Website',
     description: 'Creatief portfolio met filter-tabs, lightbox galerij en animaties.',
-    accent: 'from-violet-500 to-purple-500',
     img: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=340&fit=crop',
   },
   {
@@ -38,7 +35,6 @@ const examples = [
     title: 'Warung Indah',
     category: 'Website',
     description: 'Surinaamse restaurant met volledig digitaal menu, reserveringsformulier en openingstijden.',
-    accent: 'from-red-500 to-rose-500',
     img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=340&fit=crop',
   },
   {
@@ -46,7 +42,6 @@ const examples = [
     title: 'Bloom Boutique',
     category: 'E-Commerce',
     description: 'Fashion webshop met werkende winkelwagen, checkout-flow en wishlist.',
-    accent: 'from-emerald-500 to-teal-500',
     img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=340&fit=crop',
   },
   {
@@ -54,7 +49,6 @@ const examples = [
     title: 'TechMart SUR',
     category: 'E-Commerce',
     description: 'Electronica webshop met filters, zoekfunctie, product-modals en cart-drawer.',
-    accent: 'from-sky-500 to-blue-500',
     img: 'https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&h=340&fit=crop',
   },
   {
@@ -62,7 +56,6 @@ const examples = [
     title: 'Savana Coffee',
     category: 'Design',
     description: 'Compleet brandbook met animated SVG logo, kleurenpalet, typografie en mock-ups.',
-    accent: 'from-fuchsia-500 to-pink-500',
     img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=340&fit=crop',
   },
   {
@@ -70,7 +63,6 @@ const examples = [
     title: 'ShopPlaza Redesign',
     category: 'Design',
     description: 'UX case study met before/after slider, metrics, bevindingen en design-proces.',
-    accent: 'from-indigo-500 to-violet-500',
     img: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=340&fit=crop',
   },
   {
@@ -78,7 +70,6 @@ const examples = [
     title: 'SEO Dashboard',
     category: 'Marketing',
     description: 'Live dashboard met Recharts grafieken, sorteerbare keyword-tabel en periodefilters.',
-    accent: 'from-lime-500 to-green-500',
     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop',
   },
   {
@@ -86,7 +77,6 @@ const examples = [
     title: 'Hosting Panel',
     category: 'Infrastructuur',
     description: 'Control panel met resource meters, uptime grafieken, backup beheer en server restart.',
-    accent: 'from-slate-500 to-zinc-500',
     img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=340&fit=crop',
   },
   {
@@ -94,7 +84,6 @@ const examples = [
     title: 'Kukru UX/UI',
     category: 'Outsourcing',
     description: 'Community platform case study met FAQ, team, pricing pakketten en contactformulier.',
-    accent: 'from-amber-500 to-yellow-500',
     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=340&fit=crop',
   },
 ]
@@ -102,12 +91,15 @@ const examples = [
 export default function ExamplesHub() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mb-12 text-center">
-        <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">Voorbeelden</p>
+      <div className="mb-12">
+        <div className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-8">
+          <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">Voorbeelden</span>
+          <span className="text-xs font-medium text-muted-foreground">Interactieve demo&apos;s</span>
+        </div>
         <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           Bekijk wat wij bouwen
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           Interactieve demo&apos;s van al onze diensten. Klik op een kaart om het voorbeeld te bekijken.
         </p>
       </div>
@@ -117,12 +109,11 @@ export default function ExamplesHub() {
           <Link
             key={ex.slug}
             href={`/examples/${ex.slug}`}
-            className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg"
+            className="group relative overflow-hidden border border-foreground/15 bg-card transition-colors hover:border-primary"
           >
             <div className="relative h-40 w-full overflow-hidden">
-              <Image src={ex.img} alt={ex.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
-              <div className={`absolute inset-0 bg-gradient-to-t ${ex.accent} opacity-20 group-hover:opacity-30 transition-opacity`} />
-              <span className="absolute top-3 left-3 inline-block rounded-full bg-black/50 px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide backdrop-blur-sm">
+              <Image src={ex.img} alt={ex.title} fill className="object-cover" />
+              <span className="absolute top-3 left-3 inline-block bg-foreground px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide">
                 {ex.category}
               </span>
             </div>

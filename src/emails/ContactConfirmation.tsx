@@ -171,7 +171,7 @@ const stepNumCol = { width: '28px', verticalAlign: 'top' as const }
 const stepNum = {
   backgroundColor: '#fff7ed',
   border: '1px solid #fed7aa',
-  color: '#f97015',
+  color: '#f97316',
   fontSize: '12px',
   fontWeight: '700' as const,
   width: '20px',
@@ -291,7 +291,7 @@ const s = {
     paddingTop: '4px',
   },
   ctaBtn: {
-    backgroundColor: '#f97015',
+    backgroundColor: '#f97316',
     color: '#ffffff',
     padding: '12px 24px',
     borderRadius: '8px',
@@ -322,7 +322,7 @@ const s = {
     margin: '0',
   },
   contactLink: {
-    color: '#f97015',
+    color: '#f97316',
     textDecoration: 'none',
     fontWeight: '500' as const,
   },
