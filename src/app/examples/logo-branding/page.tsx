@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Palette, Type, Download, Copy, Check, Eye, Layers, Droplets, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
-import DemoFeatures from '../_components/DemoFeatures'
 
 /* ─── Animated SVG Logo ─── */
 function SavanaLogoFull() {
@@ -252,7 +252,7 @@ export default function SavanaCoffeePage() {
               {applications.map(a => (
                 <div key={a.title} className="group bg-white rounded-2xl border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="relative aspect-[3/2] overflow-hidden">
-                    <img src={a.img} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <Image src={a.img} alt={a.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                       <span className="text-white text-sm font-bold flex items-center gap-1"><Eye className="w-3.5 h-3.5" /> Bekijk</span>
                     </div>
@@ -278,7 +278,7 @@ export default function SavanaCoffeePage() {
               className="px-6 py-3 bg-white text-amber-900 font-bold rounded-xl hover:bg-amber-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               <Download className="w-4 h-4 inline mr-2" /> Download Brandbook
             </button>
-            <a href="#" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+            <a href="/contact" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               <Palette className="w-4 h-4 inline mr-2" /> Start uw project
             </a>
           </div>
@@ -293,7 +293,6 @@ export default function SavanaCoffeePage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['Geanimeerd SVG logo (Framer Motion path draw)', 'Tab navigatie: logo / kleuren / typografie / toepassingen', 'Kleurpalet met clipboard-kopiëren + toast', 'Typografie specimen met type scale', 'Brand mock-up foto\'s (verpakking, social, signage)', 'Download Brandbook knop']} />
     </div>
   )
 }

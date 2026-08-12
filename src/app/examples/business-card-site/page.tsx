@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, ChevronRight, Hammer, HardHat, Home, PaintBucket, ArrowUp, Shield, Clock, CheckCircle2, ClipboardList, Search, Ruler, Construction, KeyRound } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
-import DemoFeatures from '../_components/DemoFeatures'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
 
 /* ─── SVG Logo ─── */
@@ -133,9 +133,11 @@ export default function KaderBouwPage() {
     <div className="min-h-screen bg-white">
       {/* ═══ HERO ═══ */}
       <section className="relative h-[85vh] min-h-[560px] flex items-center overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80"
           alt="Bouwplaats met kraan en steigers"
+          fill
+          sizes="100vw"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent" />
@@ -161,7 +163,7 @@ export default function KaderBouwPage() {
             </div>
             <div className="flex items-center gap-3 mt-6">
               <div className="flex -space-x-2">
-                {kaderbouwTestimonials.slice(0, 3).map((t, i) => <img key={i} src={t.avatar} alt={t.name} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
+                {kaderbouwTestimonials.slice(0, 3).map((t, i) => <Image key={i} src={t.avatar} alt={t.name} width={32} height={32} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
               </div>
               <span className="text-sm text-slate-300"><strong className="text-white">98%</strong> klanttevredenheid</span>
             </div>
@@ -196,7 +198,7 @@ export default function KaderBouwPage() {
               Van luxe woningen in Paramaribo tot commerciële panden in Wanica — wij combineren moderne technieken met lokale expertise voor een resultaat dat u trots maakt.
             </p>
             <div className="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80" alt="R. Kader" className="w-12 h-12 rounded-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80" alt="R. Kader" width={48} height={48} className="w-12 h-12 rounded-full object-cover" />
               <div>
                 <p className="font-bold text-slate-900 text-sm">R. Kader</p>
                 <p className="text-xs text-slate-500">Oprichter & Directeur</p>
@@ -204,7 +206,7 @@ export default function KaderBouwPage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
-            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
+            <Image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
             <div className="absolute -bottom-6 -left-6 bg-[#f97015] text-white rounded-xl px-5 py-3 shadow-lg">
               <p className="text-2xl font-black" style={{ fontFamily: 'var(--font-heading)' }}>15+</p>
               <p className="text-xs font-medium">Jaar Ervaring</p>
@@ -302,7 +304,7 @@ export default function KaderBouwPage() {
               <motion.div key={p.title} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ delay: i * 0.08 }}
                 className="group relative rounded-2xl overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] overflow-hidden">
-                  <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <Image src={p.img} alt={p.title} width={600} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
                 {/* Hover overlay with details */}
@@ -353,7 +355,7 @@ export default function KaderBouwPage() {
               </div>
               <div className="flex gap-3 mt-8">
                 {[{ Icon: Instagram, label: 'Instagram' }, { Icon: Facebook, label: 'Facebook' }, { Icon: Linkedin, label: 'LinkedIn' }].map(({ Icon, label }) => (
-                  <a key={label} href="#" aria-label={label} className="w-10 h-10 rounded-full bg-slate-200 hover:bg-[#f97015] flex items-center justify-center text-slate-600 hover:text-white transition-all"><Icon className="w-5 h-5" /></a>
+                  <span key={label} aria-label={`${label} (volgt binnenkort)`} className="w-10 h-10 rounded-full bg-slate-200/60 flex items-center justify-center text-slate-400" aria-disabled="true"><Icon className="w-5 h-5" /></span>
                 ))}
               </div>
             </div>
@@ -466,7 +468,7 @@ export default function KaderBouwPage() {
               <h4 className="font-bold text-white text-sm mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Volg ons</h4>
               <div className="flex gap-3 mb-4">
                 {[{ Icon: Instagram, label: 'Instagram' }, { Icon: Facebook, label: 'Facebook' }, { Icon: Linkedin, label: 'LinkedIn' }].map(({ Icon, label }) => (
-                  <a key={label} href="#" aria-label={label} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-[#f97015] flex items-center justify-center text-slate-400 hover:text-white transition-all"><Icon className="w-4 h-4" /></a>
+                  <span key={label} aria-label={`${label} (volgt binnenkort)`} className="w-10 h-10 rounded-full bg-slate-800/60 flex items-center justify-center text-slate-500" aria-disabled="true"><Icon className="w-4 h-4" /></span>
                 ))}
               </div>
               <p className="text-xs text-slate-500">KvK: 2019-04521</p>
@@ -482,8 +484,7 @@ export default function KaderBouwPage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['Multi-step offerte formulier (2 stappen)', 'Portfolio filter + verrijkte project details', '5-stappen werkwijze tijdlijn', 'Testimonials slider met beoordelingen', 'Certificeringen & garantie-badges', 'Geanimeerde tellers (useInView)', 'WhatsApp integratie']} />
-      <a href="#" className="fixed bottom-20 left-6 z-30 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#f97015] transition-colors shadow-lg" aria-label="Naar boven"><ArrowUp className="w-4 h-4" /></a>
+      <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-20 left-6 z-30 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#f97015] transition-colors shadow-lg" aria-label="Naar boven"><ArrowUp className="w-4 h-4" /></button>
       <FloatingWhatsApp phone="5978523456" company="KaderBouw NV" message="Hallo, ik heb interesse in een bouwproject!" />
     </div>
   )

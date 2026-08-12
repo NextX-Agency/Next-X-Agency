@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingBag, X, Plus, Minus, Trash2, Search, Heart, Star, ChevronRight, Truck, RefreshCw, Shield, CreditCard, Home as HomeIcon, Eye, Tag, Landmark, Banknote } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
-import DemoFeatures from '../_components/DemoFeatures'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
 
 /* ─── Logo ─── */
@@ -240,7 +240,7 @@ export default function BloomBoutiquePage() {
                     <div className="space-y-3">
                       {cart.map(i => (
                         <div key={i.id} className="flex items-center gap-3">
-                          <img src={i.img} alt={i.name} className="w-12 h-12 rounded-lg object-cover" />
+                          <Image src={i.img} alt={i.name} width={48} height={48} className="w-12 h-12 rounded-lg object-cover" />
                           <div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{i.name}</p><p className="text-xs text-slate-500">{i.qty}×</p></div>
                           <p className="text-sm font-bold">SRD {(getPrice(i) * i.qty).toLocaleString()}</p>
                         </div>
@@ -283,7 +283,7 @@ export default function BloomBoutiquePage() {
                 <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
                   {cart.map(i => (
                     <div key={i.id} className="flex items-center gap-3">
-                      <img src={i.img} alt={i.name} className="w-12 h-12 rounded-lg object-cover" />
+                      <Image src={i.img} alt={i.name} width={48} height={48} className="w-12 h-12 rounded-lg object-cover" />
                       <div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{i.name}</p><p className="text-xs text-slate-500">{i.qty}× SRD {getPrice(i)}</p></div>
                       <p className="text-sm font-bold">SRD {(getPrice(i) * i.qty).toLocaleString()}</p>
                     </div>
@@ -335,7 +335,7 @@ export default function BloomBoutiquePage() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[0.95] mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
               Stijl die bij <span className="text-pink-600">jou</span> past
             </h1>
-            <p className="text-slate-600 max-w-md mb-6 leading-relaxed">Ontdek onze curated collectie van elegante, comfortabele mode. Handgeselecteerd met oog voor kwaliteit en duurzaamheid.</p>
+            <p className="text-slate-600 max-w-md mb-6 leading-relaxed">Ontdek een collectie elegante, comfortabele mode, met zorg gekozen voor kwaliteit en dagelijks gebruik.</p>
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <a href="#shop" className="inline-flex items-center gap-2 px-6 py-3 bg-pink-600 text-white font-bold rounded-xl hover:bg-pink-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 Shop nu <ChevronRight className="w-4 h-4" />
@@ -347,14 +347,14 @@ export default function BloomBoutiquePage() {
                     'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&q=80',
-                  ].map((src, i) => <img key={i} src={src} alt="" className="w-7 h-7 rounded-full object-cover border-2 border-white" />)}
+                  ].map((src, i) => <Image key={i} src={src} alt="" width={28} height={28} className="w-7 h-7 rounded-full object-cover border-2 border-white" />)}
                 </div>
                 <span className="font-bold text-slate-700">2.400+</span> tevreden klanten
               </div>
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative">
-            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=500&fit=crop&q=80" alt="Bloom Boutique fashion" className="rounded-2xl shadow-xl w-full object-cover aspect-[6/5]" />
+            <Image src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=500&fit=crop&q=80" alt="Bloom Boutique fashion" width={600} height={500} className="rounded-2xl shadow-xl w-full object-cover aspect-[6/5]" />
             <div className="absolute -bottom-4 left-4 right-4 bg-white/90 backdrop-blur rounded-xl px-4 py-3 shadow-lg border border-pink-100">
               <SaleCountdown />
             </div>
@@ -404,7 +404,7 @@ export default function BloomBoutiquePage() {
                 <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}
                   className="group bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <img src={p.img} alt={p.name} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${p.outOfStock ? 'grayscale opacity-60' : ''}`} loading="lazy" />
+                    <Image src={p.img} alt={p.name} width={500} height={625} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${p.outOfStock ? 'grayscale opacity-60' : ''}`} />
                     {/* Badges */}
                     <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                       {p.badge && <span className={`px-2.5 py-1 text-white text-[10px] font-bold rounded-full ${p.salePrice ? 'bg-red-500' : 'bg-pink-600'}`}>{p.badge}</span>}
@@ -468,7 +468,7 @@ export default function BloomBoutiquePage() {
             <motion.div initial={{ opacity: 0, scale: 0.9, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 30 }}
               className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-white rounded-2xl z-50 overflow-hidden shadow-2xl">
               <button onClick={() => setQuickView(null)} className="absolute top-3 right-3 z-10 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center" aria-label="Sluiten"><X className="w-4 h-4" /></button>
-              <img src={quickView.img} alt={quickView.name} className="w-full aspect-[4/3] object-cover" />
+              <Image src={quickView.img} alt={quickView.name} width={800} height={600} className="w-full aspect-[4/3] object-cover" />
               <div className="p-6">
                 <p className="text-xs text-pink-500 font-medium mb-1">{quickView.category}</p>
                 <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{quickView.name}</h3>
@@ -519,7 +519,7 @@ export default function BloomBoutiquePage() {
                 {cart.length === 0 && <p className="text-center text-slate-400 py-12">Uw winkelwagen is leeg</p>}
                 {cart.map(item => (
                   <div key={item.id} className="flex gap-4 bg-pink-50/50 rounded-xl p-3">
-                    <img src={item.img} alt={item.name} className="w-20 h-20 rounded-xl object-cover" />
+                    <Image src={item.img} alt={item.name} width={80} height={80} className="w-20 h-20 rounded-xl object-cover" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-sm text-slate-900 truncate">{item.name}</h4>
                       {item.salePrice ? (
@@ -557,7 +557,7 @@ export default function BloomBoutiquePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-3"><BloomLogo size={28} /><span className="font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>Bloom Boutique</span></div>
-              <p className="text-sm text-slate-400 leading-relaxed mb-4">Curated fashion met liefde geselecteerd. Kwaliteit en stijl in elk stuk.</p>
+              <p className="text-sm text-slate-400 leading-relaxed mb-4">Mode met zorg gekozen. Kwaliteit en stijl in elk stuk.</p>
               <div className="flex gap-3">
                 {['Instagram', 'Facebook', 'TikTok'].map(s => <span key={s} className="text-xs px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:bg-pink-600 hover:text-white transition-colors cursor-pointer">{s}</span>)}
               </div>
@@ -606,7 +606,6 @@ export default function BloomBoutiquePage() {
         ))}
       </nav>
 
-      <DemoFeatures features={['Werkende winkelwagen met sale-prijzen', '4-stappen checkout met bevestiging', 'Quick-view product modal', 'Uitverkocht-status & wishlist', 'Categorie filter + zoekbalk', 'Sale countdown timer', 'Klant testimonials slider', 'Mobile bottom navigation', 'WhatsApp integratie']} />
       <FloatingWhatsApp phone="5974567890" company="Bloom Boutique" message="Hoi! Ik heb een vraag over een product." />
     </div>
   )

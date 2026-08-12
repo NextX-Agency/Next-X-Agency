@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, Baby, Building2, ChevronDown, CalendarDays, Home as HomeIcon, Users, CheckCircle2, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
-import DemoFeatures from '../_components/DemoFeatures'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
 
 /* ─── SVG Logo ─── */
@@ -155,7 +155,7 @@ export default function DentaCarePage() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-sky-50 rounded-full text-xs font-bold text-sky-600 mb-6">
               <div className="flex -space-x-2">
-                {dentaTestimonials.slice(0, 4).map((t, i) => <img key={i} src={t.avatar} alt="" className="w-6 h-6 rounded-full border-2 border-sky-50 object-cover" />)}
+                {dentaTestimonials.slice(0, 4).map((t, i) => <Image key={i} src={t.avatar} alt="" width={24} height={24} className="w-6 h-6 rounded-full border-2 border-sky-50 object-cover" />)}
               </div>
               200+ tevreden patiënten
             </div>
@@ -163,7 +163,7 @@ export default function DentaCarePage() {
               Uw glimlach,<br /><span className="text-sky-500">onze prioriteit</span>
             </h1>
             <p className="text-lg text-slate-500 max-w-md mb-8 leading-relaxed">
-              Moderne tandheelkunde in het hart van Paramaribo. Ervaren specialisten, state-of-the-art apparatuur en een warm welkom voor elk gezinslid.
+              Moderne tandheelkunde in het hart van Paramaribo. Ervaren specialisten, actuele apparatuur en een warm welkom voor elk gezinslid.
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-colors shadow-lg shadow-sky-500/20" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -175,11 +175,11 @@ export default function DentaCarePage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop&q=80" alt="Moderne tandartspraktijk" className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
+            <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop&q=80" alt="Moderne tandartspraktijk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
             <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-5 py-3 shadow-lg border border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
-                  {team.slice(0, 3).map((t, i) => <img key={i} src={t.img} alt={t.name} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
+                  {team.slice(0, 3).map((t, i) => <Image key={i} src={t.img} alt={t.name} width={32} height={32} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
                 </div>
                 <div><p className="text-xs font-bold text-slate-900">4 Specialisten</p><p className="text-[10px] text-slate-500">Altijd beschikbaar</p></div>
               </div>
@@ -237,7 +237,7 @@ export default function DentaCarePage() {
               <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg transition-all">
                 <div className="aspect-square overflow-hidden relative">
-                  <img src={t.img} alt={t.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <Image src={t.img} alt={t.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   {/* Hover overlay with details */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                     <p className="text-xs text-sky-400 font-bold">{t.experience}</p>
@@ -452,9 +452,9 @@ export default function DentaCarePage() {
                   { label: 'Facebook', path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
                   { label: 'WhatsApp', path: 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z' },
                 ].map(s => (
-                  <a key={s.label} href="#" aria-label={s.label} className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-500 flex items-center justify-center transition-colors">
+                  <span key={s.label} aria-label={`${s.label} (volgt binnenkort)`} className="w-9 h-9 rounded-lg bg-slate-800/60 flex items-center justify-center text-slate-500" aria-disabled="true">
                     <svg className="w-4 h-4 text-slate-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d={s.path} /></svg>
-                  </a>
+                  </span>
                 ))}
               </div>
             </div>
@@ -512,7 +512,6 @@ export default function DentaCarePage() {
         </div>
       </nav>
 
-      <DemoFeatures features={['Multi-step afspraakwizard (4 stappen)', 'Scroll-spy navigatie + mobiele bottom nav', 'Verzekeringpartners integratie', 'Team hover details (specialisatie, ervaring)', 'Patiënt testimonials slider', 'FAQ accordion (AnimatePresence)', 'WhatsApp integratie']} />
       <FloatingWhatsApp phone="5978001234" company="DentaCare Paramaribo" message="Hallo, ik wil graag een afspraak maken!" />
     </div>
   )

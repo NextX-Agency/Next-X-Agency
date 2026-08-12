@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Users, Zap, Shield, BarChart3, MessageSquare, Check, ArrowRight, Phone, Mail, MapPin, Send, Heart, Globe, Layers } from 'lucide-react'
 import { toast } from 'sonner'
-import DemoFeatures from '../_components/DemoFeatures'
 
 /* ─── Logo ─── */
 function KukruLogo({ size = 36 }: { size?: number }) {
@@ -24,7 +23,7 @@ const features = [
   { icon: Users, title: 'Community Management', desc: 'Beheer leden, rollen en groepen vanuit één dashboard. Automatische onboarding flows voor nieuwe gebruikers.' },
   { icon: MessageSquare, title: 'Realtime Discussies', desc: 'Forums, threads en live chat geïntegreerd. Push-notificaties houden uw community betrokken.' },
   { icon: BarChart3, title: 'Analytics Dashboard', desc: 'Inzicht in groei, engagement en content performance. Exporteer rapporten naar PDF of CSV.' },
-  { icon: Shield, title: 'Moderatie Tools', desc: 'AI-powered spam detectie, rapportage systeem en aanpasbare community richtlijnen.' },
+  { icon: Shield, title: 'Moderatie tools', desc: 'Automatische spamdetectie, rapportage en aanpasbare communityrichtlijnen.' },
   { icon: Zap, title: 'Event Planning', desc: 'Organiseer online en offline events. RSVP tracking, herinneringen en post-event feedback.' },
   { icon: Globe, title: 'Meertalig Platform', desc: 'Ondersteuning voor NL, EN en Sranan Tongo. Automatische vertaling van user-generated content.' },
 ]
@@ -351,7 +350,6 @@ export default function UxKukruPage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['FAQ accordion (AnimatePresence)', 'Team foto\'s met Unsplash', '3 prijspakketten vergelijking', '\'Meest gekozen\' badge op populairste pakket', 'Contactformulier + validatie + toast', 'Double Diamond procesvisualisatie']} />
     </div>
   )
 }

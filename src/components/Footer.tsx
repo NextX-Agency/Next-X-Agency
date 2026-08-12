@@ -38,11 +38,11 @@ function FooterFn() {
               className="text-primary text-xs font-black tracking-[0.18em] uppercase mb-3"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              Wij bouwen. Jij groeit.
+              Een digitaal bureau uit Paramaribo.
             </p>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs leading-relaxed">
-              Digitaal bureau in Paramaribo, Suriname. Websites, webshops en
-              merken — ontworpen op maat.
+              Websites, webshops en merkidentiteiten voor bedrijven die helder
+              willen communiceren.
             </p>
             <div className="flex gap-3">
               <a
@@ -160,11 +160,11 @@ function FooterFn() {
               <p className="flex items-center gap-2 text-foreground font-bold text-base" style={{ fontFamily: 'var(--font-heading)' }}>
                 shop-nextx.com
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary text-white text-[9px] font-bold tracking-widest uppercase">
-                  Sister Platform
+                  Eigen product
                 </span>
               </p>
               <p className="text-muted-foreground text-sm mt-0.5">
-                Onze eigen webshop — gebouwd met dezelfde technologie die wij voor u inzetten.
+                Onze eigen webshop — gebouwd met dezelfde aandacht voor detail.
               </p>
             </div>
           </div>

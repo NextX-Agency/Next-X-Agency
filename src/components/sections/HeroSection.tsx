@@ -6,8 +6,8 @@ import { motion } from 'framer-motion'
 import { AnimatedSVGPath } from '@/components/animated/AnimatedSVGPath'
 
 const services = [
-  'Website Design',
-  'Logo & Branding',
+  'Websites',
+  'Merkidentiteit',
   'Webshops',
   'UX / UI',
   'SEO',
@@ -21,11 +21,11 @@ function BrandMark() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full max-w-105 mx-auto"
+      className="relative w-full max-w-[30rem] mx-auto"
       aria-hidden="true"
     >
-      <div className="absolute -bottom-3 -right-3 w-full h-full bg-primary" />
-      <div className="relative bg-white border border-foreground/15 px-10 py-14 flex items-center justify-center">
+      <div className="absolute -bottom-3 -right-3 w-full h-full bg-primary/90" />
+      <div className="relative bg-card border border-foreground/15 p-7 sm:p-10">
         <Image
           src="/logo-light.png"
           alt=""
@@ -34,6 +34,11 @@ function BrandMark() {
           className="w-full h-auto object-contain"
           priority
         />
+        <div className="mt-8 grid grid-cols-3 border-t border-border pt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+          <span>Strategie</span>
+          <span className="text-center">Ontwerp</span>
+          <span className="text-right">Bouw</span>
+        </div>
       </div>
     </motion.div>
   )
@@ -41,7 +46,7 @@ function BrandMark() {
 
 function HeroSectionFn() {
   return (
-    <header className="relative flex flex-col min-h-[90vh] justify-center pt-32 pb-0 bg-background">
+    <header className="relative flex flex-col min-h-[calc(100dvh-4.25rem)] justify-center pt-20 pb-0 bg-background">
       <div className="relative max-w-6xl mx-auto px-6 w-full">
         {/* Meta row above the headline */}
         <motion.div
@@ -98,7 +103,7 @@ function HeroSectionFn() {
                   >
                     <AnimatedSVGPath
                       d="M2 9 Q50 3 100 9 Q150 15 198 9"
-                      stroke="#f97316"
+                      stroke="#c45a2b"
                       strokeWidth="4"
                       strokeLinecap="round"
                       opacity={0.85}
@@ -116,8 +121,9 @@ function HeroSectionFn() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-base md:text-lg text-muted-foreground max-w-md mb-10 leading-relaxed"
             >
-              Wij ontwerpen en bouwen elke website zelf, op maat van uw bedrijf.
-              Doordacht design, eerlijke prijzen en persoonlijk contact — vanuit Paramaribo.
+              Een heldere website begint bij een goed begrip van uw bedrijf. Wij
+              ontwerpen en bouwen digitaal werk dat past bij uw merk, klanten en
+              ambities — vanuit Paramaribo.
             </motion.p>
 
             <motion.div
@@ -130,14 +136,14 @@ function HeroSectionFn() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-3 bg-foreground hover:bg-primary text-white font-bold px-8 py-4 text-base transition-colors duration-300"
               >
-                Start een project
+                Plan een gesprek
                 <span aria-hidden="true">→</span>
               </Link>
               <Link
                 href="/services"
                 className="inline-flex items-center gap-2 text-foreground font-semibold text-base border-b-2 border-primary pb-0.5 hover:text-primary transition-colors duration-300"
               >
-                Bekijk diensten
+                Bekijk ons werk
               </Link>
             </motion.div>
           </div>
@@ -161,7 +167,7 @@ function HeroSectionFn() {
             </span>
           ))}
           <span className="ml-auto text-xs font-medium text-muted-foreground hidden md:inline">
-            Alles onder één dak
+            Paramaribo / Suriname
           </span>
         </div>
       </div>

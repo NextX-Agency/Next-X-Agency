@@ -56,8 +56,8 @@ export default function ContactPage() {
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Beschrijf uw project en wij sturen binnen 24-48 uur een
-              vrijblijvende quote. Of stuur direct een WhatsApp bericht.
+              Beschrijf uw project. Wij reageren binnen 24–48 uur met een helder
+              voorstel. Liever direct? Stuur ons een WhatsApp bericht.
             </motion.p>
           </motion.div>
         </section>

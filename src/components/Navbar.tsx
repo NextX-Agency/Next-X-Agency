@@ -10,8 +10,9 @@ import { cn } from '@/lib/utils'
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/services', label: 'Diensten' },
+  { href: '/portfolio', label: 'Werk' },
+  { href: '/about', label: 'Over ons' },
   { href: '/contact', label: 'Contact' },
 ] as const
 
@@ -20,8 +21,8 @@ function NavbarFn() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur-sm border-b border-foreground/10">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -35,7 +36,7 @@ function NavbarFn() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -61,11 +62,8 @@ function NavbarFn() {
 
         {/* Desktop CTA + Mobile Hamburger */}
         <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="group hidden md:inline-flex items-center gap-2 bg-foreground hover:bg-primary text-white px-6 py-2.5 text-sm font-bold transition-colors duration-300"
-          >
-            Start Project
+          <Link href="/contact" className="button-primary hidden md:inline-flex group">
+            Plan een gesprek
             <svg
               className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300"
               fill="none"
@@ -80,9 +78,11 @@ function NavbarFn() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-primary"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? 'Sluit menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <AnimatePresence mode="wait" initial={false}>
               {mobileOpen ? (
@@ -120,7 +120,8 @@ function NavbarFn() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="md:hidden bg-background border-b border-foreground/10 overflow-hidden"
+            id="mobile-navigation"
+            className="md:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="px-4 py-3 space-y-1">
               {navLinks.map((link, i) => (
@@ -156,9 +157,9 @@ function NavbarFn() {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center bg-foreground hover:bg-primary text-white font-bold px-5 py-3 text-sm transition-colors"
+                  className="button-primary w-full"
                 >
-                  Start Project
+                  Plan een gesprek
                 </Link>
               </motion.div>
             </div>

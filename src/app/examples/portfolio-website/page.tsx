@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Instagram, Mail } from 'lucide-react'
-import DemoFeatures from '../_components/DemoFeatures'
+import { X, ExternalLink, Mail } from 'lucide-react'
 
 /* ─── SVG Logo ─── */
 function StudioVibeLogo({ size = 36 }: { size?: number }) {
@@ -66,7 +66,7 @@ export default function StudioVibePage() {
                 Bekijk portfolio
               </a>
               <div className="flex items-center gap-4">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&q=80" alt="Creative Director" className="w-10 h-10 rounded-full object-cover border-2 border-[#f97015]" />
+                <Image src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&q=80" alt="Creative Director" width={40} height={40} className="w-10 h-10 rounded-full object-cover border-2 border-[#f97015]" />
                 <div>
                   <p className="text-sm font-bold text-white">Ava de Groot</p>
                   <p className="text-xs text-slate-500">Creative Director</p>
@@ -110,7 +110,7 @@ export default function StudioVibePage() {
                   className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3]"
                   onClick={() => setSelected(p)}
                 >
-                  <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <Image src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#f97015]">{p.category} · {p.year}</span>
@@ -132,7 +132,7 @@ export default function StudioVibePage() {
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
               className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="relative">
-                <img src={selected.img} alt={selected.title} className="w-full aspect-video object-cover rounded-t-2xl" />
+                <Image src={selected.img} alt={selected.title} width={1200} height={675} className="w-full aspect-video object-cover rounded-t-2xl" />
                 <button onClick={() => setSelected(null)} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors" aria-label="Sluiten">
                   <X className="w-5 h-5" />
                 </button>
@@ -174,7 +174,7 @@ export default function StudioVibePage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Studio team aan het werk" className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
+            <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Studio team aan het werk" width={800} height={600} className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
           </motion.div>
         </div>
       </section>
@@ -190,8 +190,8 @@ export default function StudioVibePage() {
             <a href="mailto:hello@studiovibe.sr" className="inline-flex items-center gap-2 px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
               <Mail className="w-4 h-4" /> hello@studiovibe.sr
             </a>
-            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
-              <Instagram className="w-4 h-4" /> @studiovibe.sr
+            <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+              Bespreek uw project
             </a>
           </div>
         </div>
@@ -208,7 +208,6 @@ export default function StudioVibePage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['Categorie filter tabs (useState)', 'AnimatePresence filter animatie', 'Lightbox modal met project details', 'Statistieken sectie', 'Dot-grid hero achtergrond', 'CTA met email & Instagram links']} />
     </div>
   )
 }

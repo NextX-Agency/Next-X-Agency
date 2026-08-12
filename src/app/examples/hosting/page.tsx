@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Server, HardDrive, Globe, Shield, Activity, Upload, Download, Clock, RefreshCw, ChevronRight, CheckCircle2, AlertTriangle, Loader2, Cpu, MemoryStick, Wifi, Gauge, Bell, X, HomeIcon } from 'lucide-react'
-import DemoFeatures from '../_components/DemoFeatures'
 import { toast } from 'sonner'
 
 /* ─── Logo ─── */
@@ -423,7 +422,6 @@ export default function HostingPage() {
         ))}
       </nav>
 
-      <DemoFeatures features={['Loading skeleton bij eerste weergave', 'Realtime notificatie dropdown (Bell icon)', 'Recharts met realistisch dagverloop', 'Resource meters met animatie', 'Service status met detail info', 'Progressieve backup met stages', 'Herstart bevestigingsdialog', 'Plan upgrade modal met feature vergelijking', 'Uitgebreide footer met KvK', 'Mobile bottom navigation']} />
     </div>
   )
 }

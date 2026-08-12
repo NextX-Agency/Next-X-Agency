@@ -98,7 +98,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
 
   if (submitted) {
     return (
-      <div className={cn('bg-card p-10 text-center border border-foreground/15', className)}>
+      <div className={cn('bg-card p-10 text-center border border-foreground/15', className)} aria-live="polite">
         {/* Animated green checkmark ring */}
         <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center mx-auto mb-6">
           <svg className="w-9 h-9 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -106,13 +106,13 @@ function ContactFormFn({ className = '' }: { className?: string }) {
           </svg>
         </div>
         <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          Bericht verstuurd!
+          Aanvraag verstuurd
         </h3>
         <p className="text-foreground/80 text-sm mb-1">
           Bedankt voor uw bericht.
         </p>
         <p className="text-muted-foreground text-sm mb-8">
-          Wij nemen binnen 24-48 uur contact met u op met een vrijblijvende quote.
+          Wij nemen binnen 24–48 uur contact met u op met een helder voorstel.
         </p>
         <button
           onClick={() => setSubmitted(false)}
@@ -259,7 +259,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-foreground hover:bg-primary active:bg-primary-active text-white font-bold text-sm px-5 py-4 transition-colors duration-300 min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="button-primary w-full min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>

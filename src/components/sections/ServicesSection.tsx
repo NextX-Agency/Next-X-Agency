@@ -77,33 +77,33 @@ const IconSeo = () => (
 const categories = [
   {
     id: 'build',
-    tag: 'Web & Platform',
-    title: 'Build',
-    subtitle: 'Van snelle landingspagina tot volledig e-commerce platform.',
+    tag: 'Web & platform',
+    title: 'Bouwen',
+    subtitle: 'Van eerste pagina tot complete webshop, met een helder fundament.',
     services: [
-      { name: 'Business Card Site', description: 'One-page digitale identiteit. Professioneel en direct inzetbaar.', price: '$150', href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
-      { name: 'Service Website', description: 'Responsive multi-page platform met geavanceerde functionaliteiten.', price: '$250', href: '/examples/service-website', recommended: true, features: ["Multi-page design", 'Contactformulier', 'Basis SEO setup'], Icon: IconServiceWebsite },
-      { name: 'Starter Webshop', description: 'Max 25 producten. Winkelwagen, checkout en betaalgateway inbegrepen.', price: '$350', href: '/examples/starter-webshop', recommended: false, Icon: IconWebshop },
+      { name: 'Bedrijfswebsite', description: 'Een heldere one-page site om uw bedrijf direct goed neer te zetten.', price: '$150', href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
+      { name: 'Service website', description: 'Meerdere pagina’s, duidelijke informatie en ruimte om mee te groeien.', price: '$250', href: '/examples/service-website', recommended: true, features: ['Meerdere pagina’s', 'Contactformulier', 'Basis SEO'], Icon: IconServiceWebsite },
+      { name: 'Starter webshop', description: 'Tot 25 producten, inclusief winkelwagen en een korte checkout.', price: '$350', href: '/examples/starter-webshop', recommended: false, Icon: IconWebshop },
     ],
   },
   {
     id: 'design',
     tag: 'Visueel & UX',
-    title: 'Design',
-    subtitle: 'Merkidentiteit, interface en gebruikerservaring die converteert.',
+    title: 'Ontwerpen',
+    subtitle: 'Een merk en interface die begrijpelijk voelen en herkenbaar blijven.',
     services: [
-      { name: 'Logo Design', description: 'Vector-gebaseerd conceptontwerp. Scherpe merkidentiteit voor elk formaat.', price: '$55', href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
-      { name: 'UX Audit & Advies', description: 'Analyse en verbeterpunten voor uw huidige website of platform.', price: '$100', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
-      { name: 'UI Design (Re-design)', description: 'Nieuwe designs en mockups voor verbeterde gebruikerservaring.', price: '$180', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
+      { name: 'Logo en merkidentiteit', description: 'Een herkenbaar vertrekpunt voor alle uitingen van uw bedrijf.', price: '$55', href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
+      { name: 'UX audit en advies', description: 'Concrete verbeterpunten voor uw huidige website of platform.', price: '$100', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
+      { name: 'UI ontwerp', description: 'Nieuwe schermen en componenten die het gebruik eenvoudiger maken.', price: '$180', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
     ],
   },
   {
     id: 'marketing',
     tag: 'Zichtbaarheid',
-    title: 'Marketing',
-    subtitle: 'Vergroot uw online bereik met SEO en zoekwoordstrategie.',
+    title: 'Vindbaar worden',
+    subtitle: 'Een goede technische basis en content die zoekmachines begrijpen.',
     services: [
-      { name: 'Basic SEO Setup', description: 'Meta tags, sitemap, Google Search Console en robots.txt configuratie.', price: '$75', href: '/examples/seo', recommended: false, features: ['Meta tags optimalisatie', 'Sitemap setup', 'Google Search Console'], Icon: IconSeo },
+      { name: 'SEO basisinrichting', description: 'Meta tags, sitemap, Search Console en robots.txt op orde.', price: '$75', href: '/examples/seo', recommended: false, features: ['Meta tags', 'Sitemap', 'Search Console'], Icon: IconSeo },
     ],
   },
 ] as const
@@ -250,7 +250,7 @@ function ServicesSectionFn() {
               <span className="text-primary">maken</span>
             </h2>
             <motion.p variants={blurFadeIn} className="mt-5 text-muted-foreground text-lg leading-relaxed">
-              Zeven diensten, vaste prijzen. Elk project ontwerpen en bouwen we zelf.
+              Van eerste schets tot livegang, met één team en een duidelijke prijs.
             </motion.p>
           </motion.div>
           <motion.div variants={fadeInUp}>

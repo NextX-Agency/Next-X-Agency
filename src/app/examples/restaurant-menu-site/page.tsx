@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock, MapPin, Phone, Utensils, Leaf, Flame, Fish, IceCreamCone, Star, Users, CalendarDays, ChevronDown, ChevronUp, Home as HomeIcon, Timer, Wheat, Milk, NutOff, Egg, Shell, Bean, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
-import DemoFeatures from '../_components/DemoFeatures'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
 
 /* ─── Logo ─── */
@@ -124,7 +124,7 @@ export default function WarungIndahPage() {
     <div className="min-h-screen bg-stone-50">
       {/* ═══ HERO ═══ */}
       <section className="relative h-[80vh] min-h-[480px] flex items-end" id="home">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&h=700&fit=crop&q=80" alt="Warung Indah restaurant interieur" className="absolute inset-0 w-full h-full object-cover" />
+        <Image src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&h=700&fit=crop&q=80" alt="Warung Indah restaurant interieur" fill sizes="100vw" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent" />
         <div className="relative z-10 max-w-6xl mx-auto px-6 pb-12 w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
@@ -151,7 +151,7 @@ export default function WarungIndahPage() {
                   'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80',
                   'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&q=80',
                 ].map((src, i) => (
-                  <img key={i} src={src} alt="Gast" className="w-8 h-8 rounded-full border-2 border-stone-900 object-cover" />
+                  <Image key={i} src={src} alt="Gast" width={32} height={32} className="w-8 h-8 rounded-full border-2 border-stone-900 object-cover" />
                 ))}
               </div>
               <div className="flex items-center gap-1">
@@ -237,7 +237,7 @@ export default function WarungIndahPage() {
                     onClick={() => setExpandedItem(isExpanded ? null : item.name)}>
                     <div className="flex gap-0">
                       <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex-shrink-0">
-                        <img src={item.img} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+                        <Image src={item.img} alt={item.name} width={400} height={300} className="w-full h-full object-cover" />
                         {item.prepTime && (
                           <span className="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/60 text-white text-[10px] font-bold rounded flex items-center gap-1">
                             <Timer className="w-2.5 h-2.5" />{item.prepTime}
@@ -311,7 +311,7 @@ export default function WarungIndahPage() {
             {atmosphereImages.map((img, i) => (
               <motion.div key={img.alt} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className={`rounded-2xl overflow-hidden ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
-                <img src={img.src} alt={img.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 aspect-square" loading="lazy" />
+                <Image src={img.src} alt={img.alt} width={600} height={400} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 aspect-square" />
               </motion.div>
             ))}
           </div>
@@ -328,7 +328,7 @@ export default function WarungIndahPage() {
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-green-600 mb-3 block">Reserveren</span>
             <h2 className="text-3xl font-bold text-stone-900 tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Reserveer uw tafel</h2>
             <p className="text-stone-600 mb-6 leading-relaxed">Kom genieten van de lekkerste Surinaamse gerechten. Reserveer vooruit en wij zorgen dat uw tafel klaarstaat.</p>
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&q=80" alt="Restaurant sfeer" className="rounded-2xl w-full aspect-[3/2] object-cover mb-6" loading="lazy" />
+            <Image src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&q=80" alt="Restaurant sfeer" width={600} height={400} className="rounded-2xl w-full aspect-[3/2] object-cover mb-6" />
             <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
               <h4 className="text-sm font-bold text-stone-800 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Praktische info</h4>
               <ul className="text-sm text-stone-600 space-y-1.5">
@@ -472,9 +472,9 @@ export default function WarungIndahPage() {
                   { label: 'Instagram', path: 'M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm4.25 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5.25-2.25a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z' },
                   { label: 'Facebook', path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
                 ].map(s => (
-                  <a key={s.label} href="#" aria-label={s.label} className="w-9 h-9 rounded-lg bg-stone-800 hover:bg-green-600 flex items-center justify-center transition-colors">
+                  <span key={s.label} aria-label={`${s.label} (volgt binnenkort)`} className="w-9 h-9 rounded-lg bg-stone-800/60 flex items-center justify-center text-stone-500" aria-disabled="true">
                     <svg className="w-4 h-4 text-stone-400" fill="currentColor" viewBox="0 0 24 24"><path d={s.path} /></svg>
-                  </a>
+                  </span>
                 ))}
               </div>
             </div>
@@ -529,7 +529,6 @@ export default function WarungIndahPage() {
         </div>
       </nav>
 
-      <DemoFeatures features={['Dagspecials banner met kortingsprijzen', 'Allergeenpictogrammen per gerecht (7 types)', 'Bereidingstijd per gerecht', 'Multi-step reserveringswizard (3 stappen)', 'Sfeer galerij', 'Gast testimonials met ratings', 'Mobiele bottom navigatie', 'WhatsApp integratie']} />
       <FloatingWhatsApp phone="5974551234" company="Warung Indah" message="Hallo! Ik wil graag bestellen of reserveren." />
     </div>
   )

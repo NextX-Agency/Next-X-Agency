@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Backgrounds & Surfaces - Light editorial theme */
-  --color-background: #ffffff;
-  --color-background-elevated: #f7f6f4;
-  --color-card: #ffffff;
-  --color-card-hover: #f7f6f4;
-  --color-popover: #ffffff;
-  --color-secondary: #f5f4f2;
-  --color-muted: #f5f4f2;
-  --color-input: #ffffff;
-  --color-input-focus: #faf9f7;
+  /* Warm editorial palette: one accent, one family of neutrals. */
+  --color-background: #fbfaf7;
+  --color-background-elevated: #f2eee8;
+  --color-card: #fffdf9;
+  --color-card-hover: #f7f1e9;
+  --color-popover: #fffdf9;
+  --color-secondary: #eee8df;
+  --color-muted: #eee8df;
+  --color-input: #fffdf9;
+  --color-input-focus: #fffaf3;
 
   /* Foregrounds & Text */
-  --color-foreground: #171412;
-  --color-card-foreground: #171412;
-  --color-muted-foreground: #6b6963;
-  --color-secondary-foreground: #171412;
+  --color-foreground: #201b17;
+  --color-card-foreground: #201b17;
+  --color-muted-foreground: #71685f;
+  --color-secondary-foreground: #201b17;
 
   /* Brand Colors */
-  --color-primary: #f97316;
-  --color-primary-hover: #ea580c;
-  --color-primary-active: #c2410c;
+  --color-primary: #c45a2b;
+  --color-primary-hover: #a94720;
+  --color-primary-active: #8f391b;
   --color-primary-foreground: #ffffff;
-  --color-primary-muted: rgba(249, 115, 22, 0.1);
-  --color-accent: #f97316;
+  --color-primary-muted: rgba(196, 90, 43, 0.12);
+  --color-accent: #c45a2b;
 
   /* Borders */
-  --color-border: rgba(23, 20, 18, 0.09);
-  --color-border-hover: #f97316;
-  --color-ring: #f97316;
+  --color-border: rgba(32, 27, 23, 0.13);
+  --color-border-hover: #c45a2b;
+  --color-ring: #c45a2b;
 
   /* Semantic States */
   --color-success: #22c55e;
@@ -46,18 +46,18 @@
   --color-info-foreground: #1d4ed8;
 
   /* Shadows - soft light design */
-  --shadow-sm: 0 1px 2px rgba(23, 20, 18, 0.04);
-  --shadow: 0 4px 16px rgba(23, 20, 18, 0.06);
-  --shadow-md: 0 8px 24px rgba(23, 20, 18, 0.08);
-  --shadow-lg: 0 16px 48px rgba(23, 20, 18, 0.1);
-  --shadow-xl: 0 24px 64px rgba(23, 20, 18, 0.12);
+  --shadow-sm: 0 1px 2px rgba(76, 46, 30, 0.05);
+  --shadow: 0 4px 16px rgba(76, 46, 30, 0.07);
+  --shadow-md: 0 8px 24px rgba(76, 46, 30, 0.09);
+  --shadow-lg: 0 16px 48px rgba(76, 46, 30, 0.12);
+  --shadow-xl: 0 24px 64px rgba(76, 46, 30, 0.15);
 
   /* Border Radius - selective rounding */
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-md: 14px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-sm: 3px;
+  --radius: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -68,7 +68,7 @@
   --space-2xl: 3rem;
 
   /* Fonts */
-  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
   --font-heading: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
 }
 
@@ -82,14 +82,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  letter-spacing: 0;
+  letter-spacing: -0.008em;
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
 
 ::selection {
-  background: rgba(249, 115, 22, 0.18);
-  color: #171412;
+  background: rgba(196, 90, 43, 0.2);
+  color: #201b17;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.content-wrap {
+  width: min(100% - 3rem, 76rem);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 /* ===== TYPOGRAPHY CLASSES ===== */
@@ -99,6 +120,7 @@ body {
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 .text-headline {
@@ -107,6 +129,7 @@ body {
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .text-title {
@@ -143,7 +166,7 @@ body {
 /* Input Fields - dark */
 .input-field {
   @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground placeholder:text-muted-foreground transition-all duration-200;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
 }
 
 .input-field:focus {
@@ -154,7 +177,7 @@ body {
 
 .select-field {
   @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground transition-all duration-200 appearance-none cursor-pointer;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
 }
 
 .select-field:focus {
@@ -202,6 +225,45 @@ body {
   @apply text-muted-foreground max-w-md;
 }
 
+.button-primary,
+.button-secondary {
+  min-height: 2.75rem;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.button-primary {
+  background: var(--color-foreground);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--color-primary);
+}
+
+.button-secondary {
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+}
+
+.button-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.button-primary:active,
+.button-secondary:active {
+  transform: translateY(1px);
+}
+
 /* Focus ring (global) */
 *:focus-visible {
   @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-background;
@@ -213,22 +275,22 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #fbfaf7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e2e0db;
-  border-radius: 9999px;
+  background: #d8cfc4;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f97316;
+  background: #c45a2b;
 }
 
 /* ===== LIGHT BACKGROUND GRID ===== */
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(23, 20, 18, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 20, 18, 0.035) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(32, 27, 23, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(32, 27, 23, 0.035) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -261,5 +323,3 @@ body {
     font-size: 3.5rem;
   }
 }
-
-

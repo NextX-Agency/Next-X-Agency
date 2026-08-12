@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { BarChart3, ArrowRight, Smartphone, Monitor, Users, Clock, MousePointerClick, TrendingUp, CheckCircle2, XCircle, Lightbulb, Download, ChevronRight } from 'lucide-react'
 import { toast } from 'sonner'
-import DemoFeatures from '../_components/DemoFeatures'
 
 /* ─── Logo ─── */
 function ShopPlazaLogo({ size = 36 }: { size?: number }) {
@@ -40,9 +40,9 @@ function CompareSlider({ before, after }: { before: string; after: string }) {
     <div ref={containerRef} className="relative rounded-2xl overflow-hidden aspect-[16/10] cursor-col-resize select-none border border-violet-200"
       onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onTouchMove={onTouchMove}>
       {/* After (full) */}
-      <img src={after} alt="Na redesign" className="absolute inset-0 w-full h-full object-cover" />
+      <Image src={after} alt="Na redesign" width={1000} height={625} className="absolute inset-0 w-full h-full object-cover" />
       {/* Before (clipped) */}
-      <img src={before} alt="Voor redesign" className="absolute inset-0 w-full h-full object-cover" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
+      <Image src={before} alt="Voor redesign" width={1000} height={625} className="absolute inset-0 w-full h-full object-cover" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
       {/* Divider */}
       <div className="absolute top-0 bottom-0" style={{ left: `${pos}%`, transform: 'translateX(-50%)' }}>
         <div className="w-0.5 h-full bg-white shadow-lg" />
@@ -146,11 +146,11 @@ export default function UxUiDesignPage() {
             <div className="flex items-center gap-2 mb-3"><Smartphone className="w-4 h-4 text-violet-500" /><span className="text-sm font-bold text-slate-700">Mobiele versie</span></div>
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden border-2 border-red-200 relative">
-                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80&sat=-100" alt="Mobile voor" className="w-full aspect-[9/16] object-cover opacity-80" />
+                <Image src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80&sat=-100" alt="Mobile voor" width={400} height={700} className="w-full aspect-[9/16] object-cover opacity-80" />
                 <span className="absolute top-3 left-3 px-2.5 py-1 bg-red-500/90 text-white text-[10px] font-bold rounded-full">Voor</span>
               </div>
               <div className="rounded-2xl overflow-hidden border-2 border-green-200 relative">
-                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80" alt="Mobile na" className="w-full aspect-[9/16] object-cover" />
+                <Image src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80" alt="Mobile na" width={400} height={700} className="w-full aspect-[9/16] object-cover" />
                 <span className="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 text-white text-[10px] font-bold rounded-full">Na</span>
               </div>
             </div>
@@ -213,13 +213,13 @@ export default function UxUiDesignPage() {
       <section className="bg-violet-700 py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Uw platform verdient beter UX</h2>
-          <p className="text-violet-200 mb-6 leading-relaxed">Laat ons uw product analyseren en een data-driven redesign voorstellen die resultaat oplevert.</p>
+          <p className="text-violet-200 mb-6 leading-relaxed">Laat ons uw product analyseren en een onderbouwd redesign voorstellen dat het gebruik eenvoudiger maakt.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <button onClick={() => toast.success('UX Audit rapport wordt gegenereerd...', { description: 'U ontvangt het volledige rapport per e-mail.' })}
               className="px-6 py-3 bg-white text-violet-700 font-bold rounded-xl hover:bg-violet-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               <Download className="w-4 h-4 inline mr-2" /> Download UX Rapport
             </button>
-            <a href="#" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+            <a href="/contact" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               Gratis UX Audit aanvragen
             </a>
           </div>
@@ -234,7 +234,6 @@ export default function UxUiDesignPage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['Voor/na slider (useRef + mousemove/touchmove)', 'Geanimeerde metrics tellers', 'Bevindingen (4 problemen + 4 oplossingen)', 'Design procesvisualisatie (4 stappen)', 'Desktop & mobiel vergelijking', 'Download UX Rapport knop + toast']} />
     </div>
   )
 }

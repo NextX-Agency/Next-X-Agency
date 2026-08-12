@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 
@@ -85,7 +86,7 @@ export default function TestimonialsSlider({ testimonials, accentColor = '#0ea5e
               <p className="text-sm text-slate-600 leading-relaxed mb-5">&ldquo;{t.text}&rdquo;</p>
               <Stars count={t.rating} color={accentColor} />
               <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-100">
-                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" loading="lazy" />
+                  <Image src={t.avatar} alt={t.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover" />
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-slate-900 truncate">{t.name}</p>
                   <p className="text-xs text-slate-500 truncate">{t.role}</p>

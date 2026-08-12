@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Inter } from 'next/font/google'
+import { Manrope, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -9,11 +9,11 @@ const spaceGrotesk = Space_Grotesk({
   weight: ['300', '400', '500', '600', '700'],
 })
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-manrope',
   display: 'swap',
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
 })
 
 const SITE_URL = 'https://nextxagency.com'
@@ -54,12 +54,14 @@ export const metadata: Metadata = {
     siteName: 'NextX Agency',
     type: 'website',
     locale: 'nl_SR',
+    images: [{ url: '/facebook-banner.png', width: 1200, height: 630, alt: 'NextX Agency' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NextX Agency — Webdesign & Branding op maat',
     description:
       'Websites, webshops en merken op maat voor Surinaamse bedrijven. Doordacht design tegen vaste prijzen.',
+    images: ['/facebook-banner.png'],
   },
   robots: {
     index: true,
@@ -118,7 +120,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="nl" className={`scroll-smooth ${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="nl" className={`scroll-smooth ${spaceGrotesk.variable} ${manrope.variable}`}>
       <body className="bg-background text-foreground antialiased">
         <script
           type="application/ld+json"

@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingCart, X, Plus, Minus, Trash2, Search, Star, ChevronRight, SlidersHorizontal, Truck, Shield, Headphones, Monitor, Smartphone, Laptop, Cpu, Camera, Gamepad2, BatteryCharging, Wifi } from 'lucide-react'
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
-import DemoFeatures from '../_components/DemoFeatures'
 
 /* ─── Logo ─── */
 function TechMartLogo({ size = 36 }: { size?: number }) {
@@ -122,7 +122,7 @@ export default function TechMartPage() {
               </a>
             </div>
           </div>
-          <img src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" className="w-full md:w-[360px] rounded-2xl shadow-2xl object-cover aspect-[3/2]" />
+          <Image src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" width={500} height={350} className="w-full md:w-[360px] rounded-2xl shadow-2xl object-cover aspect-[3/2]" />
         </div>
       </section>
 
@@ -229,7 +229,7 @@ export default function TechMartPage() {
                       className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
                       onClick={() => setSelectedProduct(p)}>
                       <div className="relative aspect-square overflow-hidden bg-slate-100">
-                        <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                        <Image src={p.img} alt={p.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         {p.badge && <span className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold rounded-full ${p.badge === 'Sale' ? 'bg-red-500 text-white' : p.badge === 'Nieuw' ? 'bg-green-500 text-white' : 'bg-blue-500 text-white'}`}>{p.badge}</span>}
                       </div>
                       <div className="p-3">
@@ -274,7 +274,7 @@ export default function TechMartPage() {
               className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="grid sm:grid-cols-2 gap-0">
                 <div className="relative bg-slate-100">
-                  <img src={selectedProduct.img} alt={selectedProduct.name} className="w-full aspect-square object-cover" />
+                  <Image src={selectedProduct.img} alt={selectedProduct.name} width={600} height={600} className="w-full aspect-square object-cover" />
                   <button onClick={() => setSelectedProduct(null)} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center" aria-label="Sluiten"><X className="w-4 h-4" /></button>
                 </div>
                 <div className="p-6 flex flex-col">
@@ -320,7 +320,7 @@ export default function TechMartPage() {
                 {cart.length === 0 && <p className="text-center text-slate-400 py-12">Uw wagen is leeg</p>}
                 {cart.map(i => (
                   <div key={i.id} className="flex gap-3 bg-slate-50 rounded-xl p-3">
-                    <img src={i.img} alt={i.name} className="w-16 h-16 rounded-lg object-cover" />
+                    <Image src={i.img} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-lg object-cover" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-sm text-slate-900 truncate">{i.name}</h4>
                       <p className="text-sm text-blue-600 font-bold">SRD {i.price.toLocaleString()}</p>
@@ -356,7 +356,6 @@ export default function TechMartPage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['16 producten met filters & zoeken', 'Product detail modal', 'Werkende winkelwagen (useState)', 'Cart drawer (Framer Motion)', 'Mobiel filter panel', 'Deal-badges & kortingsprijzen', 'WhatsApp integratie']} />
       <FloatingWhatsApp phone="5974559876" company="TechMart SUR" message="Hallo! Ik heb een vraag over een product." />
     </div>
   )

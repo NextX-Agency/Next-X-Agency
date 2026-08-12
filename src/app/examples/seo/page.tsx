@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
 import { TrendingUp, TrendingDown, Eye, MousePointerClick, Globe, Search, ArrowUpRight, ArrowDownRight, Download, Calendar, ExternalLink, ChevronUp, ChevronDown, Target, Zap } from 'lucide-react'
 import { toast } from 'sonner'
-import DemoFeatures from '../_components/DemoFeatures'
 
 /* ─── Logo ─── */
 function SeoLogo({ size = 36 }: { size?: number }) {
@@ -143,7 +142,7 @@ export default function SeoDashboardPage() {
               </div>
             </div>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 600, height: 256 }}>
                 <BarChart data={dataSlice}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                   <XAxis dataKey="maand" fontSize={11} tickLine={false} axisLine={false} />
@@ -163,7 +162,7 @@ export default function SeoDashboardPage() {
               <p className="text-xs text-slate-400">Lager = beter</p>
             </div>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 400, height: 256 }}>
                 <AreaChart data={positionData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                   <XAxis dataKey="week" fontSize={11} tickLine={false} axisLine={false} />
@@ -227,7 +226,7 @@ export default function SeoDashboardPage() {
                     </td>
                     <td className="py-3 px-3 text-center text-xs text-slate-600">{kw.volume.toLocaleString()}</td>
                     <td className="py-3 px-3">
-                      <a href="#" className="text-xs text-emerald-600 hover:underline inline-flex items-center gap-0.5">
+                      <a href={`https://${kw.url}`} target="_blank" rel="noopener noreferrer" className="text-xs text-emerald-600 hover:underline inline-flex items-center gap-0.5">
                         {kw.url} <ExternalLink className="w-2.5 h-2.5" />
                       </a>
                     </td>
@@ -264,7 +263,6 @@ export default function SeoDashboardPage() {
         </div>
       </footer>
 
-      <DemoFeatures features={['Recharts staafdiagram (organisch vs betaald)', 'Recharts gebiedsdiagram (positie trend)', 'Sorteerbare keyword-tabel (klik kolommen)', 'Periode filter tabs (30d / 60d / 90d)', 'Actieknopen per categorie + toast', 'Export PDF knop']} />
     </div>
   )
 }

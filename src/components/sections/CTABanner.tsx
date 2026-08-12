@@ -15,11 +15,11 @@ function CTABannerFn() {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl font-bold text-neutral-950 tracking-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-            Klaar om uw bedrijf online te laten groeien?
+            Een goed gesprek is een beter begin.
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-lg text-neutral-950/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Stuur ons een bericht en ontvang binnen 24-48 uur een vrijblijvende
-            quote.
+            Vertel wat u wilt bouwen. Wij reageren binnen 24–48 uur met een
+            helder voorstel.
           </motion.p>
 
           <motion.div
@@ -29,9 +29,9 @@ function CTABannerFn() {
             <motion.div variants={scaleIn} className="w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-neutral-950 text-white font-bold text-sm px-8 py-4 transition-colors duration-300 hover:bg-neutral-800 min-h-11"
+                className="button-primary group w-full sm:w-auto bg-neutral-950 hover:bg-neutral-800"
               >
-                Stuur een aanvraag
+                Plan een gesprek
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -42,9 +42,9 @@ function CTABannerFn() {
                 href="https://wa.me/5978318508"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto text-center bg-white text-neutral-950 font-bold text-sm px-8 py-4 transition-colors duration-300 hover:bg-neutral-100 min-h-11"
+                className="button-secondary group w-full sm:w-auto border-white bg-white text-neutral-950 hover:border-white hover:bg-neutral-100 hover:text-neutral-950"
               >
-                WhatsApp ons
+                Chat via WhatsApp
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>

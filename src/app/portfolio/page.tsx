@@ -18,9 +18,8 @@ const projects = [
     index: '01',
     title: 'Shop NextX',
     category: 'E-Commerce',
-    description: 'Moderne webshop met productoverzicht, winkelwagen en een soepele checkout ervaring — volledig op maat gebouwd voor de Surinaamse markt.',
+    description: 'Webshop met productoverzicht, winkelwagen en een korte checkout voor de Surinaamse markt.',
     tags: ['E-Commerce', 'Webshop', 'Next.js'],
-    accent: 'from-primary/30 via-orange-500/10',
     url: 'shop-nextx.com',
     href: 'https://www.shop-nextx.com/',
   },
@@ -28,9 +27,8 @@ const projects = [
     index: '02',
     title: 'Indef Design',
     category: 'Portfolio Website',
-    description: 'Strak creatief portfolio voor een design studio — modern, snel en volledig responsive met een unieke visuele stijl.',
+    description: 'Portfolio voor een designstudio waarin projecten en contact rustig naast elkaar staan.',
     tags: ['Portfolio', 'Web Design', 'Branding'],
-    accent: 'from-primary/20 via-orange-400/10',
     url: 'indefdesign.com',
     href: 'https://www.indefdesign.com/',
   },
@@ -103,7 +101,7 @@ export default function PortfolioPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute inset-0 z-30"
-                    aria-label={`View ${project.title}`}
+                    aria-label={`Bekijk ${project.title}`}
                   />
                   
                   {/* Browser mockup */}
@@ -187,7 +185,7 @@ export default function PortfolioPage() {
                       className="relative z-40 inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover transition-colors duration-200 tracking-wide uppercase"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
-                      Bekijk live
+                      Bekijk project
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
