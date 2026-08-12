@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Manrope, Space_Grotesk, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
-import { CursorReticle } from '@/components/interactive/CursorReticle'
 import { ScrollProgress } from '@/components/interactive/ScrollProgress'
 
 const spaceGrotesk = Space_Grotesk({
@@ -146,7 +145,6 @@ export default function RootLayout({
         <ScrollProgress />
         {children}
         <div className="grain-overlay" aria-hidden="true" />
-        <CursorReticle />
       </body>
     </html>
   )

@@ -251,65 +251,6 @@
   }
 }
 
-/* ===== DRAFTING CROSSHAIR CURSOR =====
-   Only mounted for fine pointers without a reduced-motion preference, so the
-   native cursor is hidden only where the reticle actually replaces it. */
-@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  html.has-reticle,
-  html.has-reticle a,
-  html.has-reticle button,
-  html.has-reticle [role='button'] {
-    cursor: none;
-  }
-
-  /* Typing still needs a real caret cursor. */
-  html.has-reticle input,
-  html.has-reticle textarea,
-  html.has-reticle select,
-  html.has-reticle [contenteditable] {
-    cursor: auto;
-  }
-}
-
-.cursor-reticle {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-toast);
-  pointer-events: none;
-  will-change: transform;
-  transition: opacity 220ms ease;
-}
-
-.cursor-reticle__arm {
-  position: absolute;
-  background: var(--color-primary);
-  opacity: 0.9;
-}
-
-.cursor-reticle__arm--h {
-  width: 15px;
-  height: 1.5px;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-reticle__arm--v {
-  width: 1.5px;
-  height: 15px;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-reticle__ring {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border: 1.5px solid rgba(32, 27, 23, 0.35);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 260ms ease, background-color 260ms ease;
-}
-
 /* Section register: the rule + label + index that opens every block. */
 .register {
   display: flex;
