@@ -113,7 +113,7 @@ export default function UxKukruPage() {
               <Layers className="w-3 h-3" /> Case Study · Community Platform
             </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
               UX/UI Design voor <span className="text-violet-600">Kukru</span> Community
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
@@ -146,7 +146,7 @@ export default function UxKukruPage() {
       {/* ═══ FEATURES ═══ */}
       <section id="features" className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-black text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Platform Features</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Platform Features</h2>
           <p className="text-slate-500 max-w-lg mx-auto">Ontworpen na 20+ user interviews en 3 iteratie-rondes. Elke feature is gevalideerd met echte gebruikers.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -167,14 +167,14 @@ export default function UxKukruPage() {
       <section id="process" className="bg-slate-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-black text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Ons Proces</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Ons Proces</h2>
             <p className="text-slate-500 max-w-lg mx-auto">De Double Diamond methode aangepast voor de Surinaamse markt.</p>
           </div>
           <div className="grid md:grid-cols-4 gap-4">
             {process.map((p, i) => (
               <motion.div key={p.num} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-white rounded-2xl p-6 border border-slate-200 text-center">
-                <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-black ${p.color} mb-3`}>{p.num}</span>
+                <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold ${p.color} mb-3`}>{p.num}</span>
                 <h3 className="font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{p.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">{p.desc}</p>
               </motion.div>
@@ -186,7 +186,7 @@ export default function UxKukruPage() {
       {/* ═══ TEAM ═══ */}
       <section id="team" className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-black text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Het Team</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Het Team</h2>
           <p className="text-slate-500">De mensen achter het Kukru design traject.</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -207,7 +207,7 @@ export default function UxKukruPage() {
       <section id="pricing" className="bg-gradient-to-b from-violet-50 to-white py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-black text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>UX/UI Pakketten</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>UX/UI Pakketten</h2>
             <p className="text-slate-500 max-w-lg mx-auto">Transparante prijzen, geen verrassingen. Elk pakket inclusief Figma bestanden en developer handoff.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
@@ -221,7 +221,7 @@ export default function UxKukruPage() {
                 )}
                 <h3 className="font-bold text-slate-900 text-lg mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{p.name}</h3>
                 <p className="text-xs text-slate-500 mb-3">{p.desc}</p>
-                <p className="text-3xl font-black text-slate-900 mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
+                <p className="text-3xl font-bold text-slate-900 mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
                   {p.price}{p.price !== 'Op maat' && <span className="text-sm font-normal text-slate-400"> eenmalig</span>}
                 </p>
                 <ul className="space-y-2 mb-6">
@@ -244,7 +244,7 @@ export default function UxKukruPage() {
       {/* ═══ FAQ ═══ */}
       <section id="faq" className="max-w-3xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Veelgestelde vragen</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Veelgestelde vragen</h2>
         </div>
         <div className="space-y-2">
           {faqs.map((f, i) => (
@@ -273,7 +273,7 @@ export default function UxKukruPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10">
             <div>
-              <h2 className="text-3xl font-black text-slate-900 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Laten we praten</h2>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Laten we praten</h2>
               <p className="text-slate-500 mb-8">Vertel ons over uw project en we nemen binnen 24 uur contact op met een voorstel.</p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">

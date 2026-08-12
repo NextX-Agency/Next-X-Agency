@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
-import { Manrope, Space_Grotesk } from 'next/font/google'
+import { Manrope, Space_Grotesk, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
+import { CursorReticle } from '@/components/interactive/CursorReticle'
+import { ScrollProgress } from '@/components/interactive/ScrollProgress'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -14,6 +16,15 @@ const manrope = Manrope({
   variable: '--font-manrope',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
+})
+
+// Metadata face. Every label, index, coordinate and timing is set in mono —
+// it is what makes the page read as a drafting document rather than a deck.
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-plex-mono',
+  display: 'swap',
+  weight: ['400', '500', '600'],
 })
 
 const SITE_URL = 'https://nextxagency.com'
@@ -120,13 +131,22 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="nl" className={`scroll-smooth ${spaceGrotesk.variable} ${manrope.variable}`}>
+    <html
+      lang="nl"
+      className={`scroll-smooth ${spaceGrotesk.variable} ${manrope.variable} ${plexMono.variable}`}
+    >
       <body className="bg-background text-foreground antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <a href="#main" className="skip-link">
+          Direct naar de inhoud
+        </a>
+        <ScrollProgress />
         {children}
+        <div className="grain-overlay" aria-hidden="true" />
+        <CursorReticle />
       </body>
     </html>
   )

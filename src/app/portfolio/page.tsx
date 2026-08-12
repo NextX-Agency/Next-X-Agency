@@ -56,7 +56,7 @@ export default function PortfolioPage() {
             <div className="overflow-hidden">
               <motion.h1
                 variants={clipRevealUp}
-                className="text-5xl md:text-7xl font-black tracking-tight text-foreground leading-[0.95] mb-1"
+                className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[0.95] mb-1"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Recente
@@ -65,7 +65,7 @@ export default function PortfolioPage() {
             <div className="overflow-hidden mb-8">
               <motion.h1
                 variants={clipRevealUp}
-                className="text-5xl md:text-7xl font-black tracking-tight text-primary leading-[0.95]"
+                className="text-5xl md:text-7xl font-bold tracking-tight text-primary leading-[0.95]"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Projecten.
@@ -151,14 +151,14 @@ export default function PortfolioPage() {
                         {project.category}
                       </span>
                       <span
-                        className="text-xs font-black text-foreground/15 tracking-widest"
+                        className="text-xs font-bold text-foreground/15 tracking-widest"
                         style={{ fontFamily: 'var(--font-heading)' }}
                       >
                         {project.index}
                       </span>
                     </div>
                     <h3
-                      className="text-lg font-black text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
+                      className="text-lg font-bold text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {project.title}

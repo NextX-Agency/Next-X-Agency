@@ -7,6 +7,21 @@ import { fadeInUp, blurFadeIn, staggerContainer, scaleIn } from '@/lib/animation
 function CTABannerFn() {
   return (
     <section className="py-28 lg:py-36 relative overflow-hidden bg-primary">
+      {/* Break the flat fill: an off-centre warm hotspot plus a darker sink in
+          the opposite corner, so the slab has a light direction. */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(46rem 30rem at 22% 8%, rgba(255,214,170,0.30), transparent 60%), radial-gradient(40rem 28rem at 88% 108%, rgba(36,29,24,0.28), transparent 62%)',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="bg-grid-pattern absolute inset-0 opacity-40 pointer-events-none"
+        aria-hidden="true"
+      />
+
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <motion.div
           variants={staggerContainer}

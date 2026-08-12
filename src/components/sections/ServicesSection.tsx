@@ -14,23 +14,23 @@ import {
 const IconBusinessCard = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <rect x="6" y="18" width="52" height="28" rx="4" />
-    <line x1="6" y1="27" x2="58" y2="27" stroke="#f97316" strokeWidth="0.8" />
-    <rect x="12" y="33" width="16" height="2" rx="1" fill="#f97316" opacity="0.7" />
+    <line x1="6" y1="27" x2="58" y2="27" stroke="#c45a2b" strokeWidth="0.8" />
+    <rect x="12" y="33" width="16" height="2" rx="1" fill="#c45a2b" opacity="0.7" />
     <rect x="12" y="38" width="10" height="1.5" rx="0.75" fill="currentColor" opacity="0.35" />
-    <circle cx="47" cy="36" r="6" stroke="#f97316" strokeWidth="1" />
+    <circle cx="47" cy="36" r="6" stroke="#c45a2b" strokeWidth="1" />
   </svg>
 )
 
 const IconServiceWebsite = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <rect x="8" y="12" width="48" height="36" rx="4" />
-    <line x1="8" y1="22" x2="56" y2="22" stroke="#f97316" strokeWidth="0.8" />
-    <circle cx="14" cy="17" r="1.5" fill="#f97316" />
+    <line x1="8" y1="22" x2="56" y2="22" stroke="#c45a2b" strokeWidth="0.8" />
+    <circle cx="14" cy="17" r="1.5" fill="#c45a2b" />
     <circle cx="20" cy="17" r="1.5" fill="currentColor" opacity="0.4" />
     <circle cx="26" cy="17" r="1.5" fill="currentColor" opacity="0.25" />
     <rect x="14" y="28" width="36" height="3" rx="1" fill="currentColor" opacity="0.15" />
     <rect x="14" y="34" width="22" height="2" rx="1" fill="currentColor" opacity="0.1" />
-    <path d="M22 56 L42 56" stroke="#f97316" strokeWidth="1" />
+    <path d="M22 56 L42 56" stroke="#c45a2b" strokeWidth="1" />
   </svg>
 )
 
@@ -38,26 +38,26 @@ const IconWebshop = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <path d="M10 14 L14 14 L19 38 L50 38" />
     <path d="M14 14 L18 30 L50 30 L53 14 Z" />
-    <circle cx="24" cy="44" r="3" stroke="#f97316" strokeWidth="1.2" />
-    <circle cx="44" cy="44" r="3" stroke="#f97316" strokeWidth="1.2" />
-    <path d="M27 20 L37 20 M32 15 L32 25" stroke="#f97316" strokeWidth="1" />
+    <circle cx="24" cy="44" r="3" stroke="#c45a2b" strokeWidth="1.2" />
+    <circle cx="44" cy="44" r="3" stroke="#c45a2b" strokeWidth="1.2" />
+    <path d="M27 20 L37 20 M32 15 L32 25" stroke="#c45a2b" strokeWidth="1" />
   </svg>
 )
 
 const IconLogoBranding = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <path d="M32 10 L52 52 L12 52 Z" />
-    <circle cx="32" cy="38" r="9" stroke="#f97316" strokeWidth="1" strokeDasharray="3 2" />
-    <circle cx="42" cy="26" r="1.5" fill="#f97316" />
+    <circle cx="32" cy="38" r="9" stroke="#c45a2b" strokeWidth="1" strokeDasharray="3 2" />
+    <circle cx="42" cy="26" r="1.5" fill="#c45a2b" />
   </svg>
 )
 
 const IconUxUi = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <rect x="6" y="10" width="52" height="36" rx="4" />
-    <line x1="6" y1="20" x2="58" y2="20" stroke="#f97316" strokeWidth="0.8" />
-    <circle cx="12" cy="15" r="1.5" fill="#f97316" />
-    <rect x="12" y="27" width="12" height="12" rx="2" stroke="#f97316" strokeWidth="1" strokeDasharray="2 1.5" />
+    <line x1="6" y1="20" x2="58" y2="20" stroke="#c45a2b" strokeWidth="0.8" />
+    <circle cx="12" cy="15" r="1.5" fill="#c45a2b" />
+    <rect x="12" y="27" width="12" height="12" rx="2" stroke="#c45a2b" strokeWidth="1" strokeDasharray="2 1.5" />
     <rect x="30" y="27" width="22" height="5" rx="2" fill="currentColor" opacity="0.15" />
     <rect x="30" y="35" width="14" height="4" rx="2" fill="currentColor" opacity="0.1" />
   </svg>
@@ -67,9 +67,9 @@ const IconSeo = () => (
   <svg className="w-full h-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.4" viewBox="0 0 64 64" aria-hidden="true">
     <circle cx="28" cy="28" r="16" />
     <path d="M39 39 L54 54" strokeWidth="2.5" />
-    <path d="M20 28 Q28 18 36 28" fill="none" stroke="#f97316" strokeWidth="1.5" />
-    <line x1="20" y1="33" x2="36" y2="33" stroke="#f97316" strokeWidth="0.8" />
-    <line x1="20" y1="37" x2="36" y2="37" stroke="#f97316" strokeWidth="0.8" />
+    <path d="M20 28 Q28 18 36 28" fill="none" stroke="#c45a2b" strokeWidth="1.5" />
+    <line x1="20" y1="33" x2="36" y2="33" stroke="#c45a2b" strokeWidth="0.8" />
+    <line x1="20" y1="37" x2="36" y2="37" stroke="#c45a2b" strokeWidth="0.8" />
   </svg>
 )
 
@@ -118,7 +118,7 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
       className="group flex items-center gap-4 py-5 px-4 -mx-4 transition-colors duration-300 hover:bg-background border-b border-border last:border-0"
     >
       {/* Row index */}
-      <span className="text-[11px] font-black tabular-nums text-muted-foreground tracking-wider w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
+      <span className="meta-sm text-muted-foreground w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
         {String(index + 1).padStart(2, '0')}
       </span>
 
@@ -132,7 +132,7 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
             {name}
           </span>
           {recommended && (
-            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 bg-primary text-white">
+            <span className="meta-sm px-2 py-1 bg-primary text-white">
               Aanbevolen
             </span>
           )}
@@ -141,11 +141,9 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
           {description}
         </p>
         {/* Mobile price row */}
-        <span
-          className="md:hidden inline-block mt-1.5 text-[13px] font-bold text-primary"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          {price}<span className="text-muted-foreground text-xs font-medium ml-0.5">/ start</span>
+        <span className="md:hidden inline-block mono-num mt-1.5 text-[13px] font-semibold text-primary">
+          {price}
+          <span className="text-muted-foreground text-xs font-medium ml-1">/ start</span>
         </span>
       </div>
 
@@ -153,12 +151,9 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
       <div className="hidden md:block flex-1 border-b border-dashed border-border mx-4 group-hover:border-primary/40 transition-colors duration-300" />
 
       {/* Price — hidden on mobile (shown inline above) */}
-      <span
-        className="hidden md:inline text-[15px] font-bold text-foreground shrink-0 group-hover:text-primary transition-colors duration-300"
-        style={{ fontFamily: 'var(--font-heading)' }}
-      >
+      <span className="hidden md:inline mono-num text-[15px] font-semibold text-foreground shrink-0 group-hover:text-primary transition-colors duration-300">
         {price}
-        <span className="text-muted-foreground text-xs font-medium ml-0.5">/ start</span>
+        <span className="text-muted-foreground text-xs font-medium ml-1">/ start</span>
       </span>
 
       {/* Arrow */}
@@ -191,8 +186,7 @@ function CategoryBlock({
       <motion.div variants={fadeInUp} className="mb-2">
         <div className="flex items-end flex-wrap gap-x-5 gap-y-1 mb-5">
           <span
-            className="text-4xl md:text-5xl font-bold leading-none text-primary select-none"
-            style={{ fontFamily: 'var(--font-heading)' }}
+            className="mono-num text-4xl md:text-5xl font-medium leading-none text-primary/45 select-none"
             aria-hidden="true"
           >
             {String(catIndex + 1).padStart(2, '0')}
@@ -203,9 +197,7 @@ function CategoryBlock({
           >
             {cat.title}
           </h3>
-          <span className="text-xs font-bold tracking-[0.16em] uppercase text-muted-foreground pb-1">
-            — {cat.tag}
-          </span>
+          <span className="meta-sm text-muted-foreground pb-1">— {cat.tag}</span>
         </div>
         <div className="w-full h-px bg-foreground/15" />
         <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{cat.subtitle}</p>
@@ -236,11 +228,9 @@ function ServicesSectionFn() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6"
         >
           <motion.div variants={slideInLeft} className="max-w-xl md:min-w-lg">
-            <div className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-8">
-              <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">
-                Diensten
-              </span>
-              <span className="text-xs font-medium text-muted-foreground tabular-nums">01</span>
+            <div className="register mb-8">
+              <span className="meta text-foreground">Diensten</span>
+              <span className="meta text-muted-foreground">§ 01</span>
             </div>
             <h2
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight"

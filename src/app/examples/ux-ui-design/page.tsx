@@ -102,7 +102,7 @@ export default function UxUiDesignPage() {
                 <h2 className="text-lg font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>ShopPlaza</h2>
               </div>
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[0.95] max-w-3xl mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[0.95] max-w-3xl mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
               Van <span className="text-violet-200 line-through decoration-2">frustratie</span> naar <span className="text-yellow-300">conversie</span>
             </h1>
             <p className="text-violet-100 max-w-lg leading-relaxed mb-8">
@@ -112,7 +112,7 @@ export default function UxUiDesignPage() {
               {metrics.map(m => (
                 <div key={m.label} className="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
                   <m.icon className={`w-5 h-5 ${m.color} mb-2`} />
-                  <p className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                  <p className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
                     <AnimNum value={m.value} suffix={m.suffix} />
                   </p>
                   <p className="text-xs text-violet-200 mt-0.5">{m.label}</p>

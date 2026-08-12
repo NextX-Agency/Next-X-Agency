@@ -121,7 +121,7 @@ export default function SeoDashboardPage() {
                   {s.up ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}{s.change}
                 </span>
               </div>
-              <p className="text-2xl font-black text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{s.value}</p>
+              <p className="text-2xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{s.value}</p>
               <p className="text-xs text-slate-500 mt-0.5">{s.label}</p>
             </motion.div>
           ))}

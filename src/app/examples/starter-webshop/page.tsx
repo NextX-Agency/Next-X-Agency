@@ -332,7 +332,7 @@ export default function BloomBoutiquePage() {
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-pink-500 mb-3 block">Zomer Collectie 2025</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[0.95] mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[0.95] mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
               Stijl die bij <span className="text-pink-600">jou</span> past
             </h1>
             <p className="text-slate-600 max-w-md mb-6 leading-relaxed">Ontdek een collectie elegante, comfortabele mode, met zorg gekozen voor kwaliteit en dagelijks gebruik.</p>

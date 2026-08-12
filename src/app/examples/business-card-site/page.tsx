@@ -91,7 +91,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, value])
 
   return (
-    <span ref={ref} className="text-3xl md:text-4xl font-black text-white tabular-nums" style={{ fontFamily: 'var(--font-heading)' }}>
+    <span ref={ref} className="text-3xl md:text-4xl font-bold text-white tabular-nums" style={{ fontFamily: 'var(--font-heading)' }}>
       {count}{suffix}
     </span>
   )
@@ -147,7 +147,7 @@ export default function KaderBouwPage() {
               <KaderBouwLogo size={48} />
               <span className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>KaderBouw NV</span>
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95] max-w-2xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.95] max-w-2xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
               Wij bouwen<br /><span className="text-[#f97015]">uw visie</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-lg mb-8 leading-relaxed">
@@ -208,7 +208,7 @@ export default function KaderBouwPage() {
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
             <Image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
             <div className="absolute -bottom-6 -left-6 bg-[#f97015] text-white rounded-xl px-5 py-3 shadow-lg">
-              <p className="text-2xl font-black" style={{ fontFamily: 'var(--font-heading)' }}>15+</p>
+              <p className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>15+</p>
               <p className="text-xs font-medium">Jaar Ervaring</p>
             </div>
           </motion.div>

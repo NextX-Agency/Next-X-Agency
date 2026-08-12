@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       'Digitaal bureau in Paramaribo. Websites, webshops en merken op maat voor Surinaamse bedrijven.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#f97316',
+    background_color: '#fbfaf7',
+    theme_color: '#c45a2b',
     icons: [
       {
         src: '/favicon.png',

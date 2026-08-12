@@ -43,12 +43,10 @@ export function PortfolioSection() {
         >
           <motion.div
             variants={fadeInUp}
-            className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-10"
+            className="register mb-10"
           >
-            <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">
-              Ons Werk
-            </span>
-            <span className="text-xs font-medium text-muted-foreground tabular-nums">03</span>
+            <span className="meta text-foreground">Ons werk</span>
+            <span className="meta text-muted-foreground">§ 03</span>
           </motion.div>
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -56,7 +54,7 @@ export function PortfolioSection() {
               <div className="overflow-hidden">
                 <motion.h2
                   variants={clipRevealUp}
-                  className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[0.95]"
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[0.95]"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   Recente
@@ -65,7 +63,7 @@ export function PortfolioSection() {
               <div className="overflow-hidden">
                 <motion.h2
                   variants={clipRevealUp}
-                  className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-primary leading-[0.95]"
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-[0.95]"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   Projecten.
@@ -95,7 +93,18 @@ export function PortfolioSection() {
             <motion.div
               key={project.title}
               variants={fadeInUp}
-              className="group relative flex flex-col bg-card border border-foreground/15 hover:border-primary transition-colors duration-300 overflow-hidden cursor-pointer"
+              onPointerMove={(event) => {
+                const box = event.currentTarget.getBoundingClientRect()
+                event.currentTarget.style.setProperty(
+                  '--mx',
+                  `${event.clientX - box.left}px`
+                )
+                event.currentTarget.style.setProperty(
+                  '--my',
+                  `${event.clientY - box.top}px`
+                )
+              }}
+              className="crop-marks spotlight group relative flex flex-col bg-card border border-foreground/15 hover:border-primary transition-colors duration-300 cursor-pointer"
             >
               {/* Clickable overlay */}
               <Link
@@ -108,25 +117,49 @@ export function PortfolioSection() {
 
               {/* Browser mockup */}
               <div className="relative bg-background-elevated overflow-hidden" style={{ height: '280px' }}>
-                {/* Chrome bar */}
-                <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#1a1a1a] border-b border-white/5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
-                  <div className="ml-2 flex-1 rounded-md bg-white/5 h-5 flex items-center px-2.5 gap-1.5">
-                    <svg className="w-2.5 h-2.5 text-emerald-400/70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                {/* Chrome bar — warm ink, stays inside the palette */}
+                <div className="relative z-20 flex items-center gap-1.5 px-3 py-2.5 bg-ink border-b border-white/10">
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/14" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                  <div className="ml-2 flex-1 rounded-md bg-white/8 h-5 flex items-center px-2.5 gap-1.5">
+                    <svg className="w-2.5 h-2.5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    <span className="text-[9px] text-neutral-400 font-mono truncate">{project.href.replace('https://', '').replace('www.', '')}</span>
+                    <span className="text-[9px] text-white/55 font-mono tracking-tight truncate">{project.href.replace('https://', '').replace('www.', '')}</span>
                   </div>
+                  {/* Live marker — terracotta, not a stray emerald */}
+                  <span className="inline-flex items-center gap-1.5 pl-2 text-[9px] font-bold tracking-[0.14em] uppercase text-white/70 shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" />
+                    Live
+                  </span>
                 </div>
 
-                {/* Live website preview via iframe - Desktop view */}
+                {/* Fallback beneath the frame: if the site blocks embedding
+                    (X-Frame-Options / CSP) the iframe paints nothing, so this
+                    stays visible instead of a blank white rectangle. */}
+                <div className="absolute top-11 left-0 right-0 bottom-0 flex flex-col items-center justify-center gap-3 bg-background-elevated px-6 text-center">
+                  <span
+                    className="text-3xl font-bold text-foreground/22 tracking-tight"
+                    style={{ fontFamily: 'var(--font-heading)' }}
+                  >
+                    {project.title}
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+                    {project.category}
+                  </span>
+                </div>
+
+                {/* Live website preview via iframe — desktop viewport, scaled down */}
                 <div className="absolute top-11 left-0 w-full overflow-hidden" style={{ height: 'calc(100% - 44px)' }}>
                   <iframe
                     src={project.href}
-                    title={project.title}
-                    className="bg-white pointer-events-none origin-top-left"
+                    title={`Voorbeeld van ${project.title}`}
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="pointer-events-none origin-top-left"
                     style={{
                       border: 'none',
                       height: '1080px',
@@ -137,8 +170,8 @@ export function PortfolioSection() {
                   />
                 </div>
 
-                {/* Hover overlay — dims preview and raises CTA pill */}
-                <div className="absolute top-11 left-0 right-0 bottom-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                {/* Hover overlay — warm ink veil, raises the CTA pill */}
+                <div className="absolute top-11 left-0 right-0 bottom-0 z-20 flex items-center justify-center bg-ink/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-xs font-bold tracking-widest uppercase translate-y-3 group-hover:translate-y-0 transition-transform duration-300" style={{ fontFamily: 'var(--font-heading)' }}>
                     Bekijk live
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -149,30 +182,27 @@ export function PortfolioSection() {
 
                 {/* Large ghost index */}
                 <span
-                  className="absolute bottom-1 right-3 text-7xl sm:text-6xl font-black text-white/5 leading-none select-none pointer-events-none z-10"
+                  className="absolute bottom-1 right-3 text-7xl sm:text-6xl font-bold text-foreground/[0.07] leading-none select-none pointer-events-none z-10"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   {project.index}
                 </span>
-
-                {/* Live project pill */}
-                <span className="absolute top-12 right-3 inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold tracking-widest uppercase z-10 pointer-events-none">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  Live
-                </span>
-
-
               </div>
 
               {/* Card content */}
               <div className="flex flex-col flex-1 px-6 py-5">
-                {/* Category caption */}
-                <span className="self-start text-[10px] font-bold tracking-widest uppercase text-primary mb-3">
-                  {project.category}
+                {/* Figure caption, as under a plate in a printed document */}
+                <span className="flex items-baseline gap-2.5 mb-3">
+                  <span className="meta-sm text-primary">
+                    Fig. {project.index}
+                  </span>
+                  <span className="meta-sm text-muted-foreground">
+                    {project.category}
+                  </span>
                 </span>
 
                 <h3
-                  className="text-lg font-black text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
+                  className="text-lg font-bold text-foreground tracking-tight mb-2 group-hover:text-primary transition-colors duration-200"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   {project.title}
@@ -187,7 +217,7 @@ export function PortfolioSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-0.5 border border-border text-muted-foreground text-[11px] font-medium"
+                      className="meta-sm px-2.5 py-1.5 border border-border text-muted-foreground"
                     >
                       {tag}
                     </span>

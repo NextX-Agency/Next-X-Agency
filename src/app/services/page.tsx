@@ -283,7 +283,7 @@ export default function ServicesPage() {
                   {/* Category header */}
                   <motion.div variants={fadeInUp} className="mb-8">
                     <div className="flex items-baseline flex-wrap gap-x-4 gap-y-1 mb-3">
-                      <span className="text-[11px] font-black tracking-[0.28em] uppercase text-primary/70">
+                      <span className="text-[11px] font-bold tracking-[0.28em] uppercase text-primary/70">
                         {String(catIndex + 1).padStart(2, '0')}
                       </span>
                       <h2
@@ -318,13 +318,13 @@ export default function ServicesPage() {
                         <div className={`px-5 pt-5 pb-4 ${('popular' in service && service.popular) ? accent.bg : 'bg-black/3'}`}>
                           <div className="flex items-start justify-between gap-3 mb-1">
                             {/* Index circle */}
-                            <span className={`w-7 h-7 flex items-center justify-center text-[11px] font-black shrink-0 mt-0.5
+                            <span className={`w-7 h-7 flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5
                               ${('popular' in service && service.popular) ? 'bg-primary text-white' : 'bg-black/6 text-muted-foreground'}`}
                             >
                               {String(i + 1).padStart(2, '0')}
                             </span>
                             {/* Price badge */}
-                            <span className={`text-sm font-black tracking-tight whitespace-nowrap
+                            <span className={`text-sm font-bold tracking-tight whitespace-nowrap
                               ${('popular' in service && service.popular) ? accent.text : 'text-foreground/80'}`}
                               style={{ fontFamily: 'var(--font-heading)' }}
                             >
@@ -338,7 +338,7 @@ export default function ServicesPage() {
                             {service.name}
                           </h3>
                           {demoSlugs[service.name] && (
-                            <span className="inline-flex items-center gap-1.5 mt-2 text-primary text-[10px] font-black tracking-wider uppercase">
+                            <span className="inline-flex items-center gap-1.5 mt-2 text-primary text-[10px] font-bold tracking-wider uppercase">
                               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

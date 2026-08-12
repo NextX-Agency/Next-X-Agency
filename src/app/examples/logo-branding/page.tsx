@@ -199,7 +199,7 @@ export default function SavanaCoffeePage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white rounded-2xl p-6 border border-stone-200">
                 <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Heading</span>
-                <p className="text-5xl font-black text-stone-900 mt-3 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Space Grotesk</p>
+                <p className="text-5xl font-bold text-stone-900 mt-3 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Space Grotesk</p>
                 <p className="text-sm text-stone-500 mb-4">Gebruikt voor koppen, logo, en navigatie elementen.</p>
                 <div className="space-y-2 border-t border-stone-100 pt-4">
                   {['Black 900', 'Bold 700', 'Medium 500'].map(w => (

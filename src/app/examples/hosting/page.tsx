@@ -189,7 +189,7 @@ export default function HostingPage() {
                   <r.icon className="w-4 h-4 text-slate-400" />
                   <span className="text-xs font-bold text-slate-700">{r.label}</span>
                 </div>
-                <span className="text-lg font-black text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{r.value}%</span>
+                <span className="text-lg font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{r.value}%</span>
               </div>
               <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                 <motion.div initial={{ width: 0 }} animate={{ width: `${r.value}%` }} transition={{ duration: 1, ease: 'easeOut' }}
@@ -290,7 +290,7 @@ export default function HostingPage() {
                 <Clock className="w-5 h-5 text-slate-400" />
                 <p className="font-bold text-sm text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>Uptime</p>
               </div>
-              <p className="text-3xl font-black text-green-600" style={{ fontFamily: 'var(--font-heading)' }}>99.97%</p>
+              <p className="text-3xl font-bold text-green-600" style={{ fontFamily: 'var(--font-heading)' }}>99.97%</p>
               <p className="text-xs text-slate-500 mt-1">Laatste 30 dagen · 13 min downtime</p>
             </div>
           </div>
@@ -353,7 +353,7 @@ export default function HostingPage() {
                   <div key={p.name} className={`rounded-xl p-5 border-2 ${p.current ? 'border-sky-500 bg-sky-50' : 'border-slate-200'} relative`}>
                     {p.current && <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-sky-500 text-white text-[10px] font-bold rounded-full">Huidig plan</span>}
                     <h4 className="font-bold text-slate-900 mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{p.name}</h4>
-                    <p className="text-2xl font-black text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{p.price}<span className="text-sm font-normal text-slate-500">/mnd</span></p>
+                    <p className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{p.price}<span className="text-sm font-normal text-slate-500">/mnd</span></p>
                     <ul className="space-y-2 mb-4">
                       {p.features.map(f => (
                         <li key={f} className="flex items-center gap-2 text-xs text-slate-600"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />{f}</li>

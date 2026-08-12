@@ -159,7 +159,7 @@ export default function DentaCarePage() {
               </div>
               200+ tevreden patiënten
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[0.95] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[0.95] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
               Uw glimlach,<br /><span className="text-sky-500">onze prioriteit</span>
             </h1>
             <p className="text-lg text-slate-500 max-w-md mb-8 leading-relaxed">

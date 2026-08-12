@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainerSlow } from '@/lib/animationUtils'
 const features = [
   {
     number: '01',
-    title: 'Snel Geleverd',
+    title: 'Snel geleverd',
     description: 'Korte lijnen en een helder proces: u weet vooraf wanneer uw site live gaat, en die afspraak halen we.',
     breakdown: [
       'Oplevering binnen 48–72 uur',
@@ -17,7 +17,7 @@ const features = [
   },
   {
     number: '02',
-    title: 'Eerlijke Prijzen',
+    title: 'Eerlijke prijzen',
     description: 'U ziet vooraf precies wat het kost en wat u daarvoor krijgt. Geen kleine lettertjes, geen verrassingen achteraf.',
     breakdown: [
       'Transparante, vaste prijzen',
@@ -28,7 +28,7 @@ const features = [
   },
   {
     number: '03',
-    title: 'Eigen Ontwerp',
+    title: 'Eigen ontwerp',
     description: 'Wij ontwerpen vanaf een leeg canvas rond uw merk en uw klanten — geen kant-en-klare thema’s of generatoren.',
     breakdown: [
       '100% uniek ontwerp — geen templates',
@@ -39,7 +39,7 @@ const features = [
   },
   {
     number: '04',
-    title: 'Lokaal Geworteld',
+    title: 'Lokaal geworteld',
     description: 'Wij zitten in Paramaribo, kennen de Surinaamse markt en zijn gewoon bereikbaar — ook na de oplevering.',
     breakdown: [
       'Persoonlijk contact met de oprichter',
@@ -65,12 +65,10 @@ function WhySectionFn() {
         >
           <motion.div
             variants={fadeInUp}
-            className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-10"
+            className="register mb-10"
           >
-            <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">
-              Waarom NextX
-            </span>
-            <span className="text-xs font-medium text-muted-foreground tabular-nums">02</span>
+            <span className="meta text-foreground">Waarom NextX</span>
+            <span className="meta text-muted-foreground">§ 04</span>
           </motion.div>
           <motion.h2
             variants={fadeInUp}
@@ -103,11 +101,7 @@ function WhySectionFn() {
                 >
                   {feature.title}
                 </h3>
-                <span
-                  className="text-xs font-bold text-primary tabular-nums shrink-0 mt-0.5"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                  aria-hidden="true"
-                >
+                <span className="meta text-primary shrink-0 mt-1.5" aria-hidden="true">
                   {feature.number}
                 </span>
               </div>

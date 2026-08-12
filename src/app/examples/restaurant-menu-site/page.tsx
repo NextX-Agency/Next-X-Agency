@@ -136,7 +136,7 @@ export default function WarungIndahPage() {
                 {open ? 'Nu open' : 'Gesloten'}
               </span>
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[0.95] max-w-2xl mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[0.95] max-w-2xl mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
               Authentieke Surinaamse keuken
             </h1>
             <p className="text-base text-stone-300 max-w-md mb-3">
@@ -197,7 +197,7 @@ export default function WarungIndahPage() {
                 </div>
                 <div className="ml-auto text-right flex-shrink-0">
                   <p className="text-xs text-stone-400 line-through">{s.originalPrice}</p>
-                  <p className="text-sm font-black text-green-700">{s.specialPrice}</p>
+                  <p className="text-sm font-bold text-green-700">{s.specialPrice}</p>
                 </div>
               </div>
             ))}

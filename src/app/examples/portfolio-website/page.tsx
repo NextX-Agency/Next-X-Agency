@@ -55,7 +55,7 @@ export default function StudioVibePage() {
               <StudioVibeLogo size={44} />
               <span className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>Studio Vibe</span>
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95] max-w-3xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.95] max-w-3xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
               Creatief werk dat <span className="text-[#f97015]">resultaat</span> levert
             </h1>
             <p className="text-lg text-slate-400 max-w-lg mb-8 leading-relaxed">
@@ -167,7 +167,7 @@ export default function StudioVibePage() {
             <div className="grid grid-cols-3 gap-4">
               {[{ num: '60+', label: 'Projecten' }, { num: '4', label: 'Jaar actief' }, { num: '35+', label: 'Klanten' }].map(s => (
                 <div key={s.label} className="bg-white rounded-xl p-4 text-center border border-slate-200">
-                  <p className="text-2xl font-black text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{s.num}</p>
+                  <p className="text-2xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{s.num}</p>
                   <p className="text-xs text-slate-500 mt-1">{s.label}</p>
                 </div>
               ))}

@@ -18,13 +18,19 @@
   --color-muted-foreground: #71685f;
   --color-secondary-foreground: #201b17;
 
-  /* Brand Colors */
+  /* Brand Colors — one accent, terracotta. Nothing else competes. */
   --color-primary: #c45a2b;
   --color-primary-hover: #a94720;
   --color-primary-active: #8f391b;
   --color-primary-foreground: #ffffff;
   --color-primary-muted: rgba(196, 90, 43, 0.12);
+  --color-primary-tint: rgba(196, 90, 43, 0.28);
   --color-accent: #c45a2b;
+
+  /* Deep warm ink — for contrast surfaces that stay inside the palette
+     instead of jumping to a cold #111 slab. */
+  --color-ink: #241d18;
+  --color-ink-soft: #33291f;
 
   /* Borders */
   --color-border: rgba(32, 27, 23, 0.13);
@@ -59,6 +65,15 @@
   --radius-lg: 14px;
   --radius-xl: 18px;
 
+  /* Z-index scale — no more arbitrary 9999s */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-overlay: 20;
+  --z-sticky: 40;
+  --z-nav: 50;
+  --z-modal: 60;
+  --z-toast: 70;
+
   /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
@@ -70,6 +85,239 @@
   /* Fonts */
   --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
   --font-heading: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* ===== DOSSIER LANGUAGE =====
+   The page is dressed as a technical document: mono metadata, drafting crop
+   marks, figure numbers and margin notes. These are the pieces that make it
+   specific to NextX rather than a generic agency layout. */
+
+/* Every label, index, coordinate, price and timing goes through this. */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-sm {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.mono-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Drafting crop marks on the four corners of a framed block. */
+.crop-marks {
+  position: relative;
+}
+
+.crop-marks::before,
+.crop-marks::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: var(--color-primary);
+}
+
+.crop-marks::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.crop-marks::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+/* Rotated margin note, sitting in the gutter beside a block. */
+.margin-note {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+}
+
+/* Continuous discipline ticker. Two identical groups translate by exactly
+   -50% so the loop is seamless regardless of content width. */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6rem,
+    #000 calc(100% - 6rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6rem,
+    #000 calc(100% - 6rem),
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-inline: 1.75rem;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Spotlight that follows the cursor across a card, lighting the surface it
+   passes over. Driven by --mx/--my set on pointermove. */
+.spotlight {
+  position: relative;
+}
+
+.spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms ease;
+  background: radial-gradient(
+    16rem 16rem at var(--mx, 50%) var(--my, 50%),
+    rgba(196, 90, 43, 0.13),
+    transparent 68%
+  );
+}
+
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight::after {
+    display: none;
+  }
+}
+
+/* ===== DRAFTING CROSSHAIR CURSOR =====
+   Only mounted for fine pointers without a reduced-motion preference, so the
+   native cursor is hidden only where the reticle actually replaces it. */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-reticle,
+  html.has-reticle a,
+  html.has-reticle button,
+  html.has-reticle [role='button'] {
+    cursor: none;
+  }
+
+  /* Typing still needs a real caret cursor. */
+  html.has-reticle input,
+  html.has-reticle textarea,
+  html.has-reticle select,
+  html.has-reticle [contenteditable] {
+    cursor: auto;
+  }
+}
+
+.cursor-reticle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-toast);
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity 220ms ease;
+}
+
+.cursor-reticle__arm {
+  position: absolute;
+  background: var(--color-primary);
+  opacity: 0.9;
+}
+
+.cursor-reticle__arm--h {
+  width: 15px;
+  height: 1.5px;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-reticle__arm--v {
+  width: 1.5px;
+  height: 15px;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-reticle__ring {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(32, 27, 23, 0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease, background-color 260ms ease;
+}
+
+/* Section register: the rule + label + index that opens every block. */
+.register {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 2px solid var(--color-foreground);
+  padding-top: 0.875rem;
 }
 
 /* ===== BASE STYLES ===== */
@@ -85,6 +333,11 @@ body {
   letter-spacing: -0.008em;
   background-color: var(--color-background);
   color: var(--color-foreground);
+}
+
+/* Kill orphans in running copy without touching balanced headlines. */
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -172,7 +425,7 @@ textarea {
 .input-field:focus {
   @apply outline-none border-primary;
   background: var(--color-input-focus);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+  box-shadow: 0 0 0 3px var(--color-primary-muted);
 }
 
 .select-field {
@@ -182,7 +435,7 @@ textarea {
 
 .select-field:focus {
   @apply outline-none border-primary;
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+  box-shadow: 0 0 0 3px var(--color-primary-muted);
 }
 
 .input-label {
@@ -225,43 +478,48 @@ textarea {
   @apply text-muted-foreground max-w-md;
 }
 
-.button-primary,
-.button-secondary {
-  min-height: 2.75rem;
-  align-items: center;
-  display: inline-flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 700;
-  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
-    transform 180ms ease;
-}
+/* Declared in the components layer so utilities still win over them —
+   otherwise `display: inline-flex` here beats a `hidden` utility and the
+   desktop CTA leaks onto mobile. */
+@layer components {
+  .button-primary,
+  .button-secondary {
+    min-height: 2.75rem;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
+      transform 180ms ease;
+  }
 
-.button-primary {
-  background: var(--color-foreground);
-  color: white;
-}
+  .button-primary {
+    background: var(--color-foreground);
+    color: white;
+  }
 
-.button-primary:hover {
-  background: var(--color-primary);
-}
+  .button-primary:hover {
+    background: var(--color-primary);
+  }
 
-.button-secondary {
-  border: 1px solid var(--color-border);
-  color: var(--color-foreground);
-}
+  .button-secondary {
+    border: 1px solid var(--color-border);
+    color: var(--color-foreground);
+  }
 
-.button-secondary:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
+  .button-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 
-.button-primary:active,
-.button-secondary:active {
-  transform: translateY(1px);
+  .button-primary:active,
+  .button-secondary:active {
+    transform: translateY(1px);
+  }
 }
 
 /* Focus ring (global) */
@@ -287,11 +545,71 @@ textarea {
   background: #c45a2b;
 }
 
-/* ===== LIGHT BACKGROUND GRID ===== */
+/* ===== TEXTURE & SURFACES ===== */
+
+/* Fixed grain wash over the whole document. Breaks the digital flatness of
+   large cream areas — the single cheapest thing that stops a light layout
+   reading as a template. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-toast);
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Fine engineering grid, warm-tinted. Used behind hero / CTA blocks. */
 .bg-grid-pattern {
   background-image: linear-gradient(to right, rgba(32, 27, 23, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(32, 27, 23, 0.035) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Ambient warmth: an off-centre radial so large sections aren't a dead
+   uniform fill. Deliberately not a 45-degree linear fade. */
+.surface-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    62rem 42rem at 78% -10%,
+    rgba(196, 90, 43, 0.09),
+    transparent 62%
+  );
+}
+
+/* Hairline that fades out — replaces hard full-width borders in places
+   where a blunt rule would cut the page in half. */
+.rule-fade {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(32, 27, 23, 0.22),
+    rgba(32, 27, 23, 0.08) 55%,
+    transparent
+  );
+}
+
+/* Skip link — visible only when focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: var(--z-toast);
+  padding: 0.75rem 1.25rem;
+  background: var(--color-foreground);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: top 180ms ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 /* ===== REDUCED MOTION OVERRIDES ===== */

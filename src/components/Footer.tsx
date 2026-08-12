@@ -13,7 +13,7 @@ const serviceLinks = [
 ]
 
 const companyLinks = [
-  { href: '/about', label: 'Over Ons' },
+  { href: '/about', label: 'Over ons' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -34,11 +34,8 @@ function FooterFn() {
                 className="h-10 w-auto object-contain"
               />
             </Link>
-            <p
-              className="text-primary text-xs font-black tracking-[0.18em] uppercase mb-3"
-              style={{ fontFamily: 'var(--font-heading)' }}
-            >
-              Een digitaal bureau uit Paramaribo.
+            <p className="meta text-primary mb-4">
+              Digitaal bureau — Paramaribo
             </p>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs leading-relaxed">
               Websites, webshops en merkidentiteiten voor bedrijven die helder
@@ -75,7 +72,7 @@ function FooterFn() {
 
           {/* Services column */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground mb-4">
+            <h4 className="meta text-foreground mb-5">
               Diensten
             </h4>
             <ul className="space-y-3">
@@ -94,7 +91,7 @@ function FooterFn() {
 
           {/* Company column */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground mb-4">
+            <h4 className="meta text-foreground mb-5">
               Bedrijf
             </h4>
             <ul className="space-y-3">
@@ -113,7 +110,7 @@ function FooterFn() {
 
           {/* Contact column */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground mb-4">
+            <h4 className="meta text-foreground mb-5">
               Contact
             </h4>
             <ul className="space-y-3">
@@ -159,7 +156,7 @@ function FooterFn() {
             <div>
               <p className="flex items-center gap-2 text-foreground font-bold text-base" style={{ fontFamily: 'var(--font-heading)' }}>
                 shop-nextx.com
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary text-white text-[9px] font-bold tracking-widest uppercase">
+                <span className="meta-sm inline-flex items-center px-2 py-1.5 bg-primary text-white">
                   Eigen product
                 </span>
               </p>
@@ -175,15 +172,22 @@ function FooterFn() {
         </a>
       </div>
 
-      {/* Bottom bar */}
+      {/* Colophon — set as a document footer rather than a legal strip */}
       <div className="border-t border-border relative z-10">
-        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} NextX Agency. Alle rechten voorbehouden.
+        <div className="max-w-6xl mx-auto px-6 py-7 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <p className="meta-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} NextX Agency — Alle rechten voorbehouden
           </p>
-          <p className="text-sm text-muted-foreground">
-            Gemaakt door{' '}
-            <span className="text-primary font-medium">NextX</span>
+          <p className="meta-sm text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span>Paramaribo, SR</span>
+            <span aria-hidden="true" className="text-primary">
+              ✳
+            </span>
+            <span>5°52′N 55°10′W</span>
+            <span aria-hidden="true" className="text-primary">
+              ✳
+            </span>
+            <span>Ontworpen en gebouwd in huis</span>
           </p>
         </div>
       </div>

@@ -109,7 +109,7 @@ export default function TechMartPage() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-200">Week Deals</span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mt-2 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mt-2 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
               De beste tech, <span className="text-yellow-300">beste prijs</span>
             </h1>
             <p className="text-blue-100 max-w-md mb-6">Suriname&apos;s #1 tech webshop. Officiële dealers van Apple, Samsung, Sony en meer. Snelle bezorging in Paramaribo.</p>
