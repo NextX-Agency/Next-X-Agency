@@ -43,8 +43,8 @@ function FooterFn() {
               Digitaal bureau — Paramaribo
             </p>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs leading-relaxed">
-              Websites, webshops en merkidentiteiten voor bedrijven die helder
-              willen communiceren.
+              Websites, webshops en logo&apos;s voor bedrijven in Suriname.
+              Vaste prijzen, oplevering binnen drie dagen.
             </p>
             <div className="flex gap-3">
               <a

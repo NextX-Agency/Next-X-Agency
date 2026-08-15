@@ -273,9 +273,9 @@ function HeroSectionFn() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-base md:text-lg text-muted-foreground max-w-md mb-10 leading-relaxed"
             >
-              Een heldere website begint bij een goed begrip van uw bedrijf. Wij
-              ontwerpen en bouwen digitaal werk dat past bij uw merk, klanten en
-              ambities — vanuit Paramaribo.
+              Wij ontwerpen en bouwen websites en webshops voor bedrijven in
+              Suriname. Vaste prijs vooraf, oplevering binnen drie dagen, en
+              daarna blijven we bereikbaar.
             </motion.p>
 
             <motion.div

@@ -4,22 +4,24 @@ import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainerSlow } from '@/lib/animationUtils'
 import { CONTACT } from '@/lib/contact'
 
+// Elke kop noemt het feit zelf. Beeldspraak als "lokaal geworteld" zegt de
+// lezer niets en klinkt als reclame; de datum, het bedrag en het adres wel.
 const features = [
   {
     number: '01',
-    title: 'Snel geleverd',
-    description: 'Korte lijnen en een helder proces: u weet vooraf wanneer uw site live gaat, en die afspraak halen we.',
+    title: `Live in ${CONTACT.deliveryTime}`,
+    description: 'Bij het eerste gesprek hoort u wanneer uw site online gaat. Die datum komt in de offerte te staan.',
     breakdown: [
-      `Oplevering binnen ${CONTACT.deliveryTime}`,
-      'De opleverdatum staat in de offerte',
-      `Vragen gaan via WhatsApp ${CONTACT.phoneDisplay}`,
-      `Antwoord ${CONTACT.responseTime}`,
+      `Oplevering binnen ${CONTACT.deliveryTime} na akkoord`,
+      'De opleverdatum staat zwart op wit',
+      `Antwoord op uw vragen ${CONTACT.responseTime}`,
+      'U kunt tijdens de bouw meekijken op een testlink',
     ],
   },
   {
     number: '02',
-    title: 'Eerlijke prijzen',
-    description: 'U ziet vooraf precies wat het kost en wat u daarvoor krijgt. Geen kleine lettertjes, geen verrassingen achteraf.',
+    title: 'Prijs staat vooraf vast',
+    description: 'U weet het bedrag voordat wij beginnen. Komt er werk bij, dan prijzen we dat apart en pas na uw akkoord.',
     breakdown: [
       'Vaste prijs per dienst, vooraf bekend',
       'Hosting en domein staan apart op de offerte',
@@ -29,24 +31,24 @@ const features = [
   },
   {
     number: '03',
-    title: 'Eigen ontwerp',
-    description: 'Wij ontwerpen vanaf een leeg canvas rond uw merk en uw klanten — geen kant-en-klare thema’s of generatoren.',
+    title: 'Geen kant-en-klaar thema',
+    description: 'Elk ontwerp begint bij uw bedrijf en uw klanten. Wij kopen geen thema in en gebruiken geen generator.',
     breakdown: [
-      'Geen thema uit een winkel',
-      'Afgestemd op uw merk en doelgroep',
+      'Ontworpen rond uw merk en uw klanten',
+      'U ziet het ontwerp voor er code geschreven wordt',
       'Revisierondes tijdens het project inbegrepen',
-      'Leesbaar op telefoon, tablet en desktop',
+      'Werkt op telefoon, tablet en desktop',
     ],
   },
   {
     number: '04',
-    title: 'Lokaal geworteld',
-    description: 'Wij zitten zelf in Paramaribo. U spreekt geen callcenter en geen buitenlands bureau, maar de mensen die uw site hebben gebouwd.',
+    title: `Wij zitten in ${CONTACT.city}`,
+    description: 'U spreekt de mensen die uw site gebouwd hebben. Geen callcenter en geen bureau in een andere tijdzone.',
     breakdown: [
       'Persoonlijk contact met de oprichter',
-      'Afspraken op locatie zijn mogelijk',
-      'Support in het Nederlands en Sranan',
-      'Ook maanden later nog bereikbaar',
+      `Afspraken op locatie in ${CONTACT.city}`,
+      'Webshops met bankoverschrijving voor de lokale markt',
+      `Na oplevering bereikbaar via WhatsApp ${CONTACT.phoneDisplay}`,
     ],
   },
 ]
@@ -76,8 +78,8 @@ function WhySectionFn() {
             className="text-4xl md:text-5xl lg:text-[3.75rem] font-bold text-foreground tracking-tight leading-[1.05]"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Vier redenen om<br />
-            voor ons te kiezen.
+            Wat u van ons<br />
+            mag verwachten.
           </motion.h2>
         </motion.div>
 

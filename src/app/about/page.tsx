@@ -34,7 +34,7 @@ const values = [
   { icon: Palette, title: 'Eigen ontwerp', description: 'Elk ontwerp begint bij uw merk en uw klanten, niet bij een kant-en-klaar thema.' },
   { icon: RefreshCw, title: 'Revisies inbegrepen', description: 'Tijdens het project zitten er revisierondes bij de prijs. Wijzigingen ná oplevering gaan tegen $25 per uur.' },
   { icon: Shield, title: 'Geen verborgen kosten', description: 'Hosting, domein en meerwerk staan los op de offerte, zodat u ziet waar het geld heen gaat.' },
-  { icon: TrendingUp, title: 'Groeit met u mee', description: 'Een pagina erbij of een webshop eraan vast kan later, zonder de site opnieuw te bouwen.' },
+  { icon: TrendingUp, title: 'Later uit te breiden', description: 'Een pagina erbij of een webshop eraan vast kan later, zonder de site opnieuw te bouwen.' },
 ] as const
 
 const expertise = [
@@ -178,7 +178,7 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <motion.h2 variants={fadeInDown} className="text-3xl md:text-4xl font-bold text-foreground tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                Waar wij op afgerekend willen worden
+                Zo werken wij
               </motion.h2>
               <motion.p variants={fadeInUp} className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
                 Zes afspraken die voor elk project gelden, ongeacht de omvang.

@@ -80,7 +80,7 @@ const categories = [
     id: 'build',
     tag: 'Web & platform',
     title: 'Bouwen',
-    subtitle: 'Van eerste pagina tot complete webshop, met een helder fundament.',
+    subtitle: 'Van een enkele pagina tot een webshop met winkelwagen en checkout.',
     services: [
       { name: 'Business Card Site', description: 'Een heldere one-page site om uw bedrijf direct goed neer te zetten.', price: priceOf('Business Card Site'), href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
       { name: 'Service Website', description: 'Meerdere pagina’s, duidelijke informatie en ruimte om mee te groeien.', price: priceOf('Service Website'), href: '/examples/service-website', recommended: true, Icon: IconServiceWebsite },
@@ -91,7 +91,7 @@ const categories = [
     id: 'design',
     tag: 'Visueel & UX',
     title: 'Ontwerpen',
-    subtitle: 'Een merk en interface die begrijpelijk voelen en herkenbaar blijven.',
+    subtitle: 'Een logo dat blijft hangen en schermen waarop mensen vinden wat ze zoeken.',
     services: [
       { name: 'Logo Design', description: 'Een herkenbaar vertrekpunt voor alle uitingen van uw bedrijf.', price: priceOf('Logo Design'), href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
       { name: 'UX Audit & Advies', description: 'Concrete verbeterpunten voor uw huidige website of platform.', price: priceOf('UX Audit & Advies'), href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },

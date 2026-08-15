@@ -31,7 +31,7 @@ function CTABannerFn() {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.h2 variants={blurFadeIn} className="text-4xl md:text-5xl font-bold text-neutral-950 tracking-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-            Een goed gesprek is een beter begin.
+            Vertel ons wat u nodig heeft.
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-lg text-neutral-950/70 max-w-2xl mx-auto mb-10 leading-relaxed">
             Vertel wat u wilt bouwen. Wij reageren {CONTACT.responseTime} met
