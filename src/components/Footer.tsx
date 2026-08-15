@@ -85,7 +85,7 @@ function FooterFn() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                    className="block -my-1 py-1 text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -104,7 +104,7 @@ function FooterFn() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                    className="block -my-1 py-1 text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     {link.label}
                   </Link>

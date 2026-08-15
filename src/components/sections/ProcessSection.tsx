@@ -9,6 +9,7 @@ import {
   type MotionValue,
 } from 'framer-motion'
 import { CONTACT } from '@/lib/contact'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 import { startingPrice } from '@/lib/services'
 
 const steps = [
@@ -18,7 +19,7 @@ const steps = [
     timing: 'Dag 1',
     description:
       'We nemen uw bedrijf door: wie uw klanten zijn, wat de site moet opleveren en waar het nu misgaat. Daarna weet u de prijs en de opleverdatum.',
-    detail: `Gratis en vrijblijvend — via WhatsApp ${CONTACT.phoneDisplay} of op locatie in ${CONTACT.city}.`,
+    detail: `Gratis en vrijblijvend, via WhatsApp of op locatie in ${CONTACT.city}.`,
   },
   {
     number: '02',
@@ -51,13 +52,14 @@ function Step({
   index,
   progress,
   total,
-  reduced,
+  scrub,
 }: {
   step: (typeof steps)[number]
   index: number
   progress: MotionValue<number>
   total: number
-  reduced: boolean | null
+  /** False on phones and for reduced motion: everything stays fully legible. */
+  scrub: boolean
 }) {
   // Each step lights up as the scrubbed line passes its own dot.
   const point = index / total
@@ -71,21 +73,21 @@ function Step({
   const bodyOpacity = useTransform(progress, activeRange, [0.45, 1])
 
   return (
-    <div className="relative grid grid-cols-[auto_1fr] gap-x-6 sm:gap-x-9 pb-16 last:pb-0">
+    <div className="relative grid grid-cols-[auto_1fr] gap-x-5 sm:gap-x-9 pb-12 sm:pb-16 last:pb-0">
       {/* Dot on the spine */}
       <div className="relative flex justify-center w-4 pt-2">
         <motion.span
           className="block w-2.5 h-2.5 rounded-full ring-4 ring-background"
           style={
-            reduced
-              ? { backgroundColor: '#c45a2b' }
-              : { backgroundColor: dotColor, scale: dotScale }
+            scrub
+              ? { backgroundColor: dotColor, scale: dotScale }
+              : { backgroundColor: '#c45a2b' }
           }
           aria-hidden="true"
         />
       </div>
 
-      <motion.div style={reduced ? undefined : { opacity: bodyOpacity }}>
+      <motion.div style={scrub ? { opacity: bodyOpacity } : undefined}>
         <div className="flex items-baseline gap-4 mb-3">
           <span className="meta text-primary">{step.number}</span>
           <h3
@@ -103,12 +105,9 @@ function Step({
           {step.description}
         </p>
 
-        <p className="mt-3 flex items-start gap-2.5 text-[13px] text-foreground/70">
-          <span
-            className="w-3 h-px bg-primary shrink-0 mt-2"
-            aria-hidden="true"
-          />
-          {step.detail}
+        <p className="mt-3 grid grid-cols-[0.75rem_1fr] items-start gap-x-2.5 text-[13px] text-foreground/70">
+          <span className="h-px w-3 bg-primary mt-2" aria-hidden="true" />
+          <span>{step.detail}</span>
         </p>
       </motion.div>
     </div>
@@ -118,6 +117,8 @@ function Step({
 function ProcessSectionFn() {
   const trackRef = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
+  const roomToScrub = useMediaQuery('(min-width: 1024px) and (min-height: 700px)')
+  const scrub = roomToScrub && !reduced
 
   // Scrub the spine against this block's travel through the viewport.
   const { scrollYProgress } = useScroll({
@@ -210,7 +211,7 @@ function ProcessSectionFn() {
             {/* Spine fill — scrubs with scroll */}
             <motion.div
               className="absolute left-2 top-3 bottom-0 w-px bg-primary origin-top"
-              style={{ scaleY: reduced ? 1 : lineScale }}
+              style={{ scaleY: scrub ? lineScale : 1 }}
               aria-hidden="true"
             />
 
@@ -222,7 +223,7 @@ function ProcessSectionFn() {
                     index={i}
                     total={steps.length - 1}
                     progress={scrollYProgress}
-                    reduced={reduced}
+                    scrub={scrub}
                   />
                 </li>
               ))}

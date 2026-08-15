@@ -264,6 +264,14 @@
 /* ===== BASE STYLES ===== */
 html {
   scroll-behavior: smooth;
+  /* The section reveals start 60px to the left or right of their final
+     position, so a block that has not been scrolled into view yet sticks out
+     past the viewport. On a phone that shows up as a page you can drag
+     sideways. It belongs on html rather than body: the browser propagates
+     body's overflow to the viewport, which leaves body itself scrollable.
+     clip rather than hidden, because hidden here would break position:
+     sticky further down the tree. */
+  overflow-x: clip;
 }
 
 body {
