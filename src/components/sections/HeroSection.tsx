@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { AnimatedSVGPath } from '@/components/animated/AnimatedSVGPath'
 import { Magnetic } from '@/components/interactive/Magnetic'
-import { CONTACT, whatsappHref } from '@/lib/contact'
+import { CONTACT } from '@/lib/contact'
 
 const services = [
   'Websites',
@@ -170,7 +170,7 @@ function BrandPanel() {
             ['Eerste gesprek', 'Gratis'],
             ['Oplevering', CONTACT.deliveryTime],
             ['Prijs', 'Vooraf vast'],
-            ['WhatsApp', CONTACT.phoneLocal],
+            ['Templates', 'Geen'],
           ].map(([term, value]) => (
             <div
               key={term}
@@ -304,14 +304,6 @@ function HeroSectionFn() {
               >
                 Bekijk ons werk
               </Link>
-              <a
-                href={whatsappHref('Hallo NextX, ik heb een vraag over een website.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-muted-foreground font-semibold text-base hover:text-primary transition-colors duration-300"
-              >
-                WhatsApp {CONTACT.phoneDisplay}
-              </a>
             </motion.div>
           </div>
 
