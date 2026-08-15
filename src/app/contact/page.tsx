@@ -1,11 +1,13 @@
-﻿'use client'
+'use client'
 
+import { Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ContactForm } from '@/components/ContactForm'
 import { SectionLabel } from '@/components/SectionLabel'
 import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react'
+import { CONTACT, MAIL_HREF, TEL_HREF, whatsappHref } from '@/lib/contact'
 import {
   fadeInUp,
   blurFadeIn,
@@ -16,17 +18,18 @@ import {
 } from '@/lib/animationUtils'
 
 const contactItems = [
-  { icon: Mail, label: 'Email', value: 'agencynextx@gmail.com', href: 'mailto:agencynextx@gmail.com', isExternal: false },
-  { icon: Phone, label: 'WhatsApp', value: '+597 831-8508', href: 'https://wa.me/5978318508', isExternal: true },
-  { icon: MapPin, label: 'Locatie', value: 'Paramaribo, Suriname', href: null, isExternal: false },
-  { icon: Clock, label: 'Reactietijd', value: 'Binnen 24-48 uur', href: null, isExternal: false },
+  { icon: Mail, label: 'E-mail', value: CONTACT.email, href: MAIL_HREF, isExternal: false },
+  { icon: Phone, label: 'WhatsApp', value: CONTACT.phoneDisplay, href: whatsappHref('Hallo NextX, ik heb een vraag over een project.'), isExternal: true },
+  { icon: Phone, label: 'Bellen', value: CONTACT.phoneDisplay, href: TEL_HREF, isExternal: false },
+  { icon: MapPin, label: 'Locatie', value: CONTACT.location, href: null, isExternal: false },
+  { icon: Clock, label: 'Reactietijd', value: `Reactie ${CONTACT.responseTime}`, href: null, isExternal: false },
 ] as const
 
 export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main">
         {/* ── Hero ── */}
         <section className="relative pt-36 pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
           <div className="absolute top-0 inset-x-0 h-px bg-foreground/10" />
@@ -56,8 +59,9 @@ export default function ContactPage() {
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Beschrijf uw project. Wij reageren binnen 24–48 uur met een helder
-              voorstel. Liever direct? Stuur ons een WhatsApp bericht.
+              Beschrijf uw project. Wij reageren {CONTACT.responseTime} met een
+              helder voorstel. Liever direct? Stuur een WhatsApp bericht naar{' '}
+              {CONTACT.phoneDisplay}.
             </motion.p>
           </motion.div>
         </section>
@@ -89,7 +93,15 @@ export default function ContactPage() {
                     Stuur ons een bericht
                   </h2>
                 </div>
-                <ContactForm />
+                {/* useSearchParams needs a boundary so the page can still be
+                    prerendered; the skeleton matches the form's card. */}
+                <Suspense
+                  fallback={
+                    <div className="bg-card border border-foreground/15 p-6 lg:p-8 min-h-[560px]" />
+                  }
+                >
+                  <ContactForm />
+                </Suspense>
               </motion.div>
 
               {/* ── Info column ── */}
@@ -156,7 +168,7 @@ export default function ContactPage() {
 
                 {/* WhatsApp CTA — solid orange */}
                 <motion.a
-                  href="https://wa.me/5978318508"
+                  href={whatsappHref('Hallo NextX, ik heb een vraag over een project.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 12 }}
@@ -169,7 +181,9 @@ export default function ContactPage() {
                     <p className="text-white font-bold text-base mb-0.5" style={{ fontFamily: 'var(--font-heading)' }}>
                       Liever direct chatten?
                     </p>
-                    <p className="text-white/70 text-sm">We reageren binnen 1 uur</p>
+                    <p className="text-white/70 text-sm">
+                      WhatsApp {CONTACT.phoneDisplay} — reactie {CONTACT.responseTime}
+                    </p>
                   </div>
                   <div className="w-11 h-11 bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors duration-300">
                     <ArrowRight size={18} className="text-white" />

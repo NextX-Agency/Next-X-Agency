@@ -1,25 +1,15 @@
 'use client'
 
 import { memo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Send, Loader2 } from 'lucide-react'
-
-const serviceOptions = [
-  'Logo Design',
-  'Social Media Designs',
-  'Flyer / Poster Design',
-  'Business Card Website',
-  'Service Website',
-  'Portfolio Website',
-  'Restaurant/Menu Website',
-  'Starter Webshop',
-  'Grotere Webshop',
-  'UX/UI Audit of Re-design',
-  'SEO Setup',
-  'Webhosting',
-  'UX Kukru Support',
-  'Custom / Anders',
-] as const
+import { CONTACT } from '@/lib/contact'
+import {
+  matchServiceName,
+  serviceOptionGroups,
+  OTHER_SERVICE,
+} from '@/lib/services'
 
 const budgetOptions = [
   'Minder dan $50',
@@ -40,11 +30,16 @@ interface FormData {
 }
 
 function ContactFormFn({ className = '' }: { className?: string }) {
+  // "Aanvraag starten" on /services passes the chosen service through as
+  // ?dienst=…, so the visitor does not have to pick it a second time.
+  const searchParams = useSearchParams()
+  const preselected = matchServiceName(searchParams.get('dienst')) ?? ''
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
-    service_type: '',
+    service_type: preselected,
     budget: '',
     message: '',
   })
@@ -81,7 +76,7 @@ function ContactFormFn({ className = '' }: { className?: string }) {
         name: '',
         email: '',
         phone: '',
-        service_type: '',
+        service_type: preselected,
         budget: '',
         message: '',
       })
@@ -112,7 +107,8 @@ function ContactFormFn({ className = '' }: { className?: string }) {
           Bedankt voor uw bericht.
         </p>
         <p className="text-muted-foreground text-sm mb-8">
-          Wij nemen binnen 24–48 uur contact met u op met een helder voorstel.
+          Wij nemen {CONTACT.responseTime} contact met u op met een helder
+          voorstel. Haast? WhatsApp {CONTACT.phoneDisplay}.
         </p>
         <button
           onClick={() => setSubmitted(false)}
@@ -200,11 +196,16 @@ function ContactFormFn({ className = '' }: { className?: string }) {
               required
             >
               <option value="">Kies een dienst...</option>
-              {serviceOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
+              {serviceOptionGroups.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.options.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
+              <option value={OTHER_SERVICE}>{OTHER_SERVICE}</option>
             </select>
           </div>
         </div>

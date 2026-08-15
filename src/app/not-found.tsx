@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { CONTACT, whatsappHref } from '@/lib/contact'
 
 export const metadata: Metadata = {
   title: 'Pagina niet gevonden',
@@ -13,8 +14,9 @@ export const metadata: Metadata = {
 const routes = [
   { href: '/services', label: 'Diensten', hint: 'Wat wij maken en wat het kost' },
   { href: '/portfolio', label: 'Werk', hint: 'Recente projecten' },
+  { href: '/examples', label: 'Voorbeelden', hint: 'Werkende demo’s van elke dienst' },
   { href: '/about', label: 'Over ons', hint: 'Wie er achter NextX zit' },
-  { href: '/contact', label: 'Contact', hint: 'Reactie binnen 24 uur' },
+  { href: '/contact', label: 'Contact', hint: `Reactie ${CONTACT.responseTime}` },
 ]
 
 export default function NotFound() {
@@ -33,7 +35,7 @@ export default function NotFound() {
               Fout 404
             </span>
             <span className="text-xs font-medium text-muted-foreground">
-              Paramaribo, Suriname
+              {CONTACT.location}
             </span>
           </div>
 
@@ -74,7 +76,7 @@ export default function NotFound() {
                   <span aria-hidden="true">→</span>
                 </Link>
                 <a
-                  href="https://wa.me/5978318508"
+                  href={whatsappHref('Hallo NextX, ik kwam op een kapotte link op de website.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-foreground font-semibold text-base border-b-2 border-primary pb-0.5 hover:text-primary transition-colors duration-300"

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Server, HardDrive, Globe, Shield, Activity, Upload, Download, Clock, RefreshCw, ChevronRight, CheckCircle2, AlertTriangle, Loader2, Cpu, MemoryStick, Wifi, Gauge, Bell, X, HomeIcon } from 'lucide-react'
 import { toast } from 'sonner'
+import { CONTACT } from '@/lib/contact'
 
 /* ─── Logo ─── */
 function HostingLogo({ size = 36 }: { size?: number }) {
@@ -377,7 +378,7 @@ export default function HostingPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-3"><HostingLogo size={24} /><span className="font-bold text-white text-sm" style={{ fontFamily: 'var(--font-heading)' }}>Hosting Panel</span></div>
-              <p className="text-xs text-slate-400 leading-relaxed">Professionele hosting voor Surinaamse bedrijven. Snelle servers, betrouwbare uptime, lokale support.</p>
+              <p className="text-xs text-slate-400 leading-relaxed">Voorbeeld van een hostingpaneel zoals klanten dat van ons krijgen: status, verbruik en back-ups op één scherm.</p>
             </div>
             <div>
               <h4 className="font-bold text-white text-xs mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Diensten</h4>
@@ -394,8 +395,8 @@ export default function HostingPage() {
             <div>
               <h4 className="font-bold text-white text-xs mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Contact</h4>
               <div className="space-y-1.5 text-xs text-slate-400">
-                <p>Henck Arronstraat 64</p><p>Paramaribo, Suriname</p><p>support@mijnbedrijf.sr</p><p>+597 456-789</p>
-                <p className="pt-1 text-slate-500">KvK: 56789012</p>
+                <p>{CONTACT.location}</p><p>{CONTACT.email}</p><p>{CONTACT.phoneDisplay}</p>
+
               </div>
             </div>
           </div>

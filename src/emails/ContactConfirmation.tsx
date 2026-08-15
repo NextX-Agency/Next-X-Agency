@@ -1,4 +1,4 @@
-﻿import * as React from 'react'
+import * as React from 'react'
 import {
   Html,
   Head,
@@ -15,6 +15,7 @@ import {
   Preview,
   Font,
 } from '@react-email/components'
+import { CONTACT, whatsappHref } from '@/lib/contact'
 
 export interface ContactConfirmationProps {
   name: string
@@ -49,13 +50,13 @@ export function ContactConfirmation({
         />
       </Head>
       <Preview>
-        Uw aanvraag is ontvangen â€” we nemen binnen 24 uur contact op.
+        Uw aanvraag is ontvangen — we nemen {CONTACT.responseTime} contact op.
       </Preview>
 
       <Body style={s.body}>
         <Container style={s.container}>
 
-          {/* â”€â”€ Logo â”€â”€ */}
+          {/* ── Logo ── */}
           <Section style={s.logoSection}>
             <Img
               src="https://nextxagency.com/logo-light.png"
@@ -66,7 +67,7 @@ export function ContactConfirmation({
             />
           </Section>
 
-          {/* â”€â”€ Main card â”€â”€ */}
+          {/* ── Main card ── */}
           <Section style={s.card}>
 
             {/* Heading */}
@@ -76,8 +77,9 @@ export function ContactConfirmation({
             </Text>
             <Text style={s.body2}>
               Bedankt voor uw interesse. We hebben uw aanvraag in goede orde
-              ontvangen. Ons team neemt <strong style={s.strong}>binnen 24 uur</strong>{' '}
-              contact met u op om de details te bespreken.
+              ontvangen. Wij nemen{' '}
+              <strong style={s.strong}>{CONTACT.responseTime}</strong> contact
+              met u op om de details te bespreken.
             </Text>
 
             <Hr style={s.divider} />
@@ -112,39 +114,39 @@ export function ContactConfirmation({
 
             {/* Process steps */}
             <Text style={s.tableLabel}>Hoe werkt het verder</Text>
-            <ProcessStep number="1" text="We nemen binnen 24 uur contact met u op via e-mail of telefoon." />
+            <ProcessStep number="1" text={`We nemen ${CONTACT.responseTime} contact met u op via e-mail of WhatsApp.`} />
             <ProcessStep number="2" text="We bespreken uw wensen en stellen een passend voorstel op." />
             <ProcessStep number="3" text="Na uw akkoord starten we direct met het werk." />
 
             <Hr style={s.divider} />
 
             <Section style={s.ctaSection}>
-              <Button href="https://nextxagency.com" style={s.ctaBtn}>
+              <Button href={CONTACT.siteUrl} style={s.ctaBtn}>
                 Bekijk onze website
               </Button>
             </Section>
 
           </Section>
 
-          {/* â”€â”€ Contact bar â”€â”€ */}
+          {/* ── Contact bar ── */}
           <Section style={s.contactBar}>
             <Text style={s.contactBarTitle}>Vragen? Neem direct contact op</Text>
             <Text style={s.contactBarLinks}>
-              <Link href="mailto:agencynextx@gmail.com" style={s.contactLink}>
-                agencynextx@gmail.com
+              <Link href={`mailto:${CONTACT.email}`} style={s.contactLink}>
+                {CONTACT.email}
               </Link>
-              {'  Â·  '}
-              <Link href="https://wa.me/5978318508" style={s.contactLink}>
-                +597 831-8508
+              {'  ·  '}
+              <Link href={whatsappHref()} style={s.contactLink}>
+                {CONTACT.phoneDisplay}
               </Link>
             </Text>
           </Section>
 
-          {/* â”€â”€ Footer â”€â”€ */}
+          {/* ── Footer ── */}
           <Text style={s.footerText}>
             Dit bericht werd verzonden naar{' '}
             <Link href={`mailto:${email}`} style={s.footerLink}>{email}</Link>
-            {' '}Â· Â© {new Date().getFullYear()} NextX Agency Â· Paramaribo, Suriname
+            {' '}· © {new Date().getFullYear()} NextX Agency · {CONTACT.location}
           </Text>
 
         </Container>
@@ -185,7 +187,7 @@ const stepNum = {
 }
 const stepText = { color: '#475569', fontSize: '14px', lineHeight: '1.6', margin: '0' }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ──────────────────────────────────────────────────────────────────────────────
 
 const s = {
   body: {

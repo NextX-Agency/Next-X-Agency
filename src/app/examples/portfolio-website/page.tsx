@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink, Mail } from 'lucide-react'
+import { CONTACT, MAIL_HREF } from '@/lib/contact'
 
 /* ─── SVG Logo ─── */
 function StudioVibeLogo({ size = 36 }: { size?: number }) {
@@ -187,8 +188,8 @@ export default function StudioVibePage() {
           </h2>
           <p className="text-slate-400 mb-8 leading-relaxed">Vertel ons over uw project en wij komen met een creatief voorstel.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="mailto:hello@studiovibe.sr" className="inline-flex items-center gap-2 px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
-              <Mail className="w-4 h-4" /> hello@studiovibe.sr
+            <a href={MAIL_HREF} className="inline-flex items-center gap-2 px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+              <Mail className="w-4 h-4" /> {CONTACT.email}
             </a>
             <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
               Bespreek uw project

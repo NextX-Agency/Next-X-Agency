@@ -81,9 +81,9 @@ const categories = [
     title: 'Bouwen',
     subtitle: 'Van eerste pagina tot complete webshop, met een helder fundament.',
     services: [
-      { name: 'Bedrijfswebsite', description: 'Een heldere one-page site om uw bedrijf direct goed neer te zetten.', price: '$150', href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
-      { name: 'Service website', description: 'Meerdere pagina’s, duidelijke informatie en ruimte om mee te groeien.', price: '$250', href: '/examples/service-website', recommended: true, features: ['Meerdere pagina’s', 'Contactformulier', 'Basis SEO'], Icon: IconServiceWebsite },
-      { name: 'Starter webshop', description: 'Tot 25 producten, inclusief winkelwagen en een korte checkout.', price: '$350', href: '/examples/starter-webshop', recommended: false, Icon: IconWebshop },
+      { name: 'Business Card Site', description: 'Een heldere one-page site om uw bedrijf direct goed neer te zetten.', price: '$150', href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
+      { name: 'Service Website', description: 'Meerdere pagina’s, duidelijke informatie en ruimte om mee te groeien.', price: '$250', href: '/examples/service-website', recommended: true, Icon: IconServiceWebsite },
+      { name: 'Starter Webshop', description: 'Tot 25 producten, inclusief winkelwagen en een korte checkout.', price: '$350', href: '/examples/starter-webshop', recommended: false, Icon: IconWebshop },
     ],
   },
   {
@@ -92,9 +92,9 @@ const categories = [
     title: 'Ontwerpen',
     subtitle: 'Een merk en interface die begrijpelijk voelen en herkenbaar blijven.',
     services: [
-      { name: 'Logo en merkidentiteit', description: 'Een herkenbaar vertrekpunt voor alle uitingen van uw bedrijf.', price: '$55', href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
-      { name: 'UX audit en advies', description: 'Concrete verbeterpunten voor uw huidige website of platform.', price: '$100', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
-      { name: 'UI ontwerp', description: 'Nieuwe schermen en componenten die het gebruik eenvoudiger maken.', price: '$180', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
+      { name: 'Logo Design', description: 'Een herkenbaar vertrekpunt voor alle uitingen van uw bedrijf.', price: '$55', href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
+      { name: 'UX Audit & Advies', description: 'Concrete verbeterpunten voor uw huidige website of platform.', price: '$100', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
+      { name: 'UI Design (Re-design)', description: 'Nieuwe schermen en componenten die het gebruik eenvoudiger maken.', price: '$180', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
     ],
   },
   {
@@ -103,7 +103,7 @@ const categories = [
     title: 'Vindbaar worden',
     subtitle: 'Een goede technische basis en content die zoekmachines begrijpen.',
     services: [
-      { name: 'SEO basisinrichting', description: 'Meta tags, sitemap, Search Console en robots.txt op orde.', price: '$75', href: '/examples/seo', recommended: false, features: ['Meta tags', 'Sitemap', 'Search Console'], Icon: IconSeo },
+      { name: 'Basic SEO Setup', description: 'Meta tags, sitemap, Search Console en robots.txt op orde.', price: '$75', href: '/examples/seo', recommended: false, Icon: IconSeo },
     ],
   },
 ] as const
@@ -111,15 +111,21 @@ const categories = [
 type ServiceItem = (typeof categories)[number]['services'][number]
 
 function ServiceRow({ service, index }: { service: ServiceItem; index: number }) {
-  const { name, description, price, href, recommended } = service
+  const { name, description, price, href, recommended, Icon } = service
   return (
     <Link
       href={href}
       className="group flex items-center gap-4 py-5 px-4 -mx-4 transition-colors duration-300 hover:bg-background border-b border-border last:border-0"
+      aria-label={`Bekijk het voorbeeld van ${name}`}
     >
       {/* Row index */}
       <span className="meta-sm text-muted-foreground w-6 shrink-0 group-hover:text-primary transition-colors duration-300">
         {String(index + 1).padStart(2, '0')}
+      </span>
+
+      {/* Service mark */}
+      <span className="hidden sm:block w-9 h-9 shrink-0 text-foreground/45 group-hover:text-primary transition-colors duration-300">
+        <Icon />
       </span>
 
       {/* Name + description */}
@@ -245,10 +251,10 @@ function ServicesSectionFn() {
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Link
-              href="/portfolio"
+              href="/services"
               className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover transition-colors group"
             >
-              Bekijk portfolio
+              Alle diensten en prijzen
               <svg
                 className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                 fill="none"

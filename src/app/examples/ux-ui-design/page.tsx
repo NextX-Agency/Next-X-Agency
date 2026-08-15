@@ -2,9 +2,9 @@
 
 import { useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { BarChart3, ArrowRight, Smartphone, Monitor, Users, Clock, MousePointerClick, TrendingUp, CheckCircle2, XCircle, Lightbulb, Download, ChevronRight } from 'lucide-react'
-import { toast } from 'sonner'
+import { BarChart3, ArrowRight, Smartphone, Monitor, Users, Clock, MousePointerClick, TrendingUp, CheckCircle2, XCircle, Lightbulb, ChevronRight } from 'lucide-react'
 
 /* ─── Logo ─── */
 function ShopPlazaLogo({ size = 36 }: { size?: number }) {
@@ -106,7 +106,7 @@ export default function UxUiDesignPage() {
               Van <span className="text-violet-200 line-through decoration-2">frustratie</span> naar <span className="text-yellow-300">conversie</span>
             </h1>
             <p className="text-violet-100 max-w-lg leading-relaxed mb-8">
-              Complete UX/UI redesign van e-commerce platform. Gebruikersonderzoek, wireframes, prototyping en implementatie die resulteerden in 47% meer conversies.
+              Een voorbeeld van hoe wij een bestaande webshop doorlichten en opnieuw opzetten: wat er misging, wat we veranderden en welke cijfers we daarna volgen. De getallen op deze pagina zijn ingevuld ter illustratie.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {metrics.map(m => (
@@ -212,16 +212,15 @@ export default function UxUiDesignPage() {
       {/* ═══ CTA ═══ */}
       <section className="bg-violet-700 py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Uw platform verdient beter UX</h2>
-          <p className="text-violet-200 mb-6 leading-relaxed">Laat ons uw product analyseren en een onderbouwd redesign voorstellen dat het gebruik eenvoudiger maakt.</p>
+          <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Zo pakken we een bestaande site aan</h2>
+          <p className="text-violet-200 mb-6 leading-relaxed">Een UX audit kost vanaf $100 en levert een rapport met verbeterpunten op volgorde van belang, plus een gesprek om het door te nemen. Het eerste kennismakingsgesprek is gratis.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <button onClick={() => toast.success('UX Audit rapport wordt gegenereerd...', { description: 'U ontvangt het volledige rapport per e-mail.' })}
-              className="px-6 py-3 bg-white text-violet-700 font-bold rounded-xl hover:bg-violet-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
-              <Download className="w-4 h-4 inline mr-2" /> Download UX Rapport
-            </button>
-            <a href="/contact" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
-              Gratis UX Audit aanvragen
-            </a>
+            <Link href="/contact?dienst=UX%20Audit%20%26%20Advies" className="px-6 py-3 bg-white text-violet-700 font-bold rounded-xl hover:bg-violet-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+              UX audit aanvragen
+            </Link>
+            <Link href="/services#ux-ui" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+              Bekijk alle prijzen
+            </Link>
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import React from 'react'
 import { render } from '@react-email/render'
 import { ContactNotification } from '@/emails/ContactNotification'
 import { ContactConfirmation } from '@/emails/ContactConfirmation'
+import { CONTACT } from '@/lib/contact'
 
 interface ContactFormData {
   name: string
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest) {
     // Initialize Resend client (only at runtime, not during build)
     const resend = new Resend(process.env.RESEND_API_KEY)
 
-    const agencyTo = process.env.CONTACT_TO_EMAIL ?? 'agencynextx@gmail.com'
+    const agencyTo = process.env.CONTACT_TO_EMAIL ?? CONTACT.email
     const from = process.env.RESEND_FROM_EMAIL ?? 'noreply@nextxagency.com'
     const receivedAt = new Date().toLocaleString('nl-NL', {
       timeZone: 'America/Paramaribo',
@@ -118,11 +119,11 @@ export async function POST(request: NextRequest) {
           `Dienst:   ${body.service_type}`,
           body.budget ? `Budget:   ${body.budget}` : '',
           ``,
-          `Ons team neemt binnen 24 uur contact met u op.`,
+          `Wij nemen ${CONTACT.responseTime} contact met u op.`,
           ``,
           `Met vriendelijke groet,`,
           `NextX Agency`,
-          `nextxagency.com · +597 831-8508`,
+          `nextxagency.com · ${CONTACT.phoneDisplay}`,
         ].filter(Boolean).join('\n'),
         tags: [{ name: 'category', value: 'contact-confirmation' }],
       })
@@ -132,7 +133,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Uw bericht is verzonden. Wij nemen binnen 24 uur contact op.',
+      message: `Uw bericht is verzonden. Wij nemen ${CONTACT.responseTime} contact op.`,
     })
   } catch (error) {
     console.error('Contact route error:', error)

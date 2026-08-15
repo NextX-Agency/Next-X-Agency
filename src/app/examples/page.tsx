@@ -81,9 +81,9 @@ const examples = [
   },
   {
     slug: 'ux-kukru',
-    title: 'Kukru UX/UI',
+    title: 'UX Kukru Support',
     category: 'Outsourcing',
-    description: 'Een community-case met team, proces, pakketten en een laagdrempelig contactpunt.',
+    description: 'Een supportpagina met maandpakketten, urenstand en een duidelijke aanvraagroute.',
     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=340&fit=crop',
   },
 ]
@@ -100,9 +100,24 @@ export default function ExamplesHub() {
           Werk dat u kunt bekijken
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Een selectie van interfaces en flows. Elk voorbeeld laat zien hoe we een
-          vraag vertalen naar iets dat prettig werkt.
+          Elk voorbeeld hieronder is een werkend prototype: u kunt erin klikken,
+          filteren en bestellen. De bedrijven, teksten en foto&apos;s zijn
+          verzonnen — de opzet is wat u bij ons krijgt.
         </p>
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Link
+            href="/services"
+            className="text-sm font-bold text-primary transition-colors hover:text-primary-hover"
+          >
+            Bekijk wat elk type kost →
+          </Link>
+          <Link
+            href="/contact"
+            className="border-b-2 border-primary pb-0.5 text-sm font-bold text-foreground transition-colors hover:text-primary"
+          >
+            Vraag uw eigen versie aan
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-px border-l border-t border-border bg-border md:grid-cols-12">

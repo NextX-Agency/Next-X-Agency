@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainerSlow } from '@/lib/animationUtils'
+import { CONTACT } from '@/lib/contact'
 
 const features = [
   {
@@ -9,10 +10,10 @@ const features = [
     title: 'Snel geleverd',
     description: 'Korte lijnen en een helder proces: u weet vooraf wanneer uw site live gaat, en die afspraak halen we.',
     breakdown: [
-      'Oplevering binnen 48–72 uur',
-      'Vaste afgesproken deadline',
-      'Directe communicatie via WhatsApp',
-      'Geen eindeloze wachttijden',
+      `Oplevering binnen ${CONTACT.deliveryTime}`,
+      'De opleverdatum staat in de offerte',
+      `Vragen gaan via WhatsApp ${CONTACT.phoneDisplay}`,
+      `Antwoord ${CONTACT.responseTime}`,
     ],
   },
   {
@@ -20,10 +21,10 @@ const features = [
     title: 'Eerlijke prijzen',
     description: 'U ziet vooraf precies wat het kost en wat u daarvoor krijgt. Geen kleine lettertjes, geen verrassingen achteraf.',
     breakdown: [
-      'Transparante, vaste prijzen',
-      'Geen verborgen kosten',
-      'Flexibele betaalmogelijkheden',
-      'Gratis eerste adviesgesprek',
+      'Vaste prijs per dienst, vooraf bekend',
+      'Hosting en domein staan apart op de offerte',
+      'Werk na oplevering: $15 per uur',
+      'Het eerste gesprek is gratis',
     ],
   },
   {
@@ -31,24 +32,24 @@ const features = [
     title: 'Eigen ontwerp',
     description: 'Wij ontwerpen vanaf een leeg canvas rond uw merk en uw klanten — geen kant-en-klare thema’s of generatoren.',
     breakdown: [
-      '100% uniek ontwerp — geen templates',
+      'Geen thema uit een winkel',
       'Afgestemd op uw merk en doelgroep',
-      'Meerdere revisierondes inbegrepen',
-      'Responsive op alle apparaten',
+      'Revisierondes tijdens het project inbegrepen',
+      'Leesbaar op telefoon, tablet en desktop',
     ],
   },
   {
     number: '04',
     title: 'Lokaal geworteld',
-    description: 'Wij zitten in Paramaribo, kennen de Surinaamse markt en zijn gewoon bereikbaar — ook na de oplevering.',
+    description: 'Wij zitten zelf in Paramaribo. U spreekt geen callcenter en geen buitenlands bureau, maar de mensen die uw site hebben gebouwd.',
     breakdown: [
       'Persoonlijk contact met de oprichter',
-      'Kennis van de Surinaamse markt',
-      'Snelle lokale support',
-      'Netwerk van lokale partners',
+      'Afspraken op locatie zijn mogelijk',
+      'Support in het Nederlands en Sranan',
+      'Ook maanden later nog bereikbaar',
     ],
   },
-] as const
+]
 
 function WhySectionFn() {
   return (

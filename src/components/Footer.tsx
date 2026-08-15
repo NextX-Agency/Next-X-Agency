@@ -2,7 +2,9 @@ import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, ExternalLink, ArrowUpRight, ShoppingBag } from 'lucide-react'
+import { CONTACT, MAIL_HREF, whatsappHref } from '@/lib/contact'
 
+// Each entry points at a section id that exists on /services.
 const serviceLinks = [
   { href: '/services#graphic-design', label: 'Graphic Design' },
   { href: '/services#websites', label: 'Websites' },
@@ -10,11 +12,13 @@ const serviceLinks = [
   { href: '/services#ux-ui', label: 'UX/UI Design' },
   { href: '/services#seo', label: 'SEO' },
   { href: '/services#hosting', label: 'Hosting' },
+  { href: '/services#ux-kukru', label: 'UX Kukru' },
 ]
 
 const companyLinks = [
   { href: '/about', label: 'Over ons' },
   { href: '/portfolio', label: 'Portfolio' },
+  { href: '/examples', label: 'Voorbeelden' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -43,23 +47,23 @@ function FooterFn() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://wa.me/5978318508"
+                href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-foreground/15 hover:border-primary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
-                aria-label="WhatsApp"
+                aria-label={`WhatsApp ${CONTACT.phoneDisplay}`}
               >
                 <Phone size={16} />
               </a>
               <a
-                href="mailto:agencynextx@gmail.com"
+                href={MAIL_HREF}
                 className="w-10 h-10 border border-foreground/15 hover:border-primary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Email"
               >
                 <Mail size={16} />
               </a>
               <a
-                href="https://www.shop-nextx.com"
+                href={CONTACT.shopUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-foreground/15 hover:border-primary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
@@ -117,26 +121,26 @@ function FooterFn() {
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Mail size={16} className="text-primary shrink-0" />
                 <a
-                  href="mailto:agencynextx@gmail.com"
+                  href={MAIL_HREF}
                   className="hover:text-primary transition-colors"
                 >
-                  agencynextx@gmail.com
+                  {CONTACT.email}
                 </a>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Phone size={16} className="text-primary shrink-0" />
                 <a
-                  href="https://wa.me/5978318508"
+                  href={whatsappHref()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"
                 >
-                  +597 831-8508
+                  {CONTACT.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground text-sm">
                 <MapPin size={16} className="text-primary shrink-0 mt-0.5" />
-                <span>Paramaribo, Suriname</span>
+                <span>{CONTACT.location}</span>
               </li>
             </ul>
           </div>
@@ -144,7 +148,7 @@ function FooterFn() {
 
         {/* Co-brand band — sister platform */}
         <a
-          href="https://www.shop-nextx.com"
+          href={CONTACT.shopUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="group mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-foreground/15 hover:border-primary bg-card p-6 sm:p-7 transition-colors duration-300"
@@ -183,7 +187,7 @@ function FooterFn() {
             <span aria-hidden="true" className="text-primary">
               ✳
             </span>
-            <span>5°52′N 55°10′W</span>
+            <span>{CONTACT.coordinates}</span>
             <span aria-hidden="true" className="text-primary">
               ✳
             </span>

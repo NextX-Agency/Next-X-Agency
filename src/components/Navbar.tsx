@@ -12,9 +12,15 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Diensten' },
   { href: '/portfolio', label: 'Werk' },
+  { href: '/examples', label: 'Voorbeelden' },
   { href: '/about', label: 'Over ons' },
   { href: '/contact', label: 'Contact' },
 ] as const
+
+/** Home only matches exactly; every other entry also owns its sub-pages. */
+function isActive(pathname: string, href: string) {
+  return href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`)
+}
 
 function NavbarFn() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -43,7 +49,7 @@ function NavbarFn() {
               href={link.href}
               className={cn(
                 'group relative text-sm font-semibold transition-colors duration-300',
-                pathname === link.href
+                isActive(pathname, link.href)
                   ? 'text-primary'
                   : 'text-muted-foreground hover:text-foreground'
               )}
@@ -53,7 +59,7 @@ function NavbarFn() {
               <span
                 className={cn(
                   'absolute -bottom-1.5 left-0 h-0.5 bg-primary transition-all duration-300 ease-out',
-                  pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                  isActive(pathname, link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                 )}
               />
             </Link>
@@ -136,12 +142,12 @@ function NavbarFn() {
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       'flex items-center gap-3 px-4 py-3 text-sm font-semibold transition-colors',
-                      pathname === link.href
+                      isActive(pathname, link.href)
                         ? 'text-primary bg-primary/10'
                         : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
                     )}
                   >
-                    {pathname === link.href && (
+                    {isActive(pathname, link.href) && (
                       <span className="w-3 h-px bg-primary shrink-0" aria-hidden="true" />
                     )}
                     {link.label}

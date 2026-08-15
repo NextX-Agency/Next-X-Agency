@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, B
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
+import { CONTACT, MAIL_HREF, TEL_HREF } from '@/lib/contact'
 
 /* ─── SVG Logo ─── */
 function DentaCareLogo({ size = 36 }: { size?: number }) {
@@ -46,10 +47,10 @@ const insurancePartners = ['Fatum', 'Assuria', 'VVVF', 'SZF', 'Zelf betalend']
 const insuranceColors: Record<string, string> = { Fatum: '#003d7a', Assuria: '#d4262c', VVVF: '#2e7d32', SZF: '#1565c0', 'Zelf betalend': '#64748b' }
 
 const dentaTestimonials = [
-  { name: 'Annesha Moeniralam', role: 'Cosmetische behandeling', text: 'Eindelijk geen angst meer voor de tandarts. Het team van DentaCare maakt je echt op je gemak. Mijn glimlach is nu mijn beste accessoire!', rating: 5, avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&q=80', date: 'Nov 2024' },
-  { name: 'Bryan Tjin-A-Ton', role: 'Tanden bleken', text: 'Top resultaat bij mijn tanden bleken. In één sessie al groot verschil. Zeer professioneel en vriendelijk personeel.', rating: 5, avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&h=96&fit=crop&q=80', date: 'Jan 2025' },
-  { name: 'Sandra de Wit', role: 'Reguliere controle', text: 'Heel vriendelijk personeel en de praktijk is super schoon en modern. Ze nemen de tijd om alles uit te leggen.', rating: 5, avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&q=80', date: 'Feb 2025' },
-  { name: 'Kiran Mahabier', role: 'Restauratie kroon', text: 'DentaCare is de beste investering voor je glimlach. Dr. Chen heeft fantastisch werk geleverd met mijn kroon. Ziet er heel natuurlijk uit.', rating: 5, avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80', date: 'Mrt 2025' },
+  { name: 'Annesha Moeniralam', role: 'Cosmetische behandeling', text: 'Eindelijk geen angst meer voor de tandarts. Het team van DentaCare maakt je echt op je gemak. Mijn glimlach is nu mijn beste accessoire!', rating: 5, avatar: 'AM', date: 'Nov 2024' },
+  { name: 'Bryan Tjin-A-Ton', role: 'Tanden bleken', text: 'Top resultaat bij mijn tanden bleken. In één sessie al groot verschil. Zeer professioneel en vriendelijk personeel.', rating: 5, avatar: 'BT', date: 'Jan 2025' },
+  { name: 'Sandra de Wit', role: 'Reguliere controle', text: 'Heel vriendelijk personeel en de praktijk is super schoon en modern. Ze nemen de tijd om alles uit te leggen.', rating: 5, avatar: 'SW', date: 'Feb 2025' },
+  { name: 'Kiran Mahabier', role: 'Restauratie kroon', text: 'DentaCare is de beste investering voor je glimlach. Dr. Chen heeft fantastisch werk geleverd met mijn kroon. Ziet er heel natuurlijk uit.', rating: 5, avatar: 'KM', date: 'Mrt 2025' },
 ]
 
 const unavailableDates = ['2026-03-30', '2026-04-02', '2026-04-05', '2026-04-09']
@@ -169,7 +170,7 @@ export default function DentaCarePage() {
               <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-colors shadow-lg shadow-sky-500/20" style={{ fontFamily: 'var(--font-heading)' }}>
                 <CalendarDays className="w-4 h-4" /> Maak afspraak
               </a>
-              <a href="tel:+5978001234" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-slate-200 text-slate-700 font-bold rounded-xl hover:border-sky-500 hover:text-sky-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+              <a href={TEL_HREF} className="inline-flex items-center gap-2 px-6 py-3 border-2 border-slate-200 text-slate-700 font-bold rounded-xl hover:border-sky-500 hover:text-sky-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 <Phone className="w-4 h-4" /> Bel ons
               </a>
             </div>
@@ -294,13 +295,13 @@ export default function DentaCarePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6" style={{ fontFamily: 'var(--font-heading)' }}>Plan uw bezoek</h2>
             <p className="text-slate-500 mb-8 leading-relaxed">Selecteer uw behandeling, kies een datum en tijd, en wij bevestigen uw afspraak binnen 2 uur.</p>
             <div className="space-y-4 mb-8">
-              <a href="tel:+5978001234" className="flex items-center gap-4 text-slate-700 hover:text-sky-500 transition-colors group">
+              <a href={TEL_HREF} className="flex items-center gap-4 text-slate-700 hover:text-sky-500 transition-colors group">
                 <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center group-hover:bg-sky-500 transition-colors"><Phone className="w-5 h-5 text-sky-500 group-hover:text-white transition-colors" /></div>
-                <span className="font-medium">+597 800 1234</span>
+                <span className="font-medium">{CONTACT.phoneDisplay}</span>
               </a>
-              <a href="mailto:info@dentacare.sr" className="flex items-center gap-4 text-slate-700 hover:text-sky-500 transition-colors group">
+              <a href={MAIL_HREF} className="flex items-center gap-4 text-slate-700 hover:text-sky-500 transition-colors group">
                 <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center group-hover:bg-sky-500 transition-colors"><Mail className="w-5 h-5 text-sky-500 group-hover:text-white transition-colors" /></div>
-                <span className="font-medium">info@dentacare.sr</span>
+                <span className="font-medium">{CONTACT.email}</span>
               </a>
               <div className="flex items-center gap-4 text-slate-700">
                 <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center"><MapPin className="w-5 h-5 text-sky-500" /></div>
@@ -391,7 +392,7 @@ export default function DentaCarePage() {
                       {[
                         { key: 'naam', label: 'Volledige naam', type: 'text', ph: 'Jan de Vries' },
                         { key: 'email', label: 'E-mailadres', type: 'email', ph: 'jan@email.com' },
-                        { key: 'telefoon', label: 'Telefoonnummer', type: 'tel', ph: '+597 000 0000' },
+                        { key: 'telefoon', label: 'Telefoonnummer', type: 'tel', ph: '+597 XXX-XXXX' },
                       ].map(({ key, label, type, ph }) => (
                         <div key={key}>
                           <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
@@ -471,8 +472,8 @@ export default function DentaCarePage() {
               <div className="space-y-2 text-sm text-slate-400">
                 <p>Watermolenstraat 45</p>
                 <p>Paramaribo, Suriname</p>
-                <p className="mt-3">+597 800 1234</p>
-                <p>info@dentacare.sr</p>
+                <p className="mt-3">{CONTACT.phoneDisplay}</p>
+                <p>{CONTACT.email}</p>
               </div>
             </div>
             {/* Hours */}
@@ -490,7 +491,7 @@ export default function DentaCarePage() {
           </div>
           <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-xs text-slate-500">© 2025 DentaCare Paramaribo. Alle rechten voorbehouden.</p>
-            <p className="text-xs text-slate-600">KvK: 98765432 | BIG-registratie</p>
+
           </div>
         </div>
       </footer>
@@ -512,7 +513,7 @@ export default function DentaCarePage() {
         </div>
       </nav>
 
-      <FloatingWhatsApp phone="5978001234" company="DentaCare Paramaribo" message="Hallo, ik wil graag een afspraak maken!" />
+      <FloatingWhatsApp company="DentaCare Paramaribo" message="Hallo NextX, ik bekeek het voorbeeld DentaCare en wil zoiets voor mijn bedrijf." />
     </div>
   )
 }

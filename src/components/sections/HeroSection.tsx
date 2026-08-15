@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { AnimatedSVGPath } from '@/components/animated/AnimatedSVGPath'
 import { Magnetic } from '@/components/interactive/Magnetic'
+import { CONTACT, whatsappHref } from '@/lib/contact'
 
 const services = [
   'Websites',
@@ -167,9 +168,9 @@ function BrandPanel() {
         <dl className="mt-5 space-y-3">
           {[
             ['Eerste gesprek', 'Gratis'],
-            ['Oplevering', '48–72 uur'],
+            ['Oplevering', CONTACT.deliveryTime],
             ['Prijs', 'Vooraf vast'],
-            ['Templates', 'Geen'],
+            ['WhatsApp', CONTACT.phoneLocal],
           ].map(([term, value]) => (
             <div
               key={term}
@@ -216,10 +217,10 @@ function HeroSectionFn() {
         >
           <span className="meta text-foreground">NextX Agency</span>
           <span className="meta text-muted-foreground hidden sm:inline">
-            5°52′N 55°10′W
+            {CONTACT.coordinates}
           </span>
           <span className="meta text-muted-foreground flex items-center gap-2">
-            Paramaribo <LocalClock />
+            {CONTACT.city} <LocalClock />
           </span>
         </motion.div>
 
@@ -231,7 +232,7 @@ function HeroSectionFn() {
               className="margin-note absolute -left-9 top-1 hidden xl:block"
               aria-hidden="true"
             >
-              Sinds 2024 — Suriname
+              Sinds 2024 — {CONTACT.country}
             </span>
 
             <h1
@@ -303,6 +304,14 @@ function HeroSectionFn() {
               >
                 Bekijk ons werk
               </Link>
+              <a
+                href={whatsappHref('Hallo NextX, ik heb een vraag over een website.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-muted-foreground font-semibold text-base hover:text-primary transition-colors duration-300"
+              >
+                WhatsApp {CONTACT.phoneDisplay}
+              </a>
             </motion.div>
           </div>
 
@@ -335,7 +344,7 @@ function HeroSectionFn() {
         </div>
         {/* Same content, available to assistive tech without the animation */}
         <span className="sr-only">
-          Diensten: {services.join(', ')}. Paramaribo, Suriname.
+          Diensten: {services.join(', ')}. {CONTACT.location}.
         </span>
       </div>
     </header>

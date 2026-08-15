@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Palette, Type, Download, Copy, Check, Eye, Layers, Droplets, Sparkles } from 'lucide-react'
+import { Palette, Type, Copy, Check, Eye, Layers, Droplets, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 
 /* ─── Animated SVG Logo ─── */
@@ -124,7 +125,7 @@ export default function SavanaCoffeePage() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-12">
             <div>
               <h2 className="text-2xl font-bold text-stone-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Logo Design</h2>
-              <p className="text-stone-600 max-w-2xl leading-relaxed">Het Savana logo combineert een gestileerde koffieboon met een bladvorm — symbool voor single-origin koffie en duurzame teelt. De minimalistische lijnvoering geeft een premium, ambachtelijk gevoel.</p>
+              <p className="text-stone-600 max-w-2xl leading-relaxed">Het merk is een koffiebrander, dus het logo houdt een koffieboon en een blad in één vorm. De lijnen zijn dun gehouden zodat het beeldmerk ook op een zakje van 8 centimeter nog leesbaar blijft.</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
@@ -271,16 +272,15 @@ export default function SavanaCoffeePage() {
       {/* ═══ CTA ═══ */}
       <section className="bg-amber-800 py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Uw merk verdient dit niveau</h2>
-          <p className="text-amber-200 mb-6 leading-relaxed">Van concept tot complete merkidentiteit. Laat ons uw visie tot leven brengen met een branding die resoneert.</p>
+          <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Zo ziet een merkidentiteit van ons eruit</h2>
+          <p className="text-amber-200 mb-6 leading-relaxed">Een logo kost vanaf $55 en is binnen een paar dagen klaar, inclusief twee revisierondes en alle bestandsformaten.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <button onClick={() => toast.success('Brandbook download gestart!', { description: 'Het PDF bestand wordt klaargemaakt...' })}
-              className="px-6 py-3 bg-white text-amber-900 font-bold rounded-xl hover:bg-amber-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
-              <Download className="w-4 h-4 inline mr-2" /> Download Brandbook
-            </button>
-            <a href="/contact" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
-              <Palette className="w-4 h-4 inline mr-2" /> Start uw project
-            </a>
+            <Link href="/contact?dienst=Logo%20Design" className="px-6 py-3 bg-white text-amber-900 font-bold rounded-xl hover:bg-amber-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+              <Palette className="w-4 h-4 inline mr-2" /> Logo aanvragen
+            </Link>
+            <Link href="/services#graphic-design" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+              Bekijk alle prijzen
+            </Link>
           </div>
         </div>
       </section>

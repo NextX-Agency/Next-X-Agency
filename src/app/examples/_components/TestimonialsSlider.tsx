@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef } from 'react'
-import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 
@@ -10,6 +9,7 @@ export interface Testimonial {
   role: string
   text: string
   rating: number
+  /** Initials shown in the avatar circle. */
   avatar: string
   date: string
 }
@@ -62,6 +62,9 @@ export default function TestimonialsSlider({ testimonials, accentColor = '#0ea5e
               <span className="text-sm font-bold text-slate-700">{avg}</span>
               <span className="text-sm text-slate-400">· {testimonials.length} beoordelingen</span>
             </div>
+            <p className="mt-3 inline-block border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+              Voorbeeldteksten — geen echte reviews
+            </p>
           </motion.div>
           <div className="flex gap-2">
             <button onClick={() => scroll('left')} className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:border-slate-400 transition-colors" aria-label="Vorige">
@@ -86,7 +89,13 @@ export default function TestimonialsSlider({ testimonials, accentColor = '#0ea5e
               <p className="text-sm text-slate-600 leading-relaxed mb-5">&ldquo;{t.text}&rdquo;</p>
               <Stars count={t.rating} color={accentColor} />
               <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-100">
-                  <Image src={t.avatar} alt={t.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover" />
+                <span
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                  style={{ backgroundColor: accentColor }}
+                  aria-hidden="true"
+                >
+                  {t.avatar}
+                </span>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-slate-900 truncate">{t.name}</p>
                   <p className="text-xs text-slate-500 truncate">{t.role}</p>

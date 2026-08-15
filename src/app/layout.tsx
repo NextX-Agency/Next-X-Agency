@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Manrope, Space_Grotesk, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { ScrollProgress } from '@/components/interactive/ScrollProgress'
+import { CONTACT } from '@/lib/contact'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -26,7 +27,7 @@ const plexMono = IBM_Plex_Mono({
   weight: ['400', '500', '600'],
 })
 
-const SITE_URL = 'https://nextxagency.com'
+const SITE_URL = CONTACT.siteUrl
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -101,11 +102,11 @@ export default function RootLayout({
     description:
       'Professionele digitale oplossingen voor Surinaamse bedrijven. Web design, e-commerce, grafisch ontwerp en meer.',
     url: SITE_URL,
-    email: 'agencynextx@gmail.com',
-    telephone: '+597-831-8508',
+    email: CONTACT.email,
+    telephone: CONTACT.phoneE164,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Paramaribo',
+      addressLocality: CONTACT.city,
       addressCountry: 'SR',
     },
     areaServed: {
@@ -113,7 +114,7 @@ export default function RootLayout({
       name: 'Suriname',
     },
     priceRange: '$$',
-    sameAs: [],
+    sameAs: [CONTACT.shopUrl],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Digitale Diensten',

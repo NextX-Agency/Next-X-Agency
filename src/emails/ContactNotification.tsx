@@ -1,4 +1,4 @@
-﻿import * as React from 'react'
+import * as React from 'react'
 import {
   Html,
   Head,
@@ -15,6 +15,7 @@ import {
   Preview,
   Font,
 } from '@react-email/components'
+import { CONTACT } from '@/lib/contact'
 
 export interface ContactNotificationProps {
   name: string
@@ -37,7 +38,7 @@ export function ContactNotification({
 }: ContactNotificationProps) {
   const replySubject = `Re: ${service_type} aanvraag van ${name}`
   const replyBody = `Beste ${name},%0A%0ABedankt voor uw interesse in onze ${service_type} dienst.%0A%0AGroeten,%0ANextX Agency`
-  const mailtoHref = `mailto:${email}?subject=${encodeURIComponent(replySubject)}&body=${replyBody}`
+  const replyHref = `mailto:${email}?subject=${encodeURIComponent(replySubject)}&body=${replyBody}`
 
   return (
     <Html lang="nl">
@@ -54,13 +55,13 @@ export function ContactNotification({
         />
       </Head>
       <Preview>
-        {name} â€” {service_type}{budget ? ` Â· ${budget}` : ''} Â· Beantwoord direct via deze mail
+        {name} — {service_type}{budget ? ` · ${budget}` : ''} · Beantwoord direct via deze mail
       </Preview>
 
       <Body style={s.body}>
         <Container style={s.container}>
 
-          {/* â”€â”€ Logo â”€â”€ */}
+          {/* ── Logo ── */}
           <Section style={s.logoRow}>
             <Img
               src="https://nextxagency.com/logo-light.png"
@@ -71,7 +72,7 @@ export function ContactNotification({
             />
           </Section>
 
-          {/* â”€â”€ Card â”€â”€ */}
+          {/* ── Card ── */}
           <Section style={s.card}>
 
             {/* Service + meta */}
@@ -122,18 +123,20 @@ export function ContactNotification({
 
             {/* Reply CTA */}
             <Section style={s.ctaWrap}>
-              <Button href={mailtoHref} style={s.ctaBtn}>
+              <Button href={replyHref} style={s.ctaBtn}>
                 Beantwoorden
               </Button>
             </Section>
 
           </Section>
 
-          {/* â”€â”€ Footer â”€â”€ */}
+          {/* ── Footer ── */}
           <Text style={s.footerText}>
             Ontvangen via{' '}
-            <Link href="https://nextxagency.com/contact" style={s.footerLink}>nextxagency.com/contact</Link>
-            {receivedAt ? ` Â· ${receivedAt}` : ''}
+            <Link href={`${CONTACT.siteUrl}/contact`} style={s.footerLink}>
+              nextxagency.com/contact
+            </Link>
+            {receivedAt ? ` · ${receivedAt}` : ''}
           </Text>
 
         </Container>
@@ -142,7 +145,7 @@ export function ContactNotification({
   )
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ──────────────────────────────────────────────────────────────────────────────
 
 const s = {
   body: {

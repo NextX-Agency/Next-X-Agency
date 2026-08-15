@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -38,7 +38,7 @@ export default function PortfolioPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main">
         {/* ── Hero ── */}
         <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
           <div className="absolute top-0 inset-x-0 h-px bg-foreground/10" />
@@ -75,6 +75,17 @@ export default function PortfolioPage() {
             <motion.p variants={fadeInUp} className="text-muted-foreground text-lg max-w-xl leading-relaxed">
               Een selectie van recente projecten. Elk project is ontworpen rond
               het merk, de klanten en de doelen van de ondernemer erachter.
+            </motion.p>
+
+            <motion.p variants={fadeInUp} className="mt-6 text-muted-foreground text-sm max-w-xl leading-relaxed">
+              Wilt u zien hoe een type site werkt voordat u er een bestelt?{' '}
+              <Link
+                href="/examples"
+                className="font-bold text-primary hover:text-primary-hover transition-colors"
+              >
+                Bekijk de interactieve voorbeelden
+              </Link>{' '}
+              — webshop, restaurantmenu, portfolio en meer.
             </motion.p>
           </motion.div>
         </section>

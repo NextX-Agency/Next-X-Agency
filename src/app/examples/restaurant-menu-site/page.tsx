@@ -7,6 +7,7 @@ import { Clock, MapPin, Phone, Utensils, Leaf, Flame, Fish, IceCreamCone, Star, 
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
+import { CONTACT } from '@/lib/contact'
 
 /* ─── Logo ─── */
 function WarungLogo({ size = 36 }: { size?: number }) {
@@ -81,9 +82,9 @@ const atmosphereImages = [
 ]
 
 const restaurantTestimonials = [
-  { name: 'Priya Kanhai', role: 'Google review', text: 'Beste roti in Paramaribo! De masala saus is ongeëvenaard. We komen hier al 3 jaar elke vrijdag.', rating: 5, avatar: 'PK', date: '2 weken geleden' },
-  { name: 'Marco Tjin-A-Djie', role: 'Tripadvisor', text: 'Fantastische sfeer en heerlijk eten. De nasi goreng special is een must-try. Porties zijn royaal.', rating: 5, avatar: 'MT', date: '1 maand geleden' },
-  { name: 'Anisha Soekhram', role: 'Google review', text: 'De garnalen curry was uitstekend, heel smaakvol. Bediening kan soms wat langzaam zijn bij drukte.', rating: 4, avatar: 'AS', date: '3 weken geleden' },
+  { name: 'Priya Kanhai', role: 'Voorbeeldreview', text: 'Beste roti in Paramaribo! De masala saus is ongeëvenaard. We komen hier al 3 jaar elke vrijdag.', rating: 5, avatar: 'PK', date: '2 weken geleden' },
+  { name: 'Marco Tjin-A-Djie', role: 'Voorbeeldreview', text: 'Fantastische sfeer en heerlijk eten. De nasi goreng special is een must-try. Porties zijn royaal.', rating: 5, avatar: 'MT', date: '1 maand geleden' },
+  { name: 'Anisha Soekhram', role: 'Voorbeeldreview', text: 'De garnalen curry was uitstekend, heel smaakvol. Bediening kan soms wat langzaam zijn bij drukte.', rating: 4, avatar: 'AS', date: '3 weken geleden' },
   { name: 'Dave Esajas', role: 'Stamgast', text: 'Al 5 jaar vaste klant. De moksi alesi is echt authentiek, net zoals mijn oma het maakte. Top!', rating: 5, avatar: 'DE', date: '1 week geleden' },
 ]
 
@@ -175,7 +176,7 @@ export default function WarungIndahPage() {
       <section className="bg-green-700 text-white">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4 text-sm">
           <div className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Waterkant 42, Paramaribo</div>
-          <div className="flex items-center gap-2"><Phone className="w-4 h-4" /> +597 455-1234</div>
+          <div className="flex items-center gap-2"><Phone className="w-4 h-4" /> {CONTACT.phoneDisplay}</div>
           <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> Ma-Za 11:00 – 22:00 · Zo gesloten</div>
           <div className="flex items-center gap-2"><Users className="w-4 h-4" /> Dine-in · Afhalen · Bezorging</div>
         </div>
@@ -319,7 +320,9 @@ export default function WarungIndahPage() {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <TestimonialsSlider testimonials={restaurantTestimonials} accentColor="#15803d" subtitle="Beoordelingen" title="Wat onze gasten zeggen" />
+      <div id="reviews">
+        <TestimonialsSlider testimonials={restaurantTestimonials} accentColor="#15803d" subtitle="Beoordelingen" title="Wat onze gasten zeggen" />
+      </div>
 
       {/* ═══ RESERVATION ═══ */}
       <section className="py-16 bg-white" id="reserveren" ref={resRef}>
@@ -334,7 +337,7 @@ export default function WarungIndahPage() {
               <ul className="text-sm text-stone-600 space-y-1.5">
                 <li className="flex items-center gap-2"><Users className="w-4 h-4 text-green-600" /> Max. 8 personen per reservering</li>
                 <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-green-600" /> Reserveer min. 2 uur van tevoren</li>
-                <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-green-600" /> Groepen 8+: bel +597 455-1234</li>
+                <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-green-600" /> Groepen 8+: bel {CONTACT.phoneDisplay}</li>
               </ul>
             </div>
           </div>
@@ -402,7 +405,7 @@ export default function WarungIndahPage() {
                     {[
                       { id: 'naam', label: 'Naam', type: 'text', ph: 'Uw volledige naam' },
                       { id: 'email', label: 'E-mail', type: 'email', ph: 'uw@email.com' },
-                      { id: 'telefoon', label: 'Telefoon', type: 'tel', ph: '+597 ...' },
+                      { id: 'telefoon', label: 'Telefoon', type: 'tel', ph: '+597 XXX-XXXX' },
                     ].map(f => (
                       <div key={f.id}>
                         <label className="text-sm font-bold text-stone-700 block mb-1">{f.label}</label>
@@ -489,8 +492,8 @@ export default function WarungIndahPage() {
               <div className="space-y-2 text-sm text-stone-400">
                 <p>Waterkant 42</p>
                 <p>Paramaribo, Suriname</p>
-                <p className="mt-3">+597 455-1234</p>
-                <p>info@warungindah.sr</p>
+                <p className="mt-3">{CONTACT.phoneDisplay}</p>
+                <p>{CONTACT.email}</p>
               </div>
             </div>
             <div>
@@ -507,7 +510,7 @@ export default function WarungIndahPage() {
           </div>
           <div className="border-t border-stone-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-xs text-stone-500">© 2025 Warung Indah. Alle rechten voorbehouden.</p>
-            <p className="text-xs text-stone-600">KvK: 34567890 | Voedselveiligheid gecertificeerd</p>
+
           </div>
         </div>
       </footer>
@@ -518,7 +521,7 @@ export default function WarungIndahPage() {
           {[
             { icon: HomeIcon, label: 'Home', href: '#home' },
             { icon: Utensils, label: 'Menu', href: '#menu' },
-            { icon: Star, label: 'Reviews', href: '#' },
+            { icon: Star, label: 'Reviews', href: '#reviews' },
             { icon: CalendarDays, label: 'Reserveren', href: '#reserveren' },
           ].map(n => (
             <a key={n.label} href={n.href} className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-stone-500 hover:text-green-600 transition-colors">
@@ -529,7 +532,7 @@ export default function WarungIndahPage() {
         </div>
       </nav>
 
-      <FloatingWhatsApp phone="5974551234" company="Warung Indah" message="Hallo! Ik wil graag bestellen of reserveren." />
+      <FloatingWhatsApp company="Warung Indah" message="Hallo NextX, ik bekeek het voorbeeld Warung Indah en wil zoiets voor mijn bedrijf." />
     </div>
   )
 }

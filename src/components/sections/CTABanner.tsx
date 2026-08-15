@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { fadeInUp, blurFadeIn, staggerContainer, scaleIn } from '@/lib/animationUtils'
+import { CONTACT, TEL_HREF, whatsappHref } from '@/lib/contact'
 
 function CTABannerFn() {
   return (
@@ -33,8 +34,8 @@ function CTABannerFn() {
             Een goed gesprek is een beter begin.
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-lg text-neutral-950/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Vertel wat u wilt bouwen. Wij reageren binnen 24–48 uur met een
-            helder voorstel.
+            Vertel wat u wilt bouwen. Wij reageren {CONTACT.responseTime} met
+            een helder voorstel.
           </motion.p>
 
           <motion.div
@@ -54,7 +55,7 @@ function CTABannerFn() {
             </motion.div>
             <motion.div variants={scaleIn} className="w-full sm:w-auto">
               <a
-                href="https://wa.me/5978318508"
+                href={whatsappHref('Hallo NextX, ik wil graag een gesprek over een project.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button-secondary group w-full sm:w-auto border-white bg-white text-neutral-950 hover:border-white hover:bg-neutral-100 hover:text-neutral-950"
@@ -66,6 +67,21 @@ function CTABannerFn() {
               </a>
             </motion.div>
           </motion.div>
+
+          {/* The number itself, spelled out — not everyone clicks a button. */}
+          <motion.p
+            variants={fadeInUp}
+            className="mt-8 text-sm text-neutral-950/70"
+          >
+            Liever bellen?{' '}
+            <a
+              href={TEL_HREF}
+              className="font-bold text-neutral-950 underline underline-offset-4 hover:text-neutral-800 transition-colors"
+            >
+              {CONTACT.phoneDisplay}
+            </a>{' '}
+            · {CONTACT.location}
+          </motion.p>
         </motion.div>
       </div>
     </section>

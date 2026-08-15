@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, ChevronRight, Hamme
 import { toast } from 'sonner'
 import FloatingWhatsApp from '../_components/FloatingWhatsApp'
 import TestimonialsSlider from '../_components/TestimonialsSlider'
+import { CONTACT, MAIL_HREF, TEL_HREF } from '@/lib/contact'
 
 /* ─── SVG Logo ─── */
 function KaderBouwLogo({ className = '', size = 40 }: { className?: string; size?: number }) {
@@ -55,10 +56,10 @@ const certifications = [
 ]
 
 const kaderbouwTestimonials = [
-  { name: 'Mohamed Alibaks', role: 'Nieuwbouw woning · Paramaribo Noord', text: 'Op tijd, netjes en kwalitatief. KaderBouw heeft onze droomwoning precies zo gebouwd als we voor ogen hadden. De communicatie was uitstekend.', rating: 5, avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80', date: 'Okt 2024' },
-  { name: 'Shanti Ramkhelawan', role: 'Renovatie badkamer · Zorg en Hoop', text: 'Vakmanschap dat je ziet en voelt. Onze badkamer is compleet getransformeerd. Het team was altijd op tijd en heeft netjes gewerkt.', rating: 5, avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&h=96&fit=crop&q=80', date: 'Dec 2024' },
-  { name: 'Ravi Doerga', role: 'Dakwerken · Lelydorp', text: 'KaderBouw deed precies wat ze beloofden. Het dak is perfect geïsoleerd en de lekkage is volledig verholpen. Aanrader!', rating: 5, avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&q=80', date: 'Feb 2025' },
-  { name: 'Patricia Veira', role: 'Terrazzovloer · Rainville', text: 'Prachtig resultaat — de hele buurt vraagt om hun nummer. De terrazzovloer glimt als nooit tevoren. Heel tevreden over de afwerking.', rating: 5, avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&q=80', date: 'Mrt 2025' },
+  { name: 'Mohamed Alibaks', role: 'Nieuwbouw woning · Paramaribo Noord', text: 'Op tijd, netjes en kwalitatief. KaderBouw heeft onze droomwoning precies zo gebouwd als we voor ogen hadden. De communicatie was uitstekend.', rating: 5, avatar: 'MA', date: 'Okt 2024' },
+  { name: 'Shanti Ramkhelawan', role: 'Renovatie badkamer · Zorg en Hoop', text: 'Vakmanschap dat je ziet en voelt. Onze badkamer is compleet getransformeerd. Het team was altijd op tijd en heeft netjes gewerkt.', rating: 5, avatar: 'SR', date: 'Dec 2024' },
+  { name: 'Ravi Doerga', role: 'Dakwerken · Lelydorp', text: 'KaderBouw deed precies wat ze beloofden. Het dak is perfect geïsoleerd en de lekkage is volledig verholpen. Aanrader!', rating: 5, avatar: 'RD', date: 'Feb 2025' },
+  { name: 'Patricia Veira', role: 'Terrazzovloer · Rainville', text: 'Prachtig resultaat — de hele buurt vraagt om hun nummer. De terrazzovloer glimt als nooit tevoren. Heel tevreden over de afwerking.', rating: 5, avatar: 'PV', date: 'Mrt 2025' },
 ]
 
 const stats = [
@@ -340,13 +341,13 @@ export default function KaderBouwPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6" style={{ fontFamily: 'var(--font-heading)' }}>Neem contact op</h2>
               <p className="text-slate-600 mb-8 leading-relaxed">Heeft u een bouwproject in gedachten? Neem vrijblijvend contact op voor een offerte of adviesgesprek.</p>
               <div className="space-y-4">
-                <a href="tel:+5978523456" className="flex items-center gap-4 text-slate-700 hover:text-[#f97015] transition-colors group">
+                <a href={TEL_HREF} className="flex items-center gap-4 text-slate-700 hover:text-[#f97015] transition-colors group">
                   <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center group-hover:bg-[#f97015] transition-colors"><Phone className="w-5 h-5 text-[#f97015] group-hover:text-white transition-colors" /></div>
-                  <span className="font-medium">+597 852 3456</span>
+                  <span className="font-medium">{CONTACT.phoneDisplay}</span>
                 </a>
-                <a href="mailto:info@kaderbouw.sr" className="flex items-center gap-4 text-slate-700 hover:text-[#f97015] transition-colors group">
+                <a href={MAIL_HREF} className="flex items-center gap-4 text-slate-700 hover:text-[#f97015] transition-colors group">
                   <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center group-hover:bg-[#f97015] transition-colors"><Mail className="w-5 h-5 text-[#f97015] group-hover:text-white transition-colors" /></div>
-                  <span className="font-medium">info@kaderbouw.sr</span>
+                  <span className="font-medium">{CONTACT.email}</span>
                 </a>
                 <div className="flex items-center gap-4 text-slate-700">
                   <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center"><MapPin className="w-5 h-5 text-[#f97015]" /></div>
@@ -414,7 +415,7 @@ export default function KaderBouwPage() {
                         {[
                           { key: 'naam', label: 'Naam *', type: 'text', placeholder: 'Uw volledige naam' },
                           { key: 'email', label: 'E-mail *', type: 'email', placeholder: 'uw@email.com' },
-                          { key: 'telefoon', label: 'Telefoon *', type: 'tel', placeholder: '+597 000 0000' },
+                          { key: 'telefoon', label: 'Telefoon *', type: 'tel', placeholder: '+597 XXX-XXXX' },
                           { key: 'adres', label: 'Adres project', type: 'text', placeholder: 'Straat en wijk van het project' },
                         ].map(({ key, label, type, placeholder }) => (
                           <div key={key}>
@@ -459,8 +460,8 @@ export default function KaderBouwPage() {
             <div>
               <h4 className="font-bold text-white text-sm mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Contact</h4>
               <div className="space-y-2 text-sm text-slate-400">
-                <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> +597 852 3456</p>
-                <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> info@kaderbouw.sr</p>
+                <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> {CONTACT.phoneDisplay}</p>
+                <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> {CONTACT.email}</p>
                 <p className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Anton Dragtenweg 72, Paramaribo</p>
               </div>
             </div>
@@ -471,7 +472,7 @@ export default function KaderBouwPage() {
                   <span key={label} aria-label={`${label} (volgt binnenkort)`} className="w-10 h-10 rounded-full bg-slate-800/60 flex items-center justify-center text-slate-500" aria-disabled="true"><Icon className="w-4 h-4" /></span>
                 ))}
               </div>
-              <p className="text-xs text-slate-500">KvK: 2019-04521</p>
+
             </div>
           </div>
           <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -485,7 +486,7 @@ export default function KaderBouwPage() {
       </footer>
 
       <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-20 left-6 z-30 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#f97015] transition-colors shadow-lg" aria-label="Naar boven"><ArrowUp className="w-4 h-4" /></button>
-      <FloatingWhatsApp phone="5978523456" company="KaderBouw NV" message="Hallo, ik heb interesse in een bouwproject!" />
+      <FloatingWhatsApp company="KaderBouw NV" message="Hallo NextX, ik bekeek het voorbeeld KaderBouw NV en wil zoiets voor mijn bedrijf." />
     </div>
   )
 }

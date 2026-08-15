@@ -1,10 +1,11 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import Image from 'next/image'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, Users, Zap, Shield, BarChart3, MessageSquare, Check, ArrowRight, Phone, Mail, MapPin, Send, Heart, Globe, Layers } from 'lucide-react'
+import { ChevronDown, Zap, Shield, BarChart3, MessageSquare, Check, ArrowRight, Phone, Mail, MapPin, Send, Heart, Wrench, Layers } from 'lucide-react'
 import { toast } from 'sonner'
+import { CONTACT } from '@/lib/contact'
 
 /* ─── Logo ─── */
 function KukruLogo({ size = 36 }: { size?: number }) {
@@ -20,41 +21,44 @@ function KukruLogo({ size = 36 }: { size?: number }) {
 
 /* ─── Data ─── */
 const features = [
-  { icon: Users, title: 'Community Management', desc: 'Beheer leden, rollen en groepen vanuit één dashboard. Automatische onboarding flows voor nieuwe gebruikers.' },
-  { icon: MessageSquare, title: 'Realtime Discussies', desc: 'Forums, threads en live chat geïntegreerd. Push-notificaties houden uw community betrokken.' },
-  { icon: BarChart3, title: 'Analytics Dashboard', desc: 'Inzicht in groei, engagement en content performance. Exporteer rapporten naar PDF of CSV.' },
-  { icon: Shield, title: 'Moderatie tools', desc: 'Automatische spamdetectie, rapportage en aanpasbare communityrichtlijnen.' },
-  { icon: Zap, title: 'Event Planning', desc: 'Organiseer online en offline events. RSVP tracking, herinneringen en post-event feedback.' },
-  { icon: Globe, title: 'Meertalig Platform', desc: 'Ondersteuning voor NL, EN en Sranan Tongo. Automatische vertaling van user-generated content.' },
+  { icon: Wrench, title: 'Updates en bugfixes', desc: 'Tekst, prijzen, foto\u2019s en kleine storingen worden binnen uw maanduren opgepakt \u2014 u meldt het, wij regelen het.' },
+  { icon: Layers, title: 'Nieuwe pagina\u2019s en functies', desc: 'Een extra dienstenpagina, een formulier of een sectie erbij, gebouwd in dezelfde stijl als de rest van uw site.' },
+  { icon: Zap, title: 'Design en UX werk', desc: 'Schermen die niet lekker lopen worden opnieuw ontworpen, inclusief de bijbehorende social media beelden.' },
+  { icon: Shield, title: 'Onderhoud en beveiliging', desc: 'Updates, back-upcontrole en SSL blijven op orde, zodat uw site niet stilletjes achterop raakt.' },
+  { icon: BarChart3, title: 'Maandelijkse rapportage', desc: 'Aan het eind van de maand ziet u wat er is gedaan, hoeveel uur het kostte en wat er nog openstaat.' },
+  { icon: MessageSquare, title: 'E\u00e9n vast aanspreekpunt', desc: 'U legt niets twee keer uit: dezelfde persoon kent uw project en schakelt intern met de rest van het team.' },
 ]
 
-const team = [
-  { name: 'Priya Ramkissoon', role: 'UX Lead', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face' },
-  { name: 'Dwayne Panka', role: 'UI Designer', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face' },
-  { name: 'Samira Narsing', role: 'UX Researcher', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face' },
-  { name: 'Roy Tjien Fooh', role: 'Frontend Dev', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face' },
+// What the retainer gives access to, described as disciplines rather than as
+// a roster of named people.
+const disciplines = [
+  { icon: Layers, title: 'Web development', desc: 'Nieuwe pagina\u2019s, functies en integraties op uw bestaande site.' },
+  { icon: Zap, title: 'Design en UX', desc: 'Schermen, huisstijl en visuals die bij uw merk blijven passen.' },
+  { icon: Shield, title: 'Hosting en onderhoud', desc: 'Domein, SSL, back-ups en updates blijven bewaakt.' },
+  { icon: BarChart3, title: 'SEO en analyse', desc: 'Vindbaarheid en cijfers die maandelijks worden nagelopen.' },
 ]
 
 const faqs = [
-  { q: 'Hoe lang duurt het UX design traject?', a: 'Een typisch UX traject duurt 6-8 weken, afhankelijk van de complexiteit. We starten met onderzoek (2 weken), gevolgd door wireframing en prototyping (2-3 weken), gebruikerstesten (1 week) en iteratie (1-2 weken). Bij grotere projecten werken we in sprints.' },
-  { q: 'Wat is het verschil tussen UX en UI design?', a: 'UX (User Experience) richt zich op hoe een product werkt — de flow, navigatie en gebruiksvriendelijkheid. UI (User Interface) richt zich op hoe het eruitziet — kleuren, typografie, iconen en visuele consistentie. Bij Kukru doen we beide.' },
-  { q: 'Gebruiken jullie een vaste design methode?', a: 'We hanteren de Double Diamond methode: Discover → Define → Develop → Deliver. Elke fase heeft duidelijke deliverables en stakeholder reviews. We combineren dit met Agile principes voor flexibiliteit.' },
-  { q: 'Kunnen jullie ook bestaande apps verbeteren?', a: 'Absoluut! We voeren UX audits uit op bestaande applicaties, identificeren knelpunten via heatmaps en user sessions, en leveren een concreet verbeterplan met prioriteiten op basis van impact vs. effort.' },
-  { q: 'Wat kost een UX/UI project?', a: 'Projecten starten vanaf SRD 5.000 voor een compact traject (bijv. landing page redesign). Gemiddelde projecten liggen tussen SRD 10.000-25.000. Enterprise trajecten worden op maat geoffreerd. We werken altijd met een vaste prijs, geen verrassingen.' },
-  { q: 'Bieden jullie ook training aan?', a: 'Ja, we geven workshops in UX Research, Figma, Design Systems en Usability Testing. Zowel voor teams als individuen. Workshops zijn beschikbaar on-site in Paramaribo of online.' },
+  { q: 'Wat gebeurt er met uren die ik niet gebruik?', a: 'Ongebruikte uren vervallen aan het eind van de maand; ze schuiven niet door. Merkt u dat u er structureel onder blijft, dan zetten we u gewoon een pakket lager.' },
+  { q: 'Wat als ik meer uren nodig heb dan mijn pakket?', a: 'Extra uren boven de pakketlimiet kosten $18 per uur. We melden het altijd vooraf zodra een aanvraag buiten uw resterende uren valt, zodat u zelf kiest of het deze maand of volgende maand wordt.' },
+  { q: 'Hoe snel wordt mijn aanvraag opgepakt?', a: 'Dat hangt van uw pakket af: Starter binnen 48 uur, Business binnen 24 uur en Partner binnen 12 uur. Een storing waardoor uw site plat ligt gaat altijd voor.' },
+  { q: 'Moet mijn site door NextX gebouwd zijn?', a: 'Nee. We nemen ook bestaande sites over. We beginnen dan met een korte inventarisatie van de techniek en de hosting, zodat we weten waar we instappen.' },
+  { q: 'Zit ik ergens aan vast?', a: 'De pakketten lopen per maand, met een minimum van drie maanden. Daarna is opzeggen mogelijk tegen het eind van elke maand.' },
+  { q: 'Hoe lever ik werk aan?', a: 'Via WhatsApp of e-mail, in uw eigen woorden. U hoeft geen ticketsysteem te leren; wij zetten het intern om in taken en houden de urenstand voor u bij.' },
 ]
 
+// The three packages exactly as they are priced on /services.
 const pricing = [
-  { name: 'Essentials', price: 'SRD 5.000', desc: 'Ideaal voor startups en kleine projecten', features: ['UX Audit rapport', 'Wireframes (5 pagina\'s)', 'Clickable prototype', 'Kleurenpalette + typografie', '2 revisierondes'], highlight: false },
-  { name: 'Business', price: 'SRD 15.000', desc: 'Compleet design voor groeiende bedrijven', features: ['Alles van Essentials', 'User Research (interviews)', 'Wireframes (15+ pagina\'s)', 'Hi-fi prototype in Figma', 'Design System basics', 'Gebruikerstest (5 personen)', '4 revisierondes', 'Developer handoff'], highlight: true },
-  { name: 'Enterprise', price: 'Op maat', desc: 'Voor complexe platforms en apps', features: ['Alles van Business', 'Uitgebreide UR Sprint', 'Volledige Design System', 'A/B test strategie', 'Accessibility audit (WCAG)', 'Doorlopende UX support', 'Onbeperkte revisies', 'Stakeholder workshops'], highlight: false },
+  { name: 'Starter Support', price: '$150', desc: '10 uur per maand voor kleine, doorlopende taken', features: ['10 uur per maand', 'Kleine updates + bug fixes', 'Content wijzigingen', 'Technisch advies', 'Reactie binnen 48 uur'], highlight: false },
+  { name: 'Business Support', price: '$280', desc: '20 uur per maand voor doorontwikkeling', features: ['20 uur per maand', 'Nieuwe functies bouwen', 'Design updates + integraties', 'Strategisch advies', 'Reactie binnen 24 uur'], highlight: true },
+  { name: 'Partner Support', price: '$480', desc: '40 uur per maand met vaste bezetting', features: ['40 uur per maand', 'Vast aanspreekpunt', 'Voorrang bij complexe projecten', 'Samenwerking met uw team', 'Reactie binnen 12 uur'], highlight: false },
 ]
 
 const process = [
-  { num: '01', title: 'Discover', desc: 'User interviews, stakeholder workshops, concurrentie-analyse en data-review', color: 'bg-violet-100 text-violet-700' },
-  { num: '02', title: 'Define', desc: 'Persona\'s, user journeys, information architecture en prioritering', color: 'bg-fuchsia-100 text-fuchsia-700' },
-  { num: '03', title: 'Design', desc: 'Wireframes, visueel ontwerp, interactief prototype en design system', color: 'bg-purple-100 text-purple-700' },
-  { num: '04', title: 'Validate', desc: 'Usability tests, A/B experimenten, iteratie en developer handoff', color: 'bg-indigo-100 text-indigo-700' },
+  { num: '01', title: 'Aanmelden', desc: 'U stuurt uw wens via WhatsApp of e-mail, in gewone taal', color: 'bg-violet-100 text-violet-700' },
+  { num: '02', title: 'Inplannen', desc: 'Wij schatten de uren, bevestigen wanneer het af is en zetten het op de planning', color: 'bg-fuchsia-100 text-fuchsia-700' },
+  { num: '03', title: 'Uitvoeren', desc: 'Het werk wordt gebouwd, getest en op uw site gezet', color: 'bg-purple-100 text-purple-700' },
+  { num: '04', title: 'Rapporteren', desc: 'Aan het eind van de maand ziet u wat er is gedaan en hoeveel uur er over is', color: 'bg-indigo-100 text-indigo-700' },
 ]
 
 export default function UxKukruPage() {
@@ -75,7 +79,7 @@ export default function UxKukruPage() {
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault()
     if (!validateForm()) return
-    toast.success('Bericht verzonden!', { description: 'We nemen binnen 24 uur contact op.' })
+    toast.success('Bericht verzonden!', { description: `Demo — in de echte versie komt dit bij u binnen. Reactie ${CONTACT.responseTime}.` })
     setFormData({ naam: '', email: '', bedrijf: '', bericht: '' })
   }
 
@@ -91,7 +95,7 @@ export default function UxKukruPage() {
           <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="#features" className="text-slate-600 hover:text-violet-600 transition-colors">Features</a>
             <a href="#process" className="text-slate-600 hover:text-violet-600 transition-colors">Proces</a>
-            <a href="#team" className="text-slate-600 hover:text-violet-600 transition-colors">Team</a>
+            <a href="#disciplines" className="text-slate-600 hover:text-violet-600 transition-colors">Wat u krijgt</a>
             <a href="#pricing" className="text-slate-600 hover:text-violet-600 transition-colors">Prijzen</a>
             <a href="#faq" className="text-slate-600 hover:text-violet-600 transition-colors">FAQ</a>
           </div>
@@ -110,19 +114,19 @@ export default function UxKukruPage() {
           <div className="max-w-3xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-3 py-1 bg-violet-100 text-violet-700 text-xs font-bold rounded-full mb-6">
-              <Layers className="w-3 h-3" /> Case Study · Community Platform
+              <Layers className="w-3 h-3" /> Voorbeeld · Maandelijkse support
             </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-              UX/UI Design voor <span className="text-violet-600">Kukru</span> Community
+              <span className="text-violet-600">UX Kukru</span> — uw digitale team per maand
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="text-lg text-slate-600 mb-8 max-w-xl">
-              Hoe we een Surinaams community platform ontwierpen van concept tot lancering. User-centered design met echte gebruikers, echte data, echte resultaten.
+              Geen los uurtarief en geen nieuw project elke keer: een vast aantal uren per maand waarin wij uw website, webshop en visuals onderhouden en verder bouwen.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap gap-4">
               <a href="#features" className="px-6 py-3 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 transition-colors flex items-center gap-2">
-                Bekijk case <ArrowRight className="w-4 h-4" />
+                Wat zit erin <ArrowRight className="w-4 h-4" />
               </a>
               <a href="#pricing" className="px-6 py-3 bg-white border-2 border-slate-200 text-slate-900 font-bold rounded-xl hover:border-violet-300 transition-colors">
                 Bekijk prijzen
@@ -132,12 +136,30 @@ export default function UxKukruPage() {
           {/* Hero visual */}
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}
             className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-[380px]">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
-              <Image src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=700&fit=crop" alt="Team collaborating" width={600} height={700} className="w-full" />
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                <p className="text-white font-bold text-sm">Design Sprint Week 2</p>
-                <p className="text-white/70 text-xs">Wireframe review met stakeholders</p>
+            {/* Urenstand — het enige cijfer dat een klant maandelijks bijhoudt */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
+                Uw maand — voorbeeld
+              </p>
+              <p className="mt-4 text-5xl font-bold text-slate-900 tabular-nums" style={{ fontFamily: 'var(--font-heading)' }}>
+                12<span className="text-2xl font-normal text-slate-400"> / 20 uur</span>
+              </p>
+              <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                <div className="h-full w-[60%] rounded-full bg-violet-600" />
               </div>
+              <ul className="mt-6 space-y-3 border-t border-slate-100 pt-5 text-sm">
+                {[
+                  ['Prijzen webshop bijgewerkt', '2u'],
+                  ['Nieuwe dienstenpagina', '6u'],
+                  ['Formulier verstuurde niets meer', '1u'],
+                  ['3 social media beelden', '3u'],
+                ].map(([task, hours]) => (
+                  <li key={task} className="flex items-start justify-between gap-4">
+                    <span className="text-slate-600">{task}</span>
+                    <span className="shrink-0 font-bold text-slate-900 tabular-nums">{hours}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         </div>
@@ -146,8 +168,8 @@ export default function UxKukruPage() {
       {/* ═══ FEATURES ═══ */}
       <section id="features" className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Platform Features</h2>
-          <p className="text-slate-500 max-w-lg mx-auto">Ontworpen na 20+ user interviews en 3 iteratie-rondes. Elke feature is gevalideerd met echte gebruikers.</p>
+          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Wat er in uw uren past</h2>
+          <p className="text-slate-500 max-w-lg mx-auto">Alles wat een lopende website vraagt, zonder dat u er per klus een offerte voor hoeft aan te vragen.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((f, i) => (
@@ -167,8 +189,8 @@ export default function UxKukruPage() {
       <section id="process" className="bg-slate-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Ons Proces</h2>
-            <p className="text-slate-500 max-w-lg mx-auto">De Double Diamond methode aangepast voor de Surinaamse markt.</p>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Hoe een maand verloopt</h2>
+            <p className="text-slate-500 max-w-lg mx-auto">Van uw bericht tot het maandoverzicht — vier stappen, elke maand hetzelfde.</p>
           </div>
           <div className="grid md:grid-cols-4 gap-4">
             {process.map((p, i) => (
@@ -183,21 +205,21 @@ export default function UxKukruPage() {
         </div>
       </section>
 
-      {/* ═══ TEAM ═══ */}
-      <section id="team" className="max-w-6xl mx-auto px-4 py-16">
+      {/* ═══ DISCIPLINES ═══ */}
+      <section id="disciplines" className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Het Team</h2>
-          <p className="text-slate-500">De mensen achter het Kukru design traject.</p>
+          <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Waar u toegang toe krijgt</h2>
+          <p className="text-slate-500 max-w-lg mx-auto">Eén contract, één aanspreekpunt — en daarachter het hele NextX team.</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {team.map((t, i) => (
-            <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="text-center group">
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-2xl overflow-hidden">
-                <Image src={t.img} alt={t.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {disciplines.map((d, i) => (
+            <motion.div key={d.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="rounded-2xl border border-slate-200 bg-white p-6">
+              <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center mb-4">
+                <d.icon className="w-5 h-5 text-violet-600" />
               </div>
-              <h4 className="font-bold text-slate-900 text-sm" style={{ fontFamily: 'var(--font-heading)' }}>{t.name}</h4>
-              <p className="text-xs text-violet-600">{t.role}</p>
+              <h4 className="font-bold text-slate-900 text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{d.title}</h4>
+              <p className="text-xs text-slate-500 leading-relaxed">{d.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -207,8 +229,8 @@ export default function UxKukruPage() {
       <section id="pricing" className="bg-gradient-to-b from-violet-50 to-white py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>UX/UI Pakketten</h2>
-            <p className="text-slate-500 max-w-lg mx-auto">Transparante prijzen, geen verrassingen. Elk pakket inclusief Figma bestanden en developer handoff.</p>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Maandpakketten</h2>
+            <p className="text-slate-500 max-w-lg mx-auto">Dezelfde prijzen als op onze dienstenpagina. Extra uren $18 per uur, minimaal drie maanden.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {pricing.map((p, i) => (
@@ -222,7 +244,7 @@ export default function UxKukruPage() {
                 <h3 className="font-bold text-slate-900 text-lg mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{p.name}</h3>
                 <p className="text-xs text-slate-500 mb-3">{p.desc}</p>
                 <p className="text-3xl font-bold text-slate-900 mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {p.price}{p.price !== 'Op maat' && <span className="text-sm font-normal text-slate-400"> eenmalig</span>}
+                  {p.price}<span className="text-sm font-normal text-slate-400"> / maand</span>
                 </p>
                 <ul className="space-y-2 mb-6">
                   {p.features.map(f => (
@@ -231,10 +253,10 @@ export default function UxKukruPage() {
                     </li>
                   ))}
                 </ul>
-                <button onClick={() => toast.success(`${p.name} pakket aangevraagd!`, { description: 'We sturen binnen 24u een offerte.' })}
-                  className={`w-full py-2.5 text-sm font-bold rounded-xl transition-colors ${p.highlight ? 'bg-violet-600 text-white hover:bg-violet-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
-                  {p.price === 'Op maat' ? 'Offerte aanvragen' : 'Selecteer pakket'} <ArrowRight className="w-3.5 h-3.5 inline ml-1" />
-                </button>
+                <Link href={`/contact?dienst=${encodeURIComponent(p.name)}`}
+                  className={`flex w-full items-center justify-center gap-1.5 py-2.5 text-sm font-bold rounded-xl transition-colors ${p.highlight ? 'bg-violet-600 text-white hover:bg-violet-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
+                  Dit pakket aanvragen <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -274,19 +296,19 @@ export default function UxKukruPage() {
           <div className="grid lg:grid-cols-2 gap-10">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Laten we praten</h2>
-              <p className="text-slate-500 mb-8">Vertel ons over uw project en we nemen binnen 24 uur contact op met een voorstel.</p>
+              <p className="text-slate-500 mb-8">Vertel wat u maandelijks nodig heeft, dan stellen we het passende pakket voor. Reactie {CONTACT.responseTime}.</p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center"><Phone className="w-4 h-4 text-violet-600" /></div>
-                  <div><p className="text-xs text-slate-400">Telefoon</p><p className="text-sm font-bold text-slate-900">+597 456-7890</p></div>
+                  <div><p className="text-xs text-slate-400">Telefoon</p><p className="text-sm font-bold text-slate-900">{CONTACT.phoneDisplay}</p></div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center"><Mail className="w-4 h-4 text-violet-600" /></div>
-                  <div><p className="text-xs text-slate-400">Email</p><p className="text-sm font-bold text-slate-900">hello@kukru.sr</p></div>
+                  <div><p className="text-xs text-slate-400">Email</p><p className="text-sm font-bold text-slate-900">{CONTACT.email}</p></div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-violet-600" /></div>
-                  <div><p className="text-xs text-slate-400">Locatie</p><p className="text-sm font-bold text-slate-900">Domineestraat 12, Paramaribo</p></div>
+                  <div><p className="text-xs text-slate-400">Locatie</p><p className="text-sm font-bold text-slate-900">{CONTACT.location}</p></div>
                 </div>
               </div>
             </div>

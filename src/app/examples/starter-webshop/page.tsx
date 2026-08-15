@@ -46,7 +46,7 @@ const products: Product[] = [
 const categories = ['Alle', 'Tops', 'Jurken', 'Rokken', 'Broeken']
 
 const paymentMethods = [
-  { id: 'ideal', name: 'iDEAL', icon: Landmark },
+  { id: 'transfer', name: 'Bankoverschrijving', icon: Landmark },
   { id: 'card', name: 'Creditcard', icon: CreditCard },
   { id: 'cash', name: 'Bij bezorging', icon: Banknote },
 ]
@@ -55,7 +55,7 @@ const shopTestimonials = [
   { name: 'Reshma Khedoe', role: 'Terugkerende klant', text: 'De kwaliteit is echt top! Mijn zijden blouse voelt luxe aan en de maat viel perfect. Snel geleverd ook.', rating: 5, avatar: 'RK', date: '1 week geleden' },
   { name: 'Lisa Boldewijn', role: 'Eerste aankoop', text: 'Leuke selectie en mooie verpakking. De jurk was iets groter dan verwacht, maar de retour ging heel soepel.', rating: 4, avatar: 'LB', date: '3 weken geleden' },
   { name: 'Ashley Tjin', role: 'VIP klant', text: 'Al 2 jaar vaste klant. De collectie wordt steeds beter. De bohemian maxi jurk is mijn favoriet ooit!', rating: 5, avatar: 'AT', date: '5 dagen geleden' },
-  { name: 'Priya Soedamah', role: 'Google review', text: 'Fijn dat ze nu ook bezorgen in Nickerie. De wide leg jeans is precies zoals op de foto. Aanrader!', rating: 5, avatar: 'PS', date: '2 weken geleden' },
+  { name: 'Priya Soedamah', role: 'Voorbeeldreview', text: 'Fijn dat ze nu ook bezorgen in Nickerie. De wide leg jeans is precies zoals op de foto. Aanrader!', rating: 5, avatar: 'PS', date: '2 weken geleden' },
 ]
 
 /* ─── Sale countdown ─── */
@@ -188,7 +188,7 @@ export default function BloomBoutiquePage() {
                     {[
                       { id: 'naam', label: 'Volledige naam', type: 'text', ph: 'Uw naam' },
                       { id: 'email', label: 'E-mail', type: 'email', ph: 'uw@email.com' },
-                      { id: 'telefoon', label: 'Telefoon', type: 'tel', ph: '+597 ...' },
+                      { id: 'telefoon', label: 'Telefoon', type: 'tel', ph: '+597 XXX-XXXX' },
                       { id: 'adres', label: 'Adres', type: 'text', ph: 'Straatnaam + nummer' },
                       { id: 'stad', label: 'Stad', type: 'text', ph: 'Paramaribo' },
                     ].map(f => (
@@ -365,7 +365,7 @@ export default function BloomBoutiquePage() {
       {/* ═══ FEATURES BAR ═══ */}
       <section className="border-y border-pink-100 bg-pink-50/50">
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-wrap justify-center gap-8 text-sm text-slate-600">
-          {[{ icon: Truck, text: 'Gratis bezorging vanaf SRD 200' }, { icon: RefreshCw, text: '14 dagen retourbeleid' }, { icon: Shield, text: 'Veilig betalen' }, { icon: CreditCard, text: 'iDEAL · Creditcard · Contant' }].map(f => (
+          {[{ icon: Truck, text: 'Gratis bezorging vanaf SRD 200' }, { icon: RefreshCw, text: '14 dagen retourbeleid' }, { icon: Shield, text: 'Veilig betalen' }, { icon: CreditCard, text: 'Bankoverschrijving · Contant' }].map(f => (
             <div key={f.text} className="flex items-center gap-2"><f.icon className="w-4 h-4 text-pink-500" /> {f.text}</div>
           ))}
         </div>
@@ -500,7 +500,7 @@ export default function BloomBoutiquePage() {
       {/* ═══ TESTIMONIALS ═══ */}
       <section id="reviews" className="py-16 lg:py-24 bg-pink-50/50">
         <div className="max-w-6xl mx-auto px-6">
-          <TestimonialsSlider testimonials={shopTestimonials} accentColor="#ec4899" title="Wat klanten zeggen" subtitle="Reviews van echte shoppers" />
+          <TestimonialsSlider testimonials={shopTestimonials} accentColor="#ec4899" title="Wat klanten zeggen" subtitle="Beoordelingen" />
         </div>
       </section>
 
@@ -579,7 +579,7 @@ export default function BloomBoutiquePage() {
               </div>
               <h4 className="font-bold text-white text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Adres</h4>
               <p className="text-sm text-slate-400">Domineestraat 18<br/>Paramaribo, Suriname</p>
-              <p className="text-sm text-slate-400 mt-2">KvK: 34567890</p>
+
             </div>
           </div>
           <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-slate-500">
@@ -606,7 +606,7 @@ export default function BloomBoutiquePage() {
         ))}
       </nav>
 
-      <FloatingWhatsApp phone="5974567890" company="Bloom Boutique" message="Hoi! Ik heb een vraag over een product." />
+      <FloatingWhatsApp company="Bloom Boutique" message="Hallo NextX, ik bekeek het voorbeeld Bloom Boutique en wil zoiets voor mijn bedrijf." />
     </div>
   )
 }

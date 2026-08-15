@@ -8,6 +8,7 @@ import {
   useReducedMotion,
   type MotionValue,
 } from 'framer-motion'
+import { CONTACT } from '@/lib/contact'
 
 const steps = [
   {
@@ -16,7 +17,7 @@ const steps = [
     timing: 'Dag 1',
     description:
       'We nemen uw bedrijf door: wie uw klanten zijn, wat de site moet opleveren en waar het nu misgaat. Daarna weet u de prijs en de opleverdatum.',
-    detail: 'Gratis, vrijblijvend, via WhatsApp of op locatie in Paramaribo.',
+    detail: `Gratis en vrijblijvend — via WhatsApp ${CONTACT.phoneDisplay} of op locatie in ${CONTACT.city}.`,
   },
   {
     number: '02',
@@ -24,7 +25,7 @@ const steps = [
     timing: 'Dag 1–2',
     description:
       'U ziet het ontwerp voordat er één regel code geschreven is. Geen thema uit een winkel — een opzet die om uw merk heen is gebouwd.',
-    detail: 'Meerdere revisierondes inbegrepen.',
+    detail: 'Revisierondes tijdens het ontwerp zitten bij de prijs in.',
   },
   {
     number: '03',
@@ -166,7 +167,8 @@ function ProcessSectionFn() {
                     Oplevering
                   </dt>
                   <dd className="mono-num text-2xl font-semibold text-foreground tracking-tight">
-                    48–72<span className="text-base text-muted-foreground ml-1">uur</span>
+                    {CONTACT.deliveryHours}
+                    <span className="text-base text-muted-foreground ml-1">uur</span>
                   </dd>
                 </div>
                 <div>

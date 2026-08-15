@@ -356,7 +356,7 @@ export default function TechMartPage() {
         </div>
       </footer>
 
-      <FloatingWhatsApp phone="5974559876" company="TechMart SUR" message="Hallo! Ik heb een vraag over een product." />
+      <FloatingWhatsApp company="TechMart SUR" message="Hallo NextX, ik bekeek het voorbeeld TechMart en wil zoiets voor mijn bedrijf." />
     </div>
   )
 }
