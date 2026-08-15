@@ -121,8 +121,13 @@ export default function WarungIndahPage() {
 
   const open = isOpen()
 
+  // Restaurant: warme schreefletter. Zet de kopletter voor deze hele demo,
+  // zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van NextX.
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-warm)' } as React.CSSProperties}
+      className="min-h-screen bg-stone-50"
+    >
       {/* ═══ HERO ═══ */}
       <section className="relative h-[80vh] min-h-[480px] flex items-end" id="home">
         <DemoImage src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&h=700&fit=crop&q=80" alt="Warung Indah restaurant interieur" fill sizes="100vw" className="absolute inset-0 w-full h-full object-cover" />

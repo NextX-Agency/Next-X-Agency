@@ -1,5 +1,13 @@
 import type { Metadata } from 'next'
-import { Manrope, Space_Grotesk, IBM_Plex_Mono } from 'next/font/google'
+import {
+  Manrope,
+  Space_Grotesk,
+  IBM_Plex_Mono,
+  Oswald,
+  Playfair_Display,
+  Inter,
+  Lora,
+} from 'next/font/google'
 import './globals.css'
 import { ScrollProgress } from '@/components/interactive/ScrollProgress'
 import { CONTACT } from '@/lib/contact'
@@ -25,6 +33,44 @@ const plexMono = IBM_Plex_Mono({
   variable: '--font-plex-mono',
   display: 'swap',
   weight: ['400', '500', '600'],
+})
+
+/* ── Faces for the prototypes under /examples ──────────────────────────────
+   Every demo used to be set in the NextX heading face, which is why eleven
+   different businesses all read as the same studio. Each prototype now picks
+   one of these instead. preload is off so they cost nothing on the pages that
+   never use them. */
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-demo-industrial',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+  preload: false,
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-demo-editorial',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+  preload: false,
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-demo-product',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+  preload: false,
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  variable: '--font-demo-warm',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+  preload: false,
 })
 
 const SITE_URL = CONTACT.siteUrl
@@ -133,7 +179,7 @@ export default function RootLayout({
   return (
     <html
       lang="nl"
-      className={`scroll-smooth ${spaceGrotesk.variable} ${manrope.variable} ${plexMono.variable}`}
+      className={`scroll-smooth ${spaceGrotesk.variable} ${manrope.variable} ${plexMono.variable} ${oswald.variable} ${playfair.variable} ${inter.variable} ${lora.variable}`}
     >
       <body className="bg-background text-foreground antialiased">
         <script

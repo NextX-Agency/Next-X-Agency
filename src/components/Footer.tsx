@@ -184,13 +184,15 @@ function FooterFn() {
           </p>
           <p className="meta-sm text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-2">
             <span>Paramaribo, SR</span>
-            <span aria-hidden="true" className="text-primary">
-              ✳
-            </span>
+            <span
+              aria-hidden="true"
+              className="inline-block h-1 w-1 shrink-0 rotate-45 bg-primary"
+            />
             <span>{CONTACT.coordinates}</span>
-            <span aria-hidden="true" className="text-primary">
-              ✳
-            </span>
+            <span
+              aria-hidden="true"
+              className="inline-block h-1 w-1 shrink-0 rotate-45 bg-primary"
+            />
             <span>Ontworpen en gebouwd in huis</span>
           </p>
         </div>

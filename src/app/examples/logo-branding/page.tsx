@@ -81,8 +81,14 @@ export default function SavanaCoffeePage() {
     })
   }
 
+  // Koffiemerk: redactionele schreefletter. Zet de kopletter voor deze hele
+  // demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van
+  // NextX.
   return (
-    <div className="min-h-screen bg-[#fef9ef]">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-editorial)' } as React.CSSProperties}
+      className="min-h-screen bg-[#fef9ef]"
+    >
       {/* ═══ HERO ═══ */}
       <section className="relative py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
@@ -110,7 +116,7 @@ export default function SavanaCoffeePage() {
           <div className="flex gap-1 overflow-x-auto py-2">
             {tabs.map(t => (
               <button key={t.id} onClick={() => setActiveTab(t.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === t.id ? 'bg-amber-800 text-white' : 'text-stone-600 hover:bg-stone-100'}`}>
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-none text-sm font-bold transition-all whitespace-nowrap ${activeTab === t.id ? 'bg-amber-800 text-white' : 'text-stone-600 hover:bg-stone-100'}`}>
                 <t.icon className="w-4 h-4" /> {t.label}
               </button>
             ))}
@@ -129,10 +135,10 @@ export default function SavanaCoffeePage() {
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="bg-white rounded-2xl p-8 flex items-center justify-center border border-stone-200 aspect-square">
+              <div className="bg-white rounded-none p-8 flex items-center justify-center border border-stone-200 aspect-square">
                 <SavanaLogoFull />
               </div>
-              <div className="bg-stone-900 rounded-2xl p-8 flex items-center justify-center aspect-square">
+              <div className="bg-stone-900 rounded-none p-8 flex items-center justify-center aspect-square">
                 <svg viewBox="0 0 320 80" className="w-full max-w-xs" fill="none">
                   <path d="M40 65C40 65 15 55 15 38C15 21 28 12 40 12C52 12 65 21 65 38C65 55 40 65 40 65Z" stroke="#fef3c7" strokeWidth="2.5" />
                   <ellipse cx="40" cy="38" rx="9" ry="12" stroke="#fef3c7" strokeWidth="2" />
@@ -152,7 +158,7 @@ export default function SavanaCoffeePage() {
                   { bg: 'bg-amber-800', label: 'Mono' },
                   { bg: 'bg-[#fef3c7]', label: 'Op crème' },
                 ].map(v => (
-                  <div key={v.label} className={`${v.bg} rounded-xl p-6 flex flex-col items-center justify-center border border-stone-200 aspect-square`}>
+                  <div key={v.label} className={`${v.bg} rounded-none p-6 flex flex-col items-center justify-center border border-stone-200 aspect-square`}>
                     <SavanaIconSmall size={48} />
                     <span className={`text-xs mt-3 font-medium ${v.bg.includes('900') || v.bg.includes('800') ? 'text-white/70' : 'text-stone-500'}`}>{v.label}</span>
                   </div>
@@ -172,7 +178,7 @@ export default function SavanaCoffeePage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {colors.map(c => (
                 <button key={c.hex} onClick={() => copyHex(c.hex)}
-                  className="group bg-white rounded-2xl border border-stone-200 overflow-hidden text-left hover:shadow-lg transition-shadow">
+                  className="group bg-white rounded-none border border-stone-200 overflow-hidden text-left transition-shadow">
                   <div className="h-28" style={{ backgroundColor: c.hex }} />
                   <div className="p-4 flex items-start justify-between">
                     <div>
@@ -180,7 +186,7 @@ export default function SavanaCoffeePage() {
                       <p className="text-xs text-stone-500 mt-0.5">{c.desc}</p>
                       <p className="text-xs font-mono text-stone-400 mt-1">{c.hex}</p>
                     </div>
-                    <div className="p-1.5 rounded-lg bg-stone-50 group-hover:bg-stone-100 transition-colors">
+                    <div className="p-1.5 rounded-none bg-stone-50 group-hover:bg-stone-100 transition-colors">
                       {copiedHex === c.hex ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-stone-400" />}
                     </div>
                   </div>
@@ -198,7 +204,7 @@ export default function SavanaCoffeePage() {
               <p className="text-stone-600 max-w-2xl leading-relaxed">Twee typefaces vormen de visuele stem van Savana: een krachtig heading font voor impact en een leesbaar body font voor langere teksten.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-2xl p-6 border border-stone-200">
+              <div className="bg-white rounded-none p-6 border border-stone-200">
                 <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Heading</span>
                 <p className="text-5xl font-bold text-stone-900 mt-3 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Space Grotesk</p>
                 <p className="text-sm text-stone-500 mb-4">Gebruikt voor koppen, logo, en navigatie elementen.</p>
@@ -208,7 +214,7 @@ export default function SavanaCoffeePage() {
                   ))}
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 border border-stone-200">
+              <div className="bg-white rounded-none p-6 border border-stone-200">
                 <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Body</span>
                 <p className="text-5xl font-light text-stone-900 mt-3 mb-4" style={{ fontFamily: 'var(--font-sans)' }}>Inter</p>
                 <p className="text-sm text-stone-500 mb-4">Gebruikt voor body text, beschrijvingen en UI elementen.</p>
@@ -220,7 +226,7 @@ export default function SavanaCoffeePage() {
               </div>
             </div>
             {/* Type scale */}
-            <div className="bg-white rounded-2xl p-6 border border-stone-200">
+            <div className="bg-white rounded-none p-6 border border-stone-200">
               <h3 className="text-sm font-bold text-amber-700 uppercase tracking-wider mb-4">Type Scale</h3>
               <div className="space-y-3">
                 {[
@@ -251,7 +257,7 @@ export default function SavanaCoffeePage() {
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {applications.map(a => (
-                <div key={a.title} className="group bg-white rounded-2xl border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow">
+                <div key={a.title} className="group bg-white rounded-none border border-stone-200 overflow-hidden transition-shadow">
                   <div className="relative aspect-[3/2] overflow-hidden">
                     <DemoImage src={a.img} alt={a.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
@@ -275,10 +281,10 @@ export default function SavanaCoffeePage() {
           <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Zo ziet een merkidentiteit van ons eruit</h2>
           <p className="text-amber-200 mb-6 leading-relaxed">Een logo kost vanaf $55 en is binnen een paar dagen klaar, inclusief twee revisierondes en alle bestandsformaten.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/contact?dienst=Logo%20Design" className="px-6 py-3 bg-white text-amber-900 font-bold rounded-xl hover:bg-amber-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+            <Link href="/contact?dienst=Logo%20Design" className="px-6 py-3 bg-white text-amber-900 font-bold rounded-none hover:bg-amber-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               <Palette className="w-4 h-4 inline mr-2" /> Logo aanvragen
             </Link>
-            <Link href="/services#graphic-design" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
+            <Link href="/services#graphic-design" className="px-6 py-3 border-2 border-white/30 text-white font-bold rounded-none hover:bg-white/10 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               Bekijk alle prijzen
             </Link>
           </div>

@@ -83,8 +83,14 @@ export default function SeoDashboardPage() {
     { label: 'Domain Authority', value: '42', change: '+18', up: true, icon: Zap, color: 'bg-amber-50 text-amber-600' },
   ]
 
+  // Dashboard: neutrale interfaceletter. Zet de kopletter voor deze hele
+  // demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van
+  // NextX.
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-product)' } as React.CSSProperties}
+      className="min-h-screen bg-slate-50"
+    >
       {/* ═══ HEADER ═══ */}
       <header className="sticky top-10 z-20 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">

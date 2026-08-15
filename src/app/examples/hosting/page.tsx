@@ -107,8 +107,14 @@ export default function HostingPage() {
   const diskUsage = 48
   const bandwidthUsage = 27
 
+  // Beheerpaneel: neutrale interfaceletter. Zet de kopletter voor deze hele
+  // demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van
+  // NextX.
   return (
-    <div className="min-h-screen bg-slate-50 pb-16 md:pb-0">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-product)' } as React.CSSProperties}
+      className="min-h-screen bg-slate-50 pb-16 md:pb-0"
+    >
       {/* ═══ HEADER ═══ */}
       <header className="sticky top-10 z-20 bg-slate-900 text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">

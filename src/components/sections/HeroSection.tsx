@@ -333,9 +333,12 @@ function HeroSectionFn() {
                     <span className="text-sm font-semibold text-foreground">
                       {item}
                     </span>
-                    <span className="text-primary" aria-hidden="true">
-                      ✳
-                    </span>
+                    {/* A drawn rule, not a glyph: U+2733 renders as a
+                        colour emoji in the default font on many systems. */}
+                    <span
+                      className="inline-block h-1 w-1 shrink-0 rotate-45 bg-primary"
+                      aria-hidden="true"
+                    />
                   </span>
                 ))}
               </div>

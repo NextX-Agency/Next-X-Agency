@@ -111,8 +111,14 @@ export default function DentaCarePage() {
     if (apptStep < 3) setApptStep(apptStep + 1)
   }
 
+  // Tandartspraktijk: neutrale interfaceletter. Zet de kopletter voor deze
+  // hele demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat
+  // van NextX.
   return (
-    <div className="min-h-screen bg-white" id="home">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-product)' } as React.CSSProperties}
+      className="min-h-screen bg-white" id="home"
+    >
       {/* ═══ NAVBAR ═══ */}
       <nav className="sticky top-[49px] z-40 bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">

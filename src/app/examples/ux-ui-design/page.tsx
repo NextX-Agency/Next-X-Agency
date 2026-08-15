@@ -86,8 +86,14 @@ const findings = [
 ]
 
 export default function UxUiDesignPage() {
+  // Productcase: neutrale interfaceletter. Zet de kopletter voor deze hele
+  // demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van
+  // NextX.
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-product)' } as React.CSSProperties}
+      className="min-h-screen bg-white"
+    >
       {/* ═══ HERO ═══ */}
       <section className="relative bg-gradient-to-br from-violet-600 via-violet-700 to-purple-800 py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">

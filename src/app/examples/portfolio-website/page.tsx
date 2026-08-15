@@ -43,8 +43,14 @@ export default function StudioVibePage() {
 
   const filtered = filter === 'Alle' ? projects : projects.filter(p => p.category === filter)
 
+  // Designstudio: redactionele schreefletter. Zet de kopletter voor deze
+  // hele demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat
+  // van NextX.
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-editorial)' } as React.CSSProperties}
+      className="min-h-screen bg-white"
+    >
       {/* ═══ HERO ═══ */}
       <section className="relative bg-slate-900 py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -63,7 +69,7 @@ export default function StudioVibePage() {
               Designstudio in Paramaribo voor branding, websites, drukwerk en social media. Bekijk het werk hieronder en filter op wat u zoekt.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#portfolio" className="px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+              <a href="#portfolio" className="px-6 py-3 bg-[#f97015] text-white font-bold rounded-none hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 Bekijk portfolio
               </a>
               <div className="flex items-center gap-4">
@@ -108,7 +114,7 @@ export default function StudioVibePage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3]"
+                  className="group relative rounded-none overflow-hidden cursor-pointer aspect-[4/3]"
                   onClick={() => setSelected(p)}
                 >
                   <DemoImage src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -131,7 +137,7 @@ export default function StudioVibePage() {
             className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={() => setSelected(null)}>
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
+              className="bg-white rounded-none max-w-3xl w-full max-h-[90vh] overflow-auto border border-black/10" onClick={e => e.stopPropagation()}>
               <div className="relative">
                 <DemoImage src={selected.img} alt={selected.title} width={1200} height={675} className="w-full aspect-video object-cover rounded-t-2xl" />
                 <button onClick={() => setSelected(null)} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors" aria-label="Sluiten">
@@ -145,7 +151,7 @@ export default function StudioVibePage() {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{selected.title}</h3>
                 <p className="text-slate-600 leading-relaxed mb-6">{selected.desc}</p>
-                <a href="#contact" onClick={() => setSelected(null)} className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-sm hover:bg-slate-800 transition-colors">
+                <a href="#contact" onClick={() => setSelected(null)} className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white font-bold rounded-none text-sm hover:bg-slate-800 transition-colors">
                   <ExternalLink className="w-4 h-4" /> Soortgelijk project starten
                 </a>
               </div>
@@ -167,7 +173,7 @@ export default function StudioVibePage() {
             </p>
             <div className="grid grid-cols-3 gap-4">
               {[{ num: '60+', label: 'Projecten' }, { num: '4', label: 'Jaar actief' }, { num: '35+', label: 'Klanten' }].map(s => (
-                <div key={s.label} className="bg-white rounded-xl p-4 text-center border border-slate-200">
+                <div key={s.label} className="bg-white rounded-none p-4 text-center border border-slate-200">
                   <p className="text-2xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{s.num}</p>
                   <p className="text-xs text-slate-500 mt-1">{s.label}</p>
                 </div>
@@ -175,7 +181,7 @@ export default function StudioVibePage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <DemoImage src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Studio team aan het werk" width={800} height={600} className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
+            <DemoImage src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Studio team aan het werk" width={800} height={600} className="rounded-none border border-black/10 w-full object-cover aspect-[4/3]" />
           </motion.div>
         </div>
       </section>
@@ -188,10 +194,10 @@ export default function StudioVibePage() {
           </h2>
           <p className="text-slate-400 mb-8 leading-relaxed">Stuur wat u in gedachten heeft, dan komt er een voorstel met prijs en planning terug.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={MAIL_HREF} className="inline-flex items-center gap-2 px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+            <a href={MAIL_HREF} className="inline-flex items-center gap-2 px-6 py-3 bg-[#f97015] text-white font-bold rounded-none hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
               <Mail className="w-4 h-4" /> {CONTACT.email}
             </a>
-            <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+            <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white font-bold rounded-none hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
               Bespreek uw project
             </a>
           </div>

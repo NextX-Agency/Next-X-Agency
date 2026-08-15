@@ -83,8 +83,14 @@ export default function TechMartPage() {
   const updateQty = (id: number, d: number) => setCart(prev => prev.map(i => i.id === id ? { ...i, qty: Math.max(1, i.qty + d) } : i))
   const removeFromCart = (id: number) => { setCart(prev => prev.filter(i => i.id !== id)); toast.info('Product verwijderd') }
 
+  // Elektronicazaak: strakke, compacte kopletters. Zet de kopletter voor
+  // deze hele demo, zodat elk voorbeeld een eigen gezicht heeft in plaats
+  // van dat van NextX.
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-industrial)' } as React.CSSProperties}
+      className="min-h-screen bg-slate-50"
+    >
       {/* ═══ HEADER ═══ */}
       <header className="sticky top-10 z-30 bg-slate-900 text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
@@ -95,9 +101,9 @@ export default function TechMartPage() {
           <div className="flex-1 max-w-xl relative hidden md:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input type="text" placeholder="Zoek producten, merken..." value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full pl-9 pr-4 py-2 rounded-sm bg-slate-800 border border-slate-700 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
-          <button onClick={() => setCartOpen(true)} className="relative p-2 rounded-lg hover:bg-slate-800 transition-colors" aria-label="Cart">
+          <button onClick={() => setCartOpen(true)} className="relative p-2 rounded-sm hover:bg-slate-800 transition-colors" aria-label="Cart">
             <ShoppingCart className="w-5 h-5" />
             {cartCount > 0 && <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-blue-500 text-[10px] font-bold rounded-full flex items-center justify-center">{cartCount}</span>}
           </button>
@@ -114,15 +120,15 @@ export default function TechMartPage() {
             </h1>
             <p className="text-blue-100 max-w-md mb-6">Zoek op merk, categorie of prijs, leg in de wagen en reken af. Bezorging in Paramaribo, ophalen kan ook.</p>
             <div className="flex gap-3">
-              <a href="#products" className="px-5 py-2.5 bg-white text-blue-700 font-bold rounded-lg text-sm hover:bg-blue-50 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+              <a href="#products" className="px-5 py-2.5 bg-white text-blue-700 font-bold rounded-sm text-sm hover:bg-blue-50 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 Shop nu <ChevronRight className="w-4 h-4 inline" />
               </a>
-              <a href="#products" onClick={() => setCategory('Gaming')} className="px-5 py-2.5 bg-blue-700 text-white font-bold rounded-lg text-sm hover:bg-blue-600 transition-colors border border-blue-500" style={{ fontFamily: 'var(--font-heading)' }}>
+              <a href="#products" onClick={() => setCategory('Gaming')} className="px-5 py-2.5 bg-blue-700 text-white font-bold rounded-sm text-sm hover:bg-blue-600 transition-colors border border-blue-500" style={{ fontFamily: 'var(--font-heading)' }}>
                 <Gamepad2 className="w-4 h-4 inline mr-1" /> Gaming Deals
               </a>
             </div>
           </div>
-          <DemoImage src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" width={500} height={350} className="w-full md:w-[360px] rounded-2xl shadow-2xl object-cover aspect-[3/2]" />
+          <DemoImage src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" width={500} height={350} className="w-full md:w-[360px] rounded-sm shadow-2xl object-cover aspect-[3/2]" />
         </div>
       </section>
 
@@ -142,18 +148,18 @@ export default function TechMartPage() {
           <div className="md:hidden mb-4 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input type="text" placeholder="Zoek producten..." value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full pl-9 pr-4 py-2.5 rounded-sm bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="flex gap-6">
             {/* SIDEBAR FILTERS (desktop) */}
             <aside className="hidden lg:block w-56 flex-shrink-0">
-              <div className="bg-white rounded-xl border border-slate-200 p-4 sticky top-28 space-y-5">
+              <div className="bg-white rounded-sm border border-slate-200 p-4 sticky top-28 space-y-5">
                 <div>
                   <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">Categorie</h3>
                   <div className="space-y-1">
                     {allCategories.map(c => (
-                      <button key={c} onClick={() => setCategory(c)} className={`flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-lg text-sm transition-colors ${category === c ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:bg-slate-50'}`}>
+                      <button key={c} onClick={() => setCategory(c)} className={`flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors ${category === c ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:bg-slate-50'}`}>
                         {c !== 'Alle' && catIcons[c]} {c}
                       </button>
                     ))}
@@ -163,13 +169,13 @@ export default function TechMartPage() {
                   <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">Merk</h3>
                   <div className="space-y-1">
                     {allBrands.map(b => (
-                      <button key={b} onClick={() => setBrand(b)} className={`w-full text-left px-2 py-1.5 rounded-lg text-sm transition-colors ${brand === b ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:bg-slate-50'}`}>{b}</button>
+                      <button key={b} onClick={() => setBrand(b)} className={`w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors ${brand === b ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:bg-slate-50'}`}>{b}</button>
                     ))}
                   </div>
                 </div>
                 <div>
                   <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">Sorteren</h3>
-                  <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-2 py-1.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-2 py-1.5 rounded-sm border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="popular">Populair</option>
                     <option value="price-low">Prijs: laag → hoog</option>
                     <option value="price-high">Prijs: hoog → laag</option>
@@ -183,12 +189,12 @@ export default function TechMartPage() {
             <div className="flex-1 min-w-0">
               {/* Mobile filter bar */}
               <div className="lg:hidden flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button onClick={() => setFiltersOpen(!filtersOpen)} className="flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium flex-shrink-0">
+                <button onClick={() => setFiltersOpen(!filtersOpen)} className="flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-200 rounded-sm text-sm font-medium flex-shrink-0">
                   <SlidersHorizontal className="w-3.5 h-3.5" /> Filters
                 </button>
                 {allCategories.slice(1).map(c => (
                   <button key={c} onClick={() => setCategory(category === c ? 'Alle' : c)}
-                    className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium flex-shrink-0 ${category === c ? 'bg-blue-600 text-white' : 'bg-white border border-slate-200'}`}>
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-sm text-sm font-medium flex-shrink-0 ${category === c ? 'bg-blue-600 text-white' : 'bg-white border border-slate-200'}`}>
                     {catIcons[c]} {c}
                   </button>
                 ))}
@@ -198,16 +204,16 @@ export default function TechMartPage() {
               <AnimatePresence>
                 {filtersOpen && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="lg:hidden overflow-hidden mb-4">
-                    <div className="bg-white rounded-xl border border-slate-200 p-4 flex flex-wrap gap-4">
+                    <div className="bg-white rounded-sm border border-slate-200 p-4 flex flex-wrap gap-4">
                       <div className="flex-1 min-w-[140px]">
                         <label className="text-xs font-bold text-slate-500 block mb-1">Merk</label>
-                        <select value={brand} onChange={e => setBrand(e.target.value)} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
+                        <select value={brand} onChange={e => setBrand(e.target.value)} className="w-full px-3 py-2 rounded-sm border border-slate-200 text-sm">
                           {allBrands.map(b => <option key={b} value={b}>{b}</option>)}
                         </select>
                       </div>
                       <div className="flex-1 min-w-[140px]">
                         <label className="text-xs font-bold text-slate-500 block mb-1">Sorteren</label>
-                        <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
+                        <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-3 py-2 rounded-sm border border-slate-200 text-sm">
                           <option value="popular">Populair</option>
                           <option value="price-low">Prijs: laag → hoog</option>
                           <option value="price-high">Prijs: hoog → laag</option>
@@ -226,7 +232,7 @@ export default function TechMartPage() {
                 <AnimatePresence mode="popLayout">
                   {filtered.map(p => (
                     <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-                      className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+                      className="group bg-white rounded-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
                       onClick={() => setSelectedProduct(p)}>
                       <div className="relative aspect-square overflow-hidden bg-slate-100">
                         <DemoImage src={p.img} alt={p.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -244,7 +250,7 @@ export default function TechMartPage() {
                           {p.originalPrice && <span className="text-xs text-slate-400 line-through">SRD {p.originalPrice.toLocaleString()}</span>}
                         </div>
                         <button onClick={e => { e.stopPropagation(); addToCart(p) }}
-                          className="w-full mt-2 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition-colors opacity-0 group-hover:opacity-100" style={{ fontFamily: 'var(--font-heading)' }}>
+                          className="w-full mt-2 py-2 bg-blue-600 text-white text-xs font-bold rounded-sm hover:bg-blue-700 transition-colors opacity-0 group-hover:opacity-100" style={{ fontFamily: 'var(--font-heading)' }}>
                           <ShoppingCart className="w-3.5 h-3.5 inline mr-1" /> In wagen
                         </button>
                       </div>
@@ -258,7 +264,7 @@ export default function TechMartPage() {
                   <Search className="w-10 h-10 mx-auto mb-3 text-slate-300" />
                   <p className="font-bold">Geen producten gevonden</p>
                   <p className="text-sm mt-1">Probeer andere filters of zoekterm</p>
-                  <button onClick={() => { setCategory('Alle'); setBrand('Alle'); setSearch('') }} className="mt-3 px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-lg">Reset filters</button>
+                  <button onClick={() => { setCategory('Alle'); setBrand('Alle'); setSearch('') }} className="mt-3 px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-sm">Reset filters</button>
                 </div>
               )}
             </div>
@@ -271,7 +277,7 @@ export default function TechMartPage() {
         {selectedProduct && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setSelectedProduct(null)}>
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
+              className="bg-white rounded-sm max-w-2xl w-full max-h-[85vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="grid sm:grid-cols-2 gap-0">
                 <div className="relative bg-slate-100">
                   <DemoImage src={selectedProduct.img} alt={selectedProduct.name} width={600} height={600} className="w-full aspect-square object-cover" />
@@ -284,13 +290,13 @@ export default function TechMartPage() {
                     <div className="flex">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className={`w-4 h-4 ${i < Math.floor(selectedProduct.rating) ? 'fill-amber-400 text-amber-400' : 'text-slate-200'}`} />)}</div>
                     <span className="text-sm text-slate-500">{selectedProduct.rating} ({selectedProduct.reviews} reviews)</span>
                   </div>
-                  {selectedProduct.specs && <p className="text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mb-4">{selectedProduct.specs}</p>}
+                  {selectedProduct.specs && <p className="text-sm text-slate-600 bg-slate-50 rounded-sm p-3 mb-4">{selectedProduct.specs}</p>}
                   <div className="flex items-center gap-3 mb-6">
                     <span className="text-2xl font-bold text-blue-600">SRD {selectedProduct.price.toLocaleString()}</span>
                     {selectedProduct.originalPrice && <span className="text-lg text-slate-400 line-through">SRD {selectedProduct.originalPrice.toLocaleString()}</span>}
                   </div>
                   <div className="mt-auto space-y-2">
-                    <button onClick={() => { addToCart(selectedProduct); setSelectedProduct(null) }} className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+                    <button onClick={() => { addToCart(selectedProduct); setSelectedProduct(null) }} className="w-full py-3 bg-blue-600 text-white font-bold rounded-sm hover:bg-blue-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                       <ShoppingCart className="w-4 h-4 inline mr-2" /> Toevoegen aan wagen
                     </button>
                     <div className="flex gap-4 text-[11px] text-slate-500 justify-center pt-1">
@@ -314,13 +320,13 @@ export default function TechMartPage() {
               className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl flex flex-col">
               <div className="flex items-center justify-between p-5 border-b border-slate-200">
                 <h2 className="text-lg font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>Winkelwagen ({cartCount})</h2>
-                <button onClick={() => setCartOpen(false)} className="p-2 rounded-lg hover:bg-slate-50" aria-label="Sluiten"><X className="w-5 h-5" /></button>
+                <button onClick={() => setCartOpen(false)} className="p-2 rounded-sm hover:bg-slate-50" aria-label="Sluiten"><X className="w-5 h-5" /></button>
               </div>
               <div className="flex-1 overflow-auto p-5 space-y-3">
                 {cart.length === 0 && <p className="text-center text-slate-400 py-12">Uw wagen is leeg</p>}
                 {cart.map(i => (
-                  <div key={i.id} className="flex gap-3 bg-slate-50 rounded-xl p-3">
-                    <DemoImage src={i.img} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-lg object-cover" />
+                  <div key={i.id} className="flex gap-3 bg-slate-50 rounded-sm p-3">
+                    <DemoImage src={i.img} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-sm object-cover" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-sm text-slate-900 truncate">{i.name}</h4>
                       <p className="text-sm text-blue-600 font-bold">SRD {i.price.toLocaleString()}</p>
@@ -338,7 +344,7 @@ export default function TechMartPage() {
                 <div className="p-5 border-t border-slate-200">
                   <div className="flex justify-between mb-3"><span className="text-slate-600">Totaal</span><span className="text-lg font-bold">SRD {cartTotal.toLocaleString()}</span></div>
                   <button onClick={() => { setCartOpen(false); toast.success('Checkout functionaliteit beschikbaar in productie', { description: 'Demo winkelwagen werkt! In productie koppelen we dit aan een betaalprovider.' }) }}
-                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-sm hover:bg-blue-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                     Afrekenen <ChevronRight className="w-4 h-4 inline" />
                   </button>
                 </div>

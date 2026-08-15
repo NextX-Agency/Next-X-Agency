@@ -130,8 +130,14 @@ export default function KaderBouwPage() {
     setFormStep(formStep + 1)
   }
 
+  // Bouwbedrijf: smalle, zware kopletters. Zet de kopletter voor deze hele
+  // demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van
+  // NextX.
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      style={{ '--font-heading': 'var(--font-demo-industrial)' } as React.CSSProperties}
+      className="min-h-screen bg-white"
+    >
       {/* ═══ HERO ═══ */}
       <section className="relative h-[85vh] min-h-[560px] flex items-center overflow-hidden">
         <DemoImage
@@ -155,10 +161,10 @@ export default function KaderBouwPage() {
               Nieuwbouw, renovatie en dakwerk in Paramaribo en Wanica. Vaste prijs vooraf, en u weet wie er op uw kavel staat.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/30" style={{ fontFamily: 'var(--font-heading)' }}>
+              <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#f97015] text-white font-bold rounded-none hover:bg-orange-600 transition-colors border border-black/10 shadow-orange-500/30" style={{ fontFamily: 'var(--font-heading)' }}>
                 Gratis offerte aanvragen <ChevronRight className="w-4 h-4" />
               </a>
-              <a href="#projecten" className="inline-flex items-center gap-2 px-6 py-3.5 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+              <a href="#projecten" className="inline-flex items-center gap-2 px-6 py-3.5 border-2 border-white/30 text-white font-bold rounded-none hover:bg-white/10 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 Onze projecten
               </a>
             </div>
@@ -207,8 +213,8 @@ export default function KaderBouwPage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
-            <DemoImage src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
-            <div className="absolute -bottom-6 -left-6 bg-[#f97015] text-white rounded-xl px-5 py-3 shadow-lg">
+            <DemoImage src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" width={800} height={600} className="rounded-none border border-black/10 w-full object-cover aspect-[4/3]" />
+            <div className="absolute -bottom-6 -left-6 bg-[#f97015] text-white rounded-none px-5 py-3 border border-black/10">
               <p className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>15+</p>
               <p className="text-xs font-medium">Jaar Ervaring</p>
             </div>
@@ -226,8 +232,8 @@ export default function KaderBouwPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((svc, i) => (
               <motion.a key={svc.title} href="#contact" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#f97015]/40 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-[#f97015]/10 flex items-center justify-center mb-4 group-hover:bg-[#f97015] transition-colors">
+                className="group bg-white rounded-none p-6 border border-slate-200 hover:border-[#f97015]/40 transition-all duration-300">
+                <div className="w-12 h-12 rounded-none bg-[#f97015]/10 flex items-center justify-center mb-4 group-hover:bg-[#f97015] transition-colors">
                   <svc.icon className="w-6 h-6 text-[#f97015] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{svc.title}</h3>
@@ -244,8 +250,8 @@ export default function KaderBouwPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {certifications.map((c, i) => (
               <motion.div key={c.label} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center flex-shrink-0">
+                className="flex items-center gap-3 bg-slate-50 rounded-none px-4 py-3 border border-slate-200">
+                <div className="w-10 h-10 rounded-none bg-[#f97015]/10 flex items-center justify-center flex-shrink-0">
                   <Shield className="w-5 h-5 text-[#f97015]" />
                 </div>
                 <div>
@@ -271,7 +277,7 @@ export default function KaderBouwPage() {
               {processSteps.map((step, i) => (
                 <motion.div key={step.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className="text-center relative">
-                  <div className="w-16 h-16 rounded-full bg-white border-2 border-[#f97015] flex items-center justify-center mx-auto mb-3 relative z-10 shadow-sm">
+                  <div className="w-16 h-16 rounded-full bg-white border-2 border-[#f97015] flex items-center justify-center mx-auto mb-3 relative z-10 border border-black/5">
                     <step.icon className="w-6 h-6 text-[#f97015]" />
                   </div>
                   <h3 className="font-bold text-slate-900 text-sm" style={{ fontFamily: 'var(--font-heading)' }}>{step.title}</h3>
@@ -294,7 +300,7 @@ export default function KaderBouwPage() {
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {projectFilters.map(f => (
               <button key={f} onClick={() => setProjectFilter(f)}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${projectFilter === f ? 'bg-[#f97015] text-white shadow-lg shadow-orange-500/20' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${projectFilter === f ? 'bg-[#f97015] text-white border border-black/10 shadow-orange-500/20' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
                 {f}
               </button>
             ))}
@@ -303,7 +309,7 @@ export default function KaderBouwPage() {
             <AnimatePresence mode="popLayout">
             {filteredProjects.map((p, i) => (
               <motion.div key={p.title} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ delay: i * 0.08 }}
-                className="group relative rounded-2xl overflow-hidden cursor-pointer">
+                className="group relative rounded-none overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] overflow-hidden">
                   <DemoImage src={p.img} alt={p.title} width={600} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
@@ -342,15 +348,15 @@ export default function KaderBouwPage() {
               <p className="text-slate-600 mb-8 leading-relaxed">Heeft u een bouwproject in gedachten? Neem vrijblijvend contact op voor een offerte of adviesgesprek.</p>
               <div className="space-y-4">
                 <a href={TEL_HREF} className="flex items-center gap-4 text-slate-700 hover:text-[#f97015] transition-colors group">
-                  <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center group-hover:bg-[#f97015] transition-colors"><Phone className="w-5 h-5 text-[#f97015] group-hover:text-white transition-colors" /></div>
+                  <div className="w-10 h-10 rounded-none bg-[#f97015]/10 flex items-center justify-center group-hover:bg-[#f97015] transition-colors"><Phone className="w-5 h-5 text-[#f97015] group-hover:text-white transition-colors" /></div>
                   <span className="font-medium">{CONTACT.phoneDisplay}</span>
                 </a>
                 <a href={MAIL_HREF} className="flex items-center gap-4 text-slate-700 hover:text-[#f97015] transition-colors group">
-                  <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center group-hover:bg-[#f97015] transition-colors"><Mail className="w-5 h-5 text-[#f97015] group-hover:text-white transition-colors" /></div>
+                  <div className="w-10 h-10 rounded-none bg-[#f97015]/10 flex items-center justify-center group-hover:bg-[#f97015] transition-colors"><Mail className="w-5 h-5 text-[#f97015] group-hover:text-white transition-colors" /></div>
                   <span className="font-medium">{CONTACT.email}</span>
                 </a>
                 <div className="flex items-center gap-4 text-slate-700">
-                  <div className="w-10 h-10 rounded-xl bg-[#f97015]/10 flex items-center justify-center"><MapPin className="w-5 h-5 text-[#f97015]" /></div>
+                  <div className="w-10 h-10 rounded-none bg-[#f97015]/10 flex items-center justify-center"><MapPin className="w-5 h-5 text-[#f97015]" /></div>
                   <span className="font-medium">Indira Gandhiweg 72, Paramaribo</span>
                 </div>
               </div>
@@ -362,7 +368,7 @@ export default function KaderBouwPage() {
             </div>
             <div>
               {submitted ? (
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-white rounded-2xl p-8 text-center border border-slate-200">
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-white rounded-none p-8 text-center border border-slate-200">
                   <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="w-8 h-8 text-emerald-500" />
                   </div>
@@ -371,7 +377,7 @@ export default function KaderBouwPage() {
                   <p className="text-sm text-slate-400">Wij nemen binnen 24 uur contact met u op voor de volgende stappen.</p>
                 </motion.div>
               ) : (
-                <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <div className="bg-white rounded-none p-6 border border-slate-200 border border-black/5">
                   {/* Stepper */}
                   <div className="flex items-center gap-2 mb-6">
                     {['Project', 'Gegevens'].map((label, i) => (
@@ -391,7 +397,7 @@ export default function KaderBouwPage() {
                           <div className="grid grid-cols-2 gap-2">
                             {services.map(s => (
                               <button key={s.title} type="button" onClick={() => setForm(f => ({ ...f, projectType: s.title }))}
-                                className={`p-3 rounded-xl border text-left text-sm font-medium transition-all ${form.projectType === s.title ? 'border-[#f97015] bg-[#f97015]/5 text-[#f97015]' : 'border-slate-200 text-slate-700 hover:border-slate-300'}`}>
+                                className={`p-3 rounded-none border text-left text-sm font-medium transition-all ${form.projectType === s.title ? 'border-[#f97015] bg-[#f97015]/5 text-[#f97015]' : 'border-slate-200 text-slate-700 hover:border-slate-300'}`}>
                                 <s.icon className="w-4 h-4 mb-1" />{s.title}
                               </button>
                             ))}
@@ -401,11 +407,11 @@ export default function KaderBouwPage() {
                         <div>
                           <label className="block text-sm font-medium text-slate-700 mb-1">Beschrijving *</label>
                           <textarea value={form.beschrijving} onChange={e => setForm(f => ({ ...f, beschrijving: e.target.value }))} rows={3}
-                            className={`w-full rounded-xl border ${errors.beschrijving ? 'border-red-400' : 'border-slate-200'} px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f97015]/40 focus:border-[#f97015] resize-none`}
+                            className={`w-full rounded-none border ${errors.beschrijving ? 'border-red-400' : 'border-slate-200'} px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f97015]/40 focus:border-[#f97015] resize-none`}
                             placeholder="Beschrijf kort uw bouwproject..." />
                           {errors.beschrijving && <p className="text-xs text-red-500 mt-1">{errors.beschrijving}</p>}
                         </div>
-                        <button type="button" onClick={handleFormNext} className="w-full py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+                        <button type="button" onClick={handleFormNext} className="w-full py-3 bg-[#f97015] text-white font-bold rounded-none hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                           Volgende stap <ChevronRight className="w-4 h-4 inline" />
                         </button>
                       </motion.div>
@@ -421,14 +427,14 @@ export default function KaderBouwPage() {
                           <div key={key}>
                             <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
                             <input type={type} value={form[key as keyof typeof form]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
-                              className={`w-full rounded-xl border ${errors[key] ? 'border-red-400' : 'border-slate-200'} px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f97015]/40 focus:border-[#f97015]`}
+                              className={`w-full rounded-none border ${errors[key] ? 'border-red-400' : 'border-slate-200'} px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f97015]/40 focus:border-[#f97015]`}
                               placeholder={placeholder} />
                             {errors[key] && <p className="text-xs text-red-500 mt-1">{errors[key]}</p>}
                           </div>
                         ))}
                         <div className="flex gap-3">
-                          <button type="button" onClick={() => setFormStep(0)} className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors text-sm">Vorige</button>
-                          <button type="button" onClick={handleFormNext} className="flex-[2] py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
+                          <button type="button" onClick={() => setFormStep(0)} className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold rounded-none hover:bg-slate-200 transition-colors text-sm">Vorige</button>
+                          <button type="button" onClick={handleFormNext} className="flex-[2] py-3 bg-[#f97015] text-white font-bold rounded-none hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                             Offerte aanvragen
                           </button>
                         </div>
@@ -485,7 +491,7 @@ export default function KaderBouwPage() {
         </div>
       </footer>
 
-      <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-20 left-6 z-30 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#f97015] transition-colors shadow-lg" aria-label="Naar boven"><ArrowUp className="w-4 h-4" /></button>
+      <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-20 left-6 z-30 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#f97015] transition-colors border border-black/10" aria-label="Naar boven"><ArrowUp className="w-4 h-4" /></button>
       <FloatingWhatsApp company="KaderBouw NV" message="Hallo NextX, ik bekeek het voorbeeld KaderBouw NV en wil zoiets voor mijn bedrijf." />
     </div>
   )
