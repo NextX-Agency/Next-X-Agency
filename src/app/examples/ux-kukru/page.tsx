@@ -366,7 +366,7 @@ export default function UxKukruPage() {
             </div>
           </div>
           <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-xs text-slate-600">© 2025 Kukru — Dit is een demo door Next‑X Agency</p>
+            <p className="text-xs text-slate-600">© {new Date().getFullYear()} Kukru — Dit is een demo door NextX Agency</p>
             <p className="text-xs text-slate-600">Designed & built with <Heart className="w-3 h-3 inline text-violet-500" /> in Paramaribo</p>
           </div>
         </div>

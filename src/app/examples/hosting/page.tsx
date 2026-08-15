@@ -6,6 +6,7 @@ import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tool
 import { Server, HardDrive, Globe, Shield, Activity, Upload, Download, Clock, RefreshCw, ChevronRight, CheckCircle2, AlertTriangle, Loader2, Cpu, MemoryStick, Wifi, Gauge, Bell, X, HomeIcon } from 'lucide-react'
 import { toast } from 'sonner'
 import { CONTACT } from '@/lib/contact'
+import Link from 'next/link'
 
 /* ─── Logo ─── */
 function HostingLogo({ size = 36 }: { size?: number }) {
@@ -50,13 +51,12 @@ const notifications = [
   { id: 1, type: 'warning', title: 'Mail Server hoge latency', desc: 'SMTP queue loopt op. 12 berichten wachtend.', time: '14 min geleden' },
   { id: 2, type: 'success', title: 'Automatische backup voltooid', desc: 'Dagelijkse backup succesvol · 2.4 GB', time: '3 uur geleden' },
   { id: 3, type: 'info', title: 'SSL certificaat vernieuwd', desc: "Let's Encrypt certificaat automatisch vernieuwd.", time: '2 dagen geleden' },
-  { id: 4, type: 'success', title: 'Beveiligingsupdate geïnstalleerd', desc: 'PHP 8.3.14 patch succesvol geïnstalleerd.', time: '3 dagen geleden' },
+  { id: 4, type: 'success', title: 'Beveiligingsupdate geïnstalleerd', desc: 'Serverpakketten bijgewerkt, geen downtime.', time: '3 dagen geleden' },
 ]
 
 const plans = [
-  { name: 'Starter', price: 'SRD 49', features: ['5 GB SSD', '1 Website', '10 GB Bandbreedte', 'Gratis SSL', 'Email support'], current: false },
-  { name: 'Business', price: 'SRD 99', features: ['25 GB SSD', '5 Websites', 'Onbeperkt bandbreedte', 'Gratis SSL + CDN', 'Dagelijkse backup', 'Priority support'], current: true },
-  { name: 'Enterprise', price: 'SRD 199', features: ['100 GB NVMe', 'Onbeperkt websites', 'Onbeperkt bandbreedte', 'Gratis SSL + CDN', 'Uurlijkse backup', '24/7 Telefoon support', 'Dedicated IP'], current: false },
+  { name: 'Basic Hosting', price: '$20', features: ['10 GB opslag', '100 GB bandbreedte', 'SSL inbegrepen', 'Dagelijkse back-ups', 'Uptime monitoring'], current: true },
+  { name: 'Business Hosting', price: '$30', features: ['50 GB opslag', 'Onbeperkte bandbreedte', 'SSL + CDN inbegrepen', 'Dagelijkse back-ups', 'Voorrang bij support'], current: false },
 ]
 
 const backups = [
@@ -92,14 +92,14 @@ export default function HostingPage() {
         clearInterval(interval)
         setBackupLoading(false)
         setBackupStage('')
-        toast.success('Backup succesvol aangemaakt!', { description: 'Nieuwste backup: nu · 2.4 GB' })
+        toast.success('Back-up aangemaakt (voorbeeld)', { description: 'In uw eigen paneel staat hier de nieuwe back-up met datum en omvang.' })
       }
     }, 800)
   }
 
   const handleRestart = () => {
     setConfirmRestart(false)
-    toast.success('Server herstart geïnitieerd', { description: 'Uw website is binnen 30 seconden weer online.' })
+    toast.info('Herstart is uitgeschakeld in dit voorbeeld', { description: 'In uw eigen paneel start deze knop de server opnieuw op.' })
   }
 
   const cpuUsage = 34
@@ -309,7 +309,7 @@ export default function HostingPage() {
                 <span className="text-slate-900 flex-1">{b.date}</span>
                 <span className="text-xs text-slate-500">{b.size}</span>
                 <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${b.type === 'Handmatig' ? 'bg-sky-100 text-sky-700' : 'bg-slate-100 text-slate-600'}`}>{b.type}</span>
-                <button onClick={() => toast.success('Restore gestart vanuit backup ' + b.date)}
+                <button onClick={() => toast.info(`Terugzetten van ${b.date} is uitgeschakeld in dit voorbeeld`)}
                   className="text-xs text-sky-600 hover:underline flex items-center gap-0.5">
                   <Download className="w-3 h-3" /> Restore
                 </button>
@@ -349,7 +349,7 @@ export default function HostingPage() {
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
               className="bg-white rounded-2xl p-6 max-w-3xl w-full shadow-2xl max-h-[90vh] overflow-auto" onClick={e => e.stopPropagation()}>
               <h3 className="text-xl font-bold text-slate-900 text-center mb-6" style={{ fontFamily: 'var(--font-heading)' }}>Kies uw plan</h3>
-              <div className="grid sm:grid-cols-3 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 {plans.map(p => (
                   <div key={p.name} className={`rounded-xl p-5 border-2 ${p.current ? 'border-sky-500 bg-sky-50' : 'border-slate-200'} relative`}>
                     {p.current && <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-sky-500 text-white text-[10px] font-bold rounded-full">Huidig plan</span>}
@@ -360,10 +360,16 @@ export default function HostingPage() {
                         <li key={f} className="flex items-center gap-2 text-xs text-slate-600"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />{f}</li>
                       ))}
                     </ul>
-                    <button onClick={() => { setShowUpgrade(false); toast.success(`${p.name} plan ${p.current ? 'is uw huidige plan' : 'upgrade aangevraagd!'}`) }}
-                      className={`w-full py-2 text-sm font-bold rounded-lg transition-colors ${p.current ? 'bg-slate-200 text-slate-600' : 'bg-sky-500 text-white hover:bg-sky-600'}`}>
-                      {p.current ? 'Huidig' : 'Upgrade'} <ChevronRight className="w-3.5 h-3.5 inline" />
-                    </button>
+                    {p.current ? (
+                      <span className="block w-full rounded-lg bg-slate-200 py-2 text-center text-sm font-bold text-slate-600">
+                        Huidig plan
+                      </span>
+                    ) : (
+                      <Link href={`/contact?dienst=${encodeURIComponent(p.name)}`}
+                        className="flex w-full items-center justify-center rounded-lg bg-sky-500 py-2 text-sm font-bold text-white transition-colors hover:bg-sky-600">
+                        Upgrade aanvragen <ChevronRight className="w-3.5 h-3.5" />
+                      </Link>
+                    )}
                   </div>
                 ))}
               </div>
@@ -401,8 +407,8 @@ export default function HostingPage() {
             </div>
           </div>
           <div className="border-t border-slate-800 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-[11px] text-slate-500">© 2025 Hosting Panel · Paramaribo, Suriname</p>
-            <p className="text-[11px] text-slate-500">Powered by Next‑X Agency · Server data gesimuleerd</p>
+            <p className="text-[11px] text-slate-500">© {new Date().getFullYear()} Hosting Panel · Paramaribo, Suriname</p>
+            <p className="text-[11px] text-slate-500">Powered by NextX Agency · Server data gesimuleerd</p>
           </div>
         </div>
       </footer>

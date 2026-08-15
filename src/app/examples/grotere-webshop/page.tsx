@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Image from 'next/image'
+import DemoImage from '../_components/DemoImage'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingCart, X, Plus, Minus, Trash2, Search, Star, ChevronRight, SlidersHorizontal, Truck, Shield, Headphones, Monitor, Smartphone, Laptop, Cpu, Camera, Gamepad2, BatteryCharging, Wifi } from 'lucide-react'
 import { toast } from 'sonner'
@@ -35,7 +35,7 @@ const products: Product[] = [
   { id: 8, name: 'iPhone 15 Pro Max', price: 4999, img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=400&fit=crop&q=80', category: 'Smartphones', brand: 'Apple', rating: 4.8, reviews: 189, badge: 'Bestseller', specs: '256GB, Titanium, A17 Pro' },
   { id: 9, name: 'Logitech MX Master 3S', price: 449, img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop&q=80', category: 'Accessoires', brand: 'Logitech', rating: 4.7, reviews: 87, specs: 'Ergonomisch, USB-C, Bolt' },
   { id: 10, name: 'Samsung 49" Odyssey G9', price: 4799, originalPrice: 5499, img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=400&fit=crop&q=80', category: 'Monitoren', brand: 'Samsung', rating: 4.6, reviews: 52, badge: 'Sale', specs: 'OLED, 240Hz, 1ms, Curved' },
-  { id: 11, name: 'AirPods Pro 2 USB-C', price: 999, img: 'https://images.unsplash.com/photo-1588423771073-b8903fdes5e4?w=400&h=400&fit=crop&q=80', category: 'Audio', brand: 'Apple', rating: 4.8, reviews: 245, badge: 'Populair', specs: 'ANC, Adaptive Audio, IP54' },
+  { id: 11, name: 'AirPods Pro 2 USB-C', price: 999, img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=400&fit=crop&q=80', category: 'Audio', brand: 'Apple', rating: 4.8, reviews: 245, badge: 'Populair', specs: 'ANC, Adaptive Audio, IP54' },
   { id: 12, name: 'ASUS ROG Strix G16', price: 6299, img: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=400&fit=crop&q=80', category: 'Laptops', brand: 'ASUS', rating: 4.7, reviews: 38, specs: 'RTX 4070, i9, 32GB, 165Hz' },
   { id: 13, name: 'Samsung Galaxy Tab S9 FE', price: 1899, img: 'https://images.unsplash.com/photo-1561154464-82e9aab32f4e?w=400&h=400&fit=crop&q=80', category: 'Tablets', brand: 'Samsung', rating: 4.5, reviews: 29, specs: '10.9", S Pen, 128GB' },
   { id: 14, name: 'Nintendo Switch OLED', price: 1399, img: 'https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&h=400&fit=crop&q=80', category: 'Gaming', brand: 'Nintendo', rating: 4.7, reviews: 178, specs: '7" OLED, 64GB, White/Neon' },
@@ -110,9 +110,9 @@ export default function TechMartPage() {
           <div className="flex-1">
             <span className="text-xs font-bold tracking-wider uppercase text-blue-200">Week Deals</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mt-2 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              De beste tech, <span className="text-yellow-300">beste prijs</span>
+              Elektronica, <span className="text-yellow-300">op voorraad</span>
             </h1>
-            <p className="text-blue-100 max-w-md mb-6">Suriname&apos;s #1 tech webshop. Officiële dealers van Apple, Samsung, Sony en meer. Snelle bezorging in Paramaribo.</p>
+            <p className="text-blue-100 max-w-md mb-6">Zoek op merk, categorie of prijs, leg in de wagen en reken af. Bezorging in Paramaribo, ophalen kan ook.</p>
             <div className="flex gap-3">
               <a href="#products" className="px-5 py-2.5 bg-white text-blue-700 font-bold rounded-lg text-sm hover:bg-blue-50 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 Shop nu <ChevronRight className="w-4 h-4 inline" />
@@ -122,14 +122,14 @@ export default function TechMartPage() {
               </a>
             </div>
           </div>
-          <Image src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" width={500} height={350} className="w-full md:w-[360px] rounded-2xl shadow-2xl object-cover aspect-[3/2]" />
+          <DemoImage src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" width={500} height={350} className="w-full md:w-[360px] rounded-2xl shadow-2xl object-cover aspect-[3/2]" />
         </div>
       </section>
 
       {/* ═══ TRUST BAR ═══ */}
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-6 text-xs text-slate-600">
-          {[{ icon: Truck, t: 'Gratis bezorging > SRD 500' }, { icon: Shield, t: '2 jaar garantie' }, { icon: Headphones, t: '24/7 Klantenservice' }, { icon: Wifi, t: 'Na-verkoop support' }].map(f => (
+          {[{ icon: Truck, t: 'Gratis bezorging > SRD 500' }, { icon: Shield, t: 'Fabrieksgarantie' }, { icon: Headphones, t: 'Klantenservice ma t/m za' }, { icon: Wifi, t: 'Na-verkoop support' }].map(f => (
             <div key={f.t} className="flex items-center gap-1.5"><f.icon className="w-3.5 h-3.5 text-blue-500" />{f.t}</div>
           ))}
         </div>
@@ -229,7 +229,7 @@ export default function TechMartPage() {
                       className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
                       onClick={() => setSelectedProduct(p)}>
                       <div className="relative aspect-square overflow-hidden bg-slate-100">
-                        <Image src={p.img} alt={p.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <DemoImage src={p.img} alt={p.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         {p.badge && <span className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold rounded-full ${p.badge === 'Sale' ? 'bg-red-500 text-white' : p.badge === 'Nieuw' ? 'bg-green-500 text-white' : 'bg-blue-500 text-white'}`}>{p.badge}</span>}
                       </div>
                       <div className="p-3">
@@ -274,7 +274,7 @@ export default function TechMartPage() {
               className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="grid sm:grid-cols-2 gap-0">
                 <div className="relative bg-slate-100">
-                  <Image src={selectedProduct.img} alt={selectedProduct.name} width={600} height={600} className="w-full aspect-square object-cover" />
+                  <DemoImage src={selectedProduct.img} alt={selectedProduct.name} width={600} height={600} className="w-full aspect-square object-cover" />
                   <button onClick={() => setSelectedProduct(null)} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center" aria-label="Sluiten"><X className="w-4 h-4" /></button>
                 </div>
                 <div className="p-6 flex flex-col">
@@ -295,7 +295,7 @@ export default function TechMartPage() {
                     </button>
                     <div className="flex gap-4 text-[11px] text-slate-500 justify-center pt-1">
                       <span><Truck className="w-3 h-3 inline mr-1" />Gratis bezorging</span>
-                      <span><Shield className="w-3 h-3 inline mr-1" />2 jaar garantie</span>
+                      <span><Shield className="w-3 h-3 inline mr-1" />Fabrieksgarantie</span>
                     </div>
                   </div>
                 </div>
@@ -320,7 +320,7 @@ export default function TechMartPage() {
                 {cart.length === 0 && <p className="text-center text-slate-400 py-12">Uw wagen is leeg</p>}
                 {cart.map(i => (
                   <div key={i.id} className="flex gap-3 bg-slate-50 rounded-xl p-3">
-                    <Image src={i.img} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-lg object-cover" />
+                    <DemoImage src={i.img} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-lg object-cover" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-sm text-slate-900 truncate">{i.name}</h4>
                       <p className="text-sm text-blue-600 font-bold">SRD {i.price.toLocaleString()}</p>
@@ -352,7 +352,7 @@ export default function TechMartPage() {
       <footer className="bg-slate-900 py-8">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2"><TechMartLogo size={24} /><span className="font-bold text-white text-sm">TechMart SUR</span></div>
-          <p className="text-sm text-slate-500">© 2025 TechMart Suriname. Alle prijzen in SRD, inclusief BTW.</p>
+          <p className="text-sm text-slate-500">© {new Date().getFullYear()} TechMart Suriname. Alle prijzen in SRD, inclusief BTW.</p>
         </div>
       </footer>
 

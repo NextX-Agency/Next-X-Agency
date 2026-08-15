@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import Image from 'next/image'
+import DemoImage from '../_components/DemoImage'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { BarChart3, ArrowRight, Smartphone, Monitor, Users, Clock, MousePointerClick, TrendingUp, CheckCircle2, XCircle, Lightbulb, ChevronRight } from 'lucide-react'
@@ -40,9 +40,9 @@ function CompareSlider({ before, after }: { before: string; after: string }) {
     <div ref={containerRef} className="relative rounded-2xl overflow-hidden aspect-[16/10] cursor-col-resize select-none border border-violet-200"
       onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onTouchMove={onTouchMove}>
       {/* After (full) */}
-      <Image src={after} alt="Na redesign" width={1000} height={625} className="absolute inset-0 w-full h-full object-cover" />
+      <DemoImage src={after} alt="Na redesign" width={1000} height={625} className="absolute inset-0 w-full h-full object-cover" />
       {/* Before (clipped) */}
-      <Image src={before} alt="Voor redesign" width={1000} height={625} className="absolute inset-0 w-full h-full object-cover" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
+      <DemoImage src={before} alt="Voor redesign" width={1000} height={625} className="absolute inset-0 w-full h-full object-cover" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
       {/* Divider */}
       <div className="absolute top-0 bottom-0" style={{ left: `${pos}%`, transform: 'translateX(-50%)' }}>
         <div className="w-0.5 h-full bg-white shadow-lg" />
@@ -146,11 +146,11 @@ export default function UxUiDesignPage() {
             <div className="flex items-center gap-2 mb-3"><Smartphone className="w-4 h-4 text-violet-500" /><span className="text-sm font-bold text-slate-700">Mobiele versie</span></div>
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden border-2 border-red-200 relative">
-                <Image src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80&sat=-100" alt="Mobile voor" width={400} height={700} className="w-full aspect-[9/16] object-cover opacity-80" />
+                <DemoImage src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80&sat=-100" alt="Mobile voor" width={400} height={700} className="w-full aspect-[9/16] object-cover opacity-80" />
                 <span className="absolute top-3 left-3 px-2.5 py-1 bg-red-500/90 text-white text-[10px] font-bold rounded-full">Voor</span>
               </div>
               <div className="rounded-2xl overflow-hidden border-2 border-green-200 relative">
-                <Image src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80" alt="Mobile na" width={400} height={700} className="w-full aspect-[9/16] object-cover" />
+                <DemoImage src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=700&fit=crop&q=80" alt="Mobile na" width={400} height={700} className="w-full aspect-[9/16] object-cover" />
                 <span className="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 text-white text-[10px] font-bold rounded-full">Na</span>
               </div>
             </div>
@@ -229,7 +229,7 @@ export default function UxUiDesignPage() {
       <footer className="bg-slate-900 py-8">
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2"><ShopPlazaLogo size={24} /><span className="text-sm font-bold text-white">ShopPlaza — UX Case Study</span></div>
-          <p className="text-sm text-slate-500">Ontworpen door Next‑X Agency · 2025</p>
+          <p className="text-sm text-slate-500">Ontworpen door NextX Agency</p>
         </div>
       </footer>
 

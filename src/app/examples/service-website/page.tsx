@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import DemoImage from '../_components/DemoImage'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Clock, Menu, X, Smile, Sparkles, Wrench, Shield, Baby, Building2, ChevronDown, CalendarDays, Home as HomeIcon, Users, CheckCircle2, Check } from 'lucide-react'
 import { toast } from 'sonner'
@@ -28,7 +28,7 @@ const navLinks = [
 ]
 
 const servicesList = [
-  { icon: Smile, title: 'Cosmetische Tandheelkunde', desc: 'Whitening, veneers en esthetische behandelingen voor een stralende glimlach.' },
+  { icon: Smile, title: 'Cosmetische Tandheelkunde', desc: 'Whitening, veneers en esthetische behandelingen, met vooraf een prijsopgave.' },
   { icon: Sparkles, title: 'Professionele Reiniging', desc: 'Dieptereiniging en polijsten door onze ervaren mondhygiënisten.' },
   { icon: Wrench, title: 'Restauratieve Zorg', desc: 'Vullingen, kronen en brugwerk met de nieuwste materialen.' },
   { icon: Shield, title: 'Preventieve Zorg', desc: 'Regelmatige controles en fluoridebehandelingen om problemen te voorkomen.' },
@@ -37,20 +37,21 @@ const servicesList = [
 ]
 
 const team = [
-  { name: 'Dr. Priya Sharma', role: 'Tandarts — Cosmetisch', img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&q=80', experience: '12 jaar ervaring', specialization: 'Cosmetische tandheelkunde & Veneers', certification: 'ANTP Gecertificeerd' },
-  { name: 'Dr. Michael Chen', role: 'Tandarts — Restauratief', img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&q=80', experience: '9 jaar ervaring', specialization: 'Kronen, brugwerk & implantaten', certification: 'NVOI Specialist' },
-  { name: 'Lisa de Vries', role: 'Mondhygiënist', img: 'https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=400&h=400&fit=crop&q=80', experience: '7 jaar ervaring', specialization: 'Preventieve zorg & Parodontologie', certification: 'NVM Geregistreerd' },
-  { name: 'Anand Persaud', role: 'Tandtechnicus', img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop&q=80', experience: '15 jaar ervaring', specialization: 'Protheses & Digitaal ontwerp', certification: 'VVRT Erkend' },
+  { name: 'Dr. Priya Sharma', role: 'Tandarts — Cosmetisch', img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&q=80', experience: '12 jaar ervaring', specialization: 'Cosmetische tandheelkunde & Veneers', certification: 'Uw registratie' },
+  { name: 'Dr. Michael Chen', role: 'Tandarts — Restauratief', img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&q=80', experience: '9 jaar ervaring', specialization: 'Kronen, brugwerk & implantaten', certification: 'Uw specialisatie' },
+  { name: 'Lisa de Vries', role: 'Mondhygiënist', img: 'https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=400&h=400&fit=crop&q=80', experience: '7 jaar ervaring', specialization: 'Preventieve zorg & Parodontologie', certification: 'Uw registratie' },
+  { name: 'Anand Persaud', role: 'Tandtechnicus', img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop&q=80', experience: '15 jaar ervaring', specialization: 'Protheses & Digitaal ontwerp', certification: 'Uw erkenning' },
 ]
 
-const insurancePartners = ['Fatum', 'Assuria', 'VVVF', 'SZF', 'Zelf betalend']
-const insuranceColors: Record<string, string> = { Fatum: '#003d7a', Assuria: '#d4262c', VVVF: '#2e7d32', SZF: '#1565c0', 'Zelf betalend': '#64748b' }
+// Placeholders: een voorbeeldpagina noemt geen bestaande verzekeraars.
+const insurancePartners = ['Verzekeraar 1', 'Verzekeraar 2', 'Verzekeraar 3', 'Verzekeraar 4', 'Zelf betalend']
+const insuranceColors: Record<string, string> = { 'Verzekeraar 1': '#003d7a', 'Verzekeraar 2': '#d4262c', 'Verzekeraar 3': '#2e7d32', 'Verzekeraar 4': '#1565c0', 'Zelf betalend': '#64748b' }
 
 const dentaTestimonials = [
   { name: 'Annesha Moeniralam', role: 'Cosmetische behandeling', text: 'Eindelijk geen angst meer voor de tandarts. Het team van DentaCare maakt je echt op je gemak. Mijn glimlach is nu mijn beste accessoire!', rating: 5, avatar: 'AM', date: 'Nov 2024' },
   { name: 'Bryan Tjin-A-Ton', role: 'Tanden bleken', text: 'Top resultaat bij mijn tanden bleken. In één sessie al groot verschil. Zeer professioneel en vriendelijk personeel.', rating: 5, avatar: 'BT', date: 'Jan 2025' },
   { name: 'Sandra de Wit', role: 'Reguliere controle', text: 'Heel vriendelijk personeel en de praktijk is super schoon en modern. Ze nemen de tijd om alles uit te leggen.', rating: 5, avatar: 'SW', date: 'Feb 2025' },
-  { name: 'Kiran Mahabier', role: 'Restauratie kroon', text: 'DentaCare is de beste investering voor je glimlach. Dr. Chen heeft fantastisch werk geleverd met mijn kroon. Ziet er heel natuurlijk uit.', rating: 5, avatar: 'KM', date: 'Mrt 2025' },
+  { name: 'Kiran Mahabier', role: 'Restauratie kroon', text: 'Mijn kroon ziet er heel natuurlijk uit en zit goed. Vooraf duidelijk uitgelegd wat het zou kosten.', rating: 5, avatar: 'KM', date: 'Mrt 2025' },
 ]
 
 const unavailableDates = ['2026-03-30', '2026-04-02', '2026-04-05', '2026-04-09']
@@ -156,7 +157,7 @@ export default function DentaCarePage() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-sky-50 rounded-full text-xs font-bold text-sky-600 mb-6">
               <div className="flex -space-x-2">
-                {dentaTestimonials.slice(0, 4).map((t, i) => <Image key={i} src={t.avatar} alt="" width={24} height={24} className="w-6 h-6 rounded-full border-2 border-sky-50 object-cover" />)}
+                {dentaTestimonials.slice(0, 4).map((t, i) => <DemoImage key={i} src={t.avatar} alt="" width={24} height={24} className="w-6 h-6 rounded-full border-2 border-sky-50 object-cover" />)}
               </div>
               200+ tevreden patiënten
             </div>
@@ -164,7 +165,7 @@ export default function DentaCarePage() {
               Uw glimlach,<br /><span className="text-sky-500">onze prioriteit</span>
             </h1>
             <p className="text-lg text-slate-500 max-w-md mb-8 leading-relaxed">
-              Moderne tandheelkunde in het hart van Paramaribo. Ervaren specialisten, actuele apparatuur en een warm welkom voor elk gezinslid.
+              Een praktijk waar u online een afspraak maakt, ziet wie u behandelt en vooraf weet wat het kost.
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-colors shadow-lg shadow-sky-500/20" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -176,13 +177,13 @@ export default function DentaCarePage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative">
-            <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop&q=80" alt="Moderne tandartspraktijk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
+            <DemoImage src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop&q=80" alt="Moderne tandartspraktijk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
             <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-5 py-3 shadow-lg border border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
-                  {team.slice(0, 3).map((t, i) => <Image key={i} src={t.img} alt={t.name} width={32} height={32} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
+                  {team.slice(0, 3).map((t, i) => <DemoImage key={i} src={t.img} alt={t.name} width={32} height={32} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
                 </div>
-                <div><p className="text-xs font-bold text-slate-900">4 Specialisten</p><p className="text-[10px] text-slate-500">Altijd beschikbaar</p></div>
+                <div><p className="text-xs font-bold text-slate-900">4 Specialisten</p><p className="text-[10px] text-slate-500">Ma t/m za</p></div>
               </div>
             </div>
           </motion.div>
@@ -238,7 +239,7 @@ export default function DentaCarePage() {
               <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg transition-all">
                 <div className="aspect-square overflow-hidden relative">
-                  <Image src={t.img} alt={t.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <DemoImage src={t.img} alt={t.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   {/* Hover overlay with details */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                     <p className="text-xs text-sky-400 font-bold">{t.experience}</p>
@@ -490,7 +491,7 @@ export default function DentaCarePage() {
             </div>
           </div>
           <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p className="text-xs text-slate-500">© 2025 DentaCare Paramaribo. Alle rechten voorbehouden.</p>
+            <p className="text-xs text-slate-500">© {new Date().getFullYear()} DentaCare Paramaribo. Alle rechten voorbehouden.</p>
 
           </div>
         </div>

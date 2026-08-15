@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
+import DemoImage from '../_components/DemoImage'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, ChevronRight, Hammer, HardHat, Home, PaintBucket, ArrowUp, Shield, Clock, CheckCircle2, ClipboardList, Search, Ruler, Construction, KeyRound } from 'lucide-react'
 import { toast } from 'sonner'
@@ -49,10 +49,10 @@ const processSteps = [
 ]
 
 const certifications = [
-  { label: 'ISO 9001', desc: 'Kwaliteitsmanagement' },
-  { label: 'SBNO Gecertificeerd', desc: 'Surinaamse Bouwsector Norm' },
-  { label: '15 Jaar Garantie', desc: 'Op constructiewerk' },
-  { label: 'Verzekerd Bedrijf', desc: 'Volledig WA verzekerd' },
+  { label: 'Uw keurmerk', desc: 'Ruimte voor een certificering' },
+  { label: 'Uw branchelidmaatschap', desc: 'Ruimte voor een vereniging' },
+  { label: 'Uw garantietermijn', desc: 'Ruimte voor uw voorwaarden' },
+  { label: 'Uw verzekering', desc: 'Ruimte voor uw dekking' },
 ]
 
 const kaderbouwTestimonials = [
@@ -134,7 +134,7 @@ export default function KaderBouwPage() {
     <div className="min-h-screen bg-white">
       {/* ═══ HERO ═══ */}
       <section className="relative h-[85vh] min-h-[560px] flex items-center overflow-hidden">
-        <Image
+        <DemoImage
           src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80"
           alt="Bouwplaats met kraan en steigers"
           fill
@@ -149,10 +149,10 @@ export default function KaderBouwPage() {
               <span className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>KaderBouw NV</span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.95] max-w-2xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              Wij bouwen<br /><span className="text-[#f97015]">uw visie</span>
+              Bouwen in<br /><span className="text-[#f97015]">Paramaribo</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-lg mb-8 leading-relaxed">
-              15+ jaar bouwervaring in Suriname. Van nieuwbouw tot complete renovaties — vakmanschap dat u kunt vertrouwen.
+              Nieuwbouw, renovatie en dakwerk in Paramaribo en Wanica. Vaste prijs vooraf, en u weet wie er op uw kavel staat.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/30" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -164,7 +164,7 @@ export default function KaderBouwPage() {
             </div>
             <div className="flex items-center gap-3 mt-6">
               <div className="flex -space-x-2">
-                {kaderbouwTestimonials.slice(0, 3).map((t, i) => <Image key={i} src={t.avatar} alt={t.name} width={32} height={32} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
+                {kaderbouwTestimonials.slice(0, 3).map((t, i) => <DemoImage key={i} src={t.avatar} alt={t.name} width={32} height={32} className="w-8 h-8 rounded-full border-2 border-white object-cover" />)}
               </div>
               <span className="text-sm text-slate-300"><strong className="text-white">98%</strong> klanttevredenheid</span>
             </div>
@@ -193,13 +193,13 @@ export default function KaderBouwPage() {
               Gebouwd op <span className="text-[#f97015]">vakmanschap</span>
             </h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              KaderBouw NV is sinds 2009 een gevestigde naam in de Surinaamse bouwsector. Ons team van ervaren vaklieden en ingenieurs levert projecten op die generaties meegaan.
+              KaderBouw NV bouwt sinds 2009 in Suriname, met eigen vaklieden en een vaste ingenieur op elk project.
             </p>
             <p className="text-slate-600 leading-relaxed mb-6">
-              Van luxe woningen in Paramaribo tot commerciële panden in Wanica — wij combineren moderne technieken met lokale expertise voor een resultaat dat u trots maakt.
+              Van woningen in Paramaribo tot bedrijfspanden in Wanica. U krijgt vooraf een tekening, een planning en een bedrag dat blijft staan.
             </p>
             <div className="flex items-center gap-3">
-              <Image src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80" alt="R. Kader" width={48} height={48} className="w-12 h-12 rounded-full object-cover" />
+              <DemoImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&q=80" alt="R. Kader" width={48} height={48} className="w-12 h-12 rounded-full object-cover" />
               <div>
                 <p className="font-bold text-slate-900 text-sm">R. Kader</p>
                 <p className="text-xs text-slate-500">Oprichter & Directeur</p>
@@ -207,7 +207,7 @@ export default function KaderBouwPage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
-            <Image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
+            <DemoImage src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80" alt="Constructiewerk" width={800} height={600} className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
             <div className="absolute -bottom-6 -left-6 bg-[#f97015] text-white rounded-xl px-5 py-3 shadow-lg">
               <p className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>15+</p>
               <p className="text-xs font-medium">Jaar Ervaring</p>
@@ -305,7 +305,7 @@ export default function KaderBouwPage() {
               <motion.div key={p.title} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ delay: i * 0.08 }}
                 className="group relative rounded-2xl overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] overflow-hidden">
-                  <Image src={p.img} alt={p.title} width={600} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <DemoImage src={p.img} alt={p.title} width={600} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
                 {/* Hover overlay with details */}

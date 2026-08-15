@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import DemoImage from '../_components/DemoImage'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Palette, Type, Copy, Check, Eye, Layers, Droplets, Sparkles } from 'lucide-react'
@@ -253,7 +253,7 @@ export default function SavanaCoffeePage() {
               {applications.map(a => (
                 <div key={a.title} className="group bg-white rounded-2xl border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="relative aspect-[3/2] overflow-hidden">
-                    <Image src={a.img} alt={a.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <DemoImage src={a.img} alt={a.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                       <span className="text-white text-sm font-bold flex items-center gap-1"><Eye className="w-3.5 h-3.5" /> Bekijk</span>
                     </div>
@@ -289,7 +289,7 @@ export default function SavanaCoffeePage() {
       <footer className="bg-stone-900 py-8">
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2"><SavanaIconSmall size={24} /><span className="text-sm font-bold text-white">Savana Coffee — Brand Identity</span></div>
-          <p className="text-sm text-stone-500">Case study door Next‑X Agency · 2025</p>
+          <p className="text-sm text-stone-500">Case study door NextX Agency</p>
         </div>
       </footer>
 

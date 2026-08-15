@@ -1,11 +1,20 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
+import DemoImage from './_components/DemoImage'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Alle Voorbeelden',
+  title: 'Voorbeelden',
   description:
-    'Bekijk alle demo voorbeelden van NextX Agency — websites, webshops, logo branding, UX/UI design, SEO en hosting. Interactieve previews van onze diensten.',
+    'Bekijk werkende voorbeelden van NextX Agency — websites, webshops, logo branding, UX/UI design, SEO en hosting. Elk voorbeeld is een prototype waar u doorheen kunt klikken.',
+  openGraph: {
+    title: 'Voorbeelden — NextX Agency',
+    description:
+      'Werkende voorbeelden van onze diensten: websites, webshops, branding en meer.',
+    url: '/examples',
+  },
+  alternates: {
+    canonical: '/examples',
+  },
 }
 
 const examples = [
@@ -90,7 +99,7 @@ const examples = [
 
 export default function ExamplesHub() {
   return (
-    <main className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <main id="main" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-12">
         <div className="flex items-baseline justify-between border-t-2 border-foreground pt-4 mb-8">
           <span className="text-xs font-bold tracking-[0.18em] uppercase text-foreground">Voorbeelden</span>
@@ -128,7 +137,7 @@ export default function ExamplesHub() {
             className={`group relative overflow-hidden bg-card transition-colors hover:bg-card-hover ${index % 4 === 0 ? 'md:col-span-7' : index % 4 === 1 ? 'md:col-span-5' : 'md:col-span-4'}`}
           >
             <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border">
-              <Image src={ex.img} alt={ex.title} fill className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+              <DemoImage src={ex.img} alt={ex.title} fill className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
               <span className="absolute top-3 left-3 inline-block bg-foreground px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide">
                 {ex.category}
               </span>

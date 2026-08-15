@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import DemoImage from '../_components/DemoImage'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink, Mail } from 'lucide-react'
 import { CONTACT, MAIL_HREF } from '@/lib/contact'
@@ -57,17 +57,17 @@ export default function StudioVibePage() {
               <span className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>Studio Vibe</span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.95] max-w-3xl mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-              Creatief werk dat <span className="text-[#f97015]">resultaat</span> levert
+              Ontwerp voor <span className="text-[#f97015]">Surinaamse</span> merken
             </h1>
             <p className="text-lg text-slate-400 max-w-lg mb-8 leading-relaxed">
-              Grafisch design studio gespecialiseerd in branding, webdesign, print en social media. Gevestigd in Paramaribo, werkend voor merken in heel Suriname.
+              Designstudio in Paramaribo voor branding, websites, drukwerk en social media. Bekijk het werk hieronder en filter op wat u zoekt.
             </p>
             <div className="flex items-center gap-6">
               <a href="#portfolio" className="px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
                 Bekijk portfolio
               </a>
               <div className="flex items-center gap-4">
-                <Image src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&q=80" alt="Creative Director" width={40} height={40} className="w-10 h-10 rounded-full object-cover border-2 border-[#f97015]" />
+                <DemoImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&q=80" alt="Creative Director" width={40} height={40} className="w-10 h-10 rounded-full object-cover border-2 border-[#f97015]" />
                 <div>
                   <p className="text-sm font-bold text-white">Ava de Groot</p>
                   <p className="text-xs text-slate-500">Creative Director</p>
@@ -111,7 +111,7 @@ export default function StudioVibePage() {
                   className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3]"
                   onClick={() => setSelected(p)}
                 >
-                  <Image src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <DemoImage src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#f97015]">{p.category} · {p.year}</span>
@@ -133,7 +133,7 @@ export default function StudioVibePage() {
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
               className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="relative">
-                <Image src={selected.img} alt={selected.title} width={1200} height={675} className="w-full aspect-video object-cover rounded-t-2xl" />
+                <DemoImage src={selected.img} alt={selected.title} width={1200} height={675} className="w-full aspect-video object-cover rounded-t-2xl" />
                 <button onClick={() => setSelected(null)} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors" aria-label="Sluiten">
                   <X className="w-5 h-5" />
                 </button>
@@ -160,10 +160,10 @@ export default function StudioVibePage() {
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#f97015] mb-3 block">Over ons</span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-              Klein team, <span className="text-[#f97015]">groot werk</span>
+              Vier mensen, <span className="text-[#f97015]">één studio</span>
             </h2>
             <p className="text-slate-600 leading-relaxed mb-6">
-              Studio Vibe is een creatief collectief van 4 designers en developers. Wij geloven dat goed design niet alleen mooi is, maar ook meetbaar resultaat oplevert voor uw merk.
+              Studio Vibe is een studio van vier designers en developers. Eén aanspreekpunt per project, en de mensen die het ontwerpen bouwen het ook.
             </p>
             <div className="grid grid-cols-3 gap-4">
               {[{ num: '60+', label: 'Projecten' }, { num: '4', label: 'Jaar actief' }, { num: '35+', label: 'Klanten' }].map(s => (
@@ -175,7 +175,7 @@ export default function StudioVibePage() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Studio team aan het werk" width={800} height={600} className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
+            <DemoImage src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Studio team aan het werk" width={800} height={600} className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
           </motion.div>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function StudioVibePage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
             Laten we samen iets <span className="text-[#f97015]">moois</span> maken
           </h2>
-          <p className="text-slate-400 mb-8 leading-relaxed">Vertel ons over uw project en wij komen met een creatief voorstel.</p>
+          <p className="text-slate-400 mb-8 leading-relaxed">Stuur wat u in gedachten heeft, dan komt er een voorstel met prijs en planning terug.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href={MAIL_HREF} className="inline-flex items-center gap-2 px-6 py-3 bg-[#f97015] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
               <Mail className="w-4 h-4" /> {CONTACT.email}
@@ -205,7 +205,7 @@ export default function StudioVibePage() {
             <StudioVibeLogo size={24} />
             <span className="text-sm font-bold text-white">Studio Vibe</span>
           </div>
-          <p className="text-sm text-slate-500">© 2025 Studio Vibe. Paramaribo, Suriname.</p>
+          <p className="text-sm text-slate-500">© {new Date().getFullYear()} Studio Vibe. Paramaribo, Suriname.</p>
         </div>
       </footer>
 

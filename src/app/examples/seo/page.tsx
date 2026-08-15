@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
-import { TrendingUp, TrendingDown, Eye, MousePointerClick, Globe, Search, ArrowUpRight, ArrowDownRight, Download, Calendar, ExternalLink, ChevronUp, ChevronDown, Target, Zap } from 'lucide-react'
+import { TrendingUp, TrendingDown, Eye, MousePointerClick, Globe, Search, ArrowUpRight, ArrowDownRight, Download, Calendar, ChevronRight, ChevronUp, ChevronDown, Target, Zap } from 'lucide-react'
 import { toast } from 'sonner'
+import Link from 'next/link'
 
 /* ─── Logo ─── */
 function SeoLogo({ size = 36 }: { size?: number }) {
@@ -41,17 +42,19 @@ const positionData = [
 
 type Keyword = { keyword: string; positie: number; verandering: number; volume: number; url: string }
 
+// The tracked pages are this site's own routes, so every link in the table
+// opens something that exists.
 const keywords: Keyword[] = [
-  { keyword: 'webdesign suriname', positie: 1, verandering: 3, volume: 880, url: '/diensten/webdesign' },
-  { keyword: 'website laten maken paramaribo', positie: 2, verandering: 5, volume: 590, url: '/diensten/websites' },
-  { keyword: 'seo bureau suriname', positie: 3, verandering: 8, volume: 320, url: '/diensten/seo' },
-  { keyword: 'e-commerce suriname', positie: 4, verandering: 2, volume: 410, url: '/diensten/webshop' },
-  { keyword: 'online marketing paramaribo', positie: 5, verandering: -1, volume: 260, url: '/diensten/marketing' },
-  { keyword: 'logo ontwerp suriname', positie: 7, verandering: 4, volume: 480, url: '/diensten/branding' },
-  { keyword: 'hosting suriname', positie: 8, verandering: 12, volume: 350, url: '/diensten/hosting' },
-  { keyword: 'responsive website kosten', positie: 11, verandering: 6, volume: 210, url: '/prijzen' },
-  { keyword: 'social media management sr', positie: 14, verandering: -2, volume: 180, url: '/diensten/social' },
-  { keyword: 'wordpress developer suriname', positie: 18, verandering: 9, volume: 140, url: '/diensten/wordpress' },
+  { keyword: 'webdesign suriname', positie: 1, verandering: 3, volume: 880, url: '/services#websites' },
+  { keyword: 'website laten maken paramaribo', positie: 2, verandering: 5, volume: 590, url: '/services' },
+  { keyword: 'seo bureau suriname', positie: 3, verandering: 8, volume: 320, url: '/services#seo' },
+  { keyword: 'e-commerce suriname', positie: 4, verandering: 2, volume: 410, url: '/services#e-commerce' },
+  { keyword: 'webshop laten maken suriname', positie: 5, verandering: -1, volume: 260, url: '/examples/starter-webshop' },
+  { keyword: 'logo ontwerp suriname', positie: 7, verandering: 4, volume: 480, url: '/services#graphic-design' },
+  { keyword: 'hosting suriname', positie: 8, verandering: 12, volume: 350, url: '/services#hosting' },
+  { keyword: 'website kosten suriname', positie: 11, verandering: 6, volume: 210, url: '/services' },
+  { keyword: 'restaurant website paramaribo', positie: 14, verandering: -2, volume: 180, url: '/examples/restaurant-menu-site' },
+  { keyword: 'ux ui design suriname', positie: 18, verandering: 9, volume: 140, url: '/services#ux-ui' },
 ]
 
 const periods = ['30 dagen', '60 dagen', '90 dagen']
@@ -89,7 +92,7 @@ export default function SeoDashboardPage() {
             <SeoLogo size={28} />
             <div className="hidden sm:block">
               <span className="text-sm font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>SEO Dashboard</span>
-              <span className="text-[10px] text-slate-400 block -mt-0.5">klantportaal — demo</span>
+              <span className="text-[10px] text-slate-400 block -mt-0.5">klantportaal — voorbeeld</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -101,7 +104,7 @@ export default function SeoDashboardPage() {
                 </button>
               ))}
             </div>
-            <button onClick={() => toast.success('Rapport wordt gegenereerd...', { description: 'PDF wordt samengesteld en gemaild naar uw inbox.' })}
+            <button onClick={() => toast.info('Export is uitgeschakeld in dit voorbeeld', { description: 'In een echt klantportaal downloadt deze knop het maandrapport als PDF.' })}
               className="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-colors hidden sm:flex items-center gap-1">
               <Download className="w-3 h-3" /> Export
             </button>
@@ -226,9 +229,9 @@ export default function SeoDashboardPage() {
                     </td>
                     <td className="py-3 px-3 text-center text-xs text-slate-600">{kw.volume.toLocaleString()}</td>
                     <td className="py-3 px-3">
-                      <a href={`https://${kw.url}`} target="_blank" rel="noopener noreferrer" className="text-xs text-emerald-600 hover:underline inline-flex items-center gap-0.5">
-                        {kw.url} <ExternalLink className="w-2.5 h-2.5" />
-                      </a>
+                      <Link href={kw.url} className="text-xs text-emerald-600 hover:underline inline-flex items-center gap-0.5">
+                        {kw.url} <ChevronRight className="w-2.5 h-2.5" />
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -240,14 +243,14 @@ export default function SeoDashboardPage() {
         {/* ═══ ACTIONS ═══ */}
         <div className="grid sm:grid-cols-3 gap-4">
           {[
-            { title: 'Technische SEO Audit', desc: 'Core Web Vitals, crawl errors, indexering status', btn: 'Start audit', action: 'Technische audit wordt uitgevoerd...' },
-            { title: 'Content Optimalisatie', desc: 'AI-suggesties voor meta tags, headers en content gaps', btn: 'Analyseer content', action: 'Content analyse gestart, rapport komt per email...' },
-            { title: 'Backlink Monitor', desc: 'Track nieuwe en verloren backlinks, DA/PA scores', btn: 'Bekijk backlinks', action: 'Backlink rapport wordt samengesteld...' },
+            { title: 'Technische audit', desc: 'Laadsnelheid, crawlfouten en indexeringsstatus van uw site', btn: 'Start audit', action: 'Voorbeeldknop — hier start in de echte versie de technische audit.' },
+            { title: 'Content nakijken', desc: 'Meta titels, koppen en pagina’s die nog tekst missen', btn: 'Analyseer content', action: 'Voorbeeldknop — hier verschijnt in de echte versie de contentanalyse.' },
+            { title: 'Backlinks volgen', desc: 'Welke sites naar u linken, en welke links u kwijtraakte', btn: 'Bekijk backlinks', action: 'Voorbeeldknop — hier opent in de echte versie het backlinkoverzicht.' },
           ].map(c => (
             <div key={c.title} className="bg-white rounded-xl border border-slate-200 p-5 flex flex-col">
               <h3 className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{c.title}</h3>
               <p className="text-xs text-slate-500 mb-4 flex-1">{c.desc}</p>
-              <button onClick={() => toast.success(c.action)} className="w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-colors">
+              <button onClick={() => toast.info(c.action)} className="w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-colors">
                 {c.btn}
               </button>
             </div>
@@ -259,7 +262,7 @@ export default function SeoDashboardPage() {
       <footer className="bg-slate-900 py-6 mt-8">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2"><SeoLogo size={20} /><span className="text-xs font-bold text-white">SEO Dashboard — Klantportaal Demo</span></div>
-          <p className="text-xs text-slate-500">Powered by Next‑X Agency · Real-time data simulatie</p>
+          <p className="text-xs text-slate-500">Gebouwd door NextX Agency · alle cijfers op deze pagina zijn voorbeelddata</p>
         </div>
       </footer>
 

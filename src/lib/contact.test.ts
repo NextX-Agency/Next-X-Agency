@@ -88,6 +88,43 @@ describe('service catalogue', () => {
     expect(matchServiceName('Gratis website')).toBeUndefined()
   })
 
+  it('only references well-formed remote image ids', () => {
+    // A fabricated id (letters outside hex, an invented tail) 404s and leaves
+    // a broken tile on a page that is meant to sell the work.
+    const offenders = files.flatMap(({ path, text }) => {
+      const found = text.match(/images\.unsplash\.com\/photo-[^"'`?\s)]+/g) ?? []
+      return found
+        .map((url) => url.split('/').pop() as string)
+        .filter((id) => !/^photo-\d{10,13}-[0-9a-f]{12}$/.test(id))
+        .map((id) => `${path}: ${id}`)
+    })
+    expect(offenders).toEqual([])
+  })
+
+  it('never builds a url by prefixing a path with a scheme', () => {
+    // `https://${'/diensten/seo'}` renders as https:///diensten/seo, which
+    // navigates nowhere.
+    const offenders = files
+      .filter(({ text }) => /https:\/\/\$\{[^}]*\burl\b/.test(text))
+      .map(({ path }) => path)
+    expect(offenders).toEqual([])
+  })
+
+  it('gives the skip link a target in every route group', () => {
+    // layout.tsx renders <a href="#main">; a page without the anchor drops
+    // keyboard users into nothing.
+    const holders = files.filter(({ text }) => text.includes('id="main"'))
+    const routes = holders.map(({ path }) => path)
+    expect(routes.some((p) => p.includes('app/page.tsx'))).toBe(true)
+    expect(routes.some((p) => p.includes('examples/layout.tsx'))).toBe(true)
+    for (const page of ['about', 'contact', 'portfolio', 'services']) {
+      expect(
+        routes.some((p) => p.includes(`app/${page}/page.tsx`)),
+        `/${page} mist id="main"`
+      ).toBe(true)
+    }
+  })
+
   it('points every demo link at a page that exists', () => {
     const slugs = new Set(readdirSync('src/app/examples'))
     const demos = new Set(

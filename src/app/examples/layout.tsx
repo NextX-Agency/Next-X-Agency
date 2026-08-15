@@ -1,29 +1,41 @@
-import type { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Toaster } from 'sonner'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
 import { CONTACT, whatsappHref } from '@/lib/contact'
 
-export const metadata: Metadata = {
-  title: 'Voorbeelden',
-  description:
-    'Interactieve demo voorbeelden van alle NextX Agency diensten — websites, webshops, logo design, UX/UI, SEO dashboards, hosting panels en meer.',
-  openGraph: {
-    title: 'Voorbeelden — NextX Agency',
-    description:
-      'Bekijk interactieve demo\'s van onze diensten. Websites, webshops, branding en meer.',
-    url: '/examples',
-  },
-  alternates: {
-    canonical: '/examples',
-  },
-}
-
+/**
+ * Two kinds of page live under /examples.
+ *
+ * The hub at /examples is an ordinary page of the site, so it keeps the site's
+ * own navigation and footer: a visitor who lands there can still reach Werk,
+ * Over ons and everything else.
+ *
+ * The prototypes below it are dressed as somebody else's website, where the
+ * site chrome would only confuse. They get a narrow bar naming what the page
+ * is with a way back, a closing band that hands the visitor to the real
+ * agency, and a plain link row so the rest of the site stays one click away.
+ */
 export default function ExamplesLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+
+  if (pathname === '/examples') {
+    return (
+      <>
+        <Navbar />
+        {children}
+        <Footer />
+      </>
+    )
+  }
+
   return (
     <>
       <Toaster position="bottom-right" richColors closeButton />
 
-      {/* Demo bar — states what this is, and always offers a way back. */}
       <div className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
           <div className="flex items-center gap-4">
@@ -65,9 +77,10 @@ export default function ExamplesLayout({ children }: { children: React.ReactNode
         </div>
       </div>
 
-      {children}
+      {/* The prototypes render a plain <div>, so the landmark the skip link
+          targets lives here. */}
+      <div id="main">{children}</div>
 
-      {/* Closing band — every demo ends at the real agency, not in the dark. */}
       <section className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-xl">
@@ -103,6 +116,32 @@ export default function ExamplesLayout({ children }: { children: React.ReactNode
           </div>
         </div>
       </section>
+
+      {/* For anyone who reached the bottom of a prototype instead of using the
+          bar at the top: the rest of the site, one click away. */}
+      <nav aria-label="NextX Agency" className="border-t border-border bg-background-elevated">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-3 px-4 py-6 sm:px-6">
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            NextX Agency
+          </span>
+          {[
+            { href: '/', label: 'Home' },
+            { href: '/services', label: 'Diensten' },
+            { href: '/portfolio', label: 'Werk' },
+            { href: '/examples', label: 'Voorbeelden' },
+            { href: '/about', label: 'Over ons' },
+            { href: '/contact', label: 'Contact' },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </>
   )
 }
