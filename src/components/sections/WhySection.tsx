@@ -23,7 +23,7 @@ const features = [
     breakdown: [
       'Vaste prijs per dienst, vooraf bekend',
       'Hosting en domein staan apart op de offerte',
-      'Werk na oplevering: $15 per uur',
+      'Werk na oplevering: $25 per uur',
       'Het eerste gesprek is gratis',
     ],
   },

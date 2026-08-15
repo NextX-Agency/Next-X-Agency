@@ -279,7 +279,7 @@ export default function SavanaCoffeePage() {
       <section className="bg-amber-800 py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Zo ziet een merkidentiteit van ons eruit</h2>
-          <p className="text-amber-200 mb-6 leading-relaxed">Een logo kost vanaf $55 en is binnen een paar dagen klaar, inclusief twee revisierondes en alle bestandsformaten.</p>
+          <p className="text-amber-200 mb-6 leading-relaxed">Een logo kost vanaf $85 en is binnen een paar dagen klaar, inclusief twee revisierondes en alle bestandsformaten.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/contact?dienst=Logo%20Design" className="px-6 py-3 bg-white text-amber-900 font-bold rounded-none hover:bg-amber-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               <Palette className="w-4 h-4 inline mr-2" /> Logo aanvragen

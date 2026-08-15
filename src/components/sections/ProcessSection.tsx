@@ -9,6 +9,7 @@ import {
   type MotionValue,
 } from 'framer-motion'
 import { CONTACT } from '@/lib/contact'
+import { startingPrice } from '@/lib/services'
 
 const steps = [
   {
@@ -184,7 +185,7 @@ function ProcessSectionFn() {
                     Vanaf
                   </dt>
                   <dd className="mono-num text-2xl font-semibold text-foreground tracking-tight">
-                    $150
+                    {startingPrice}
                   </dd>
                 </div>
                 <div>

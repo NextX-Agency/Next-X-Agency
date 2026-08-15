@@ -32,7 +32,7 @@ const values = [
   { icon: Zap, title: 'Snel geleverd', description: 'De meeste sites staan binnen 48 tot 72 uur live. U hoort de opleverdatum voordat we beginnen.' },
   { icon: DollarSign, title: 'Vaste prijzen', description: 'U weet het bedrag vooraf. Werk dat er later bij komt, prijzen we apart en met uw akkoord.' },
   { icon: Palette, title: 'Eigen ontwerp', description: 'Elk ontwerp begint bij uw merk en uw klanten, niet bij een kant-en-klaar thema.' },
-  { icon: RefreshCw, title: 'Revisies inbegrepen', description: 'Tijdens het project zitten er revisierondes bij de prijs. Wijzigingen ná oplevering gaan tegen $15 per uur.' },
+  { icon: RefreshCw, title: 'Revisies inbegrepen', description: 'Tijdens het project zitten er revisierondes bij de prijs. Wijzigingen ná oplevering gaan tegen $25 per uur.' },
   { icon: Shield, title: 'Geen verborgen kosten', description: 'Hosting, domein en meerwerk staan los op de offerte, zodat u ziet waar het geld heen gaat.' },
   { icon: TrendingUp, title: 'Groeit met u mee', description: 'Een pagina erbij of een webshop eraan vast kan later, zonder de site opnieuw te bouwen.' },
 ] as const

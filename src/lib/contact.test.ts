@@ -2,7 +2,12 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { CONTACT, TEL_HREF, MAIL_HREF, whatsappHref } from './contact'
-import { serviceNames, matchServiceName, serviceOptionGroups } from './services'
+import {
+  serviceNames,
+  matchServiceName,
+  serviceOptionGroups,
+  startingPrice,
+} from './services'
 
 function sourceFiles(dir: string): string[] {
   return readdirSync(dir).flatMap((entry) => {
@@ -123,6 +128,31 @@ describe('service catalogue', () => {
         `/${page} mist id="main"`
       ).toBe(true)
     }
+  })
+
+  it('quotes the same price on the home page as on /services', () => {
+    // The home page used to carry its own copy of seven prices. They are now
+    // looked up, so a raise on /services can never leave a stale figure there.
+    const home = files.find(({ path }) => path.endsWith('ServicesSection.tsx'))
+    expect(home).toBeDefined()
+    expect(home!.text).not.toMatch(/price: '\$\d/)
+    expect(home!.text).toContain('priceOf(')
+  })
+
+  it('offers budget bands that reach the cheapest service', () => {
+    const cheapest = Number(startingPrice.replace('$', ''))
+    const form = files.find(({ path }) => path.endsWith('ContactForm.tsx'))!
+    const bands = form.text.match(/\$\d+/g)?.map((b) => Number(b.slice(1))) ?? []
+    // Some band has to sit at or above the cheapest thing we sell, otherwise
+    // every visitor picks the top band and the answer tells us nothing.
+    expect(Math.max(...bands)).toBeGreaterThanOrEqual(cheapest)
+  })
+
+  it('names an SLA tier and a rate for work after delivery', () => {
+    const catalogue = readFileSync('src/lib/services.ts', 'utf8')
+    expect(catalogue).toContain("id: 'service-sla'")
+    expect(catalogue).toMatch(/Reactie binnen \d+ werkuren/)
+    expect(catalogue).toMatch(/gefactureerd tegen \$\d+\/uur/)
   })
 
   it('points every demo link at a page that exists', () => {

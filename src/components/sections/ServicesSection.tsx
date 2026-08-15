@@ -9,6 +9,7 @@ import {
   staggerContainerFast,
   blurFadeIn,
 } from '@/lib/animationUtils'
+import { priceOf } from '@/lib/services'
 
 // Inline icons (line style, orange accents)
 const IconBusinessCard = () => (
@@ -81,9 +82,9 @@ const categories = [
     title: 'Bouwen',
     subtitle: 'Van eerste pagina tot complete webshop, met een helder fundament.',
     services: [
-      { name: 'Business Card Site', description: 'Een heldere one-page site om uw bedrijf direct goed neer te zetten.', price: '$150', href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
-      { name: 'Service Website', description: 'Meerdere pagina’s, duidelijke informatie en ruimte om mee te groeien.', price: '$250', href: '/examples/service-website', recommended: true, Icon: IconServiceWebsite },
-      { name: 'Starter Webshop', description: 'Tot 25 producten, inclusief winkelwagen en een korte checkout.', price: '$350', href: '/examples/starter-webshop', recommended: false, Icon: IconWebshop },
+      { name: 'Business Card Site', description: 'Een heldere one-page site om uw bedrijf direct goed neer te zetten.', price: priceOf('Business Card Site'), href: '/examples/business-card-site', recommended: false, Icon: IconBusinessCard },
+      { name: 'Service Website', description: 'Meerdere pagina’s, duidelijke informatie en ruimte om mee te groeien.', price: priceOf('Service Website'), href: '/examples/service-website', recommended: true, Icon: IconServiceWebsite },
+      { name: 'Starter Webshop', description: 'Tot 25 producten, inclusief winkelwagen en een korte checkout.', price: priceOf('Starter Webshop'), href: '/examples/starter-webshop', recommended: false, Icon: IconWebshop },
     ],
   },
   {
@@ -92,9 +93,9 @@ const categories = [
     title: 'Ontwerpen',
     subtitle: 'Een merk en interface die begrijpelijk voelen en herkenbaar blijven.',
     services: [
-      { name: 'Logo Design', description: 'Een herkenbaar vertrekpunt voor alle uitingen van uw bedrijf.', price: '$55', href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
-      { name: 'UX Audit & Advies', description: 'Concrete verbeterpunten voor uw huidige website of platform.', price: '$100', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
-      { name: 'UI Design (Re-design)', description: 'Nieuwe schermen en componenten die het gebruik eenvoudiger maken.', price: '$180', href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
+      { name: 'Logo Design', description: 'Een herkenbaar vertrekpunt voor alle uitingen van uw bedrijf.', price: priceOf('Logo Design'), href: '/examples/logo-branding', recommended: false, Icon: IconLogoBranding },
+      { name: 'UX Audit & Advies', description: 'Concrete verbeterpunten voor uw huidige website of platform.', price: priceOf('UX Audit & Advies'), href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
+      { name: 'UI Design (Re-design)', description: 'Nieuwe schermen en componenten die het gebruik eenvoudiger maken.', price: priceOf('UI Design (Re-design)'), href: '/examples/ux-ui-design', recommended: false, Icon: IconUxUi },
     ],
   },
   {
@@ -103,7 +104,7 @@ const categories = [
     title: 'Vindbaar worden',
     subtitle: 'Een goede technische basis en content die zoekmachines begrijpen.',
     services: [
-      { name: 'Basic SEO Setup', description: 'Meta tags, sitemap, Search Console en robots.txt op orde.', price: '$75', href: '/examples/seo', recommended: false, Icon: IconSeo },
+      { name: 'Basic SEO Setup', description: 'Meta tags, sitemap, Search Console en robots.txt op orde.', price: priceOf('Basic SEO Setup'), href: '/examples/seo', recommended: false, Icon: IconSeo },
     ],
   },
 ] as const
@@ -149,7 +150,6 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
         {/* Mobile price row */}
         <span className="md:hidden inline-block mono-num mt-1.5 text-[13px] font-semibold text-primary">
           {price}
-          <span className="text-muted-foreground text-xs font-medium ml-1">/ start</span>
         </span>
       </div>
 
@@ -159,7 +159,6 @@ function ServiceRow({ service, index }: { service: ServiceItem; index: number })
       {/* Price — hidden on mobile (shown inline above) */}
       <span className="hidden md:inline mono-num text-[15px] font-semibold text-foreground shrink-0 group-hover:text-primary transition-colors duration-300">
         {price}
-        <span className="text-muted-foreground text-xs font-medium ml-1">/ start</span>
       </span>
 
       {/* Arrow */}

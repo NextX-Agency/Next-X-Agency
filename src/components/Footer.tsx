@@ -13,6 +13,7 @@ const serviceLinks = [
   { href: '/services#seo', label: 'SEO' },
   { href: '/services#hosting', label: 'Hosting' },
   { href: '/services#ux-kukru', label: 'UX Kukru' },
+  { href: '/services#service-sla', label: 'Service & SLA' },
 ]
 
 const companyLinks = [

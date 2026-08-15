@@ -12,11 +12,12 @@ import {
 } from '@/lib/services'
 
 const budgetOptions = [
-  'Minder dan $50',
-  '$50 – $150',
-  '$150 – $300',
-  '$300 – $500',
-  'Meer dan $500',
+  'Minder dan $100',
+  '$100 – $250',
+  '$250 – $500',
+  '$500 – $900',
+  'Meer dan $900',
+  'Maandelijks budget (support of SLA)',
   'Weet ik nog niet',
 ] as const
 

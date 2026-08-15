@@ -40,7 +40,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'Logo Design',
-        price: 'Vanaf $55',
+        price: 'Vanaf $85',
         demo: '/examples/logo-branding',
         items: [
           '1 uniek logo concept',
@@ -52,7 +52,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Social Media Post Design',
-        price: '$10 per post',
+        price: '$15 per post',
         items: [
           '1 design per post',
           '1 revisie ronde inbegrepen',
@@ -63,7 +63,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Flyer/Poster Design',
-        price: 'Vanaf $25',
+        price: 'Vanaf $40',
         popular: true,
         items: [
           '1 volledig ontwerp',
@@ -85,7 +85,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'Business Card Site',
-        price: 'Vanaf $150',
+        price: 'Vanaf $225',
         demo: '/examples/business-card-site',
         items: [
           'One-page gepersonaliseerd design',
@@ -97,7 +97,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Service Website',
-        price: 'Vanaf $250',
+        price: 'Vanaf $395',
         popular: true,
         demo: '/examples/service-website',
         items: [
@@ -110,7 +110,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Portfolio Website',
-        price: 'Vanaf $220',
+        price: 'Vanaf $325',
         demo: '/examples/portfolio-website',
         items: [
           'Galerij tot 20 portfolio items',
@@ -122,7 +122,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Restaurant/Menu Site',
-        price: 'Vanaf $260',
+        price: 'Vanaf $375',
         demo: '/examples/restaurant-menu-site',
         items: [
           'Digitaal menu (max 50 items)',
@@ -133,7 +133,7 @@ export const serviceCategories: ServiceCategory[] = [
         ],
       },
     ],
-    note: 'Na oplevering: bug fixes, content wijzigingen en revisies worden gefactureerd tegen $15/uur. Denk aan tekst updates, afbeeldingen en kleine layout aanpassingen.',
+    note: 'Na oplevering: bug fixes, content wijzigingen en revisies worden gefactureerd tegen $25/uur. Denk aan tekst updates, afbeeldingen en kleine layout aanpassingen.',
   },
   {
     id: 'e-commerce',
@@ -145,7 +145,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'Starter Webshop',
-        price: 'Vanaf $350',
+        price: 'Vanaf $525',
         demo: '/examples/starter-webshop',
         items: [
           'Max 25 producten',
@@ -157,7 +157,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Grotere Webshop',
-        price: 'Vanaf $550',
+        price: 'Vanaf $850',
         popular: true,
         demo: '/examples/grotere-webshop',
         items: [
@@ -169,7 +169,7 @@ export const serviceCategories: ServiceCategory[] = [
         ],
       },
     ],
-    note: 'Extra producten boven limiet: $3 per product (tot 250 producten). Meer dan 250 producten = custom pricing. Na oplevering: bug fixes & aanpassingen worden gefactureerd tegen $15/uur.',
+    note: 'Extra producten boven limiet: $4 per product (tot 250 producten). Meer dan 250 producten = custom pricing. Na oplevering: bug fixes & aanpassingen worden gefactureerd tegen $25/uur.',
   },
   {
     id: 'ux-ui',
@@ -181,7 +181,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'UX Audit & Advies',
-        price: 'Vanaf $100',
+        price: 'Vanaf $150',
         demo: '/examples/ux-ui-design',
         items: [
           'Analyse huidige website/app',
@@ -193,7 +193,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'UI Design (Re-design)',
-        price: 'Vanaf $180',
+        price: 'Vanaf $275',
         popular: true,
         demo: '/examples/ux-ui-design',
         items: [
@@ -216,7 +216,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'Basic SEO Setup',
-        price: 'Vanaf $75',
+        price: 'Vanaf $95',
         demo: '/examples/seo',
         items: [
           'Meta tags optimalisatie',
@@ -228,7 +228,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Maandelijkse SEO Support',
-        price: '$60/maand',
+        price: '$85/maand',
         popular: true,
         demo: '/examples/seo',
         items: [
@@ -251,7 +251,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'Hosting Setup',
-        price: '$35 eenmalig',
+        price: '$45 eenmalig',
         demo: '/examples/hosting',
         items: [
           'Hosting account aanmaken',
@@ -287,7 +287,109 @@ export const serviceCategories: ServiceCategory[] = [
         ],
       },
     ],
-    note: 'Domein registratie niet inbegrepen — klant registreert eigen domein of wij verzorgen dit tegen kostprijs + $5 service fee.',
+    note: 'Domein registratie niet inbegrepen — klant registreert eigen domein of wij verzorgen dit tegen kostprijs + $10 service fee.',
+  },
+  {
+    id: 'service-sla',
+    tag: 'Service & SLA',
+    title: 'Service en reactietijden (SLA)',
+    shortTitle: 'Service & SLA',
+    description:
+      'Bij elke oplevering hoort service. Wat daar standaard in zit staat hieronder, en wie een kortere reactietijd of vast onderhoud wil, kiest een SLA erbij. UX Kukru koopt uren in, een SLA koopt reactietijd en onderhoud; ze zijn te combineren.',
+    services: [
+      {
+        name: 'Service Basis',
+        price: 'Inbegrepen',
+        items: [
+          'Reactie binnen 24 uur op werkdagen',
+          'Bugfixes gratis in de eerste 14 dagen',
+          'Bereikbaar via WhatsApp en e-mail',
+          'Later werk tegen $25 per uur',
+          'Geen maandelijkse kosten',
+        ],
+      },
+      {
+        name: 'SLA Zilver',
+        price: '$45/maand',
+        popular: true,
+        items: [
+          'Reactie binnen 8 werkuren',
+          'Storing opgepakt binnen 1 werkdag',
+          'Maandelijkse controle van back-ups en updates',
+          '1 uur wijzigingswerk per maand inbegrepen',
+          'Later werk tegen $20 per uur',
+        ],
+      },
+      {
+        name: 'SLA Goud',
+        price: '$95/maand',
+        items: [
+          'Reactie binnen 4 werkuren',
+          'Storing opgepakt binnen 4 uur, ook ’s avonds',
+          'Wekelijkse controle van back-ups en updates',
+          '3 uur wijzigingswerk per maand inbegrepen',
+          'Later werk tegen $18 per uur',
+          'Rapportage per kwartaal over snelheid en vindbaarheid',
+        ],
+      },
+    ],
+    note: 'Werkuren zijn maandag tot en met vrijdag, 08:00 tot 17:00. Een SLA loopt per maand met een minimum van drie maanden en is op elk moment op te waarderen.',
+  },
+  {
+    id: 'meerwerk',
+    tag: 'Opties',
+    title: 'Meerwerk en opties',
+    shortTitle: 'Meerwerk',
+    description:
+      'Losse posten die u erbij kunt nemen, elk met een vast bedrag. Wij melden het altijd vooraf wanneer een verzoek hieronder valt, zodat u zelf beslist.',
+    services: [
+      {
+        name: 'Spoedoplevering',
+        price: '+40% op de prijs',
+        items: [
+          'Uw project krijgt voorrang in de planning',
+          'Oplevering binnen 24 tot 48 uur',
+          'Afhankelijk van beschikbaarheid',
+          'Vooraf bevestigd, nooit achteraf',
+        ],
+      },
+      {
+        name: 'Extra revisieronde',
+        price: '$45 per ronde',
+        items: [
+          'Boven op de rondes die al inbegrepen zijn',
+          'Geldt voor design en voor teksten',
+          'Losse kleine correcties blijven gratis',
+        ],
+      },
+      {
+        name: 'Contentinvoer',
+        price: '$15 per pagina',
+        items: [
+          'Wij zetten uw teksten en foto’s in de site',
+          'Inclusief bijsnijden en optimaliseren van beeld',
+          'Handig als u het materiaal wel heeft maar de tijd niet',
+        ],
+      },
+      {
+        name: 'Training en overdracht',
+        price: '$65 per uur',
+        items: [
+          'Op locatie in Paramaribo of online',
+          'U leert zelf tekst, prijzen en foto’s aanpassen',
+          'Korte handleiding op maat achteraf',
+        ],
+      },
+      {
+        name: 'Extra taal',
+        price: 'Vanaf $120',
+        items: [
+          'Tweede taal naast Nederlands',
+          'Taalwisselaar in het menu',
+          'Vertaling aangeleverd door u, of tegen meerprijs door ons',
+        ],
+      },
+    ],
   },
   {
     id: 'ux-kukru',
@@ -299,7 +401,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         name: 'Starter Support',
-        price: '$150/maand',
+        price: '$195/maand',
         demo: '/examples/ux-kukru',
         items: [
           '10 uur/maand',
@@ -311,7 +413,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Business Support',
-        price: '$280/maand',
+        price: '$360/maand',
         popular: true,
         demo: '/examples/ux-kukru',
         items: [
@@ -324,7 +426,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Partner Support',
-        price: '$480/maand',
+        price: '$620/maand',
         demo: '/examples/ux-kukru',
         items: [
           '40 uur/maand',
@@ -335,7 +437,7 @@ export const serviceCategories: ServiceCategory[] = [
         ],
       },
     ],
-    note: 'Extra uren boven pakket limiet: $18/uur. Alle pakketten vereisen minimaal 3 maanden commitment.',
+    note: 'Extra uren boven pakket limiet: $25/uur. Alle pakketten vereisen minimaal 3 maanden commitment.',
   },
 ]
 
@@ -349,6 +451,34 @@ export const serviceOptionGroups = serviceCategories.map((category) => ({
 export const serviceNames = serviceCategories.flatMap((category) =>
   category.services.map((service) => service.name)
 )
+
+/**
+ * The price of one service, by name. The homepage shows a short list of
+ * services next to their price; looking it up here keeps that list from
+ * quietly drifting away from the price list on /services.
+ */
+export function priceOf(name: string): string {
+  const service = serviceCategories
+    .flatMap((category) => category.services)
+    .find((entry) => entry.name === name)
+  if (!service) throw new Error(`Onbekende dienst: ${name}`)
+  return service.price
+}
+
+/**
+ * Cheapest website we build. The home page shows this next to the delivery
+ * window, so it has to be the entry price for a site — not the cheapest thing
+ * in the catalogue, which is a flyer.
+ */
+export const startingPrice: string = (() => {
+  const websites = serviceCategories.find((category) => category.id === 'websites')
+  if (!websites) throw new Error('Categorie websites ontbreekt')
+  const amounts = websites.services
+    .map((service) => service.price.match(/^Vanaf \$(\d+)$/)?.[1])
+    .filter((amount): amount is string => Boolean(amount))
+    .map(Number)
+  return `$${Math.min(...amounts)}`
+})()
 
 /** Escape hatch for anything the catalogue does not cover. */
 export const OTHER_SERVICE = 'Iets anders — leg ik uit in mijn bericht'

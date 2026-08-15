@@ -219,7 +219,7 @@ export default function UxUiDesignPage() {
       <section className="bg-violet-700 py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Zo pakken we een bestaande site aan</h2>
-          <p className="text-violet-200 mb-6 leading-relaxed">Een UX audit kost vanaf $100 en levert een rapport met verbeterpunten op volgorde van belang, plus een gesprek om het door te nemen. Het eerste kennismakingsgesprek is gratis.</p>
+          <p className="text-violet-200 mb-6 leading-relaxed">Een UX audit kost vanaf $150 en levert een rapport met verbeterpunten op volgorde van belang, plus een gesprek om het door te nemen. Het eerste kennismakingsgesprek is gratis.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/contact?dienst=UX%20Audit%20%26%20Advies" className="px-6 py-3 bg-white text-violet-700 font-bold rounded-xl hover:bg-violet-50 transition-colors text-sm" style={{ fontFamily: 'var(--font-heading)' }}>
               UX audit aanvragen
