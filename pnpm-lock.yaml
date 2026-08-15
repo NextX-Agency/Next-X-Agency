@@ -51,9 +51,6 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0
     devDependencies:
-      '@rolldown/binding-win32-x64-msvc':
-        specifier: 1.0.0-rc.12
-        version: 1.0.0-rc.12
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.2.1
@@ -855,12 +852,6 @@ packages:
 
   '@rolldown/binding-win32-x64-msvc@1.0.0-rc.11':
     resolution: {integrity: sha512-LN4/skhSggybX71ews7dAj6r2geaMJfm3kMbK2KhFMg9B10AZXnKoLCVVgzhMHL0S+aKtr4p8QbAW8k+w95bAA==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [win32]
-
-  '@rolldown/binding-win32-x64-msvc@1.0.0-rc.12':
-    resolution: {integrity: sha512-PyqoipaswDLAZtot351MLhrlrh6lcZPo2LSYE+VDxbVk24LVKAGOuE4hb8xZQmrPAuEtTZW8E6D2zc5EUZX4Lw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
@@ -3719,8 +3710,6 @@ snapshots:
 
   '@rolldown/binding-win32-x64-msvc@1.0.0-rc.11':
     optional: true
-
-  '@rolldown/binding-win32-x64-msvc@1.0.0-rc.12': {}
 
   '@rolldown/pluginutils@1.0.0-rc.11': {}
 
