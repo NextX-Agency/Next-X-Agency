@@ -1,27 +1,17 @@
 'use client'
 
-import { memo, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { findService, serviceCategories, serviceLabel } from '@/content/services'
+import { site, whatsappHref } from '@/content/site'
+import { Arrow } from '@/components/Arrow'
 import { cn } from '@/lib/utils'
-import { Send, Loader2 } from 'lucide-react'
-import { CONTACT } from '@/lib/contact'
-import {
-  matchServiceName,
-  serviceOptionGroups,
-  OTHER_SERVICE,
-} from '@/lib/services'
 
-const budgetOptions = [
-  'Minder dan $100',
-  '$100 – $250',
-  '$250 – $500',
-  '$500 – $900',
-  'Meer dan $900',
-  'Maandelijks budget (support of SLA)',
-  'Weet ik nog niet',
-] as const
+const OTHER = 'Iets anders'
 
-interface FormData {
+const budgets = ['Minder dan $50', '$50 – $150', '$150 – $300', '$300 – $500', 'Meer dan $500', 'Weet ik nog niet']
+
+type Values = {
   name: string
   email: string
   phone: string
@@ -30,92 +20,125 @@ interface FormData {
   message: string
 }
 
-function ContactFormFn({ className = '' }: { className?: string }) {
-  // "Aanvraag starten" on /services passes the chosen service through as
-  // ?dienst=…, so the visitor does not have to pick it a second time.
-  const searchParams = useSearchParams()
-  const preselected = matchServiceName(searchParams.get('dienst')) ?? ''
+type Errors = Partial<Record<keyof Values, string>>
 
-  const [formData, setFormData] = useState<FormData>({
+function validate(values: Values): Errors {
+  const errors: Errors = {}
+  if (!values.name.trim()) errors.name = 'Vul uw naam in.'
+  if (!values.email.trim()) errors.email = 'Vul uw e-mailadres in.'
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim()))
+    errors.email = 'Dit e-mailadres klopt niet helemaal.'
+  if (!values.service_type) errors.service_type = 'Kies waar het om gaat.'
+  if (values.message.trim().length < 10) errors.message = 'Vertel in een paar zinnen wat u nodig hebt.'
+  return errors
+}
+
+const order: (keyof Values)[] = ['name', 'email', 'phone', 'service_type', 'budget', 'message']
+
+function Field({
+  id,
+  label,
+  optional,
+  error,
+  children,
+}: {
+  id: keyof Values
+  label: string
+  optional?: boolean
+  error?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="meta flex justify-between text-fg">
+        {label}
+        {optional && <span className="text-fg-3">Optioneel</span>}
+      </label>
+      {children}
+      <p id={`${id}-error`} className={cn('mt-2 text-sm text-danger', !error && 'sr-only')} aria-live="polite">
+        {error}
+      </p>
+    </div>
+  )
+}
+
+export function ContactForm() {
+  const params = useSearchParams()
+  const preset = findService(params.get('dienst') ?? '')
+  const formRef = useRef<HTMLFormElement>(null)
+  const doneRef = useRef<HTMLDivElement>(null)
+
+  const [values, setValues] = useState<Values>({
     name: '',
     email: '',
     phone: '',
-    service_type: preselected,
+    service_type: preset ? serviceLabel(preset, preset.category) : '',
     budget: '',
     message: '',
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [errors, setErrors] = useState<Errors>({})
+  const [touched, setTouched] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle')
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  // The form collapses on success; bring the confirmation into view.
+  useEffect(() => {
+    if (status === 'sent') doneRef.current?.focus()
+  }, [status])
+
+  const update = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const next = { ...values, [e.target.name]: e.target.value }
+    setValues(next)
+    // After a first submit attempt, errors clear as soon as a field is fixed.
+    if (touched) setErrors(validate(next))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError(null)
+  const describe = (id: keyof Values) => ({
+    'aria-invalid': errors[id] ? true : undefined,
+    'aria-describedby': `${id}-error`,
+  })
 
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setTouched(true)
+    const found = validate(values)
+    setErrors(found)
+    const first = order.find((key) => found[key])
+    if (first) {
+      formRef.current?.querySelector<HTMLElement>(`#${first}`)?.focus()
+      return
+    }
+
+    setStatus('sending')
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(values),
       })
-
-      if (!res.ok) {
-        throw new Error('Er is iets misgegaan. Probeer het opnieuw.')
-      }
-
-      setSubmitted(true)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service_type: preselected,
-        budget: '',
-        message: '',
-      })
-    } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : 'Er is iets misgegaan. Probeer het opnieuw.'
-      )
-    } finally {
-      setIsSubmitting(false)
+      if (!res.ok) throw new Error()
+      setStatus('sent')
+    } catch {
+      setStatus('failed')
     }
   }
 
-  if (submitted) {
+  if (status === 'sent') {
     return (
-      <div className={cn('bg-card p-10 text-center border border-foreground/15', className)} aria-live="polite">
-        {/* Animated green checkmark ring */}
-        <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center mx-auto mb-6">
-          <svg className="w-9 h-9 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          Aanvraag verstuurd
-        </h3>
-        <p className="text-foreground/80 text-sm mb-1">
-          Bedankt voor uw bericht.
-        </p>
-        <p className="text-muted-foreground text-sm mb-8">
-          Wij nemen {CONTACT.responseTime} contact met u op met een helder
-          voorstel. Haast? WhatsApp {CONTACT.phoneDisplay}.
+      <div ref={doneRef} tabIndex={-1} className="scroll-mt-28 border-t border-line-strong pt-8 outline-none" role="status">
+        <p className="meta mb-5 text-ok">Verstuurd</p>
+        <p className="t-h2 max-w-[16ch]">Bedankt, {values.name.split(' ')[0]}.</p>
+        <p className="t-body mt-5 max-w-[40ch]">
+          We reageren binnen {site.responseTime} op {values.email}. U krijgt ook een bevestiging per e-mail.
         </p>
         <button
-          onClick={() => setSubmitted(false)}
-          className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-primary-hover transition-colors"
+          type="button"
+          className="link-arrow link-line mt-8 py-1"
+          onClick={() => {
+            setValues({ name: '', email: '', phone: '', service_type: '', budget: '', message: '' })
+            setTouched(false)
+            setStatus('idle')
+          }}
         >
-          <Send size={14} />
           Nog een bericht sturen
         </button>
       </div>
@@ -123,161 +146,74 @@ function ContactFormFn({ className = '' }: { className?: string }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={cn('bg-card p-6 lg:p-8 border border-foreground/15', className)}
-    >
-      <div className="space-y-5">
-        {/* Name + Email — 2 columns on sm+ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {/* Name */}
-          <div>
-            <label htmlFor="name" className="input-label">
-              Naam <span className="text-destructive">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Uw volledige naam"
-              className="input-field"
-              required
-            />
-          </div>
-
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="input-label">
-              Email <span className="text-destructive">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="uw@email.com"
-              className="input-field"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Phone + Service — 2 columns on sm+ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {/* Phone */}
-          <div>
-            <label htmlFor="phone" className="input-label">
-              Telefoon / WhatsApp
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+597 XXX-XXXX"
-              className="input-field"
-            />
-          </div>
-
-          {/* Service */}
-          <div>
-            <label htmlFor="service_type" className="input-label">
-              Service interesse <span className="text-destructive">*</span>
-            </label>
-            <select
-              id="service_type"
-              name="service_type"
-              value={formData.service_type}
-              onChange={handleChange}
-              className="select-field"
-              required
-            >
-              <option value="">Kies een dienst...</option>
-              {serviceOptionGroups.map((group) => (
-                <optgroup key={group.label} label={group.label}>
-                  {group.options.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-              <option value={OTHER_SERVICE}>{OTHER_SERVICE}</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Budget */}
-        <div>
-          <label htmlFor="budget" className="input-label">
-            Budget indicatie
-          </label>
-          <select
-            id="budget"
-            name="budget"
-            value={formData.budget}
-            onChange={handleChange}
-            className="select-field"
-          >
-            <option value="">Kies een budget...</option>
-            {budgetOptions.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
+    <form ref={formRef} onSubmit={submit} noValidate className="grid gap-8">
+      <div className="grid gap-8 sm:grid-cols-2 sm:gap-x-8">
+        <Field id="name" label="Naam" error={errors.name}>
+          <input id="name" name="name" autoComplete="name" className="field" value={values.name} onChange={update} {...describe('name')} />
+        </Field>
+        <Field id="email" label="E-mail" error={errors.email}>
+          <input id="email" name="email" type="email" autoComplete="email" inputMode="email" className="field" value={values.email} onChange={update} {...describe('email')} />
+        </Field>
+        <Field id="service_type" label="Waar gaat het om?" error={errors.service_type}>
+          <select id="service_type" name="service_type" className="field" value={values.service_type} onChange={update} {...describe('service_type')}>
+            <option value="">Kies een dienst</option>
+            {serviceCategories.map((category) => (
+              <optgroup key={category.id} label={category.title}>
+                {category.services.map((service) => (
+                  <option key={service.id} value={serviceLabel(service, category)}>
+                    {service.name}
+                  </option>
+                ))}
+              </optgroup>
             ))}
+            <option value={OTHER}>{OTHER}</option>
           </select>
-        </div>
+        </Field>
+        <Field id="phone" label="Telefoon of WhatsApp" optional>
+          <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" className="field" value={values.phone} onChange={update} />
+        </Field>
+      </div>
 
-        {/* Message */}
-        <div>
-          <label htmlFor="message" className="input-label">
-            Bericht / project omschrijving{' '}
-            <span className="text-destructive">*</span>
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Beschrijf uw project, wensen en vragen..."
-            className="input-field min-h-[130px] resize-y"
-            required
-            rows={5}
-          />
-        </div>
+      <Field id="budget" label="Budget" optional>
+        <select id="budget" name="budget" className="field" value={values.budget} onChange={update}>
+          <option value="">Geen voorkeur</option>
+          {budgets.map((budget) => (
+            <option key={budget} value={budget}>
+              {budget}
+            </option>
+          ))}
+        </select>
+      </Field>
 
-        {/* Error */}
-        {error && (
-          <div className="bg-destructive-muted border border-destructive/30 p-4 text-destructive-foreground text-sm">
-            {error}
-          </div>
-        )}
+      <Field id="message" label="Uw project" error={errors.message}>
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          className="field"
+          placeholder="Wat voor bedrijf heeft u, en wat moet er gemaakt worden?"
+          value={values.message}
+          onChange={update}
+          {...describe('message')}
+        />
+      </Field>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="button-primary w-full min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2 size={20} className="animate-spin" />
-              <span>Verzenden...</span>
-            </>
-          ) : (
-            <>
-              <Send size={18} />
-              <span>Verstuur aanvraag</span>
-            </>
-          )}
+      {status === 'failed' && (
+        <p role="alert" className="border-l-2 border-danger pl-4 text-[0.9375rem]">
+          Het versturen is mislukt. Probeer het opnieuw of stuur ons een{' '}
+          <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="underline">
+            WhatsApp-bericht
+          </a>
+          .
+        </p>
+      )}
+
+      <div>
+        <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+          {status === 'sending' ? 'Versturen…' : 'Verstuur'}
+          {status !== 'sending' && <Arrow />}
         </button>
       </div>
     </form>
   )
 }
-
-export const ContactForm = memo(ContactFormFn)

@@ -14,6 +14,19 @@ type Props = ComponentProps<typeof Image>
 export default function DemoImage({ alt, className = '', ...props }: Props) {
   const [failed, setFailed] = useState(false)
 
+  // Some reviews give initials instead of a photo; next/image would throw on those.
+  if (typeof props.src === 'string' && !/^(https?:)?\//.test(props.src)) {
+    return (
+      <span
+        role="img"
+        aria-label={alt}
+        className={`flex items-center justify-center bg-slate-700 text-[10px] font-bold text-white ${className}`}
+      >
+        {props.src}
+      </span>
+    )
+  }
+
   if (failed) {
     return (
       <span

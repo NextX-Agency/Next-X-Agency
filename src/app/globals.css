@@ -1,592 +1,524 @@
 @import "tailwindcss";
 
+/* ============================================================
+   NextX — design tokens
+   Two surfaces (paper, ink), one accent (the logo orange).
+   Components read semantic variables; a [data-theme="dark"]
+   block swaps them, so the same markup works on both.
+   ============================================================ */
+
+:root {
+  --paper: #f2f0eb;
+  --paper-2: #e9e6df;
+  --ink: #0e0d0c;
+  --ink-2: #181614;
+  --ink-3: #25221f;
+  --orange: #ed5f0f;
+  /* Orange for small text on paper: the logo orange fails AA at 14px. */
+  --orange-text: #b54607;
+
+  /* Semantic (light) */
+  --bg: var(--paper);
+  --bg-2: var(--paper-2);
+  --fg: var(--ink);
+  --fg-2: #56514b;
+  --fg-3: #6c665f;
+  --line: rgba(14, 13, 12, 0.14);
+  --line-strong: rgba(14, 13, 12, 0.85);
+  --accent: var(--orange);
+  --accent-text: var(--orange-text);
+  --danger: #b3261e;
+  --ok: #1f7a4a;
+
+  /* Layout */
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 90rem;
+  --nav-h: 4rem;
+  --section: clamp(5rem, 11vw, 10rem);
+
+  /* Motion — one easing, three speeds */
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --t-fast: 180ms;
+  --t-base: 320ms;
+  --t-slow: 700ms;
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: var(--ink);
+  --bg-2: var(--ink-2);
+  --fg: #eeebe5;
+  --fg-2: #b3ada5;
+  --fg-3: #8f8980;
+  --line: rgba(238, 235, 229, 0.14);
+  --line-strong: rgba(238, 235, 229, 0.85);
+  --accent-text: var(--orange);
+  color-scheme: dark;
+}
+
 @theme inline {
-  /* Warm editorial palette: one accent, one family of neutrals. */
-  --color-background: #fbfaf7;
-  --color-background-elevated: #f2eee8;
-  --color-card: #fffdf9;
-  --color-card-hover: #f7f1e9;
-  --color-popover: #fffdf9;
-  --color-secondary: #eee8df;
-  --color-muted: #eee8df;
-  --color-input: #fffdf9;
-  --color-input-focus: #fffaf3;
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
 
-  /* Foregrounds & Text */
-  --color-foreground: #201b17;
-  --color-card-foreground: #201b17;
-  --color-muted-foreground: #71685f;
-  --color-secondary-foreground: #201b17;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
-  /* Brand Colors — one accent, terracotta. Nothing else competes. */
-  --color-primary: #c45a2b;
-  --color-primary-hover: #a94720;
-  --color-primary-active: #8f391b;
-  --color-primary-foreground: #ffffff;
-  --color-primary-muted: rgba(196, 90, 43, 0.12);
-  --color-primary-tint: rgba(196, 90, 43, 0.28);
-  --color-accent: #c45a2b;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
 
-  /* Deep warm ink — for contrast surfaces that stay inside the palette
-     instead of jumping to a cold #111 slab. */
-  --color-ink: #241d18;
-  --color-ink-soft: #33291f;
+  --ease-brand: cubic-bezier(0.2, 0.7, 0.1, 1);
 
-  /* Borders */
-  --color-border: rgba(32, 27, 23, 0.13);
-  --color-border-hover: #c45a2b;
-  --color-ring: #c45a2b;
-
-  /* Semantic States */
-  --color-success: #22c55e;
-  --color-success-muted: rgba(34, 197, 94, 0.1);
-  --color-success-foreground: #15803d;
-  --color-warning: #eab308;
-  --color-warning-muted: rgba(234, 179, 8, 0.1);
-  --color-warning-foreground: #a16207;
-  --color-destructive: #ef4444;
-  --color-destructive-muted: rgba(239, 68, 68, 0.1);
-  --color-destructive-foreground: #b91c1c;
-  --color-info: #3b82f6;
-  --color-info-muted: rgba(59, 130, 246, 0.1);
-  --color-info-foreground: #1d4ed8;
-
-  /* Shadows - soft light design */
-  --shadow-sm: 0 1px 2px rgba(76, 46, 30, 0.05);
-  --shadow: 0 4px 16px rgba(76, 46, 30, 0.07);
-  --shadow-md: 0 8px 24px rgba(76, 46, 30, 0.09);
-  --shadow-lg: 0 16px 48px rgba(76, 46, 30, 0.12);
-  --shadow-xl: 0 24px 64px rgba(76, 46, 30, 0.15);
-
-  /* Border Radius - selective rounding */
-  --radius-sm: 3px;
-  --radius: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
-
-  /* Z-index scale — no more arbitrary 9999s */
-  --z-base: 1;
-  --z-raised: 10;
-  --z-overlay: 20;
-  --z-sticky: 40;
-  --z-nav: 50;
-  --z-modal: 60;
-  --z-toast: 70;
-
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-
-  /* Fonts */
-  --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
-  --font-heading: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace;
+  --breakpoint-xs: 26rem;
 }
 
-/* ===== DOSSIER LANGUAGE =====
-   The page is dressed as a technical document: mono metadata, drafting crop
-   marks, figure numbers and margin notes. These are the pieces that make it
-   specific to NextX rather than a generic agency layout. */
-
-/* Every label, index, coordinate, price and timing goes through this. */
-.meta {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
+/* The example prototypes set headings with var(--font-heading). */
+:root {
+  --font-heading: var(--font-archivo), system-ui, sans-serif;
 }
 
-.meta-sm {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-}
+@layer base {
+/* ============================================================
+   Base
+   ============================================================ */
 
-.mono-num {
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
-}
-
-/* Drafting crop marks on the four corners of a framed block. */
-.crop-marks {
-  position: relative;
-}
-
-.crop-marks::before,
-.crop-marks::after {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  pointer-events: none;
-  border-color: var(--color-primary);
-}
-
-.crop-marks::before {
-  top: -1px;
-  left: -1px;
-  border-top: 1.5px solid;
-  border-left: 1.5px solid;
-}
-
-.crop-marks::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 1.5px solid;
-  border-right: 1.5px solid;
-}
-
-/* Rotated margin note, sitting in the gutter beside a block. */
-.margin-note {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  color: var(--color-muted-foreground);
-  white-space: nowrap;
-}
-
-/* Continuous discipline ticker. Two identical groups translate by exactly
-   -50% so the loop is seamless regardless of content width. */
-.marquee {
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 6rem,
-    #000 calc(100% - 6rem),
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 6rem,
-    #000 calc(100% - 6rem),
-    transparent
-  );
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 34s linear infinite;
-}
-
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-.marquee-group {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.marquee-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.75rem;
-  padding-inline: 1.75rem;
-}
-
-@keyframes marquee-scroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-    transform: none;
-  }
-}
-
-/* Spotlight that follows the cursor across a card, lighting the surface it
-   passes over. Driven by --mx/--my set on pointermove. */
-.spotlight {
-  position: relative;
-}
-
-.spotlight::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 320ms ease;
-  background: radial-gradient(
-    16rem 16rem at var(--mx, 50%) var(--my, 50%),
-    rgba(196, 90, 43, 0.13),
-    transparent 68%
-  );
-}
-
-.spotlight:hover::after {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spotlight::after {
-    display: none;
-  }
-}
-
-/* Section register: the rule + label + index that opens every block. */
-.register {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  border-top: 2px solid var(--color-foreground);
-  padding-top: 0.875rem;
-}
-
-/* ===== BASE STYLES ===== */
 html {
-  scroll-behavior: smooth;
-  /* The section reveals start 60px to the left or right of their final
-     position, so a block that has not been scrolled into view yet sticks out
-     past the viewport. On a phone that shows up as a page you can drag
-     sideways. It belongs on html rather than body: the browser propagates
-     body's overflow to the viewport, which leaves body itself scrollable.
-     clip rather than hidden, because hidden here would break position:
-     sticky further down the tree. */
+  -webkit-text-size-adjust: 100%;
+  /* clip, not hidden: hidden here would break position: sticky further down. */
   overflow-x: clip;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  font-variation-settings: 'wdth' 100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  letter-spacing: -0.008em;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  text-rendering: optimizeLegibility;
 }
 
-/* Kill orphans in running copy without touching balanced headlines. */
+[data-theme] {
+  background: var(--bg);
+  color: var(--fg);
+}
+
 p {
   text-wrap: pretty;
 }
 
 ::selection {
-  background: rgba(196, 90, 43, 0.2);
-  color: #201b17;
+  background: var(--orange);
+  color: var(--ink);
 }
 
-button,
-a,
-input,
-select,
-textarea {
-  -webkit-tap-highlight-color: transparent;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-.content-wrap {
-  width: min(100% - 3rem, 76rem);
-  margin-inline: auto;
 }
 
-.eyebrow {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-/* ===== TYPOGRAPHY CLASSES ===== */
-.text-display {
-  font-family: var(--font-heading);
-  font-size: 3.75rem;
-  font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
-.text-headline {
-  font-family: var(--font-heading);
-  font-size: 2.25rem;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
-
-.text-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-}
-
-.text-body-lg {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: 0;
-}
-
-.text-body {
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: 0;
-}
-
-.text-caption {
-  font-size: 0.8125rem;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0;
-}
-
-/* ===== COMPONENT CLASSES ===== */
-
-/* Input Fields - dark */
-.input-field {
-  @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground placeholder:text-muted-foreground transition-all duration-200;
-  border-radius: var(--radius-sm);
-}
-
-.input-field:focus {
-  @apply outline-none border-primary;
-  background: var(--color-input-focus);
-  box-shadow: 0 0 0 3px var(--color-primary-muted);
-}
-
-.select-field {
-  @apply w-full min-h-[48px] border border-border bg-input px-4 py-3 text-base text-foreground transition-all duration-200 appearance-none cursor-pointer;
-  border-radius: var(--radius-sm);
-}
-
-.select-field:focus {
-  @apply outline-none border-primary;
-  box-shadow: 0 0 0 3px var(--color-primary-muted);
-}
-
-.input-label {
-  @apply block text-sm font-medium text-foreground mb-2;
-}
-
-/* Loading */
-.loading-spinner {
-  @apply w-8 h-8 border-2 border-muted-foreground/20 border-t-primary animate-spin;
-  border-radius: 50%;
-}
-
-.shimmer {
-  @apply bg-muted animate-pulse;
-  border-radius: 12px;
-}
-
-/* Empty State */
-.empty-state {
-  @apply flex flex-col items-center justify-center py-16 text-center;
-}
-
-.empty-state-icon {
-  @apply text-muted-foreground/40 mb-4;
-}
-
-.empty-state-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  @apply text-foreground mb-2;
-}
-
-.empty-state-description {
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.7;
-  @apply text-muted-foreground max-w-md;
-}
-
-/* Declared in the components layer so utilities still win over them —
-   otherwise `display: inline-flex` here beats a `hidden` utility and the
-   desktop CTA leaks onto mobile. */
 @layer components {
-  .button-primary,
-  .button-secondary {
-    min-height: 2.75rem;
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    font-weight: 700;
-    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
-      transform 180ms ease;
-  }
+/* ============================================================
+   Layout
+   ============================================================ */
 
-  .button-primary {
-    background: var(--color-foreground);
-    color: white;
-  }
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
 
-  .button-primary:hover {
-    background: var(--color-primary);
-  }
+.section {
+  padding-block: var(--section);
+}
 
-  .button-secondary {
-    border: 1px solid var(--color-border);
-    color: var(--color-foreground);
-  }
+/* 12-column grid used by most compositions */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: clamp(0.75rem, 2vw, 1.5rem);
+}
 
-  .button-secondary:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
-
-  .button-primary:active,
-  .button-secondary:active {
-    transform: translateY(1px);
+@media (min-width: 48rem) {
+  .grid-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
 
-/* Focus ring (global) */
-*:focus-visible {
-  @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-background;
+/* ============================================================
+   Type
+   Archivo carries everything. Its width axis lets display type
+   go wide and heavy like the wordmark while body stays normal.
+   ============================================================ */
+
+.t-display {
+  font-size: min(14vw, 4.5rem);
+  font-weight: 760;
+  font-variation-settings: 'wdth' 112;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
 }
 
-/* Scrollbar styling - light */
-::-webkit-scrollbar {
-  width: 8px;
+.t-h1 {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: 740;
+  font-variation-settings: 'wdth' 110;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
 }
 
-::-webkit-scrollbar-track {
-  background: #fbfaf7;
+.t-h2 {
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  font-weight: 720;
+  font-variation-settings: 'wdth' 108;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #d8cfc4;
-  border-radius: 3px;
+.t-h3 {
+  font-size: clamp(1.25rem, 1.7vw, 1.625rem);
+  font-weight: 620;
+  font-variation-settings: 'wdth' 104;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #c45a2b;
+.t-lead {
+  font-size: clamp(1.0625rem, 1.35vw, 1.3125rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--fg-2);
 }
 
-/* ===== TEXTURE & SURFACES ===== */
-
-/* Fixed grain wash over the whole document. Breaks the digital flatness of
-   large cream areas — the single cheapest thing that stops a light layout
-   reading as a template. */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-toast);
-  pointer-events: none;
-  opacity: 0.32;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+.t-body {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--fg-2);
 }
 
-/* Fine engineering grid, warm-tinted. Used behind hero / CTA blocks. */
-.bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(32, 27, 23, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(32, 27, 23, 0.035) 1px, transparent 1px);
-  background-size: 60px 60px;
+.t-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--fg-2);
 }
 
-/* Ambient warmth: an off-centre radial so large sections aren't a dead
-   uniform fill. Deliberately not a 45-degree linear fade. */
-.surface-glow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    62rem 42rem at 78% -10%,
-    rgba(196, 90, 43, 0.09),
-    transparent 62%
-  );
+@media (min-width: 48rem) {
+  .t-display {
+    font-size: clamp(4.5rem, 8.2vw, 8.75rem);
+  }
 }
 
-/* Hairline that fades out — replaces hard full-width borders in places
-   where a blunt rule would cut the page in half. */
-.rule-fade {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    rgba(32, 27, 23, 0.22),
-    rgba(32, 27, 23, 0.08) 55%,
-    transparent
-  );
+/* Technical metadata: indexes, coordinates, prices, captions. */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-3);
 }
 
-/* Skip link — visible only when focused by keyboard. */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   Controls
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0 1.375rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.btn-quiet {
+  border: 1px solid var(--line-strong);
+  color: var(--fg);
+}
+
+.btn-quiet:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.arrow {
+  transition: transform var(--t-base) var(--ease);
+}
+
+.btn:hover .arrow,
+.link-arrow:hover .arrow,
+.group:hover .arrow {
+  transform: translateX(4px);
+}
+
+.group:hover .arrow-ne,
+.link-arrow:hover .arrow-ne {
+  transform: translate(3px, -3px);
+}
+
+.arrow-ne {
+  transition: transform var(--t-base) var(--ease);
+}
+
+/* Text link with an underline that draws in from the left */
+.link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--t-base) var(--ease), color var(--t-fast) var(--ease);
+}
+
+.link-line:hover,
+.link-line[aria-current='page'] {
+  background-size: 100% 1px;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.875rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--fg);
+  font-size: 1.0625rem;
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.field::placeholder {
+  color: var(--fg-3);
+}
+
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
+}
+
+.field[aria-invalid='true'] {
+  border-bottom-color: var(--danger);
+}
+
+select.field {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%230e0d0c' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.25rem center;
+}
+
+textarea.field {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Details
+   ============================================================ */
+
 .skip-link {
   position: absolute;
   left: 1rem;
-  top: -4rem;
-  z-index: var(--z-toast);
-  padding: 0.75rem 1.25rem;
-  background: var(--color-foreground);
-  color: #fff;
-  font-size: 0.875rem;
+  top: -5rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--orange);
+  color: var(--ink);
   font-weight: 600;
-  border-radius: var(--radius-sm);
-  transition: top 180ms ease;
+  transition: top var(--t-fast) var(--ease);
 }
 
 .skip-link:focus {
   top: 1rem;
 }
 
-/* ===== REDUCED MOTION OVERRIDES ===== */
+/* Image frames: flat, hairline, no rounding */
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+}
+
+.frame img {
+  transition: transform 900ms var(--ease);
+}
+
+.group:hover .frame img,
+.frame:hover img {
+  transform: scale(1.025);
+}
+
+/* Service rows: native disclosure, custom marker */
+.svc > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.svc > summary::-webkit-details-marker {
+  display: none;
+}
+
+.svc .plus {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+.svc .plus::before,
+.svc .plus::after {
+  content: '';
+  position: absolute;
+  inset: 5px 0 auto 0;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--t-base) var(--ease);
+}
+
+.svc .plus::after {
+  transform: rotate(90deg);
+}
+
+.svc[open] .plus::after {
+  transform: rotate(0deg);
+}
+
+/* Globe marker label anchored to the COBE marker where supported */
+.globe-label {
+  opacity: 0;
+}
+
+@supports (anchor-name: --a) {
+  .globe-label {
+    position: absolute;
+    position-anchor: --cobe-pbm;
+    left: anchor(center);
+    bottom: anchor(center);
+    opacity: var(--cobe-visible-pbm, 0);
+    transition: opacity 400ms var(--ease);
+  }
+}
+
+}
+
+/* Hero entrance. Pure CSS so content is visible without JavaScript. */
+@keyframes enter-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes enter-globe {
+  from {
+    opacity: 0;
+    transform: translateY(8%) scale(0.94);
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.enter-rise {
+  animation: enter-rise 900ms var(--ease) both;
+}
+
+.enter-fade {
+  animation: enter-fade 700ms var(--ease) both;
+}
+
+.enter-globe {
+  animation: enter-globe 2000ms var(--ease) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* ===== RESPONSIVE TYPOGRAPHY ===== */
-@media (min-width: 768px) {
-  .text-display {
-    font-size: 4.75rem;
-  }
-  .text-headline {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .text-display {
-    font-size: 6rem;
-  }
-  .text-headline {
-    font-size: 3.5rem;
+    scroll-behavior: auto !important;
   }
 }
