@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Archivo, IBM_Plex_Mono, Inter, Lora, Oswald, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { site } from '@/content/site'
-import { serviceCategories } from '@/content/services'
+import { formatPrice, serviceCategories } from '@/content/services'
 
 // One family for everything. The width axis lets display type go wide and
 // heavy like the wordmark, while running text stays at normal width.
@@ -122,7 +122,23 @@ const jsonLd = {
       name: category.title,
       itemListElement: category.services.map((service) => ({
         '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: service.name, description: service.summary },
+        ...(typeof service.price === 'object' && 'amount' in service.price
+          ? {
+              price: service.price.amount,
+              priceCurrency: 'USD',
+              priceSpecification: {
+                '@type': 'PriceSpecification',
+                price: service.price.amount,
+                priceCurrency: 'USD',
+                ...(service.price.unit ? { unitText: service.price.unit } : {}),
+              },
+            }
+          : {}),
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name,
+          description: `${service.summary} (${formatPrice(service.price)})`,
+        },
       })),
     })),
   },

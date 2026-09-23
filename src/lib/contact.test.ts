@@ -102,7 +102,7 @@ describe('service catalogue', () => {
     // Pages format prices from the catalogue; a literal "vanaf $" elsewhere
     // is a copy that will drift the next time prices change.
     const offenders = files
-      .filter(({ path }) => !path.includes('content/services.ts') && !path.includes('app/examples/'))
+      .filter(({ path }) => !path.includes('content/services.ts'))
       .filter(({ text }) => /vanaf \$\d/i.test(text))
       .map(({ path }) => path)
     expect(offenders).toEqual([])

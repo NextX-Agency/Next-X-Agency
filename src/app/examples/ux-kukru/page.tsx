@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Zap, Shield, BarChart3, MessageSquare, Check, ArrowRight, Phone, Mail, MapPin, Send, Heart, Wrench, Layers } from 'lucide-react'
 import { toast } from 'sonner'
 import { CONTACT } from '@/lib/contact'
+import { findService, formatAmount, standardHourlyRate } from '@/content/services'
 
 /* ─── Logo ─── */
 function KukruLogo({ size = 36 }: { size?: number }) {
@@ -40,7 +41,7 @@ const disciplines = [
 
 const faqs = [
   { q: 'Wat gebeurt er met uren die ik niet gebruik?', a: 'Ongebruikte uren vervallen aan het eind van de maand; ze schuiven niet door. Merkt u dat u er structureel onder blijft, dan zetten we u gewoon een pakket lager.' },
-  { q: 'Wat als ik meer uren nodig heb dan mijn pakket?', a: 'Extra uren boven de pakketlimiet kosten $25 per uur. We melden het altijd vooraf zodra een aanvraag buiten uw resterende uren valt, zodat u zelf kiest of het deze maand of volgende maand wordt.' },
+  { q: 'Wat als ik meer uren nodig heb dan mijn pakket?', a: `Extra uren boven de pakketlimiet kosten $${standardHourlyRate} per uur. We melden het altijd vooraf zodra een aanvraag buiten uw resterende uren valt, zodat u zelf kiest of het deze maand of volgende maand wordt.` },
   { q: 'Hoe snel wordt mijn aanvraag opgepakt?', a: 'Dat hangt van uw pakket af: Starter binnen 48 uur, Business binnen 24 uur en Partner binnen 12 uur. Een storing waardoor uw site plat ligt gaat altijd voor.' },
   { q: 'Moet mijn site door NextX gebouwd zijn?', a: 'Nee. We nemen ook bestaande sites over. We beginnen dan met een korte inventarisatie van de techniek en de hosting, zodat we weten waar we instappen.' },
   { q: 'Zit ik ergens aan vast?', a: 'De pakketten lopen per maand, met een minimum van drie maanden. Daarna is opzeggen mogelijk tegen het eind van elke maand.' },
@@ -48,10 +49,16 @@ const faqs = [
 ]
 
 // The three packages exactly as they are priced on /services.
+function monthlyPrice(id: string) {
+  const service = findService(id)
+  if (!service || !('amount' in service.price)) throw new Error(`Unknown UX Kukru service: ${id}`)
+  return `$${formatAmount(service.price.amount)}`
+}
+
 const pricing = [
-  { name: 'Starter Support', price: '$195', desc: '10 uur per maand voor kleine, doorlopende taken', features: ['10 uur per maand', 'Kleine updates + bug fixes', 'Content wijzigingen', 'Technisch advies', 'Reactie binnen 48 uur'], highlight: false },
-  { name: 'Business Support', price: '$360', desc: '20 uur per maand voor doorontwikkeling', features: ['20 uur per maand', 'Nieuwe functies bouwen', 'Design updates + integraties', 'Strategisch advies', 'Reactie binnen 24 uur'], highlight: true },
-  { name: 'Partner Support', price: '$620', desc: '40 uur per maand met vaste bezetting', features: ['40 uur per maand', 'Vast aanspreekpunt', 'Voorrang bij complexe projecten', 'Samenwerking met uw team', 'Reactie binnen 12 uur'], highlight: false },
+  { name: 'Starter Support', price: monthlyPrice('kukru-starter'), desc: '10 uur per maand voor kleine, doorlopende taken', features: ['10 uur per maand', 'Kleine updates + bug fixes', 'Content wijzigingen', 'Technisch advies', 'Reactie binnen 48 uur'], highlight: false },
+  { name: 'Business Support', price: monthlyPrice('kukru-business'), desc: '20 uur per maand voor doorontwikkeling', features: ['20 uur per maand', 'Nieuwe functies bouwen', 'Design updates + integraties', 'Strategisch advies', 'Reactie binnen 24 uur'], highlight: true },
+  { name: 'Partner Support', price: monthlyPrice('kukru-partner'), desc: '40 uur per maand met vaste bezetting', features: ['40 uur per maand', 'Vast aanspreekpunt', 'Voorrang bij complexe projecten', 'Samenwerking met uw team', 'Reactie binnen 12 uur'], highlight: false },
 ]
 
 const process = [
@@ -230,7 +237,7 @@ export default function UxKukruPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Maandpakketten</h2>
-            <p className="text-slate-500 max-w-lg mx-auto">Dezelfde prijzen als op onze dienstenpagina. Extra uren $25 per uur, minimaal drie maanden.</p>
+            <p className="text-slate-500 max-w-lg mx-auto">Dezelfde prijzen als op onze dienstenpagina. Extra uren ${standardHourlyRate} per uur, minimaal drie maanden.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {pricing.map((p, i) => (

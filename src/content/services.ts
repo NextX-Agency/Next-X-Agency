@@ -37,6 +37,9 @@ export type ServiceCategory = {
   discipline: boolean
 }
 
+/** Standard rate for work that falls outside a fixed package. */
+export const standardHourlyRate = 45
+
 export const serviceCategories: ServiceCategory[] = [
   {
     id: 'websites',
@@ -50,7 +53,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'One-page website',
         aliases: ['Business Card Site'],
         summary: 'Eén pagina met wie u bent, wat u doet en hoe klanten u bereiken.',
-        price: { amount: 225, from: true },
+        price: { amount: 295, from: true },
         includes: ['WhatsApp-knop', 'Contactformulier'],
         example: 'business-card-site',
       },
@@ -59,7 +62,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Servicewebsite',
         aliases: ['Service Website'],
         summary: 'Aparte pagina’s voor uw diensten, over ons en contact.',
-        price: { amount: 395, from: true },
+        price: { amount: 595, from: true },
         includes: ['Home, diensten, over ons en contact', 'Contactformulier'],
         example: 'service-website',
       },
@@ -68,7 +71,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Portfoliowebsite',
         aliases: ['Portfolio Website'],
         summary: 'Een galerij voor uw werk, met een eigen pagina per project.',
-        price: { amount: 325, from: true },
+        price: { amount: 495, from: true },
         includes: ['Tot 20 projecten', 'Projectpagina’s', 'Over mij/ons en contact'],
         example: 'portfolio-website',
       },
@@ -77,13 +80,13 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Restaurantwebsite',
         aliases: ['Restaurant/Menu Site'],
         summary: 'Menukaart, openingstijden en locatie, met een link om te reserveren.',
-        price: { amount: 375, from: true },
+        price: { amount: 495, from: true },
         includes: ['Digitaal menu tot 50 gerechten', 'Openingstijden en kaart', 'Reserveringslink'],
         example: 'restaurant-menu-site',
       },
     ],
     terms:
-      'Wijzigingen na oplevering (tekst, beeld, kleine aanpassingen in de layout) rekenen we af tegen $25 per uur.',
+      `Wijzigingen na oplevering (tekst, beeld, kleine aanpassingen in de layout) rekenen we af tegen $${standardHourlyRate} per uur.`,
   },
   {
     id: 'e-commerce',
@@ -97,7 +100,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Starter webshop',
         aliases: ['Starter Webshop'],
         summary: 'Een eerste online winkel voor een compact assortiment.',
-        price: { amount: 525, from: true },
+        price: { amount: 895, from: true },
         includes: ['Tot 25 producten', 'Winkelwagen en checkout', 'Betaling per bankoverschrijving', 'Uitleg over productbeheer'],
         example: 'starter-webshop',
       },
@@ -106,13 +109,13 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Grotere webshop',
         aliases: ['Grotere Webshop'],
         summary: 'Een catalogus met categorieën, filters, zoeken en klantaccounts.',
-        price: { amount: 850, from: true },
+        price: { amount: 1350, from: true },
         includes: ['Tot 100 producten', 'Categorieën, filters en zoeken', 'Klantaccounts en orderstatus', 'Overschrijving of eigen betaalflow'],
         example: 'grotere-webshop',
       },
     ],
     terms:
-      'Meer producten: $4 per product tot 250. Daarboven maken we een prijs op maat. Aanpassingen na oplevering: $25 per uur.',
+      `Meer producten: $5 per product tot 250. Daarboven maken we een prijs op maat. Aanpassingen na oplevering: $${standardHourlyRate} per uur.`,
   },
   {
     id: 'graphic-design',
@@ -126,7 +129,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Logo-ontwerp',
         aliases: ['Logo Design'],
         summary: 'Eén logoconcept, uitgewerkt tot alle bestanden die u nodig hebt.',
-        price: { amount: 85, from: true },
+        price: { amount: 195, from: true },
         includes: ['Twee revisierondes', 'PNG en JPG, transparant en op wit', 'Andere formaten op aanvraag'],
         example: 'logo-branding',
       },
@@ -135,7 +138,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Social media post',
         aliases: ['Social Media Post Design'],
         summary: 'Een ontwerp voor Instagram of Facebook.',
-        price: { amount: 15, from: false, unit: 'per post' },
+        price: { amount: 25, from: false, unit: 'per post' },
         includes: ['1080×1080 of 1080×1350', 'Eén revisieronde'],
       },
       {
@@ -143,7 +146,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Flyer of poster',
         aliases: ['Flyer/Poster Design'],
         summary: 'Drukklaar ontwerp in A4 of A5, of een eigen formaat.',
-        price: { amount: 40, from: true },
+        price: { amount: 75, from: true },
         includes: ['Twee revisierondes', 'Drukklare PDF'],
       },
     ],
@@ -160,7 +163,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'UX-audit en advies',
         aliases: ['UX Audit & Advies'],
         summary: 'We lopen uw site of app door en leveren een rapport met prioriteiten.',
-        price: { amount: 150, from: true },
+        price: { amount: 225, from: true },
         includes: ['Rapport als PDF', 'Prioriteitenlijst', 'Opvolggesprek'],
         example: 'ux-ui-design',
       },
@@ -169,7 +172,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'UI-redesign',
         aliases: ['UI Design (Re-design)'],
         summary: 'Nieuwe schermen in Figma of Adobe XD, klaar om te laten bouwen.',
-        price: { amount: 275, from: true },
+        price: { amount: 450, from: true },
         includes: ['Tot 3 pagina’s of schermen', 'Twee revisierondes', 'Overdrachtsdocument', 'Bouwen wordt apart geprijsd'],
         example: 'ux-ui-design',
       },
@@ -187,7 +190,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'SEO-basis',
         aliases: ['Basic SEO Setup'],
         summary: 'De technische basis voor zoekmachines in één keer op orde.',
-        price: { amount: 95, from: true },
+        price: { amount: 195, from: true },
         includes: ['Meta tags', 'Sitemap en robots.txt', 'Google Search Console', 'Korte rapportage'],
         example: 'seo',
       },
@@ -196,7 +199,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'SEO per maand',
         aliases: ['Maandelijkse SEO Support'],
         summary: 'Zoektermen volgen, technische checks en een maandrapport.',
-        price: { amount: 85, from: false, unit: 'per maand' },
+        price: { amount: 225, from: false, unit: 'per maand' },
         includes: ['Maandrapport', 'Zoektermen volgen', 'Contentsuggesties', 'Minimaal 3 maanden'],
         example: 'seo',
       },
@@ -257,33 +260,33 @@ export const serviceCategories: ServiceCategory[] = [
           'Reactie binnen 24 uur op werkdagen',
           'Bugfixes gratis in de eerste 14 dagen',
           'Bereikbaar via WhatsApp en e-mail',
-          'Later werk tegen $25 per uur',
+          `Later werk tegen $${standardHourlyRate} per uur`,
         ],
       },
       {
         id: 'sla-silver',
         name: 'SLA Zilver',
         summary: 'Kortere reactietijd en een maandelijkse controle.',
-        price: { amount: 45, from: false, unit: 'per maand' },
+        price: { amount: 75, from: false, unit: 'per maand' },
         includes: [
           'Reactie binnen 8 werkuren',
           'Storing opgepakt binnen 1 werkdag',
           'Maandelijkse controle van back-ups en updates',
           '1 uur wijzigingswerk per maand',
-          'Later werk tegen $20 per uur',
+          `Later werk tegen $${standardHourlyRate} per uur`,
         ],
       },
       {
         id: 'sla-gold',
         name: 'SLA Goud',
         summary: 'Voor sites waar een storing direct omzet kost.',
-        price: { amount: 95, from: false, unit: 'per maand' },
+        price: { amount: 150, from: false, unit: 'per maand' },
         includes: [
           'Reactie binnen 4 werkuren',
           'Storing opgepakt binnen 4 uur, ook ’s avonds',
           'Wekelijkse controle van back-ups en updates',
           '3 uur wijzigingswerk per maand',
-          'Later werk tegen $18 per uur',
+          `Later werk tegen $${standardHourlyRate} per uur`,
           'Kwartaalrapport over snelheid en vindbaarheid',
         ],
       },
@@ -309,28 +312,28 @@ export const serviceCategories: ServiceCategory[] = [
         id: 'extra-revision',
         name: 'Extra revisieronde',
         summary: 'Bovenop de rondes die al inbegrepen zijn, voor ontwerp of tekst.',
-        price: { amount: 45, from: false, unit: 'per ronde' },
+        price: { amount: 65, from: false, unit: 'per ronde' },
         includes: ['Losse kleine correcties blijven gratis'],
       },
       {
         id: 'content-entry',
         name: 'Contentinvoer',
         summary: 'Wij zetten uw teksten en foto’s in de site.',
-        price: { amount: 15, from: false, unit: 'per pagina' },
+        price: { amount: 20, from: false, unit: 'per pagina' },
         includes: ['Bijsnijden en optimaliseren van beeld'],
       },
       {
         id: 'training',
         name: 'Training en overdracht',
         summary: 'U leert zelf tekst, prijzen en foto’s aanpassen.',
-        price: { amount: 65, from: false, unit: 'per uur' },
+        price: { amount: 75, from: false, unit: 'per uur' },
         includes: ['Op locatie in Paramaribo of online', 'Korte handleiding achteraf'],
       },
       {
         id: 'extra-language',
         name: 'Extra taal',
         summary: 'Een tweede taal naast Nederlands, met een taalwisselaar in het menu.',
-        price: { amount: 120, from: true },
+        price: { amount: 175, from: true },
         includes: ['Vertaling door u aangeleverd, of tegen meerprijs door ons'],
       },
     ],
@@ -347,7 +350,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Starter',
         aliases: ['Starter Support'],
         summary: 'Updates, kleine fixes en contentwijzigingen.',
-        price: { amount: 195, from: false, unit: 'per maand' },
+        price: { amount: 350, from: false, unit: 'per maand' },
         includes: ['10 uur per maand', 'Technisch advies', 'Antwoord per e-mail binnen 48 uur'],
         example: 'ux-kukru',
       },
@@ -356,7 +359,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Business',
         aliases: ['Business Support'],
         summary: 'Nieuwe functies, designupdates en koppelingen.',
-        price: { amount: 360, from: false, unit: 'per maand' },
+        price: { amount: 650, from: false, unit: 'per maand' },
         includes: ['20 uur per maand', 'Strategisch advies', 'Antwoord via chat binnen 24 uur'],
         example: 'ux-kukru',
       },
@@ -365,12 +368,12 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Partner',
         aliases: ['Partner Support'],
         summary: 'Een vast aanspreekpunt voor grotere en complexere projecten.',
-        price: { amount: 620, from: false, unit: 'per maand' },
+        price: { amount: 1100, from: false, unit: 'per maand' },
         includes: ['40 uur per maand', 'Voorrang bij complexe projecten', 'Direct contact binnen 12 uur'],
         example: 'ux-kukru',
       },
     ],
-    terms: 'Extra uren: $25 per uur. Elk pakket loopt minimaal 3 maanden.',
+    terms: `Extra uren: $${standardHourlyRate} per uur. Elk pakket loopt minimaal 3 maanden.`,
   },
 ]
 
@@ -409,10 +412,14 @@ export function findService(value: string | null | undefined) {
   )
 }
 
+export function formatAmount(amount: number) {
+  return amount.toLocaleString('en-US')
+}
+
 export function formatPrice(price: Price) {
   if ('label' in price) return price.label
   const unit = price.unit ? ` ${price.unit}` : ''
-  return `${price.from ? 'vanaf ' : ''}$${price.amount}${unit}`
+  return `${price.from ? 'vanaf ' : ''}$${formatAmount(price.amount)}${unit}`
 }
 
 /** Lowest entry price in a category, for compact overviews. */

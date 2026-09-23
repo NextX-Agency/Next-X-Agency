@@ -7,6 +7,7 @@ import { Server, HardDrive, Globe, Shield, Activity, Upload, Download, Clock, Re
 import { toast } from 'sonner'
 import { CONTACT } from '@/lib/contact'
 import Link from 'next/link'
+import { findService, formatAmount } from '@/content/services'
 
 /* ─── Logo ─── */
 function HostingLogo({ size = 36 }: { size?: number }) {
@@ -54,9 +55,15 @@ const notifications = [
   { id: 4, type: 'success', title: 'Beveiligingsupdate geïnstalleerd', desc: 'Serverpakketten bijgewerkt, geen downtime.', time: '3 dagen geleden' },
 ]
 
+function hostingPrice(id: string) {
+  const service = findService(id)
+  if (!service || !('amount' in service.price)) throw new Error(`Unknown hosting service: ${id}`)
+  return `$${formatAmount(service.price.amount)}`
+}
+
 const plans = [
-  { name: 'Basic Hosting', price: '$20', features: ['10 GB opslag', '100 GB bandbreedte', 'SSL inbegrepen', 'Dagelijkse back-ups', 'Uptime monitoring'], current: true },
-  { name: 'Business Hosting', price: '$30', features: ['50 GB opslag', 'Onbeperkte bandbreedte', 'SSL + CDN inbegrepen', 'Dagelijkse back-ups', 'Voorrang bij support'], current: false },
+  { name: 'Basic Hosting', price: hostingPrice('hosting-basic'), features: ['10 GB opslag', '100 GB bandbreedte', 'SSL inbegrepen', 'Dagelijkse back-ups', 'Uptime monitoring'], current: true },
+  { name: 'Business Hosting', price: hostingPrice('hosting-business'), features: ['50 GB opslag', 'Onbeperkte bandbreedte', 'SSL + CDN inbegrepen', 'Dagelijkse back-ups', 'Voorrang bij support'], current: false },
 ]
 
 const backups = [
