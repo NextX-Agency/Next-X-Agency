@@ -75,13 +75,11 @@ export const metadata: Metadata = {
     siteName: site.name,
     type: 'website',
     locale: 'nl_SR',
-    images: [{ url: '/facebook-banner.png', width: 1200, height: 630, alt: 'NextX Agency' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NextX Agency',
     description,
-    images: ['/facebook-banner.png'],
   },
   robots: {
     index: true,
@@ -102,7 +100,7 @@ const jsonLd = {
   description,
   url: site.url,
   logo: `${site.url}/favicon.png`,
-  image: `${site.url}/facebook-banner.png`,
+  image: `${site.url}/opengraph-image`,
   email: site.email,
   telephone: site.phone.e164,
   address: {
