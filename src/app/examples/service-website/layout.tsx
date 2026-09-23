@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Service Website Demo — DentaCare Paramaribo',
-  description:
-    'Demo van een multi-page service website voor een tandartspraktijk. Scroll-spy navigatie, teampagina en afsprakensysteem.',
+  title: 'DentaCare Paramaribo - Dental Website Demo',
+  description: 'Conceptdemo van een rustige tandartspraktijk met behandelingen, praktische info en afspraakflow.',
   openGraph: {
-    title: 'Service Website Demo — NextX Agency',
-    description: 'Multi-page website voor een tandartspraktijk met scroll-spy, team en afsprakensysteem.',
+    title: 'DentaCare Paramaribo - Dental Website Demo - NextX Agency',
+    description: 'Toegankelijke conceptwebsite voor een fictieve tandartspraktijk.',
     url: '/examples/service-website',
   },
   alternates: { canonical: '/examples/service-website' },
+  robots: { index: false, follow: true },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

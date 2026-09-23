@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'UX Kukru Outsourcing Demo',
-  description:
-    'Demo van een community platform case study met FAQ, team, pricing pakketten en contactformulier.',
+  title: 'UX Kukru - Monthly Support Demo',
+  description: 'Conceptdemo van een maandelijkse capaciteitsplanner voor design, website en support.',
   openGraph: {
-    title: 'UX Kukru Demo — NextX Agency',
-    description: 'Community platform met FAQ, team, pricing pakketten en contactformulier.',
+    title: 'UX Kukru - Monthly Support Demo - NextX Agency',
+    description: 'Werkruimte voor aanvragen, uren en maandplanning.',
     url: '/examples/ux-kukru',
   },
   alternates: { canonical: '/examples/ux-kukru' },
+  robots: { index: false, follow: true },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

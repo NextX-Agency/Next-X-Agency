@@ -1,277 +1,137 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
-import { TrendingUp, TrendingDown, Eye, MousePointerClick, Globe, Search, ArrowUpRight, ArrowDownRight, Download, Calendar, ChevronRight, ChevronUp, ChevronDown, Target, Zap } from 'lucide-react'
-import { toast } from 'sonner'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { DemoOutro } from '../_components/DemoOutro'
 
-/* ─── Logo ─── */
-function SeoLogo({ size = 36 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-      <rect width="48" height="48" rx="12" fill="#059669" />
-      <path d="M14 34L20 24L26 28L34 14" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="14" cy="34" r="2" fill="white" />
-      <circle cx="34" cy="14" r="2" fill="white" />
-    </svg>
-  )
+type Query = {
+  query: string
+  position: number
+  change: number
+  intent: 'Dienst' | 'Oriëntatie' | 'Lokaal'
+  page: string
 }
 
-const trafficData = [
-  { maand: 'Jan', organisch: 1200, betaald: 400 },
-  { maand: 'Feb', organisch: 1450, betaald: 380 },
-  { maand: 'Mrt', organisch: 1780, betaald: 420 },
-  { maand: 'Apr', organisch: 2100, betaald: 390 },
-  { maand: 'Mei', organisch: 2650, betaald: 410 },
-  { maand: 'Jun', organisch: 3200, betaald: 450 },
-  { maand: 'Jul', organisch: 3800, betaald: 470 },
-  { maand: 'Aug', organisch: 4200, betaald: 440 },
-  { maand: 'Sep', organisch: 4800, betaald: 480 },
-  { maand: 'Okt', organisch: 5400, betaald: 500 },
-  { maand: 'Nov', organisch: 6100, betaald: 520 },
-  { maand: 'Dec', organisch: 6800, betaald: 540 },
+const queries: Query[] = [
+  { query: 'webdesign suriname', position: 4, change: 3, intent: 'Dienst', page: '/websites' },
+  { query: 'website laten maken paramaribo', position: 7, change: -2, intent: 'Lokaal', page: '/websites' },
+  { query: 'seo bureau suriname', position: 11, change: 4, intent: 'Dienst', page: '/seo' },
+  { query: 'restaurant website paramaribo', position: 18, change: 8, intent: 'Lokaal', page: '/voorbeelden' },
+  { query: 'webshop laten maken', position: 21, change: -5, intent: 'Oriëntatie', page: '/webshops' },
+  { query: 'logo ontwerp suriname', position: 28, change: 1, intent: 'Dienst', page: '/branding' },
 ]
 
-const positionData = [
-  { week: 'W1', positie: 42 }, { week: 'W4', positie: 38 }, { week: 'W8', positie: 29 },
-  { week: 'W12', positie: 21 }, { week: 'W16', positie: 15 }, { week: 'W20', positie: 9 },
-  { week: 'W24', positie: 6 }, { week: 'W28', positie: 4 }, { week: 'W32', positie: 3 },
+const pages = [
+  { path: '/websites', title: 'Websites voor bedrijven', clicks: '—', note: 'Titel inkorten' },
+  { path: '/seo', title: 'SEO voor Surinaamse bedrijven', clicks: '—', note: 'Nieuwe intro nodig' },
+  { path: '/voorbeelden', title: 'Voorbeelden van websites', clicks: '—', note: 'Interne links toevoegen' },
+  { path: '/contact', title: 'Contact met NextX Agency', clicks: '—', note: 'In orde' },
 ]
 
-type Keyword = { keyword: string; positie: number; verandering: number; volume: number; url: string }
-
-// The tracked pages are this site's own routes, so every link in the table
-// opens something that exists.
-const keywords: Keyword[] = [
-  { keyword: 'webdesign suriname', positie: 1, verandering: 3, volume: 880, url: '/services#websites' },
-  { keyword: 'website laten maken paramaribo', positie: 2, verandering: 5, volume: 590, url: '/services' },
-  { keyword: 'seo bureau suriname', positie: 3, verandering: 8, volume: 320, url: '/services#seo' },
-  { keyword: 'e-commerce suriname', positie: 4, verandering: 2, volume: 410, url: '/services#e-commerce' },
-  { keyword: 'webshop laten maken suriname', positie: 5, verandering: -1, volume: 260, url: '/examples/starter-webshop' },
-  { keyword: 'logo ontwerp suriname', positie: 7, verandering: 4, volume: 480, url: '/services#graphic-design' },
-  { keyword: 'hosting suriname', positie: 8, verandering: 12, volume: 350, url: '/services#hosting' },
-  { keyword: 'website kosten suriname', positie: 11, verandering: 6, volume: 210, url: '/services' },
-  { keyword: 'restaurant website paramaribo', positie: 14, verandering: -2, volume: 180, url: '/examples/restaurant-menu-site' },
-  { keyword: 'ux ui design suriname', positie: 18, verandering: 9, volume: 140, url: '/services#ux-ui' },
+const issues = [
+  { label: 'Titels', count: 2, tone: 'warn', detail: 'Pagina’s met een te lange titel' },
+  { label: 'Interne links', count: 4, tone: 'focus', detail: 'Kansen naar relevante voorbeelden' },
+  { label: 'Crawlen', count: 0, tone: 'good', detail: 'Geen geblokkeerde demo-pagina’s' },
 ]
-
-const periods = ['30 dagen', '60 dagen', '90 dagen']
 
 export default function SeoDashboardPage() {
-  const [period, setPeriod] = useState('90 dagen')
-  const [sortBy, setSortBy] = useState<'positie' | 'verandering' | 'volume'>('positie')
-  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+  const [view, setView] = useState<'overzicht' | 'zoektermen' | 'pagina\'s' | 'techniek' | 'acties'>('overzicht')
+  const [query, setQuery] = useState('')
+  const [period, setPeriod] = useState('28 dagen')
+  const [done, setDone] = useState<string[]>([])
 
-  const handleSort = (col: 'positie' | 'verandering' | 'volume') => {
-    if (sortBy === col) setSortDir(d => d === 'asc' ? 'desc' : 'asc')
-    else { setSortBy(col); setSortDir(col === 'verandering' ? 'desc' : 'asc') }
-  }
+  const visibleQueries = useMemo(() => queries.filter(item => item.query.includes(query.toLowerCase())), [query])
+  const toggleDone = (item: string) => setDone(current => current.includes(item) ? current.filter(value => value !== item) : [...current, item])
 
-  const sorted = [...keywords].sort((a, b) => {
-    const mul = sortDir === 'asc' ? 1 : -1
-    return (a[sortBy] - b[sortBy]) * mul
-  })
-
-  const dataSlice = period === '30 dagen' ? trafficData.slice(-4) : period === '60 dagen' ? trafficData.slice(-8) : trafficData
-
-  const stats = [
-    { label: 'Organisch verkeer', value: '6.800', change: '+467%', up: true, icon: Eye, color: 'bg-green-50 text-green-600' },
-    { label: 'Gem. positie', value: '3.2', change: '+92%', up: true, icon: Target, color: 'bg-blue-50 text-blue-600' },
-    { label: 'Click-through rate', value: '8.4%', change: '+2.1%', up: true, icon: MousePointerClick, color: 'bg-violet-50 text-violet-600' },
-    { label: 'Domain Authority', value: '42', change: '+18', up: true, icon: Zap, color: 'bg-amber-50 text-amber-600' },
-  ]
-
-  // Dashboard: neutrale interfaceletter. Zet de kopletter voor deze hele
-  // demo, zodat elk voorbeeld een eigen gezicht heeft in plaats van dat van
-  // NextX.
   return (
-    <div
-      style={{ '--font-heading': 'var(--font-demo-product)' } as React.CSSProperties}
-      className="min-h-screen bg-slate-50"
-    >
-      {/* ═══ HEADER ═══ */}
-      <header className="sticky top-10 z-20 bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <SeoLogo size={28} />
-            <div className="hidden sm:block">
-              <span className="text-sm font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>SEO Dashboard</span>
-              <span className="text-[10px] text-slate-400 block -mt-0.5">klantportaal — voorbeeld</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex bg-slate-100 rounded-lg p-0.5">
-              {periods.map(p => (
-                <button key={p} onClick={() => setPeriod(p)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${period === p ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
-                  <Calendar className="w-3 h-3 inline mr-1" />{p}
+    <>
+      <div className="seo-shell">
+        <header className="seo-topline">
+          <Link href="/examples/seo" className="seo-brand" aria-label="SEO Dashboard overzicht">
+            <span className="seo-mark" aria-hidden="true">↗</span>
+            <span>signal / seo</span>
+          </Link>
+          <span className="seo-account">Voorbeeldomgeving <i aria-hidden="true" /></span>
+        </header>
+
+        <div className="seo-layout">
+          <aside className="seo-sidebar" aria-label="SEO Dashboard navigatie">
+            <p className="seo-kicker">WERKRUIMTE</p>
+            <nav>
+              {[
+                ['overzicht', 'Overzicht'],
+                ['zoektermen', 'Zoektermen'],
+                ['pagina\'s', 'Pagina\'s'],
+                ['techniek', 'Technische punten'],
+                ['acties', 'Acties'],
+              ].map(([value, label]) => (
+                <button key={value} type="button" className={view === value ? 'seo-nav-active' : ''} onClick={() => setView(value as typeof view)}>
+                  <span>{label}</span><span aria-hidden="true">{view === value ? '•' : '↗'}</span>
                 </button>
               ))}
+            </nav>
+            <div className="seo-sidebar-note">
+              <span>DATASET</span>
+              <strong>Voorbeelddata</strong>
+              <p>Deze waarden illustreren de interface. Er is geen externe SEO-koppeling actief.</p>
             </div>
-            <button onClick={() => toast.info('Export is uitgeschakeld in dit voorbeeld', { description: 'In een echt klantportaal downloadt deze knop het maandrapport als PDF.' })}
-              className="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-colors hidden sm:flex items-center gap-1">
-              <Download className="w-3 h-3" /> Export
-            </button>
-          </div>
-        </div>
-      </header>
+          </aside>
 
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-        {/* ═══ STATS ═══ */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          {stats.map(s => (
-            <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-4 border border-slate-200">
-              <div className="flex items-center justify-between mb-2">
-                <div className={`w-8 h-8 rounded-lg ${s.color} flex items-center justify-center`}><s.icon className="w-4 h-4" /></div>
-                <span className={`flex items-center gap-0.5 text-xs font-bold ${s.up ? 'text-green-500' : 'text-red-500'}`}>
-                  {s.up ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}{s.change}
-                </span>
-              </div>
-              <p className="text-2xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>{s.value}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{s.label}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ═══ CHARTS ROW ═══ */}
-        <div className="grid lg:grid-cols-5 gap-4">
-          {/* Traffic chart */}
-          <div className="lg:col-span-3 bg-white rounded-xl border border-slate-200 p-5">
-            <div className="flex items-center justify-between mb-4">
+          <section className="seo-content">
+            <div className="seo-heading-row">
               <div>
-                <h3 className="font-bold text-slate-900 text-sm" style={{ fontFamily: 'var(--font-heading)' }}>Verkeer overzicht</h3>
-                <p className="text-xs text-slate-400">Organisch vs betaald</p>
+                <p className="seo-kicker">SEO / KLANTPORTAAL</p>
+                <h1>{view === 'overzicht' ? 'Wat verdient aandacht?' : view === 'zoektermen' ? 'Zoektermen die we volgen' : view === 'pagina\'s' ? 'Pagina’s in beeld' : view === 'techniek' ? 'Technische punten' : 'Acties voor deze maand'}</h1>
+                <p className="seo-intro">Een compacte werkruimte voor beslissingen, niet voor indrukwekkende grafieken.</p>
               </div>
-              <div className="flex items-center gap-3 text-xs">
-                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" /> Organisch</span>
-                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-blue-400 inline-block" /> Betaald</span>
+              <div className="seo-period" role="group" aria-label="Periode">
+                {['7 dagen', '28 dagen', '90 dagen'].map(option => <button key={option} type="button" className={period === option ? 'seo-period-active' : ''} onClick={() => setPeriod(option)}>{option}</button>)}
               </div>
             </div>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 600, height: 256 }}>
-                <BarChart data={dataSlice}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis dataKey="maand" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis fontSize={11} tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }} />
-                  <Bar dataKey="organisch" fill="#059669" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="betaald" fill="#60a5fa" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
 
-          {/* Position chart */}
-          <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-5">
-            <div className="mb-4">
-              <h3 className="font-bold text-slate-900 text-sm" style={{ fontFamily: 'var(--font-heading)' }}>Gem. positie trend</h3>
-              <p className="text-xs text-slate-400">Lager = beter</p>
-            </div>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 400, height: 256 }}>
-                <AreaChart data={positionData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis dataKey="week" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis fontSize={11} tickLine={false} axisLine={false} reversed />
-                  <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }} />
-                  <Area type="monotone" dataKey="positie" stroke="#059669" fill="#059669" fillOpacity={0.1} strokeWidth={2} />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
+            {view === 'overzicht' && <>
+              <div className="seo-attention">
+                <div><span className="seo-kicker">SAMENVATTING / {period}</span><h2>Vier dingen om vandaag op te pakken.</h2></div>
+                <p>De zoekvraag is duidelijker dan vorige maand. De grootste winst zit nu in betere paginatitels, interne links en drie pagina’s die nog dun aanvoelen.</p>
+              </div>
+              <div className="seo-grid-three">
+                {issues.map(issue => <article className={`seo-issue ${issue.tone}`} key={issue.label}><span>{issue.label}</span><strong>{issue.count}</strong><p>{issue.detail}</p></article>)}
+              </div>
+              <div className="seo-split">
+                <article className="seo-panel">
+                  <div className="seo-panel-head"><div><span className="seo-kicker">BEWEGING</span><h2>Zoekvraag per week</h2></div><span className="seo-legend"><i /> zichtbaarheid</span></div>
+                  <div className="seo-bars" aria-label="Illustratieve grafiek van zichtbaarheid per week">
+                    {[42, 48, 45, 59, 62, 70, 66, 78, 82, 88, 91, 95].map((height, index) => <span key={index} style={{ height: `${height}%` }} />)}
+                  </div>
+                  <div className="seo-axis"><span>W1</span><span>W4</span><span>W8</span><span>W12</span></div>
+                </article>
+                <article className="seo-panel seo-next">
+                  <span className="seo-kicker">VOLGENDE BESLISSING</span><h2>Maak /websites specifieker.</h2><p>De pagina verschijnt op relevante vragen, maar deelt nog te weinig context met de zoekterm.</p><button type="button" onClick={() => setView('acties')}>Bekijk actie <span aria-hidden="true">↗</span></button>
+                </article>
+              </div>
+            </>}
 
-        {/* ═══ KEYWORDS TABLE ═══ */}
-        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-          <div className="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <h3 className="font-bold text-slate-900 text-sm" style={{ fontFamily: 'var(--font-heading)' }}>Top zoekwoorden</h3>
-              <p className="text-xs text-slate-400">{keywords.length} zoekwoorden worden getrackt</p>
-            </div>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
-              <input type="text" placeholder="Zoek keyword..." className="pl-8 pr-3 py-1.5 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 w-48" readOnly />
-            </div>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-xs text-slate-500 border-b border-slate-100">
-                  <th className="text-left py-3 px-5 font-medium">#</th>
-                  <th className="text-left py-3 px-3 font-medium">Zoekwoord</th>
-                  <th className="text-center py-3 px-3 font-medium cursor-pointer hover:text-slate-700" onClick={() => handleSort('positie')}>
-                    Positie {sortBy === 'positie' && (sortDir === 'asc' ? <ChevronUp className="w-3 h-3 inline" /> : <ChevronDown className="w-3 h-3 inline" />)}
-                  </th>
-                  <th className="text-center py-3 px-3 font-medium cursor-pointer hover:text-slate-700" onClick={() => handleSort('verandering')}>
-                    Δ Verandering {sortBy === 'verandering' && (sortDir === 'asc' ? <ChevronUp className="w-3 h-3 inline" /> : <ChevronDown className="w-3 h-3 inline" />)}
-                  </th>
-                  <th className="text-center py-3 px-3 font-medium cursor-pointer hover:text-slate-700" onClick={() => handleSort('volume')}>
-                    Volume/mnd {sortBy === 'volume' && (sortDir === 'asc' ? <ChevronUp className="w-3 h-3 inline" /> : <ChevronDown className="w-3 h-3 inline" />)}
-                  </th>
-                  <th className="text-left py-3 px-3 font-medium">URL</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sorted.map((kw, i) => (
-                  <tr key={kw.keyword} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
-                    <td className="py-3 px-5 text-xs text-slate-400">{i + 1}</td>
-                    <td className="py-3 px-3 font-medium text-slate-900 flex items-center gap-2">
-                      <Globe className="w-3.5 h-3.5 text-slate-300" />
-                      {kw.keyword}
-                    </td>
-                    <td className="py-3 px-3 text-center">
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${kw.positie <= 3 ? 'bg-green-100 text-green-700' : kw.positie <= 10 ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>
-                        {kw.positie}
-                      </span>
-                    </td>
-                    <td className="py-3 px-3 text-center">
-                      <span className={`inline-flex items-center gap-0.5 text-xs font-bold ${kw.verandering > 0 ? 'text-green-500' : kw.verandering < 0 ? 'text-red-500' : 'text-slate-400'}`}>
-                        {kw.verandering > 0 ? <TrendingUp className="w-3 h-3" /> : kw.verandering < 0 ? <TrendingDown className="w-3 h-3" /> : null}
-                        {kw.verandering > 0 ? '+' : ''}{kw.verandering}
-                      </span>
-                    </td>
-                    <td className="py-3 px-3 text-center text-xs text-slate-600">{kw.volume.toLocaleString()}</td>
-                    <td className="py-3 px-3">
-                      <Link href={kw.url} className="text-xs text-emerald-600 hover:underline inline-flex items-center gap-0.5">
-                        {kw.url} <ChevronRight className="w-2.5 h-2.5" />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+            {(view === 'zoektermen' || view === 'overzicht') && <section className="seo-panel seo-table-panel">
+              <div className="seo-panel-head"><div><span className="seo-kicker">ZOEKTERMEN</span><h2>{view === 'overzicht' ? 'Waar komen bezoekers voor?' : 'Alle gevolgde termen'}</h2></div><label className="seo-search"><span className="sr-only">Zoekterm filteren</span><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Filter zoekterm" /><span aria-hidden="true">⌕</span></label></div>
+              <div className="seo-table-wrap"><table><thead><tr><th>Zoekterm</th><th>Positie</th><th>Verandering</th><th>Intentie</th><th>Pagina</th></tr></thead><tbody>{visibleQueries.map(item => <tr key={item.query}><td><strong>{item.query}</strong></td><td className="seo-position">{item.position}</td><td className={item.change >= 0 ? 'seo-up' : 'seo-down'}>{item.change >= 0 ? '+' : ''}{item.change}</td><td><span className="seo-tag">{item.intent}</span></td><td><code>{item.page}</code></td></tr>)}</tbody></table></div>
+              {visibleQueries.length === 0 && <p className="seo-empty">Geen zoekterm gevonden. Probeer een kortere filter.</p>}
+            </section>}
 
-        {/* ═══ ACTIONS ═══ */}
-        <div className="grid sm:grid-cols-3 gap-4">
-          {[
-            { title: 'Technische audit', desc: 'Laadsnelheid, crawlfouten en indexeringsstatus van uw site', btn: 'Start audit', action: 'Voorbeeldknop — hier start in de echte versie de technische audit.' },
-            { title: 'Content nakijken', desc: 'Meta titels, koppen en pagina’s die nog tekst missen', btn: 'Analyseer content', action: 'Voorbeeldknop — hier verschijnt in de echte versie de contentanalyse.' },
-            { title: 'Backlinks volgen', desc: 'Welke sites naar u linken, en welke links u kwijtraakte', btn: 'Bekijk backlinks', action: 'Voorbeeldknop — hier opent in de echte versie het backlinkoverzicht.' },
-          ].map(c => (
-            <div key={c.title} className="bg-white rounded-xl border border-slate-200 p-5 flex flex-col">
-              <h3 className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{c.title}</h3>
-              <p className="text-xs text-slate-500 mb-4 flex-1">{c.desc}</p>
-              <button onClick={() => toast.info(c.action)} className="w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-colors">
-                {c.btn}
-              </button>
-            </div>
-          ))}
+            {view === 'pagina\'s' && <section className="seo-panel seo-table-panel"><div className="seo-panel-head"><div><span className="seo-kicker">PAGINA’S</span><h2>Waar kan de inhoud scherper?</h2></div></div><div className="seo-table-wrap"><table><thead><tr><th>Pagina</th><th>Titel</th><th>Clicks</th><th>Notitie</th></tr></thead><tbody>{pages.map(page => <tr key={page.path}><td><code>{page.path}</code></td><td><strong>{page.title}</strong></td><td>{page.clicks}</td><td>{page.note}</td></tr>)}</tbody></table></div></section>}
+
+            {view === 'techniek' && <section className="seo-panel seo-technical"><div className="seo-panel-head"><div><span className="seo-kicker">TECHNISCHE PUNTEN</span><h2>Kleine blokkades, helder gerangschikt.</h2></div></div>{['Metatitel van /websites inkorten', 'Vier interne links toevoegen naar voorbeelden', 'Controleren of nieuwe pagina’s een beschrijving hebben', 'Indexering van conceptdemo’s uitsluiten'].map((item, index) => <div className="seo-check-row" key={item}><span className={`seo-status seo-status-${index === 3 ? 'good' : index === 0 ? 'warn' : 'open'}`}>{index === 3 ? 'OK' : index === 0 ? 'LET OP' : 'OPEN'}</span><strong>{item}</strong><span className="seo-muted">{index === 3 ? 'Ingesteld' : 'Handmatige controle'}</span></div>)}</section>}
+
+            {view === 'acties' && <section className="seo-panel seo-actions"><div className="seo-panel-head"><div><span className="seo-kicker">ACTIELIJST</span><h2>Van inzicht naar volgende stap.</h2></div><span className="seo-muted">{done.length} / 3 klaar</span></div>{['Schrijf de intro van /websites opnieuw rond de zoekvraag', 'Voeg een link toe van de voorbeelden naar SEO', 'Controleer de titel en beschrijving van /seo'].map(item => <label className={`seo-action-row ${done.includes(item) ? 'is-done' : ''}`} key={item}><input type="checkbox" checked={done.includes(item)} onChange={() => toggleDone(item)} /><span>{item}</span><small>Deze maand</small></label>)}</section>}
+
+            <p className="seo-footnote">Voorbeeldomgeving · periode: {period} · cijfers en pagina’s zijn illustratief.</p>
+          </section>
         </div>
       </div>
-
-      {/* ═══ FOOTER ═══ */}
-      <footer className="bg-slate-900 py-6 mt-8">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2"><SeoLogo size={20} /><span className="text-xs font-bold text-white">SEO Dashboard — Klantportaal Demo</span></div>
-          <p className="text-xs text-slate-500">Gebouwd door NextX Agency · alle cijfers op deze pagina zijn voorbeelddata</p>
-        </div>
-      </footer>
-
-    </div>
+      <DemoOutro />
+      <style jsx>{`
+        .seo-shell{background:#f3f4f1;color:#202622;min-height:calc(100vh - 49px);font-family:var(--font-demo-product),Arial,sans-serif}.seo-topline{height:64px;border-bottom:1px solid #d9ded8;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,56px);background:#f8f9f6}.seo-brand{display:flex;gap:10px;align-items:center;color:#202622;font-weight:700;letter-spacing:-.03em}.seo-mark{display:grid;place-items:center;width:26px;height:26px;background:#1f6d57;color:#fff;border-radius:6px;font-size:18px}.seo-account{font:11px var(--font-demo-industrial),monospace;color:#718077;letter-spacing:.08em;text-transform:uppercase}.seo-account i{display:inline-block;width:7px;height:7px;background:#3e9b6a;border-radius:50%;margin-left:8px}.seo-layout{display:grid;grid-template-columns:220px minmax(0,1fr);max-width:1480px;margin:0 auto}.seo-sidebar{border-right:1px solid #d9ded8;min-height:850px;padding:40px 20px;display:flex;flex-direction:column}.seo-kicker{font:10px var(--font-demo-industrial),monospace;letter-spacing:.14em;color:#738078;margin:0 0 12px;text-transform:uppercase}.seo-sidebar nav{display:grid;gap:4px}.seo-sidebar nav button{border:0;background:transparent;display:flex;align-items:center;justify-content:space-between;padding:11px 10px;text-align:left;color:#64716a;font-size:13px;cursor:pointer}.seo-sidebar nav button:hover,.seo-sidebar nav button.seo-nav-active{color:#1f6d57;background:#e3ebe4}.seo-sidebar nav button span:last-child{font-size:15px}.seo-sidebar-note{border-top:1px solid #d9ded8;margin-top:auto;padding-top:18px}.seo-sidebar-note span{font:10px var(--font-demo-industrial),monospace;letter-spacing:.12em;color:#879188}.seo-sidebar-note strong{display:block;font-size:13px;margin-top:10px}.seo-sidebar-note p{font-size:11px;line-height:1.6;color:#758178;margin:7px 0 0}.seo-content{padding:52px clamp(24px,5vw,82px) 56px;max-width:1160px;width:100%}.seo-heading-row{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:38px}.seo-heading-row h1{font-size:clamp(28px,4vw,48px);letter-spacing:-.07em;line-height:.95;margin:0 0 14px;font-weight:600}.seo-intro{color:#6f7a72;margin:0;font-size:14px}.seo-period{border-bottom:1px solid #bfc9c0;display:flex;gap:16px;white-space:nowrap}.seo-period button{background:transparent;border:0;border-bottom:2px solid transparent;color:#728078;padding:9px 0;font-size:12px;cursor:pointer}.seo-period button.seo-period-active{color:#1f6d57;border-bottom-color:#1f6d57}.seo-attention{background:#1f6d57;color:#f5f6f0;padding:26px 30px;display:flex;justify-content:space-between;gap:32px;align-items:flex-end;margin-bottom:14px}.seo-attention .seo-kicker{color:#b9d5c4}.seo-attention h2{font-size:23px;letter-spacing:-.04em;margin:0}.seo-attention p{font-size:13px;line-height:1.65;max-width:390px;margin:0;color:#d5e5da}.seo-grid-three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}.seo-issue{border:1px solid #d9ded8;background:#f8f9f6;padding:17px;display:grid;grid-template-columns:1fr auto;gap:6px}.seo-issue span{font:10px var(--font-demo-industrial),monospace;letter-spacing:.12em;color:#718077;text-transform:uppercase}.seo-issue strong{font:27px var(--font-demo-industrial),monospace;font-weight:500;grid-row:span 2}.seo-issue p{margin:0;color:#6f7a72;font-size:12px}.seo-issue.warn strong{color:#bd6e37}.seo-issue.good strong{color:#2f8b64}.seo-split{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-bottom:14px}.seo-panel{background:#f8f9f6;border:1px solid #d9ded8;padding:23px}.seo-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}.seo-panel h2{font-size:18px;letter-spacing:-.04em;margin:0;font-weight:600}.seo-legend{font-size:11px;color:#718077}.seo-legend i{display:inline-block;width:8px;height:8px;background:#5ba47e;margin-right:6px}.seo-bars{height:145px;display:flex;align-items:flex-end;gap:7px;border-bottom:1px solid #d9ded8;background:repeating-linear-gradient(to bottom,transparent 0 35px,#e6ebe5 36px)}.seo-bars span{background:#5ba47e;flex:1;min-width:5px}.seo-axis{display:flex;justify-content:space-between;font:10px var(--font-demo-industrial),monospace;color:#8a958d;margin-top:9px}.seo-next{background:#e8efe9;border-color:#c4d4c7}.seo-next h2{font-size:25px;max-width:260px;margin:22px 0 12px}.seo-next p{font-size:13px;color:#65736a;line-height:1.6;max-width:290px}.seo-next button{border:0;background:#202d27;color:#fff;padding:10px 14px;font-size:12px;cursor:pointer;margin-top:10px}.seo-table-panel{padding-bottom:10px}.seo-search{border:1px solid #cad3cc;background:#fff;display:flex;align-items:center;padding:0 10px}.seo-search input{border:0;outline:0;background:transparent;padding:8px 5px;width:130px;font-size:11px}.seo-search span{color:#6f7a72}.seo-table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;font:10px var(--font-demo-industrial),monospace;letter-spacing:.1em;color:#8a958d;text-transform:uppercase;font-weight:400;padding:0 10px 12px}td{border-top:1px solid #e1e5e0;padding:13px 10px;color:#6b776f;white-space:nowrap}td strong{color:#28332d;font-weight:500}.seo-position{font-family:var(--font-demo-industrial),monospace;color:#28332d}.seo-up{color:#2f8b64}.seo-down{color:#b96448}.seo-tag{font-size:10px;border:1px solid #c9d7cd;padding:4px 7px;color:#4c705b}.seo-table-panel code,.seo-technical code{font:11px var(--font-demo-industrial),monospace;color:#567061}.seo-empty{color:#6f7a72;font-size:13px}.seo-technical,.seo-actions{padding-bottom:8px}.seo-check-row,.seo-action-row{display:grid;grid-template-columns:70px 1fr 150px;align-items:center;gap:16px;padding:16px 0;border-top:1px solid #e1e5e0;font-size:13px}.seo-check-row:first-of-type,.seo-action-row:first-of-type{border-top:0}.seo-status{font:9px var(--font-demo-industrial),monospace;letter-spacing:.08em}.seo-status-warn{color:#b96a36}.seo-status-open{color:#557b61}.seo-status-good{color:#2f8b64}.seo-muted{font-size:11px;color:#89938b}.seo-action-row{grid-template-columns:22px 1fr auto;cursor:pointer}.seo-action-row input{accent-color:#2f8b64;width:16px;height:16px}.seo-action-row.is-done span{text-decoration:line-through;color:#879188}.seo-footnote{font:10px var(--font-demo-industrial),monospace;color:#8a958d;margin:18px 0 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:800px){.seo-layout{display:block}.seo-sidebar{min-height:auto;border-right:0;border-bottom:1px solid #d9ded8;padding:18px 20px}.seo-sidebar nav{display:flex;overflow:auto}.seo-sidebar nav button{white-space:nowrap}.seo-sidebar-note{display:none}.seo-content{padding:34px 20px}.seo-heading-row{display:block}.seo-period{margin-top:24px;width:max-content}.seo-attention{display:block}.seo-attention p{margin-top:16px}.seo-grid-three,.seo-split{grid-template-columns:1fr}.seo-panel{padding:18px}.seo-check-row{grid-template-columns:62px 1fr}.seo-check-row .seo-muted{grid-column:2}.seo-table-panel .seo-panel-head{display:block}.seo-search{margin-top:16px;width:max-content}.seo-search input{width:190px}.seo-topline{padding:0 20px}.seo-account{font-size:9px}}
+        @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+      `}</style>
+    </>
   )
 }

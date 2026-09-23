@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Restaurant Menu Site Demo — Warung Indah',
-  description:
-    'Demo van een Surinaamse restaurant website met volledig digitaal menu, reserveringsformulier en openingstijden.',
+  title: 'Warung Indah - Restaurant Website Demo',
+  description: 'Conceptdemo van een Surinaamse menukaart met open-status en reserveringsflow.',
   openGraph: {
-    title: 'Restaurant Menu Site Demo — NextX Agency',
-    description: 'Restaurant website met digitaal menu, reserveringsformulier en openingstijden.',
+    title: 'Warung Indah - Restaurant Website Demo - NextX Agency',
+    description: 'Food-first conceptwebsite voor een fictieve warung in Paramaribo.',
     url: '/examples/restaurant-menu-site',
   },
   alternates: { canonical: '/examples/restaurant-menu-site' },
+  robots: { index: false, follow: true },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -1,368 +1,66 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import DemoImage from '../_components/DemoImage'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ShoppingCart, X, Plus, Minus, Trash2, Search, Star, ChevronRight, SlidersHorizontal, Truck, Shield, Headphones, Monitor, Smartphone, Laptop, Cpu, Camera, Gamepad2, BatteryCharging, Wifi } from 'lucide-react'
-import { toast } from 'sonner'
-import FloatingWhatsApp from '../_components/FloatingWhatsApp'
+import Image from 'next/image'
+import { useMemo, useState } from 'react'
+import { DemoOutro } from '../_components/DemoOutro'
 
-/* ─── Logo ─── */
-function TechMartLogo({ size = 36 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-      <rect width="48" height="48" rx="10" fill="#2563eb" />
-      <path d="M14 14h20v4H14z" fill="white" />
-      <path d="M22 18h4v16h-4z" fill="white" />
-      <circle cx="24" cy="38" r="3" fill="#60a5fa" />
-    </svg>
-  )
-}
-
-type Product = {
-  id: number; name: string; price: number; originalPrice?: number; img: string; category: string; brand: string; rating: number; reviews: number; badge?: string; specs?: string
-}
-type CartItem = Product & { qty: number }
+type Product = { name: string; category: string; price: number; spec: string; stock: string; image: string }
 
 const products: Product[] = [
-  { id: 1, name: 'MacBook Air M3 15"', price: 5499, originalPrice: 5999, img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop&q=80', category: 'Laptops', brand: 'Apple', rating: 4.9, reviews: 128, badge: 'Bestseller', specs: 'M3, 16GB RAM, 512GB SSD' },
-  { id: 2, name: 'Samsung Galaxy S24 Ultra', price: 4299, img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=400&fit=crop&q=80', category: 'Smartphones', brand: 'Samsung', rating: 4.8, reviews: 95, badge: 'Nieuw', specs: '256GB, Titanium, AI Camera' },
-  { id: 3, name: 'Sony WH-1000XM5', price: 1299, originalPrice: 1499, img: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&h=400&fit=crop&q=80', category: 'Audio', brand: 'Sony', rating: 4.9, reviews: 210, badge: 'Populair', specs: 'ANC, 30hr batterij, LDAC' },
-  { id: 4, name: 'iPad Pro 13" M4', price: 4899, img: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop&q=80', category: 'Tablets', brand: 'Apple', rating: 4.8, reviews: 67, specs: 'M4 chip, 256GB, WiFi+5G' },
-  { id: 5, name: 'Dell UltraSharp 27" 4K', price: 2199, originalPrice: 2599, img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop&q=80', category: 'Monitoren', brand: 'Dell', rating: 4.7, reviews: 43, specs: 'IPS, USB-C, 99% sRGB' },
-  { id: 6, name: 'PS5 Slim Digital Edition', price: 1799, img: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop&q=80', category: 'Gaming', brand: 'Sony', rating: 4.6, reviews: 156, badge: 'Sale', specs: '1TB SSD, DualSense V2' },
-  { id: 7, name: 'Canon EOS R6 Mark II', price: 8999, img: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop&q=80', category: 'Camera', brand: 'Canon', rating: 4.9, reviews: 34, specs: '24.2MP, 4K 60fps, IBIS' },
-  { id: 8, name: 'iPhone 15 Pro Max', price: 4999, img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=400&fit=crop&q=80', category: 'Smartphones', brand: 'Apple', rating: 4.8, reviews: 189, badge: 'Bestseller', specs: '256GB, Titanium, A17 Pro' },
-  { id: 9, name: 'Logitech MX Master 3S', price: 449, img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop&q=80', category: 'Accessoires', brand: 'Logitech', rating: 4.7, reviews: 87, specs: 'Ergonomisch, USB-C, Bolt' },
-  { id: 10, name: 'Samsung 49" Odyssey G9', price: 4799, originalPrice: 5499, img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=400&fit=crop&q=80', category: 'Monitoren', brand: 'Samsung', rating: 4.6, reviews: 52, badge: 'Sale', specs: 'OLED, 240Hz, 1ms, Curved' },
-  { id: 11, name: 'AirPods Pro 2 USB-C', price: 999, img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=400&fit=crop&q=80', category: 'Audio', brand: 'Apple', rating: 4.8, reviews: 245, badge: 'Populair', specs: 'ANC, Adaptive Audio, IP54' },
-  { id: 12, name: 'ASUS ROG Strix G16', price: 6299, img: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=400&fit=crop&q=80', category: 'Laptops', brand: 'ASUS', rating: 4.7, reviews: 38, specs: 'RTX 4070, i9, 32GB, 165Hz' },
-  { id: 13, name: 'Samsung Galaxy Tab S9 FE', price: 1899, img: 'https://images.unsplash.com/photo-1561154464-82e9aab32f4e?w=400&h=400&fit=crop&q=80', category: 'Tablets', brand: 'Samsung', rating: 4.5, reviews: 29, specs: '10.9", S Pen, 128GB' },
-  { id: 14, name: 'Nintendo Switch OLED', price: 1399, img: 'https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&h=400&fit=crop&q=80', category: 'Gaming', brand: 'Nintendo', rating: 4.7, reviews: 178, specs: '7" OLED, 64GB, White/Neon' },
-  { id: 15, name: 'GoPro HERO12 Black', price: 1699, img: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=400&fit=crop&q=80', category: 'Camera', brand: 'GoPro', rating: 4.6, reviews: 64, badge: 'Nieuw', specs: '5.3K, HyperSmooth 6.0' },
-  { id: 16, name: 'Anker PowerBank 26800', price: 299, img: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop&q=80', category: 'Accessoires', brand: 'Anker', rating: 4.5, reviews: 112, specs: '26800mAh, 65W USB-C PD' },
+  { name: 'Orion 14 laptop', category: 'Laptops', price: 4299, spec: '14 inch / 16GB / 512GB SSD', stock: 'Op voorraad', image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&h=800&fit=crop&q=82' },
+  { name: 'AeroPad 11', category: 'Tablets', price: 1899, spec: '11 inch / 128GB / WiFi', stock: 'Op bestelling', image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&h=800&fit=crop&q=82' },
+  { name: 'Norda ANC headphones', category: 'Audio', price: 899, spec: 'Active noise cancelling / 32 uur', stock: 'Op voorraad', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&h=800&fit=crop&q=82' },
+  { name: 'Vector 27 display', category: 'Displays', price: 1699, spec: '27 inch / 4K / USB-C', stock: 'Op voorraad', image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&h=800&fit=crop&q=82' },
+  { name: 'Core wireless set', category: 'Accessoires', price: 349, spec: 'Toetsenbord + muis / USB-C', stock: 'Op voorraad', image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&h=800&fit=crop&q=82' },
+  { name: 'Pulse game controller', category: 'Gaming', price: 499, spec: 'Draadloos / haptic feedback', stock: 'Op voorraad', image: 'https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=800&h=800&fit=crop&q=82' },
 ]
 
-const allCategories = ['Alle', ...Array.from(new Set(products.map(p => p.category)))]
-const allBrands = ['Alle', ...Array.from(new Set(products.map(p => p.brand)))]
-const catIcons: Record<string, React.ReactNode> = { Laptops: <Laptop className="w-3.5 h-3.5" />, Smartphones: <Smartphone className="w-3.5 h-3.5" />, Audio: <Headphones className="w-3.5 h-3.5" />, Monitoren: <Monitor className="w-3.5 h-3.5" />, Gaming: <Gamepad2 className="w-3.5 h-3.5" />, Camera: <Camera className="w-3.5 h-3.5" />, Tablets: <Cpu className="w-3.5 h-3.5" />, Accessoires: <BatteryCharging className="w-3.5 h-3.5" /> }
+const categories = ['Alle', 'Laptops', 'Tablets', 'Audio', 'Displays', 'Accessoires', 'Gaming']
 
 export default function TechMartPage() {
-  const [cart, setCart] = useState<CartItem[]>([])
-  const [cartOpen, setCartOpen] = useState(false)
-  const [category, setCategory] = useState('Alle')
-  const [brand, setBrand] = useState('Alle')
   const [search, setSearch] = useState('')
-  const [sort, setSort] = useState('popular')
-  const [filtersOpen, setFiltersOpen] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [category, setCategory] = useState('Alle')
+  const [sort, setSort] = useState('relevant')
+  const [selected, setSelected] = useState<Product | null>(null)
+  const [cart, setCart] = useState<Product[]>([])
+  const [cartOpen, setCartOpen] = useState(false)
+  const [confirmation, setConfirmation] = useState(false)
 
-  const filtered = useMemo(() => {
-    let list = [...products]
-    if (category !== 'Alle') list = list.filter(p => p.category === category)
-    if (brand !== 'Alle') list = list.filter(p => p.brand === brand)
-    if (search.trim()) { const q = search.toLowerCase(); list = list.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)) }
-    if (sort === 'price-low') list.sort((a, b) => a.price - b.price)
-    else if (sort === 'price-high') list.sort((a, b) => b.price - a.price)
-    else if (sort === 'rating') list.sort((a, b) => b.rating - a.rating)
-    return list
-  }, [category, brand, search, sort])
+  const list = useMemo(() => {
+    const result = products.filter(item => (category === 'Alle' || item.category === category) && `${item.name} ${item.spec}`.toLowerCase().includes(search.toLowerCase()))
+    return [...result].sort((a, b) => sort === 'low' ? a.price - b.price : sort === 'high' ? b.price - a.price : a.name.localeCompare(b.name))
+  }, [category, search, sort])
 
-  const cartTotal = cart.reduce((s, i) => s + i.price * i.qty, 0)
-  const cartCount = cart.reduce((s, i) => s + i.qty, 0)
+  const addToCart = (product: Product) => setCart(items => items.some(item => item.name === product.name) ? items : [...items, product])
+  const total = cart.reduce((sum, item) => sum + item.price, 0)
 
-  const addToCart = (p: Product) => {
-    setCart(prev => {
-      const ex = prev.find(i => i.id === p.id)
-      if (ex) return prev.map(i => i.id === p.id ? { ...i, qty: i.qty + 1 } : i)
-      return [...prev, { ...p, qty: 1 }]
-    })
-    toast.success(`${p.name} toegevoegd`, { description: `SRD ${p.price.toLocaleString()} · ${cartCount + 1} item(s) in wagen` })
-  }
-
-  const updateQty = (id: number, d: number) => setCart(prev => prev.map(i => i.id === id ? { ...i, qty: Math.max(1, i.qty + d) } : i))
-  const removeFromCart = (id: number) => { setCart(prev => prev.filter(i => i.id !== id)); toast.info('Product verwijderd') }
-
-  // Elektronicazaak: strakke, compacte kopletters. Zet de kopletter voor
-  // deze hele demo, zodat elk voorbeeld een eigen gezicht heeft in plaats
-  // van dat van NextX.
-  return (
-    <div
-      style={{ '--font-heading': 'var(--font-demo-industrial)' } as React.CSSProperties}
-      className="min-h-screen bg-slate-50"
-    >
-      {/* ═══ HEADER ═══ */}
-      <header className="sticky top-10 z-30 bg-slate-900 text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <TechMartLogo size={28} />
-            <span className="text-base font-bold hidden sm:block" style={{ fontFamily: 'var(--font-heading)' }}>TechMart SUR</span>
-          </div>
-          <div className="flex-1 max-w-xl relative hidden md:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input type="text" placeholder="Zoek producten, merken..." value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-sm bg-slate-800 border border-slate-700 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <button onClick={() => setCartOpen(true)} className="relative p-2 rounded-sm hover:bg-slate-800 transition-colors" aria-label="Cart">
-            <ShoppingCart className="w-5 h-5" />
-            {cartCount > 0 && <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-blue-500 text-[10px] font-bold rounded-full flex items-center justify-center">{cartCount}</span>}
-          </button>
-        </div>
-      </header>
-
-      {/* ═══ HERO BANNER ═══ */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 py-10 lg:py-14">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1">
-            <span className="text-xs font-bold tracking-wider uppercase text-blue-200">Week Deals</span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mt-2 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              Elektronica, <span className="text-yellow-300">op voorraad</span>
-            </h1>
-            <p className="text-blue-100 max-w-md mb-6">Zoek op merk, categorie of prijs, leg in de wagen en reken af. Bezorging in Paramaribo, ophalen kan ook.</p>
-            <div className="flex gap-3">
-              <a href="#products" className="px-5 py-2.5 bg-white text-blue-700 font-bold rounded-sm text-sm hover:bg-blue-50 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
-                Shop nu <ChevronRight className="w-4 h-4 inline" />
-              </a>
-              <a href="#products" onClick={() => setCategory('Gaming')} className="px-5 py-2.5 bg-blue-700 text-white font-bold rounded-sm text-sm hover:bg-blue-600 transition-colors border border-blue-500" style={{ fontFamily: 'var(--font-heading)' }}>
-                <Gamepad2 className="w-4 h-4 inline mr-1" /> Gaming Deals
-              </a>
-            </div>
-          </div>
-          <DemoImage src="https://images.unsplash.com/photo-1468495244123-6c6c332e6c60?w=500&h=350&fit=crop&q=80" alt="Tech products" width={500} height={350} className="w-full md:w-[360px] rounded-sm shadow-2xl object-cover aspect-[3/2]" />
-        </div>
-      </section>
-
-      {/* ═══ TRUST BAR ═══ */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-6 text-xs text-slate-600">
-          {[{ icon: Truck, t: 'Gratis bezorging > SRD 500' }, { icon: Shield, t: 'Fabrieksgarantie' }, { icon: Headphones, t: 'Klantenservice ma t/m za' }, { icon: Wifi, t: 'Na-verkoop support' }].map(f => (
-            <div key={f.t} className="flex items-center gap-1.5"><f.icon className="w-3.5 h-3.5 text-blue-500" />{f.t}</div>
-          ))}
-        </div>
+  return <div className="min-h-screen bg-[#f7f8fa] text-[#17202b]" style={{ fontFamily: 'var(--font-demo-product)' }}>
+    <header className="border-b border-[#17202b]/15 bg-white">
+      <div className="mx-auto flex max-w-[90rem] items-center gap-5 px-4 py-4 md:px-8">
+        <a href="#catalogus" className="text-xl font-bold tracking-[-0.06em]">TECH<span className="text-[#2364d2]">MART</span> <small className="text-[0.58rem] font-normal tracking-[0.18em] text-[#667486]">SUR</small></a>
+        <div className="hidden flex-1 md:block"><input aria-label="Zoek in assortiment" value={search} onChange={event => setSearch(event.target.value)} className="w-full border border-[#17202b]/20 bg-[#f7f8fa] px-4 py-2.5 text-sm" placeholder="Zoek op product of specificatie" /></div>
+        <button type="button" className="ml-auto text-sm font-semibold">Vergelijk (0)</button>
+        <button type="button" onClick={() => setCartOpen(true)} className="border-l border-[#17202b]/15 pl-4 text-sm font-semibold">Cart ({cart.length})</button>
       </div>
+      <div className="border-t border-[#17202b]/10 px-4 py-2 md:hidden"><input aria-label="Zoek producten" value={search} onChange={event => setSearch(event.target.value)} className="w-full border border-[#17202b]/20 bg-[#f7f8fa] px-3 py-2 text-sm" placeholder="Zoek producten" /></div>
+    </header>
 
-      {/* ═══ PRODUCTS ═══ */}
-      <section className="py-8 lg:py-12" id="products">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Mobile search */}
-          <div className="md:hidden mb-4 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input type="text" placeholder="Zoek producten..." value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-sm bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-
-          <div className="flex gap-6">
-            {/* SIDEBAR FILTERS (desktop) */}
-            <aside className="hidden lg:block w-56 flex-shrink-0">
-              <div className="bg-white rounded-sm border border-slate-200 p-4 sticky top-28 space-y-5">
-                <div>
-                  <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">Categorie</h3>
-                  <div className="space-y-1">
-                    {allCategories.map(c => (
-                      <button key={c} onClick={() => setCategory(c)} className={`flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors ${category === c ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:bg-slate-50'}`}>
-                        {c !== 'Alle' && catIcons[c]} {c}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">Merk</h3>
-                  <div className="space-y-1">
-                    {allBrands.map(b => (
-                      <button key={b} onClick={() => setBrand(b)} className={`w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors ${brand === b ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:bg-slate-50'}`}>{b}</button>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">Sorteren</h3>
-                  <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-2 py-1.5 rounded-sm border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="popular">Populair</option>
-                    <option value="price-low">Prijs: laag → hoog</option>
-                    <option value="price-high">Prijs: hoog → laag</option>
-                    <option value="rating">Beste beoordeling</option>
-                  </select>
-                </div>
-              </div>
-            </aside>
-
-            {/* MAIN */}
-            <div className="flex-1 min-w-0">
-              {/* Mobile filter bar */}
-              <div className="lg:hidden flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button onClick={() => setFiltersOpen(!filtersOpen)} className="flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-200 rounded-sm text-sm font-medium flex-shrink-0">
-                  <SlidersHorizontal className="w-3.5 h-3.5" /> Filters
-                </button>
-                {allCategories.slice(1).map(c => (
-                  <button key={c} onClick={() => setCategory(category === c ? 'Alle' : c)}
-                    className={`flex items-center gap-1.5 px-3 py-2 rounded-sm text-sm font-medium flex-shrink-0 ${category === c ? 'bg-blue-600 text-white' : 'bg-white border border-slate-200'}`}>
-                    {catIcons[c]} {c}
-                  </button>
-                ))}
-              </div>
-
-              {/* Mobile filter panel */}
-              <AnimatePresence>
-                {filtersOpen && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="lg:hidden overflow-hidden mb-4">
-                    <div className="bg-white rounded-sm border border-slate-200 p-4 flex flex-wrap gap-4">
-                      <div className="flex-1 min-w-[140px]">
-                        <label className="text-xs font-bold text-slate-500 block mb-1">Merk</label>
-                        <select value={brand} onChange={e => setBrand(e.target.value)} className="w-full px-3 py-2 rounded-sm border border-slate-200 text-sm">
-                          {allBrands.map(b => <option key={b} value={b}>{b}</option>)}
-                        </select>
-                      </div>
-                      <div className="flex-1 min-w-[140px]">
-                        <label className="text-xs font-bold text-slate-500 block mb-1">Sorteren</label>
-                        <select value={sort} onChange={e => setSort(e.target.value)} className="w-full px-3 py-2 rounded-sm border border-slate-200 text-sm">
-                          <option value="popular">Populair</option>
-                          <option value="price-low">Prijs: laag → hoog</option>
-                          <option value="price-high">Prijs: hoog → laag</option>
-                          <option value="rating">Beste beoordeling</option>
-                        </select>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <p className="text-sm text-slate-500 mb-4">{filtered.length} producten gevonden</p>
-
-              {/* GRID */}
-              <motion.div layout className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-4">
-                <AnimatePresence mode="popLayout">
-                  {filtered.map(p => (
-                    <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-                      className="group bg-white rounded-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
-                      onClick={() => setSelectedProduct(p)}>
-                      <div className="relative aspect-square overflow-hidden bg-slate-100">
-                        <DemoImage src={p.img} alt={p.name} width={500} height={500} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        {p.badge && <span className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold rounded-full ${p.badge === 'Sale' ? 'bg-red-500 text-white' : p.badge === 'Nieuw' ? 'bg-green-500 text-white' : 'bg-blue-500 text-white'}`}>{p.badge}</span>}
-                      </div>
-                      <div className="p-3">
-                        <p className="text-[10px] text-slate-400 font-medium uppercase">{p.brand} · {p.category}</p>
-                        <h3 className="font-bold text-slate-900 text-sm leading-tight mt-0.5 line-clamp-2" style={{ fontFamily: 'var(--font-heading)' }}>{p.name}</h3>
-                        {p.specs && <p className="text-[11px] text-slate-500 mt-1 truncate">{p.specs}</p>}
-                        <div className="flex items-center gap-1 mt-1.5">
-                          <Star className="w-3 h-3 fill-amber-400 text-amber-400" /><span className="text-xs text-slate-600">{p.rating}</span><span className="text-[10px] text-slate-400">({p.reviews})</span>
-                        </div>
-                        <div className="flex items-center gap-2 mt-2">
-                          <span className="font-bold text-blue-600 text-sm">SRD {p.price.toLocaleString()}</span>
-                          {p.originalPrice && <span className="text-xs text-slate-400 line-through">SRD {p.originalPrice.toLocaleString()}</span>}
-                        </div>
-                        <button onClick={e => { e.stopPropagation(); addToCart(p) }}
-                          className="w-full mt-2 py-2 bg-blue-600 text-white text-xs font-bold rounded-sm hover:bg-blue-700 transition-colors opacity-0 group-hover:opacity-100" style={{ fontFamily: 'var(--font-heading)' }}>
-                          <ShoppingCart className="w-3.5 h-3.5 inline mr-1" /> In wagen
-                        </button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-slate-500">
-                  <Search className="w-10 h-10 mx-auto mb-3 text-slate-300" />
-                  <p className="font-bold">Geen producten gevonden</p>
-                  <p className="text-sm mt-1">Probeer andere filters of zoekterm</p>
-                  <button onClick={() => { setCategory('Alle'); setBrand('Alle'); setSearch('') }} className="mt-3 px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-sm">Reset filters</button>
-                </div>
-              )}
-            </div>
-          </div>
+    <main id="catalogus" className="mx-auto max-w-[90rem] px-4 py-8 md:px-8 md:py-12">
+      <section className="grid gap-6 border-b border-[#17202b]/15 pb-8 md:grid-cols-[1fr_auto] md:items-end"><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2364d2]">Elektronica voor thuis en werk</p><h1 className="mt-3 max-w-2xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">Vergelijk op wat telt.</h1></div><p className="max-w-xs text-sm leading-6 text-[#667486]">Fictief assortiment met echte productlogica. Zoek, filter en bekijk specificaties.</p></section>
+      <section className="grid gap-8 py-8 lg:grid-cols-[13rem_1fr]"><aside><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#667486]">Categorie</p><nav className="mt-4 grid gap-1">{categories.map(item => <button key={item} type="button" onClick={() => setCategory(item)} className={`border-l-2 px-3 py-2 text-left text-sm ${category === item ? 'border-[#2364d2] bg-[#eaf0fc] font-semibold text-[#2364d2]' : 'border-transparent text-[#667486]'}`}>{item}</button>)}</nav></aside>
+        <div><div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-y border-[#17202b]/15 py-3 text-sm"><span className="text-[#667486]">{list.length} producten</span><label className="flex items-center gap-2">Sorteer<select value={sort} onChange={event => setSort(event.target.value)} className="border border-[#17202b]/20 bg-white px-2 py-1.5 text-sm"><option value="relevant">Naam</option><option value="low">Prijs laag-hoog</option><option value="high">Prijs hoog-laag</option></select></label></div>
+          <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">{list.map(product => <article key={product.name} className="group"><button type="button" onClick={() => setSelected(product)} className="block w-full text-left"><div className="relative aspect-square overflow-hidden bg-white"><Image src={product.image} alt={product.name} fill sizes="(min-width: 1280px) 30vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.025]" /></div><div className="mt-3"><div className="flex items-baseline justify-between gap-3"><h2 className="font-semibold">{product.name}</h2><span className="font-semibold">SRD {product.price}</span></div><p className="mt-1 text-xs text-[#667486]">{product.spec}</p><p className={`mt-3 text-xs ${product.stock === 'Op voorraad' ? 'text-[#2e7d5b]' : 'text-[#667486]'}`}>{product.stock}</p></div></button><button type="button" onClick={() => addToCart(product)} className="mt-3 border border-[#17202b]/25 px-3 py-2 text-xs font-semibold">{cart.some(item => item.name === product.name) ? 'In cart' : 'Add to cart'}</button></article>)}</div>
+          {list.length === 0 && <div className="border border-dashed border-[#17202b]/25 p-10 text-center text-[#667486]">Geen producten gevonden. Pas je zoekterm of categorie aan.</div>}
         </div>
       </section>
+    </main>
 
-      {/* ═══ PRODUCT DETAIL MODAL ═══ */}
-      <AnimatePresence>
-        {selectedProduct && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setSelectedProduct(null)}>
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-sm max-w-2xl w-full max-h-[85vh] overflow-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-              <div className="grid sm:grid-cols-2 gap-0">
-                <div className="relative bg-slate-100">
-                  <DemoImage src={selectedProduct.img} alt={selectedProduct.name} width={600} height={600} className="w-full aspect-square object-cover" />
-                  <button onClick={() => setSelectedProduct(null)} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center" aria-label="Sluiten"><X className="w-4 h-4" /></button>
-                </div>
-                <div className="p-6 flex flex-col">
-                  <p className="text-xs text-slate-400 font-medium uppercase">{selectedProduct.brand} · {selectedProduct.category}</p>
-                  <h3 className="text-xl font-bold text-slate-900 mt-1 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{selectedProduct.name}</h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="flex">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className={`w-4 h-4 ${i < Math.floor(selectedProduct.rating) ? 'fill-amber-400 text-amber-400' : 'text-slate-200'}`} />)}</div>
-                    <span className="text-sm text-slate-500">{selectedProduct.rating} ({selectedProduct.reviews} reviews)</span>
-                  </div>
-                  {selectedProduct.specs && <p className="text-sm text-slate-600 bg-slate-50 rounded-sm p-3 mb-4">{selectedProduct.specs}</p>}
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="text-2xl font-bold text-blue-600">SRD {selectedProduct.price.toLocaleString()}</span>
-                    {selectedProduct.originalPrice && <span className="text-lg text-slate-400 line-through">SRD {selectedProduct.originalPrice.toLocaleString()}</span>}
-                  </div>
-                  <div className="mt-auto space-y-2">
-                    <button onClick={() => { addToCart(selectedProduct); setSelectedProduct(null) }} className="w-full py-3 bg-blue-600 text-white font-bold rounded-sm hover:bg-blue-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
-                      <ShoppingCart className="w-4 h-4 inline mr-2" /> Toevoegen aan wagen
-                    </button>
-                    <div className="flex gap-4 text-[11px] text-slate-500 justify-center pt-1">
-                      <span><Truck className="w-3 h-3 inline mr-1" />Gratis bezorging</span>
-                      <span><Shield className="w-3 h-3 inline mr-1" />Fabrieksgarantie</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <footer className="border-t border-[#17202b]/15 bg-white px-4 py-7 md:px-8"><div className="mx-auto flex max-w-[90rem] flex-wrap justify-between gap-4 text-sm"><span className="font-semibold">TechMart SUR</span><span className="text-[#667486]">Betaling en levering zijn gesimuleerd in deze demo.</span></div></footer>
 
-      {/* ═══ CART DRAWER ═══ */}
-      <AnimatePresence>
-        {cartOpen && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/40 z-50" onClick={() => setCartOpen(false)} />
-            <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl flex flex-col">
-              <div className="flex items-center justify-between p-5 border-b border-slate-200">
-                <h2 className="text-lg font-bold text-slate-900" style={{ fontFamily: 'var(--font-heading)' }}>Winkelwagen ({cartCount})</h2>
-                <button onClick={() => setCartOpen(false)} className="p-2 rounded-sm hover:bg-slate-50" aria-label="Sluiten"><X className="w-5 h-5" /></button>
-              </div>
-              <div className="flex-1 overflow-auto p-5 space-y-3">
-                {cart.length === 0 && <p className="text-center text-slate-400 py-12">Uw wagen is leeg</p>}
-                {cart.map(i => (
-                  <div key={i.id} className="flex gap-3 bg-slate-50 rounded-sm p-3">
-                    <DemoImage src={i.img} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-sm object-cover" />
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-sm text-slate-900 truncate">{i.name}</h4>
-                      <p className="text-sm text-blue-600 font-bold">SRD {i.price.toLocaleString()}</p>
-                      <div className="flex items-center gap-2 mt-1.5">
-                        <button onClick={() => updateQty(i.id, -1)} className="w-6 h-6 rounded bg-white border border-slate-200 flex items-center justify-center" aria-label="Minder"><Minus className="w-3 h-3" /></button>
-                        <span className="text-sm font-bold w-5 text-center">{i.qty}</span>
-                        <button onClick={() => updateQty(i.id, 1)} className="w-6 h-6 rounded bg-white border border-slate-200 flex items-center justify-center" aria-label="Meer"><Plus className="w-3 h-3" /></button>
-                        <button onClick={() => removeFromCart(i.id)} className="ml-auto p-1 text-slate-400 hover:text-red-500" aria-label="Verwijderen"><Trash2 className="w-3.5 h-3.5" /></button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {cart.length > 0 && (
-                <div className="p-5 border-t border-slate-200">
-                  <div className="flex justify-between mb-3"><span className="text-slate-600">Totaal</span><span className="text-lg font-bold">SRD {cartTotal.toLocaleString()}</span></div>
-                  <button onClick={() => { setCartOpen(false); toast.success('Checkout functionaliteit beschikbaar in productie', { description: 'Demo winkelwagen werkt! In productie koppelen we dit aan een betaalprovider.' }) }}
-                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-sm hover:bg-blue-700 transition-colors" style={{ fontFamily: 'var(--font-heading)' }}>
-                    Afrekenen <ChevronRight className="w-4 h-4 inline" />
-                  </button>
-                </div>
-              )}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+    {selected && <div className="fixed inset-0 z-[70] overflow-y-auto bg-[#17202b]/65 p-4 md:p-10" role="dialog" aria-modal="true" aria-label={selected.name}><div className="mx-auto max-w-4xl bg-white p-5 md:p-8"><div className="grid gap-8 md:grid-cols-2"><div className="relative aspect-square bg-[#f7f8fa]"><Image src={selected.image} alt={selected.name} fill sizes="50vw" className="object-cover" /></div><div className="self-center"><p className="text-xs uppercase tracking-[0.18em] text-[#2364d2]">{selected.category}</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.06em]">{selected.name}</h2><p className="mt-4 text-xl font-semibold">SRD {selected.price}</p><p className="mt-4 text-sm leading-6 text-[#667486]">{selected.spec}</p><p className="mt-3 text-sm text-[#2e7d5b]">{selected.stock}</p><button type="button" onClick={() => { addToCart(selected); setSelected(null) }} className="mt-8 bg-[#2364d2] px-5 py-3 text-sm font-semibold text-white">Add to cart</button><button type="button" onClick={() => setSelected(null)} className="ml-4 text-sm underline">Sluiten</button></div></div></div></div>}
 
-      {/* ═══ FOOTER ═══ */}
-      <footer className="bg-slate-900 py-8">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2"><TechMartLogo size={24} /><span className="font-bold text-white text-sm">TechMart SUR</span></div>
-          <p className="text-sm text-slate-500">© {new Date().getFullYear()} TechMart Suriname. Alle prijzen in SRD, inclusief BTW.</p>
-        </div>
-      </footer>
-
-      <FloatingWhatsApp company="TechMart SUR" message="Hallo NextX, ik bekeek het voorbeeld TechMart en wil zoiets voor mijn bedrijf." />
-    </div>
-  )
+    {cartOpen && <div className="fixed inset-0 z-[75] bg-[#17202b]/45 p-4 md:p-10" role="dialog" aria-modal="true" aria-label="TechMart winkelwagen"><div className="ml-auto min-h-full w-full max-w-md bg-white p-6 md:p-8"><div className="flex items-center justify-between"><h2 className="text-2xl font-semibold tracking-[-0.05em]">Cart</h2><button type="button" onClick={() => setCartOpen(false)} className="text-sm underline">Sluiten</button></div>{cart.length === 0 ? <p className="mt-10 text-sm text-[#667486]">Je cart is nog leeg.</p> : <><div className="mt-8 divide-y divide-[#17202b]/15">{cart.map(item => <div key={item.name} className="flex justify-between gap-4 py-4 text-sm"><span>{item.name}<small className="mt-1 block text-xs text-[#667486]">{item.spec}</small></span><strong>SRD {item.price}</strong></div>)}</div><div className="mt-6 flex justify-between border-t border-[#17202b]/15 pt-5 font-semibold"><span>Totaal</span><span>SRD {total}</span></div><button type="button" onClick={() => { setConfirmation(true); setCartOpen(false) }} className="mt-7 w-full bg-[#2364d2] px-5 py-3 text-sm font-semibold text-white">Demo-checkout</button></>}</div></div>}
+    {confirmation && <div className="fixed inset-0 z-[80] grid place-items-center bg-[#17202b]/55 p-5" role="dialog" aria-modal="true" aria-label="Demo checkout"><div className="w-full max-w-sm bg-white p-7"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2364d2]">Simulatie</p><h2 className="mt-3 text-2xl font-semibold">Checkout staat klaar.</h2><p className="mt-3 text-sm leading-6 text-[#667486]">Er wordt niets betaald of verstuurd. Dit is alleen de interactie van de demo.</p><button type="button" onClick={() => setConfirmation(false)} className="mt-7 bg-[#17202b] px-5 py-3 text-sm font-semibold text-white">Sluiten</button></div></div>}
+    <DemoOutro />
+  </div>
 }

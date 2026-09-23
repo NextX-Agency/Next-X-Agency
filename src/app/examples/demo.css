@@ -1,0 +1,18 @@
+.demo-chrome { font-family: var(--font-plex-mono), ui-monospace, monospace; }
+.demo-outro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding: 1rem var(--gutter);
+  border-top: 1px solid rgba(14, 13, 12, 0.2);
+  background: #f2f0eb;
+  color: #56514b;
+  font-size: 0.82rem;
+}
+.demo-outro p { max-width: 42rem; }
+.demo-outro-link { color: #0e0d0c; font-weight: 650; text-decoration: underline; text-underline-offset: 0.25rem; white-space: nowrap; }
+.demo-outro-link:hover { color: #b54607; }
+@media (max-width: 640px) { .demo-outro { align-items: flex-start; flex-direction: column; } }

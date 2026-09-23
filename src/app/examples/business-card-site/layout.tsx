@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Business Card Site Demo — KaderBouw NV',
-  description:
-    'Demo van een professionele one-page business card website voor een bouwbedrijf. Counter-animaties, contactformulier en responsive design.',
+  title: 'KaderBouw NV - Construction Website Demo',
+  description: 'Conceptdemo van een projectgerichte bouwsite met projectfilter en offerteformulier.',
   openGraph: {
-    title: 'Business Card Site Demo — NextX Agency',
-    description: 'One-page digitale identiteit voor een bouwbedrijf met counter-animaties en contactformulier.',
+    title: 'KaderBouw NV - Construction Website Demo - NextX Agency',
+    description: 'Projectgerichte conceptwebsite voor een fictief bouwbedrijf.',
     url: '/examples/business-card-site',
   },
   alternates: { canonical: '/examples/business-card-site' },
+  robots: { index: false, follow: true },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
