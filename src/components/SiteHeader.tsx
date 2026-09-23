@@ -101,10 +101,25 @@ export function SiteHeader() {
         <div className="wrap flex h-[var(--nav-h)] items-center justify-between">
           <Link
             href="/"
-            className="relative block aspect-[1200/519] w-[70px] shrink-0 overflow-hidden rounded-[2px] bg-accent p-[2px]"
+            className="relative block aspect-[1200/519] w-[70px] shrink-0"
             aria-label="NextX Agency, naar de homepage"
           >
-            <Image src="/logo-agency-white.png" alt="" fill priority sizes="70px" className="object-contain" />
+            <Image
+              src="/logo-agency-black.png"
+              alt=""
+              fill
+              priority
+              sizes="70px"
+              className={cn('object-contain transition-opacity duration-300', shownTheme === 'dark' && 'opacity-0')}
+            />
+            <Image
+              src="/logo-agency-white.png"
+              alt=""
+              fill
+              priority
+              sizes="70px"
+              className={cn('object-contain transition-opacity duration-300', shownTheme === 'light' && 'opacity-0')}
+            />
           </Link>
 
           <nav aria-label="Hoofdmenu" className="hidden md:block">
