@@ -105,7 +105,7 @@ export function SiteHeader() {
             aria-label="NextX Agency, naar de homepage"
           >
             <Image
-              src="/logo-agency-black.png"
+              src="/logo-agency-black.svg"
               alt=""
               fill
               priority
@@ -113,7 +113,7 @@ export function SiteHeader() {
               className={cn('object-contain transition-opacity duration-300', shownTheme === 'dark' && 'opacity-0')}
             />
             <Image
-              src="/logo-agency-white.png"
+              src="/logo-agency-white.svg"
               alt=""
               fill
               priority

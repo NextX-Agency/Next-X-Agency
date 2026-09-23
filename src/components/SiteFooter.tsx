@@ -26,7 +26,7 @@ export function SiteFooter() {
         <div className="border-b border-line py-12 md:py-16">
           <Link href="/" className="group inline-block" aria-label="NextX, naar de homepage">
             <Image
-              src="/logo-agency-white.png"
+              src="/logo-agency-white.svg"
               alt=""
               width={1200}
               height={519}

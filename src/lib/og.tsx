@@ -14,7 +14,7 @@ const stack: CSSProperties = {
 
 export function SocialImage({ origin }: SocialImageProps) {
   const artUrl = `${origin}/og/nextx-social-v3-art.png`
-  const logoUrl = `${origin}/logo-agency-white.png`
+  const logoUrl = `${origin}/logo-agency-white.svg`
 
   return (
     <div

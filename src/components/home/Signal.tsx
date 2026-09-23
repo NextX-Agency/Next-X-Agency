@@ -11,7 +11,7 @@ export function Signal() {
       <div className="pointer-events-none relative flex h-full items-center justify-center">
         <Image
           id="signal-mark"
-          src="/logo-agency-white.png"
+          src="/logo-agency-white.svg"
           alt=""
           width={1200}
           height={519}
