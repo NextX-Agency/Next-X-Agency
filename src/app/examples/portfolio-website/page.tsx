@@ -5,11 +5,11 @@ import { useState } from 'react'
 import { DemoOutro } from '../_components/DemoOutro'
 
 const work = [
-  { title: 'Nanga / identity', kind: 'Brand system', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=900&fit=crop&q=82' },
-  { title: 'Tropica / packaging', kind: 'Packaging', image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=1200&h=900&fit=crop&q=82' },
-  { title: 'Open House / campaign', kind: 'Campaign', image: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=1200&h=1200&fit=crop&q=82' },
-  { title: 'Savana / coffee', kind: 'Art direction', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=900&fit=crop&q=82' },
-  { title: 'Mara / editorial', kind: 'Print', image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&h=800&fit=crop&q=82' },
+  { title: 'Nanga / identity', kind: 'Brand system', image: '/demo-assets/portfolio-nanga.jpg' },
+  { title: 'Tropica / packaging', kind: 'Packaging', image: '/demo-assets/portfolio-tropica.jpg' },
+  { title: 'Open House / campaign', kind: 'Campaign', image: '/demo-assets/portfolio-open-house.jpg' },
+  { title: 'Savana / coffee', kind: 'Art direction', image: '/demo-assets/portfolio-savana.jpg' },
+  { title: 'Mara / editorial', kind: 'Print', image: '/demo-assets/portfolio-mara.jpg' },
 ]
 
 export default function StudioVibePage() {

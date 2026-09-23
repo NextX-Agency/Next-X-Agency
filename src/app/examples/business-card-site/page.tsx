@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { DemoOutro } from '../_components/DemoOutro'
 
 const projects = [
-  { name: 'Woning aan de Kwatta', type: 'Renovatie', place: 'Kwatta', status: 'Opgeleverd', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&h=800&fit=crop&q=82' },
-  { name: 'Kantoor aan de Tourtonnelaan', type: 'Interieurafbouw', place: 'Rainville', status: 'In uitvoering', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=800&fit=crop&q=82' },
-  { name: 'Houten huis Lelydorp', type: 'Nieuwbouw', place: 'Lelydorp', status: 'Ontwerp', image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&h=800&fit=crop&q=82' },
-  { name: 'Dak en veranda Zorg en Hoop', type: 'Renovatie', place: 'Zorg en Hoop', status: 'Opgeleverd', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop&q=82' },
+  { name: 'Woning aan de Kwatta', type: 'Renovatie', place: 'Kwatta', status: 'Opgeleverd', image: '/demo-assets/kader-kwatta.jpg' },
+  { name: 'Kantoor aan de Tourtonnelaan', type: 'Interieurafbouw', place: 'Rainville', status: 'In uitvoering', image: '/demo-assets/kader-office.jpg' },
+  { name: 'Houten huis Lelydorp', type: 'Nieuwbouw', place: 'Lelydorp', status: 'Ontwerp', image: '/demo-assets/kader-house.jpg' },
+  { name: 'Dak en veranda Zorg en Hoop', type: 'Renovatie', place: 'Zorg en Hoop', status: 'Opgeleverd', image: '/demo-assets/kader-veranda.jpg' },
 ]
 const filters = ['Alle', 'Renovatie', 'Nieuwbouw', 'Interieurafbouw']
 

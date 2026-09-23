@@ -77,7 +77,7 @@ export default function SeoDashboardPage() {
             </div>
           </aside>
 
-          <section className="seo-content">
+          <main className="seo-content">
             <div className="seo-heading-row">
               <div>
                 <p className="seo-kicker">SEO / KLANTPORTAAL</p>
@@ -124,7 +124,7 @@ export default function SeoDashboardPage() {
             {view === 'acties' && <section className="seo-panel seo-actions"><div className="seo-panel-head"><div><span className="seo-kicker">ACTIELIJST</span><h2>Van inzicht naar volgende stap.</h2></div><span className="seo-muted">{done.length} / 3 klaar</span></div>{['Schrijf de intro van /websites opnieuw rond de zoekvraag', 'Voeg een link toe van de voorbeelden naar SEO', 'Controleer de titel en beschrijving van /seo'].map(item => <label className={`seo-action-row ${done.includes(item) ? 'is-done' : ''}`} key={item}><input type="checkbox" checked={done.includes(item)} onChange={() => toggleDone(item)} /><span>{item}</span><small>Deze maand</small></label>)}</section>}
 
             <p className="seo-footnote">Voorbeeldomgeving · periode: {period} · cijfers en pagina’s zijn illustratief.</p>
-          </section>
+          </main>
         </div>
       </div>
       <DemoOutro />

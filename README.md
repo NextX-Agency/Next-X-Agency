@@ -22,7 +22,7 @@ pnpm build
 Pages under `src/app/(site)` share the header and footer. The prototypes under
 `src/app/examples/*` are standalone sites with a small NextX bar on top.
 
-Project screenshots in `public/work` and example thumbnails in `public/examples`
+Project screenshots in `public/work` and current demo previews in `public/demo-previews`
 are captures of the live sites and prototypes.
 
 The contact form posts to `/api/contact`, which sends mail through Resend

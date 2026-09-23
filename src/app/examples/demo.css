@@ -1,18 +1,35 @@
 .demo-chrome { font-family: var(--font-plex-mono), ui-monospace, monospace; }
-.demo-outro {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  max-width: 90rem;
-  margin-inline: auto;
-  padding: 1rem var(--gutter);
-  border-top: 1px solid rgba(14, 13, 12, 0.2);
+.demo-note {
+  border-top: 1px solid rgba(14, 13, 12, 0.15);
   background: #f2f0eb;
-  color: #56514b;
-  font-size: 0.82rem;
+  padding: 0.75rem var(--gutter);
+  color: #716c64;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-align: center;
 }
-.demo-outro p { max-width: 42rem; }
-.demo-outro-link { color: #0e0d0c; font-weight: 650; text-decoration: underline; text-underline-offset: 0.25rem; white-space: nowrap; }
-.demo-outro-link:hover { color: #b54607; }
-@media (max-width: 640px) { .demo-outro { align-items: flex-start; flex-direction: column; } }
+.demo-note-link {
+  color: #0e0d0c;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+.demo-note-link:hover { color: #b54607; }
+
+/* Construction filters remain a horizontal control on narrow screens. */
+#projecten [aria-pressed] { min-height: 2.75rem; flex-shrink: 0; }
+#projecten > div > div:first-child > div:last-child {
+  max-width: 100%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+/* The dental hero is a single-column grid on phones; let its long headline wrap inside the viewport. */
+#begin { min-width: 0; overflow-x: clip; }
+#begin > section:first-child > div { min-width: 0; }
+
+/* TechMart's category rail scrolls; the catalog grid itself must not grow with it. */
+#catalogus > section > aside,
+#catalogus > section > aside nav,
+#catalogus > section > div { min-width: 0; }

@@ -24,7 +24,7 @@ export const examples: Example[] = [
     group: 'Websites',
     serviceId: 'one-page',
     summary: 'Projectgerichte bouwsite met projectfilter en offerteformulier.',
-    image: '/examples/business-card-site.jpg',
+    image: '/demo-previews/business-card-site.webp',
   },
   {
     slug: 'service-website',
@@ -32,7 +32,7 @@ export const examples: Example[] = [
     group: 'Websites',
     serviceId: 'service-website',
     summary: 'Rustige tandartspraktijk met behandelingen en afspraakflow.',
-    image: '/examples/service-website.jpg',
+    image: '/demo-previews/service-website.webp',
   },
   {
     slug: 'portfolio-website',
@@ -40,7 +40,7 @@ export const examples: Example[] = [
     group: 'Websites',
     serviceId: 'portfolio-website',
     summary: 'Portfolio voor een creatieve studio.',
-    image: '/examples/portfolio-website.jpg',
+    image: '/demo-previews/portfolio-website.webp',
   },
   {
     slug: 'restaurant-menu-site',
@@ -48,7 +48,7 @@ export const examples: Example[] = [
     group: 'Websites',
     serviceId: 'restaurant-website',
     summary: 'Surinaamse menukaart met open-status en reserveren.',
-    image: '/demo-assets/warung-roti-table.webp',
+    image: '/demo-previews/restaurant-menu-site.webp',
   },
   {
     slug: 'starter-webshop',
@@ -56,7 +56,7 @@ export const examples: Example[] = [
     group: 'Webshops',
     serviceId: 'starter-webshop',
     summary: 'Tropical contemporary shop met collectie, bag en demo-checkout.',
-    image: '/demo-assets/bloom-collection.webp',
+    image: '/demo-previews/starter-webshop.webp',
   },
   {
     slug: 'grotere-webshop',
@@ -64,7 +64,7 @@ export const examples: Example[] = [
     group: 'Webshops',
     serviceId: 'large-webshop',
     summary: 'Dichte elektronicacatalogus met zoeken, filters en cart.',
-    image: '/examples/grotere-webshop.jpg',
+    image: '/demo-previews/grotere-webshop.webp',
   },
   {
     slug: 'logo-branding',
@@ -72,7 +72,7 @@ export const examples: Example[] = [
     group: 'Ontwerp',
     serviceId: 'logo',
     summary: 'Redactionele brand world voor een fictief koffiemerk.',
-    image: '/demo-assets/savana-packaging.webp',
+    image: '/demo-previews/logo-branding.webp',
   },
   {
     slug: 'ux-ui-design',
@@ -80,7 +80,7 @@ export const examples: Example[] = [
     group: 'Ontwerp',
     serviceId: 'ux-audit',
     summary: 'Conceptcase met voor/na, ontwerpkeuzes en mobile check.',
-    image: '/examples/ux-ui-design.jpg',
+    image: '/demo-previews/ux-ui-design.webp',
   },
   {
     slug: 'seo',
@@ -88,7 +88,7 @@ export const examples: Example[] = [
     group: 'Tools en support',
     serviceId: 'seo-monthly',
     summary: 'Taakgerichte werkruimte voor zoektermen en SEO-acties.',
-    image: '/examples/seo.jpg',
+    image: '/demo-previews/seo.webp',
   },
   {
     slug: 'hosting',
@@ -96,7 +96,7 @@ export const examples: Example[] = [
     group: 'Tools en support',
     serviceId: 'hosting-basic',
     summary: 'Status, verbruik en back-ups van een website.',
-    image: '/examples/hosting.jpg',
+    image: '/demo-previews/hosting.webp',
   },
   {
     slug: 'ux-kukru',
@@ -104,7 +104,7 @@ export const examples: Example[] = [
     group: 'Tools en support',
     serviceId: 'kukru-business',
     summary: 'Hoe een maandpakket met vaste uren werkt.',
-    image: '/examples/ux-kukru.jpg',
+    image: '/demo-previews/ux-kukru.webp',
   },
 ]
 

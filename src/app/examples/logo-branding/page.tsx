@@ -6,8 +6,8 @@ import { DemoOutro } from '../_components/DemoOutro'
 
 const applications = [
   { title: 'Koffiezak', note: 'Mat charcoal folie, warm cream label', image: '/demo-assets/savana-packaging.webp' },
-  { title: 'Koffiebeker', note: 'Donkergroen keramiek, rustige signatuur', image: 'https://images.unsplash.com/photo-1497515114889-1c154be05ed3?w=1100&h=850&fit=crop&q=82' },
-  { title: 'Tafelkaart', note: 'Aandacht voor materiaal en witruimte', image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1100&h=850&fit=crop&q=82' },
+  { title: 'Koffiebeker', note: 'Donkergroen keramiek, rustige signatuur', image: '/demo-assets/savana-cup.jpg' },
+  { title: 'Tafelkaart', note: 'Aandacht voor materiaal en witruimte', image: '/demo-assets/savana-menu.jpg' },
 ]
 
 export default function SavanaCoffeePage() {
