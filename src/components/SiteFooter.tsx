@@ -30,7 +30,7 @@ export function SiteFooter() {
               alt=""
               width={1200}
               height={519}
-              className="h-auto w-[min(82vw,40rem)] transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-2"
+              className="h-auto w-[min(60vw,24rem)] transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-2"
             />
           </Link>
         </div>

@@ -18,9 +18,6 @@ export function Signal() {
           className="h-auto w-[min(62vw,26rem)]"
         />
       </div>
-      <p className="wrap t-small pointer-events-none absolute inset-x-0 bottom-0 pb-6 text-fg">
-        De lijnen komen uit ons logo.
-      </p>
     </section>
   )
 }
