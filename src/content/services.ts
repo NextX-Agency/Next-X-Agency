@@ -100,7 +100,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'Starter webshop',
         aliases: ['Starter Webshop'],
         summary: 'Een eerste online winkel voor een compact assortiment.',
-        price: { amount: 895, from: true },
+        price: { amount: 950, from: true },
         includes: ['Tot 25 producten', 'Winkelwagen en checkout', 'Betaling per bankoverschrijving', 'Uitleg over productbeheer'],
         example: 'starter-webshop',
       },
