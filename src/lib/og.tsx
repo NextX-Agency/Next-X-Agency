@@ -14,7 +14,7 @@ const stack: CSSProperties = {
 
 export function SocialImage({ origin }: SocialImageProps) {
   const artUrl = `${origin}/og/nextx-social-v3-art.png`
-  const logoUrl = `${origin}/logo-dark.png`
+  const logoUrl = `${origin}/logo-agency-white.png`
 
   return (
     <div
@@ -39,7 +39,7 @@ export function SocialImage({ origin }: SocialImageProps) {
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(14, 13, 12, 0.12)' }} />
 
       <div style={{ ...stack, position: 'absolute', left: 72, top: 52 }}>
-        <img src={logoUrl} alt="NextX" width={248} height={99} style={{ objectFit: 'contain', objectPosition: 'left center' }} />
+        <img src={logoUrl} alt="NextX Agency" width={248} height={107} style={{ objectFit: 'contain', objectPosition: 'left center' }} />
       </div>
 
       <div style={{ ...stack, position: 'absolute', left: 72, bottom: 66 }}>

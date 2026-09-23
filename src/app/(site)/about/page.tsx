@@ -51,7 +51,7 @@ export default function AboutPage() {
       <Reveal>
         <figure data-theme="dark" className="relative mx-auto max-w-[var(--max)]">
           <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden sm:aspect-[21/9]">
-            <Image src="/logo-dark.png" alt="Het NextX-logo" width={950} height={380} className="h-auto w-[min(70vw,34rem)]" />
+            <Image src="/logo-agency-white.png" alt="Het NextX Agency-logo" width={1200} height={519} className="h-auto w-[min(70vw,34rem)]" />
             <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-8 gap-y-3 p-5 md:p-8">
               <span className="meta flex items-center gap-3">
                 <span className="size-3 bg-accent" aria-hidden="true" />

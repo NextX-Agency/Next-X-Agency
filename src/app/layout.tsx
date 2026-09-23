@@ -108,7 +108,7 @@ const jsonLd = {
   name: site.name,
   description,
   url: site.url,
-  logo: `${site.url}/favicon.png`,
+  logo: `${site.url}/logo-agency-white.png`,
   image: `${site.url}${socialImage.url}`,
   email: site.email,
   telephone: site.phone.e164,

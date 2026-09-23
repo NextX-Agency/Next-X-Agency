@@ -11,10 +11,10 @@ export function Signal() {
       <div className="pointer-events-none relative flex h-full items-center justify-center">
         <Image
           id="signal-mark"
-          src="/logo-dark.png"
+          src="/logo-agency-white.png"
           alt=""
-          width={950}
-          height={380}
+          width={1200}
+          height={519}
           className="h-auto w-[min(62vw,26rem)]"
         />
       </div>

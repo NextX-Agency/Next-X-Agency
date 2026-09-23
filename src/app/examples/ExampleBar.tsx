@@ -24,7 +24,7 @@ export function ExampleBar() {
       <div className="flex h-12 items-center justify-between gap-4 px-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-4">
           <Link href="/" className="shrink-0" aria-label="NextX, naar de homepage">
-            <Image src="/logo-dark.png" alt="" width={950} height={380} className="h-6 w-auto" />
+            <Image src="/logo-agency-white.png" alt="" width={1200} height={519} className="h-6 w-auto" />
           </Link>
           <Link href="/examples" className="meta hidden hover:text-fg sm:inline">
             ← Voorbeelden

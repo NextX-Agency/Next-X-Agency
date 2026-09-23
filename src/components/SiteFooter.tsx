@@ -26,10 +26,10 @@ export function SiteFooter() {
         <div className="border-b border-line py-12 md:py-16">
           <Link href="/" className="group inline-block" aria-label="NextX, naar de homepage">
             <Image
-              src="/logo-dark.png"
+              src="/logo-agency-white.png"
               alt=""
-              width={950}
-              height={380}
+              width={1200}
+              height={519}
               className="h-auto w-[min(82vw,40rem)] transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-2"
             />
           </Link>
