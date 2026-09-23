@@ -5,7 +5,6 @@ import { Capabilities } from '@/components/home/Capabilities'
 import { Process } from '@/components/home/Process'
 import { Signal } from '@/components/home/Signal'
 import { ProjectFeature } from '@/components/work/ProjectFeature'
-import { ClosingCTA } from '@/components/ClosingCTA'
 import { Arrow } from '@/components/Arrow'
 
 export default function HomePage() {
@@ -35,7 +34,6 @@ export default function HomePage() {
       <Capabilities />
       <Signal />
       <Process />
-      <ClosingCTA />
     </>
   )
 }

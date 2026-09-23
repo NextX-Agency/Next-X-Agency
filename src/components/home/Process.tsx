@@ -2,17 +2,10 @@ import { site } from '@/content/site'
 import { Reveal } from '@/components/Reveal'
 
 const steps = [
-  { title: 'Gesprek', text: 'We bespreken wat u nodig hebt. Daarna weet u de prijs en de opleverdatum.' },
-  { title: 'Ontwerp', text: 'U ziet het ontwerp en keurt het goed voordat we bouwen.' },
-  { title: 'Bouw', text: 'Tijdens de bouw kijkt u mee via een testlink.' },
-  { title: 'Live', text: 'De site gaat live op uw domein en u krijgt uitleg over het beheer.' },
-]
-
-const facts = [
-  { value: site.delivery, label: 'Oplevering van een website' },
-  { value: 'Vast', label: 'Prijs, vooraf afgesproken' },
-  { value: site.responseTime, label: 'Reactie op uw aanvraag' },
-  { value: 'Gratis', label: 'Eerste gesprek' },
+  { title: 'Gesprek', day: 'Dag 1', text: 'Doel, inhoud en scope vastleggen.' },
+  { title: 'Ontwerp', day: 'Daarna', text: 'Een eerste ontwerp voorleggen en aanscherpen.' },
+  { title: 'Bouw', day: 'Na akkoord', text: 'Het goedgekeurde ontwerp bouwen met een testlink.' },
+  { title: 'Live', day: 'Oplevering', text: 'Live zetten en uitleg geven over het beheer.' },
 ]
 
 export function Process() {
@@ -31,20 +24,18 @@ export function Process() {
             <Reveal as="li" key={step.title} delay={i * 0.08} className="relative border-l border-line-strong pl-6 md:border-l-0 md:border-t md:pl-0 md:pt-8">
               <span className="absolute -left-[4px] top-0 size-[7px] bg-accent md:-top-[4px] md:left-0" aria-hidden="true" />
               <p className="meta mb-3">{String(i + 1).padStart(2, '0')}</p>
-              <h3 className="t-h3">{step.title}</h3>
-              <p className="t-small mt-3 max-w-[30ch]">{step.text}</p>
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="t-h3">{step.title}</h3>
+                <span className="meta text-accent-text">{step.day}</span>
+              </div>
+              <p className="t-small mt-3 max-w-[28ch]">{step.text}</p>
             </Reveal>
           ))}
         </ol>
 
-        <dl className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-line pt-10 md:mt-28 md:grid-cols-4">
-          {facts.map((fact) => (
-            <div key={fact.label} className="flex flex-col">
-              <dt className="meta order-2 mt-3">{fact.label}</dt>
-              <dd className="order-1 text-[1.75rem] font-[650] leading-none tracking-[-0.03em] tabular-nums [font-variation-settings:'wdth'_108] md:text-[2.75rem]">{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
+        <p className="meta mt-16 border-t border-line pt-5 md:mt-24">
+          {site.delivery} na akkoord, met één aanspreekpunt.
+        </p>
       </div>
     </section>
   )

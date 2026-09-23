@@ -7,7 +7,6 @@ import { Arrow, ArrowOut } from '@/components/Arrow'
 import { Reveal } from '@/components/Reveal'
 import { ProjectCover } from '@/components/work/ProjectCover'
 import { CoverReveal } from '@/components/work/CoverReveal'
-import { ClosingCTA } from '@/components/ClosingCTA'
 import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -105,8 +104,6 @@ export default function WorkPage() {
           </div>
         </div>
       </section>
-
-      <ClosingCTA />
     </>
   )
 }

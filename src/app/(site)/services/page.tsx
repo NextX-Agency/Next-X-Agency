@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { formatPrice, includedEverywhere, serviceCategories, startingPrice, type Service } from '@/content/services'
 import { findExample } from '@/content/examples'
 import { Arrow } from '@/components/Arrow'
-import { ClosingCTA } from '@/components/ClosingCTA'
 
 export const metadata: Metadata = {
   title: 'Diensten en prijzen',
@@ -121,10 +120,6 @@ export default function ServicesPage() {
             </ul>
           </section>
         </div>
-      </div>
-
-      <div className="border-t border-line">
-        <ClosingCTA title="Niet zeker welk pakket past? Vraag het ons." />
       </div>
     </>
   )
