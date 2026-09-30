@@ -17,13 +17,43 @@ interface ContactFormData {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = (await request.json()) as ContactFormData
-
-    // Validation
-    if (!body.name || !body.email || !body.service_type || !body.message) {
+    const input: unknown = await request.json()
+    if (!input || typeof input !== 'object' || Array.isArray(input)) {
       return NextResponse.json(
         { error: 'Vul alle verplichte velden in.' },
-        { status: 400 }
+        { status: 400 },
+      )
+    }
+    const raw = input as Record<string, unknown>
+    const required = ['name', 'email', 'service_type', 'message'] as const
+    if (
+      required.some((key) => typeof raw[key] !== 'string') ||
+      ['phone', 'budget'].some(
+        (key) => raw[key] !== undefined && typeof raw[key] !== 'string',
+      )
+    ) {
+      return NextResponse.json(
+        { error: 'Controleer de ingevulde velden.' },
+        { status: 400 },
+      )
+    }
+    const body = Object.fromEntries(
+      Object.entries(raw).map(([key, value]) => [
+        key,
+        typeof value === 'string' ? value.trim() : value,
+      ]),
+    ) as unknown as ContactFormData
+
+    // Validation
+    if (
+      !body.name ||
+      !body.email ||
+      !body.service_type ||
+      body.message.length < 10
+    ) {
+      return NextResponse.json(
+        { error: 'Vul alle verplichte velden in.' },
+        { status: 400 },
       )
     }
 
@@ -32,7 +62,7 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
         { error: 'Voer een geldig e-mailadres in.' },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
@@ -60,10 +90,10 @@ export async function POST(request: NextRequest) {
         budget: body.budget,
         message: body.message,
         receivedAt,
-      })
+      }),
     )
 
-    await resend.emails.send({
+    const notification = await resend.emails.send({
       from,
       to: agencyTo,
       replyTo: body.email,
@@ -82,17 +112,27 @@ export async function POST(request: NextRequest) {
         body.message,
         ``,
         receivedAt ? `Ontvangen: ${receivedAt}` : '',
-      ].filter(Boolean).join('\n'),
+      ]
+        .filter(Boolean)
+        .join('\n'),
       headers: {
         'X-Priority': '1',
         'X-MSMail-Priority': 'High',
-        'Importance': 'High',
+        Importance: 'High',
       },
       tags: [
         { name: 'category', value: 'contact-notification' },
-        { name: 'service', value: body.service_type.replace(/[^a-zA-Z0-9_\-]/g, '-').toLowerCase() },
+        {
+          name: 'service',
+          value: body.service_type
+            .replace(/[^a-zA-Z0-9_\-]/g, '-')
+            .toLowerCase(),
+        },
       ],
     })
+
+    if (notification.error)
+      throw new Error('Agency notification could not be delivered')
 
     // ── 2. Client confirmation (best-effort) ──────────────────────────────────
     try {
@@ -103,10 +143,10 @@ export async function POST(request: NextRequest) {
           service_type: body.service_type,
           budget: body.budget,
           receivedAt,
-        })
+        }),
       )
 
-      await resend.emails.send({
+      const confirmation = await resend.emails.send({
         from,
         to: body.email,
         subject: `Wij hebben uw aanvraag ontvangen — NextX Agency`,
@@ -124,9 +164,13 @@ export async function POST(request: NextRequest) {
           `Met vriendelijke groet,`,
           `NextX Agency`,
           `nextxagency.com · ${CONTACT.phoneDisplay}`,
-        ].filter(Boolean).join('\n'),
+        ]
+          .filter(Boolean)
+          .join('\n'),
         tags: [{ name: 'category', value: 'contact-confirmation' }],
       })
+      if (confirmation.error)
+        throw new Error('Confirmation could not be delivered')
     } catch (confirmErr) {
       console.error('Confirmation email failed (non-fatal):', confirmErr)
     }
@@ -138,8 +182,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Contact route error:', error)
     return NextResponse.json(
-      { error: 'Er is een interne fout opgetreden. Probeer het later opnieuw.' },
-      { status: 500 }
+      {
+        error: 'Er is een interne fout opgetreden. Probeer het later opnieuw.',
+      },
+      { status: 500 },
     )
   }
 }

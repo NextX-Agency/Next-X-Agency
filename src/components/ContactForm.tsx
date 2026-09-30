@@ -128,7 +128,7 @@ export function ContactForm() {
         <p className="meta mb-5 text-ok">Verstuurd</p>
         <p className="t-h2 max-w-[16ch]">Bedankt, {values.name.split(' ')[0]}.</p>
         <p className="t-body mt-5 max-w-[40ch]">
-          We reageren binnen {site.responseTime} op {values.email}. U krijgt ook een bevestiging per e-mail.
+          We reageren binnen {site.responseTime} op werkdagen op {values.email}. U krijgt ook een bevestiging per e-mail.
         </p>
         <button
           type="button"

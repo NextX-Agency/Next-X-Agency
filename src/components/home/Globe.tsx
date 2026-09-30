@@ -22,8 +22,13 @@ export function Globe({ className }: { className?: string }) {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let globe: { update: (s: Record<string, unknown>) => void; destroy: () => void } | null = null
+    const reduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+    let globe: {
+      update: (s: Record<string, unknown>) => void
+      destroy: () => void
+    } | null = null
     let frame = 0
     let visible = false
     let disposed = false
@@ -88,9 +93,11 @@ export function Globe({ className }: { className?: string }) {
         theta: HOME_THETA + lean.y,
         width: width * dpr,
         height: width * dpr,
-        markers: [{ location: [lat, lng], size: 0.028 + pulse * 0.02, id: 'pbm' }],
+        markers: [
+          { location: [lat, lng], size: 0.028 + pulse * 0.02, id: 'pbm' },
+        ],
       })
-      frame = requestAnimationFrame(tick)
+      if (!reduced) frame = requestAnimationFrame(tick)
     }
 
     const run = () => {
@@ -101,7 +108,10 @@ export function Globe({ className }: { className?: string }) {
       visible = entry.isIntersecting
       run()
     })
-    const ro = new ResizeObserver(measure)
+    const ro = new ResizeObserver(() => {
+      measure()
+      run()
+    })
 
     measure()
     import('cobe')
@@ -117,7 +127,7 @@ export function Globe({ className }: { className?: string }) {
             theta: HOME_THETA,
             dark: 1,
             diffuse: 1.1,
-            mapSamples: 24000,
+            mapSamples: 12000,
             mapBrightness: 3.4,
             mapBaseBrightness: 0.02,
             baseColor: [0.24, 0.225, 0.21],
@@ -138,10 +148,12 @@ export function Globe({ className }: { className?: string }) {
       .catch(() => {})
 
     if (fine) window.addEventListener('pointermove', onLook, { passive: true })
-    canvas.addEventListener('pointerdown', onDown)
-    canvas.addEventListener('pointermove', onMove)
-    canvas.addEventListener('pointerup', onUp)
-    canvas.addEventListener('pointercancel', onUp)
+    if (!reduced) {
+      canvas.addEventListener('pointerdown', onDown)
+      canvas.addEventListener('pointermove', onMove)
+      canvas.addEventListener('pointerup', onUp)
+      canvas.addEventListener('pointercancel', onUp)
+    }
 
     return () => {
       disposed = true
@@ -163,12 +175,14 @@ export function Globe({ className }: { className?: string }) {
         ref={canvasRef}
         className={cn(
           'size-full cursor-grab touch-pan-y transition-opacity duration-[1600ms] ease-out',
-          ready ? 'opacity-100' : 'opacity-0'
+          ready ? 'opacity-100' : 'opacity-0',
         )}
       />
       <div className="globe-label pointer-events-none flex items-end gap-2 pb-3 pl-3">
         <span className="block h-px w-8 bg-accent" />
-        <span className="meta whitespace-nowrap text-fg">{site.location.city}</span>
+        <span className="meta whitespace-nowrap text-fg">
+          {site.location.city}
+        </span>
       </div>
     </div>
   )

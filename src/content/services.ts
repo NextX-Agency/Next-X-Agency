@@ -342,7 +342,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: 'ux-kukru',
     index: '09',
     title: 'UX Kukru',
-    line: 'Uren van het NextX-team per maand, via één vast aanspreekpunt.',
+    line: 'Ontwerp- en ontwikkeluren per maand, gecoördineerd door NextX.',
     discipline: true,
     services: [
       {
@@ -374,6 +374,19 @@ export const serviceCategories: ServiceCategory[] = [
       },
     ],
     terms: `Extra uren: $${standardHourlyRate} per uur. Elk pakket loopt minimaal 3 maanden.`,
+  },
+  {
+    id: 'creative-production',
+    index: '10',
+    title: 'Creatieve productie',
+    line: 'Fotografie, media, merken en marketing op basis van uw project.',
+    discipline: false,
+    services: [
+      { id: 'web-software', name: 'Web & Software op maat', summary: 'Applicaties, bedrijfssystemen en technische integraties.', price: { label: 'Op aanvraag' }, includes: ['Scope en planning in overleg', 'Offerte vóór de start'] },
+      { id: 'photography-media', name: 'Fotografie & Media', summary: 'Commerciële fotografie, portretten, evenementen en videoproductie.', price: { label: 'Op aanvraag' }, includes: ['Brief en beeldrichting in overleg', 'Productie en oplevering volgens afspraak'] },
+      { id: 'branding-design', name: 'Branding & Design', summary: 'Visuele identiteiten en ontwerp voor een herkenbaar merk.', price: { label: 'Op aanvraag' }, includes: ['Scope en toepassingen in overleg', 'Offerte vóór de start'] },
+      { id: 'marketing', name: 'Marketing', summary: 'Content, campagnes en merkcommunicatie.', price: { label: 'Op aanvraag' }, includes: ['Doel en kanalen samen bepalen', 'Content en planning volgens afspraak'] },
+    ],
   },
 ]
 

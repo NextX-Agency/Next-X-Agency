@@ -5,92 +5,78 @@ import { mailHref, navigation, site, whatsappHref } from '@/content/site'
 
 export function SiteFooter() {
   return (
-    <footer data-theme="dark" className="border-t border-line">
+    <footer data-theme="dark" className="site-footer">
       <div className="wrap">
-        <section className="grid-12 gap-y-10 border-b border-line py-16 md:py-24" aria-labelledby="footer-cta-title">
-          <div className="col-span-4 md:col-span-7">
-            <p className="meta mb-5">Een volgende stap</p>
-            <h2 id="footer-cta-title" className="t-h2 max-w-[10ch]">
-              Heeft u een idee?
-            </h2>
-          </div>
-          <div className="col-span-4 flex flex-col items-start justify-end gap-5 md:col-span-4 md:col-start-9">
-            <Link href="/contact" className="btn btn-primary">
-              Start een project
-              <Arrow />
+        <section className="footer-inquiry" aria-labelledby="footer-cta-title">
+          <h2 id="footer-cta-title">
+            Wat gaan we
+            <br />
+            <span className="text-accent">maken?</span>
+          </h2>
+          <div>
+            <p className="t-lead max-w-[29ch]">
+              Een concreet plan of een eerste idee. Vertel ons waar u aan denkt.
+            </p>
+            <Link href="/contact" className="btn btn-primary mt-7">
+              Start een project <Arrow />
             </Link>
-            <p className="t-small max-w-[30ch]">Vertel kort wat u wilt maken. We pakken het direct op.</p>
           </div>
         </section>
-
-        <div className="border-b border-line py-12 md:py-16">
-          <Link href="/" className="group inline-block" aria-label="NextX, naar de homepage">
+        <div className="footer-details">
+          <Link
+            href="/"
+            className="footer-logo"
+            aria-label="NextX Agency, naar de homepage"
+          >
             <Image
               src="/logo-agency-white.svg"
               alt=""
               width={1200}
               height={519}
-              className="h-auto w-[min(60vw,24rem)] transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-2"
+              loading="eager"
+              sizes="180px"
             />
           </Link>
-        </div>
-
-        <div className="grid-12 gap-y-12 py-12 md:py-16">
-          <nav aria-label="Footer" className="col-span-4 md:col-span-3">
-            <p className="meta mb-5">Pagina’s</p>
-            <ul className="grid gap-2">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="link-line">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/examples" className="link-line">
-                  Voorbeelden
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="col-span-4 md:col-span-4 md:col-start-6">
-            <p className="meta mb-5">Contact</p>
-            <ul className="grid gap-3">
-              <li>
-                <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="link-arrow link-line">
-                  WhatsApp
-                  <ArrowOut />
-                </a>
-              </li>
-              <li>
-                <a href={mailHref} className="link-arrow link-line">
-                  {site.email}
-                  <ArrowOut />
-                </a>
-              </li>
-              <li className="t-small pt-2">{site.location.city}, {site.location.country}</li>
-            </ul>
-          </div>
-
-          <div className="col-span-4 md:col-span-3 md:col-start-10">
-            <p className="meta mb-5">Eigen product</p>
+          <div>
+            <a href={mailHref} className="link-line">
+              {site.email}
+            </a>
+            <br />
             <a
-              href={site.sisterSite.href}
+              href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-arrow link-line"
+              className="link-arrow mt-2"
             >
-              {site.sisterSite.label}
-              <ArrowOut />
+              WhatsApp {site.phone.display} <ArrowOut />
             </a>
-            <p className="t-small mt-3 max-w-[24ch]">Onze eigen webshop voor audio en horloges.</p>
+            <p className="t-small mt-3">
+              {site.location.city}, {site.location.country}
+            </p>
           </div>
+          <nav aria-label="Footer">
+            {navigation.map((item) => (
+              <Link key={item.href} href={item.href} className="link-line">
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/examples" className="link-line">
+              Voorbeelden
+            </Link>
+          </nav>
         </div>
-
-        <div className="flex flex-col gap-3 border-t border-line py-6 md:flex-row md:items-center md:justify-between">
-          <p className="meta">© {new Date().getFullYear()} {site.name}</p>
-          <p className="meta">{site.location.coordinates}</p>
+        <div className="footer-bottom">
+          <p className="meta">
+            © {new Date().getFullYear()} {site.name}
+          </p>
+          <a
+            href={site.sisterSite.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="meta link-line"
+          >
+            Eigen product: Shop NextX ↗
+          </a>
         </div>
       </div>
     </footer>

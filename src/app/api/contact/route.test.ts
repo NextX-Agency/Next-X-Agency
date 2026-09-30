@@ -2,7 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { NextRequest } from 'next/server'
 
 // ── Mock Resend ──────────────────────────────────────────────────────────────
-const mockSend = vi.fn().mockResolvedValue({ data: { id: 'mock-email-id' }, error: null })
+const mockSend = vi
+  .fn()
+  .mockResolvedValue({ data: { id: 'mock-email-id' }, error: null })
 vi.mock('resend', () => ({
   Resend: vi.fn().mockImplementation(() => ({
     emails: { send: mockSend },
@@ -64,13 +66,50 @@ describe('POST /api/contact', () => {
   })
 
   it('returns 400 for invalid email format', async () => {
-    const res = await POST(makeRequest({ ...validPayload, email: 'not-an-email' }))
+    const res = await POST(
+      makeRequest({ ...validPayload, email: 'not-an-email' }),
+    )
     expect(res.status).toBe(400)
     const json = await res.json()
     expect(json.error).toMatch(/e-mailadres/i)
   })
 
   // ── Happy path ─────────────────────────────────────────────────────────────
+  it.each([
+    null,
+    [],
+    { ...validPayload, name: 123 },
+    { ...validPayload, phone: {} },
+    { ...validPayload, name: '  ' },
+    { ...validPayload, message: 'short' },
+  ])('rejects invalid payloads before sending mail: %j', async (payload) => {
+    const res = await POST(makeRequest(payload))
+    expect(res.status).toBe(400)
+    expect(mockSend).not.toHaveBeenCalled()
+  })
+
+  it('does not report success when Resend returns an error object', async () => {
+    mockSend.mockResolvedValueOnce({
+      data: null,
+      error: { message: 'Delivery rejected' },
+    })
+    expect((await POST(makeRequest(validPayload))).status).toBe(500)
+    expect(mockSend).toHaveBeenCalledTimes(1)
+  })
+
+  it('accepts an inquiry for each expanded discipline', async () => {
+    for (const service_type of [
+      'Web & Software',
+      'Fotografie & Media',
+      'Branding & Design',
+      'Marketing',
+    ]) {
+      expect(
+        (await POST(makeRequest({ ...validPayload, service_type }))).status,
+      ).toBe(200)
+    }
+  })
+
   it('returns 200 and success:true for valid payload', async () => {
     const res = await POST(makeRequest(validPayload))
     expect(res.status).toBe(200)
@@ -113,7 +152,12 @@ describe('POST /api/contact', () => {
   })
 
   it('optional phone and budget are omitted from HTML when not provided', async () => {
-    const payload = { name: validPayload.name, email: validPayload.email, service_type: validPayload.service_type, message: validPayload.message }
+    const payload = {
+      name: validPayload.name,
+      email: validPayload.email,
+      service_type: validPayload.service_type,
+      message: validPayload.message,
+    }
     await POST(makeRequest(payload))
     const { html } = mockSend.mock.calls[0][0]
     expect(html).not.toContain('+597')

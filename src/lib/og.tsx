@@ -44,7 +44,7 @@ export function SocialImage({ origin }: SocialImageProps) {
 
       <div style={{ ...stack, position: 'absolute', left: 72, bottom: 66 }}>
         <div style={{ ...stack, gap: 8, marginBottom: 22 }}>
-          <span style={{ fontSize: 19, fontWeight: 700, letterSpacing: '0.18em', color: '#ed5f0f' }}>DIGITAL STUDIO</span>
+          <span style={{ fontSize: 19, fontWeight: 700, letterSpacing: '0.18em', color: '#ed5f0f' }}>CREATIEVE & DIGITALE STUDIO</span>
           <span style={{ width: 88, height: 3, background: '#ed5f0f' }} />
         </div>
         <div style={{ ...stack, fontSize: 92, fontWeight: 800, letterSpacing: '-0.065em', lineHeight: 0.87 }}>

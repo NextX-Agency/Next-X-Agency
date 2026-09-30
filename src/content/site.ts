@@ -24,7 +24,7 @@ export const site = {
   /** How quickly a written enquiry gets an answer, on working days. */
   responseTime: '24 uur',
   /** Typical build time for a website once the design is approved. */
-  delivery: '48–72 uur',
+  delivery: 'volgens de afgesproken planning',
   sisterSite: {
     name: 'Shop NextX',
     href: 'https://www.shop-nextx.com',
@@ -42,6 +42,6 @@ export const mailHref = `mailto:${site.email}`
 export const navigation = [
   { href: '/portfolio', label: 'Werk' },
   { href: '/services', label: 'Diensten' },
-  { href: '/about', label: 'Over' },
+  { href: '/about', label: 'Studio' },
   { href: '/contact', label: 'Contact' },
 ] as const

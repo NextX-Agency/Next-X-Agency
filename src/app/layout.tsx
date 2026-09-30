@@ -55,19 +55,19 @@ const lora = Lora({
 })
 
 const description =
-  'NextX is een digitale studio in Paramaribo. We ontwerpen en bouwen websites, webshops en merkidentiteiten, tegen vaste prijzen.'
+  'NextX is een creatieve en digitale studio in Paramaribo voor web, software, fotografie, media, branding en marketing. Eén aanspreekpunt, de juiste expertise per project.'
 
 const socialImage = {
   url: '/og/nextx-social-v3.png',
   width: 1200,
   height: 630,
-  alt: 'NextX digitale studio in Paramaribo',
+  alt: 'NextX creatieve en digitale studio in Paramaribo',
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'NextX Agency — Websites, webshops en merken uit Paramaribo',
+    default: 'NextX Agency · Creatieve & digitale studio in Paramaribo',
     template: '%s — NextX Agency',
   },
   description,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   creator: site.name,
   icons: { icon: '/favicon.png', apple: '/favicon.png' },
   openGraph: {
-    title: 'NextX Agency — Websites, webshops en merken uit Paramaribo',
+    title: 'NextX Agency · Creatieve & digitale studio in Paramaribo',
     description,
     url: site.url,
     siteName: site.name,
