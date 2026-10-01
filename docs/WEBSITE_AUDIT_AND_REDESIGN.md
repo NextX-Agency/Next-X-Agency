@@ -32,7 +32,7 @@ Baseline desktop (1440px) and mobile (390px) screenshots were captured and inspe
 - Vitest: 57/57 passed, including mocked notification/confirmation errors, missing configuration, validation, bot/rate limits and stable idempotency.
 - Development Playwright: 29/29 passed. Seven principal routes × eight widths (320,375,390,430,768,1024,1440,1920); fourteen axe scans; keyboard menu/gallery, reduced motion, no-JavaScript hero/navigation, contact mocks, links, images and draft 404.
 - Eleven fictional demos audited at 320/1440px and visually reviewed. Corrected Studio Vibe's h1/modal keyboard handling and ShopPlaza's inert comparison controls. No broad demo redesign.
-- The initial optimized production suite passed 26/29. Three demos exposed stalled local AVIF/WebP optimizer responses; serving their existing media directly fixed the targeted 3/3 checks. Independent viewport pages retain all image assertions. The rebuilt complete production suite passed29/29 in57.3s; no-JavaScript image checks passed for all three affected demos. Fourteen final main-route desktop/mobile screenshots and320px Services/Studio captures were visually inspected.
+- The initial optimized production suite passed 26/29. Three demos exposed stalled local AVIF/WebP optimizer responses; serving their existing media directly fixed the targeted 3/3 checks. Independent viewport pages retain all image assertions. The rebuilt complete production suite passed 29/29 in 57.3s; no-JavaScript image checks passed for all three affected demos. Fourteen final main-route desktop/mobile screenshots and 320px Services/Studio captures were visually inspected.
 
 Evidence files are ignored under test-results/baseline, initial, initial-pages, final and deployment. [QA details](QA_EVIDENCE.md) records methods and limitations.
 
@@ -49,7 +49,11 @@ Baseline mobile main-thread work of 3.9s included 1.78s script evaluation and 1.
 
 ## Release verification
 
-Production email settings and Firewall are configured; the implementation has not yet been pushed at this report's initial commit. Main is the authorized release target. Remote commit SHA, Vercel READY deployment, production route/design/metadata checks and any controlled contact test will be appended after release.
+Implementation commit `b722cd8d1ad40188fc81657bbaa4b918ca1c0278` was pushed to the existing main and independently matched the remote SHA. Vercel deployment `dpl_DYbCMMBjMeMCn4NAfv42mMbSRDLd` reached READY. The dashboard revealed it was staged, despite API domain listings; explicit promotion reported success. A fresh public GET then verified the actual “Ideeën krijgen vorm.” h1 and 64px icon. Subsequent public requests again served older commit1ab0bf5, and the project overview identified that as Current. Auto-assignment was enabled and www connected to Production. The immutable authenticated deployment consistently serves the redesign; public promotion stability is still under investigation. READY and a success toast alone were insufficient evidence of durable public release.
+
+Initial public smoke checked eight routes at 390/1440px: HTTP 200, no broken images, overflow, axe violations or browser errors; canonical URLs and revised social preview/sitemap passed. Because later measurement caught an old cached homepage, the repeated smoke after explicit promotion again passed all16 route/viewport combinations and confirmed the redesign metadata. Scoped production error/fatal logs returned no entries. Final browser inspection also found duplicate contact dropdown labels: repeated discipline/package choices were removed without changing accepted inquiry values; rebuilt contact tests 2/2, service-preset navigation 1/1 and a 34-choice uniqueness check passed.
+
+Controlled live contact verification remains pending explicit approval for the correct public agency mailbox `agencynextx@gmail.com`. The first approval question accidentally named a different address; no mail was sent to it. Provider acceptance and final delivery have not yet been claimed.
 
 ## Limits
 

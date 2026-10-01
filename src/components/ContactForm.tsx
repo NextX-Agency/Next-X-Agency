@@ -1,38 +1,38 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   findService,
   serviceCategories,
   serviceLabel,
-} from '@/content/services'
-import { site, whatsappHref } from '@/content/site'
-import { Arrow } from '@/components/Arrow'
-import { cn } from '@/lib/utils'
-import { disciplines } from '@/content/disciplines'
+} from "@/content/services";
+import { site, whatsappHref } from "@/content/site";
+import { Arrow } from "@/components/Arrow";
+import { cn } from "@/lib/utils";
+import { disciplines } from "@/content/disciplines";
 import {
   contactBudgets,
   contactLimits,
   validateContact,
-} from '@/lib/contact-validation'
+} from "@/lib/contact-validation";
 
-const OTHER = 'Iets anders'
+const OTHER = "Iets anders";
 
-const budgets = contactBudgets
+const budgets = contactBudgets;
 
-type Values = import('@/lib/contact-validation').ContactValues
-type Errors = import('@/lib/contact-validation').ContactErrors
-const validate = validateContact
+type Values = import("@/lib/contact-validation").ContactValues;
+type Errors = import("@/lib/contact-validation").ContactErrors;
+const validate = validateContact;
 
 const order: (keyof Values)[] = [
-  'name',
-  'email',
-  'phone',
-  'service_type',
-  'budget',
-  'message',
-]
+  "name",
+  "email",
+  "phone",
+  "service_type",
+  "budget",
+  "message",
+];
 
 function Field({
   id,
@@ -41,11 +41,11 @@ function Field({
   error,
   children,
 }: {
-  id: keyof Values
-  label: string
-  optional?: boolean
-  error?: string
-  children: React.ReactNode
+  id: keyof Values;
+  label: string;
+  optional?: boolean;
+  error?: string;
+  children: React.ReactNode;
 }) {
   return (
     <div>
@@ -56,124 +56,124 @@ function Field({
       {children}
       <p
         id={`${id}-error`}
-        className={cn('mt-2 text-sm text-danger', !error && 'sr-only')}
+        className={cn("mt-2 text-sm text-danger", !error && "sr-only")}
         aria-live="polite"
       >
         {error}
       </p>
     </div>
-  )
+  );
 }
 
 export function ContactForm() {
-  const params = useSearchParams()
-  const requested = params.get('dienst') ?? ''
-  const preset = findService(requested)
+  const params = useSearchParams();
+  const requested = params.get("dienst") ?? "";
+  const preset = findService(requested);
   const presetDiscipline = disciplines.find(
     (discipline) =>
       discipline.id === requested || discipline.name === requested,
-  )
-  const formRef = useRef<HTMLFormElement>(null)
-  const sendingRef = useRef(false)
-  const requestIdRef = useRef('')
-  const submittedAtRef = useRef(0)
-  const honeypotRef = useRef<HTMLInputElement>(null)
-  const [confirmationAccepted, setConfirmationAccepted] = useState(false)
-  const [failureMessage, setFailureMessage] = useState('')
-  const doneRef = useRef<HTMLDivElement>(null)
+  );
+  const formRef = useRef<HTMLFormElement>(null);
+  const sendingRef = useRef(false);
+  const requestIdRef = useRef("");
+  const submittedAtRef = useRef(0);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const [confirmationAccepted, setConfirmationAccepted] = useState(false);
+  const [failureMessage, setFailureMessage] = useState("");
+  const doneRef = useRef<HTMLDivElement>(null);
 
   const [values, setValues] = useState<Values>({
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
     service_type: preset
       ? serviceLabel(preset, preset.category)
-      : (presetDiscipline?.name ?? ''),
-    budget: '',
-    message: '',
-  })
-  const [errors, setErrors] = useState<Errors>({})
-  const [touched, setTouched] = useState(false)
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>(
-    'idle',
-  )
+      : (presetDiscipline?.name ?? ""),
+    budget: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState<Errors>({});
+  const [touched, setTouched] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "failed">(
+    "idle",
+  );
 
   // The form collapses on success; bring the confirmation into view.
   useEffect(() => {
-    if (status === 'sent') doneRef.current?.focus()
-  }, [status])
+    if (status === "sent") doneRef.current?.focus();
+  }, [status]);
 
   const update = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
   ) => {
-    const next = { ...values, [e.target.name]: e.target.value }
-    requestIdRef.current = ''
-    submittedAtRef.current = 0
-    setValues(next)
+    const next = { ...values, [e.target.name]: e.target.value };
+    requestIdRef.current = "";
+    submittedAtRef.current = 0;
+    setValues(next);
     // After a first submit attempt, errors clear as soon as a field is fixed.
-    if (touched) setErrors(validate(next))
-  }
+    if (touched) setErrors(validate(next));
+  };
 
   const describe = (id: keyof Values) => ({
-    'aria-invalid': errors[id] ? true : undefined,
-    'aria-describedby': `${id}-error`,
-  })
+    "aria-invalid": errors[id] ? true : undefined,
+    "aria-describedby": `${id}-error`,
+  });
 
   const submit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (sendingRef.current) return
-    setTouched(true)
-    const found = validate(values)
-    setErrors(found)
-    const first = order.find((key) => found[key])
+    e.preventDefault();
+    if (sendingRef.current) return;
+    setTouched(true);
+    const found = validate(values);
+    setErrors(found);
+    const first = order.find((key) => found[key]);
     if (first) {
-      formRef.current?.querySelector<HTMLElement>(`#${first}`)?.focus()
-      return
+      formRef.current?.querySelector<HTMLElement>(`#${first}`)?.focus();
+      return;
     }
 
-    sendingRef.current = true
-    requestIdRef.current ||= crypto.randomUUID()
-    submittedAtRef.current ||= Date.now()
-    setStatus('sending')
-    setFailureMessage('')
+    sendingRef.current = true;
+    requestIdRef.current ||= crypto.randomUUID();
+    submittedAtRef.current ||= Date.now();
+    setStatus("sending");
+    setFailureMessage("");
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...values,
-          website: honeypotRef.current?.value ?? '',
+          website: honeypotRef.current?.value ?? "",
           request_id: requestIdRef.current,
           submitted_at: submittedAtRef.current,
         }),
         signal: AbortSignal.timeout(20000),
-      })
-      const result = await res.json()
+      });
+      const result = await res.json();
       if (
         !res.ok ||
         result.success !== true ||
         result.notificationAccepted !== true
       ) {
-        if (result.errors) setErrors(result.errors)
-        throw new Error(result.error || 'Het versturen is niet bevestigd.')
+        if (result.errors) setErrors(result.errors);
+        throw new Error(result.error || "Het versturen is niet bevestigd.");
       }
-      setConfirmationAccepted(result.confirmationAccepted === true)
-      setStatus('sent')
+      setConfirmationAccepted(result.confirmationAccepted === true);
+      setStatus("sent");
     } catch (error) {
       setFailureMessage(
-        error instanceof Error && error.name === 'Error'
+        error instanceof Error && error.name === "Error"
           ? error.message
-          : 'Het versturen is niet bevestigd. Probeer het opnieuw.',
-      )
-      setStatus('failed')
+          : "Het versturen is niet bevestigd. Probeer het opnieuw.",
+      );
+      setStatus("failed");
     } finally {
-      sendingRef.current = false
+      sendingRef.current = false;
     }
-  }
+  };
 
-  if (status === 'sent') {
+  if (status === "sent") {
     return (
       <div
         ref={doneRef}
@@ -183,39 +183,39 @@ export function ContactForm() {
       >
         <p className="meta mb-5 text-ok">Verstuurd</p>
         <p className="t-h2 max-w-[16ch]">
-          Bedankt, {values.name.split(' ')[0]}.
+          Bedankt, {values.name.split(" ")[0]}.
         </p>
         <p className="t-body mt-5 max-w-[40ch]">
           We reageren binnen {site.responseTime} op werkdagen op {values.email}.
         </p>
         <p className="t-small mt-4 max-w-[44ch]">
           {confirmationAccepted
-            ? 'De e-mailprovider heeft uw bevestiging geaccepteerd. Controleer ook uw spammap; bezorging in uw mailbox is nog niet bevestigd.'
-            : 'Uw aanvraag is ontvangen, maar de bevestigingsmail kon niet worden verstuurd. U hoeft het formulier niet opnieuw in te vullen.'}
+            ? "De e-mailprovider heeft uw bevestiging geaccepteerd. Controleer ook uw spammap; bezorging in uw mailbox is nog niet bevestigd."
+            : "Uw aanvraag is ontvangen, maar de bevestigingsmail kon niet worden verstuurd. U hoeft het formulier niet opnieuw in te vullen."}
         </p>
         <button
           type="button"
           className="link-arrow link-line mt-8 py-1"
           onClick={() => {
             setValues({
-              name: '',
-              email: '',
-              phone: '',
-              service_type: '',
-              budget: '',
-              message: '',
-            })
-            requestIdRef.current = ''
-            submittedAtRef.current = 0
-            setErrors({})
-            setTouched(false)
-            setStatus('idle')
+              name: "",
+              email: "",
+              phone: "",
+              service_type: "",
+              budget: "",
+              message: "",
+            });
+            requestIdRef.current = "";
+            submittedAtRef.current = 0;
+            setErrors({});
+            setTouched(false);
+            setStatus("idle");
           }}
         >
           Nog een bericht sturen
         </button>
       </div>
-    )
+    );
   }
 
   return (
@@ -223,10 +223,10 @@ export function ContactForm() {
       ref={formRef}
       onSubmit={submit}
       noValidate
-      aria-busy={status === 'sending'}
+      aria-busy={status === "sending"}
       className="grid gap-8"
     >
-      <fieldset disabled={status === 'sending'} className="contents">
+      <fieldset disabled={status === "sending"} className="contents">
         <div className="sr-only" aria-hidden="true">
           <label htmlFor="website">Laat dit veld leeg</label>
           <input
@@ -248,7 +248,7 @@ export function ContactForm() {
               className="field"
               value={values.name}
               onChange={update}
-              {...describe('name')}
+              {...describe("name")}
             />
           </Field>
           <Field id="email" label="E-mail" error={errors.email}>
@@ -263,7 +263,7 @@ export function ContactForm() {
               className="field"
               value={values.email}
               onChange={update}
-              {...describe('email')}
+              {...describe("email")}
             />
           </Field>
           <Field
@@ -278,7 +278,7 @@ export function ContactForm() {
               className="field"
               value={values.service_type}
               onChange={update}
-              {...describe('service_type')}
+              {...describe("service_type")}
             >
               <option value="">Kies een dienst</option>
               <optgroup label="Disciplines">
@@ -290,14 +290,22 @@ export function ContactForm() {
               </optgroup>
               {serviceCategories.map((category) => (
                 <optgroup key={category.id} label={category.title}>
-                  {category.services.map((service) => (
-                    <option
-                      key={service.id}
-                      value={serviceLabel(service, category)}
-                    >
-                      {service.name}
-                    </option>
-                  ))}
+                  {category.services
+                    .filter(
+                      (service) =>
+                        !disciplines.some(
+                          (discipline) =>
+                            discipline.name === serviceLabel(service, category),
+                        ),
+                    )
+                    .map((service) => (
+                      <option
+                        key={service.id}
+                        value={serviceLabel(service, category)}
+                      >
+                        {service.name}
+                      </option>
+                    ))}
                 </optgroup>
               ))}
               <option value={OTHER}>{OTHER}</option>
@@ -319,7 +327,7 @@ export function ContactForm() {
               className="field"
               value={values.phone}
               onChange={update}
-              {...describe('phone')}
+              {...describe("phone")}
             />
           </Field>
         </div>
@@ -353,16 +361,16 @@ export function ContactForm() {
             placeholder="Wat voor bedrijf heeft u, en wat moet er gemaakt worden?"
             value={values.message}
             onChange={update}
-            {...describe('message')}
+            {...describe("message")}
           />
         </Field>
 
-        {status === 'failed' && (
+        {status === "failed" && (
           <p
             role="alert"
             className="border-l-2 border-danger pl-4 text-[0.9375rem]"
           >
-            {failureMessage} U kunt ons ook bereiken met een{' '}
+            {failureMessage} U kunt ons ook bereiken met een{" "}
             <a
               href={whatsappHref()}
               target="_blank"
@@ -379,13 +387,13 @@ export function ContactForm() {
           <button
             type="submit"
             className="btn btn-primary"
-            disabled={status === 'sending'}
+            disabled={status === "sending"}
           >
-            {status === 'sending' ? 'Versturen…' : 'Verstuur'}
-            {status !== 'sending' && <Arrow />}
+            {status === "sending" ? "Versturen…" : "Verstuur"}
+            {status !== "sending" && <Arrow />}
           </button>
         </div>
       </fieldset>
     </form>
-  )
+  );
 }
