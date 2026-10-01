@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { contactBudgets } from './contact-validation'
 import { CONTACT, TEL_HREF, MAIL_HREF, whatsappHref } from './contact'
 import { allServices, findService, serviceCategories, serviceLabel, websiteFrom } from '@/content/services'
 import { examples } from '@/content/examples'
@@ -109,8 +110,7 @@ describe('service catalogue', () => {
   })
 
   it('offers budget bands that reach the cheapest website', () => {
-    const form = files.find(({ path }) => path.endsWith('components/ContactForm.tsx'))!
-    const bands = form.text.match(/\$\d+/g)?.map((b) => Number(b.slice(1))) ?? []
+    const bands = contactBudgets.join(' ').match(/\$[\d.]+/g)?.map((b) => Number(b.slice(1).replaceAll('.', ''))) ?? []
     expect(Math.max(...bands)).toBeGreaterThanOrEqual(websiteFrom.amount)
   })
 

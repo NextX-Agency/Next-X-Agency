@@ -15,7 +15,7 @@ export function ProjectCover({
       alt={project.cover.alt}
       fill
       priority={priority}
-      sizes="(min-width: 1440px) 1200px, (min-width: 768px) 85vw, 100vw"
+      sizes="(min-width: 1440px) 900px, (min-width: 768px) 65vw, 100vw"
       className="object-contain"
     />
   )

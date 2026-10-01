@@ -15,16 +15,16 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <header className="wrap page-heading">
+      <header className="wrap page-heading portfolio-heading">
         <p className="meta">Portfolio</p>
         <h1>
-          Werk dat
+          Ontworpen.
           <br />
-          <span>voor zich spreekt.</span>
+          <span>Gebouwd. In gebruik.</span>
         </h1>
         <p className="t-lead">
-          Klantwerk en eigen producten. Een kijkje in wat we ontwerpen en
-          bouwen.
+          Klantwerk en eigen producten, met een eigen aanpak per project. Bekijk
+          het ontwerp, de techniek en onze bijdrage.
         </p>
       </header>
       <div className="wrap pb-[var(--section)]">

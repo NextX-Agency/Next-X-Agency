@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ExamplesPage() {
   return (
-    <main id="main" data-theme="dark" className="min-h-screen pb-[var(--section)]">
+    <div data-theme="dark" className="min-h-screen pb-[var(--section)]">
       <header className="wrap grid-12 gap-y-8 pb-16 pt-[calc(var(--nav-h)+4rem)] md:pb-24 md:pt-[calc(var(--nav-h)+7rem)]">
         <div className="col-span-4 md:col-span-7">
           <p className="meta mb-5 text-accent">Een collectie concepten</p>
@@ -76,6 +76,6 @@ export default function ExamplesPage() {
           )
         })}
       </div>
-    </main>
+    </div>
   )
 }

@@ -1,41 +1,33 @@
-'use client'
-
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Arrow } from '@/components/Arrow'
-const Globe = dynamic(() => import('./Globe').then((m) => m.Globe), {
-  ssr: false,
-})
+import { ArrowOut } from '@/components/Arrow'
+import { site } from '@/content/site'
 
-export function Studio({ inquiry = false }: { inquiry?: boolean }) {
+export function Studio() {
   return (
-    <section
-      data-theme="dark"
-      className="studio-section"
-      aria-labelledby="studio-title"
-    >
+    <section className="studio-section" aria-labelledby="studio-title">
       <div className="wrap studio-layout">
-        <div className="studio-globe">
-          <Globe />
-          <p className="meta">Vanuit Paramaribo</p>
+        <div className="studio-location">
+          <p className="meta">02 / De studio</p>
+          <p className="studio-city">
+            Para
+            <br />
+            maribo<span aria-hidden="true">↗</span>
+          </p>
+          <p className="meta">{site.location.coordinates}</p>
         </div>
         <div className="studio-copy">
           <h2 id="studio-title" className="t-h2">
-            {inquiry ? 'Vanuit Paramaribo.' : 'Korte lijnen.'}
+            Veel expertise.
             <br />
-            {inquiry ? 'Ook op afstand.' : 'Een brede blik.'}
+            Eén aanspreekpunt.
           </h2>
           <p className="t-lead mt-7">
-            {inquiry
-              ? 'Uw project heeft één vaste lijn naar NextX. We stemmen het werk en de feedback af via WhatsApp, e-mail of een gesprek.'
-              : 'NextX is uw aanspreekpunt voor creatief en technisch werk. We coördineren de specialisten die uw project nodig heeft, van ontwerp tot uitvoering.'}
+            Een project vraagt soms om een developer, soms om een fotograaf,
+            soms om allebei. NextX stemt het werk op elkaar af en houdt de lijn
+            met u kort.
           </p>
-          <Link
-            href={inquiry ? '/contact' : '/about'}
-            className="link-arrow link-line mt-8"
-          >
-            {inquiry ? 'Bespreek uw project' : 'Maak kennis met de studio'}{' '}
-            <Arrow />
+          <Link href="/about" className="link-arrow link-line mt-8">
+            Zo werkt onze studio <ArrowOut />
           </Link>
         </div>
       </div>

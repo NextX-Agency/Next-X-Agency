@@ -64,9 +64,20 @@ export default async function ProjectPage({ params }: Props) {
         <Link href="/portfolio" className="meta link-line">
           ← Terug naar het werk
         </Link>
-        <p className="meta mt-9">{project.type}</p>
-        <h1>{project.name}</h1>
-        <p className="t-lead mt-6 max-w-[48ch]">{project.summary}</p>
+        <div className="project-opening">
+          <div>
+            <p className="meta">
+              {project.index} / {project.type} /{' '}
+              {project.origin === 'studio' ? 'Eigen product' : 'Klantwerk'}
+            </p>
+            <h1>{project.name}</h1>
+          </div>
+          <p className="t-lead">{project.summary}</p>
+        </div>
+        <div className="project-contribution">
+          <p className="meta">Bijdrage van NextX</p>
+          <p>{project.contribution}</p>
+        </div>
       </header>
       <div className="wrap">
         <Image
@@ -80,7 +91,11 @@ export default async function ProjectPage({ params }: Props) {
         />
         <div className="project-story">
           <div>
-            <h2 className="t-h2">Het project</h2>
+            <h2 className="t-h2">
+              Het idee en
+              <br />
+              de uitvoering.
+            </h2>
             <p className="t-lead mt-6">{project.intro}</p>
             {project.features?.length ? (
               <div className="mt-10">
@@ -141,6 +156,18 @@ export default async function ProjectPage({ params }: Props) {
               <a href={project.video.src}>Open de video</a>
             </video>
           </section>
+        )}
+        {images.length > 0 && (
+          <div className="gallery-heading">
+            <h2 className="t-h3">Het werk in beeld</h2>
+            <p className="meta">
+              {project.presentation === 'website' ||
+              project.presentation === 'software'
+                ? 'Desktop & mobiel'
+                : 'Projectbeelden'}{' '}
+              / {images.length} beelden
+            </p>
+          </div>
         )}
         <ProjectGallery
           images={images}

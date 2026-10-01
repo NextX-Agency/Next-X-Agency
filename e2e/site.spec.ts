@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 
-const widths = [320, 375, 390, 430, 768, 1024, 1440]
+const widths = [320, 375, 390, 430, 768, 1024, 1440, 1920]
 const routes = [
   '/',
   '/portfolio',
@@ -135,7 +135,7 @@ test('contact validation, preset, failure and success without real email', async
       status: submissions === 1 ? 500 : 200,
       contentType: 'application/json',
       body: JSON.stringify(
-        submissions === 1 ? { error: 'Test failure' } : { success: true },
+        submissions === 1 ? { error: 'Test failure' } : { success: true, notificationAccepted: true, confirmationAccepted: true },
       ),
     })
   })
@@ -154,7 +154,7 @@ test('contact validation, preset, failure and success without real email', async
   await page.locator('#email').fill('browser@example.com')
   await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
   await expect(page.locator('form').getByRole('alert')).toContainText(
-    'Het versturen is mislukt',
+    'Test failure',
   )
   await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
   await expect(page.getByRole('status')).toContainText('Bedankt, Browser.')
@@ -221,4 +221,6 @@ test('internal links, demo routes, sitemap and missing projects', async ({
   expect(sitemap.status()).toBe(200)
   expect(await sitemap.text()).toContain('/portfolio/shop-nextx')
   expect(await sitemap.text()).not.toContain('private-draft')
+  expect(await sitemap.text()).not.toContain('/examples/')
+  expect(await sitemap.text()).not.toContain('<lastmod>')
 })

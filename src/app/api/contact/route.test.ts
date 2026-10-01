@@ -11,6 +11,13 @@ vi.mock('resend', () => ({
   })),
 }))
 
+const mockRateLimit = vi
+  .fn()
+  .mockResolvedValue({ allowed: true, retryAfter: 600 })
+vi.mock('@/lib/contact-rate-limit', () => ({
+  checkContactRateLimit: mockRateLimit,
+}))
+
 // Import AFTER mocking
 const { POST } = await import('@/app/api/contact/route')
 
@@ -35,7 +42,10 @@ const validPayload = {
 // ── Tests ────────────────────────────────────────────────────────────────────
 describe('POST /api/contact', () => {
   beforeEach(() => {
-    mockSend.mockClear()
+    mockSend.mockReset()
+    mockSend.mockResolvedValue({ data: { id: 'mock-email-id' }, error: null })
+    mockRateLimit.mockReset()
+    mockRateLimit.mockResolvedValue({ allowed: true, retryAfter: 600 })
     // Set env vars for the test environment
     process.env.RESEND_API_KEY = 're_test_key'
     process.env.RESEND_FROM_EMAIL = 'noreply@nextxagency.com'
@@ -116,6 +126,8 @@ describe('POST /api/contact', () => {
     const json = await res.json()
     expect(json.success).toBe(true)
     expect(json.message).toBeTruthy()
+    expect(json.notificationAccepted).toBe(true)
+    expect(json.confirmationAccepted).toBe(true)
   })
 
   it('sends two emails: agency notification and client confirmation', async () => {
@@ -182,5 +194,102 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(500)
     const json = await res.json()
     expect(json.error).toBeTruthy()
+  })
+  it.each(['name', 'email', 'phone', 'service_type', 'budget', 'message'])(
+    'rejects excessive %s lengths',
+    async (field) => {
+      expect(
+        (
+          await POST(
+            makeRequest({ ...validPayload, [field]: 'a'.repeat(5001) }),
+          )
+        ).status,
+      ).toBe(400)
+      expect(mockSend).not.toHaveBeenCalled()
+    },
+  )
+
+  it('rejects malformed JSON without contacting the provider', async () => {
+    const request = new NextRequest('http://localhost:3000/api/contact', {
+      method: 'POST',
+      body: '{',
+    })
+    expect((await POST(request)).status).toBe(400)
+    expect(mockSend).not.toHaveBeenCalled()
+  })
+
+  it('rejects an oversized request', async () => {
+    expect(
+      (await POST(makeRequest({ ...validPayload, message: 'a'.repeat(25000) })))
+        .status,
+    ).toBe(413)
+    expect(mockSend).not.toHaveBeenCalled()
+  })
+
+  it('rejects the bot field and unknown services', async () => {
+    expect(
+      (await POST(makeRequest({ ...validPayload, website: 'spam' }))).status,
+    ).toBe(400)
+    expect(
+      (
+        await POST(
+          makeRequest({ ...validPayload, service_type: 'Unknown service' }),
+        )
+      ).status,
+    ).toBe(400)
+    expect(mockSend).not.toHaveBeenCalled()
+  })
+
+  it('returns a useful unavailable response when configuration is missing', async () => {
+    delete process.env.RESEND_API_KEY
+    const res = await POST(makeRequest(validPayload))
+    expect(res.status).toBe(503)
+    expect((await res.json()).error).toContain('WhatsApp')
+    expect(mockSend).not.toHaveBeenCalled()
+  })
+
+  it('limits repeated requests without sending emails', async () => {
+    mockRateLimit.mockResolvedValue({ allowed: false, retryAfter: 123 })
+    const res = await POST(makeRequest(validPayload))
+    expect(res.status).toBe(429)
+    expect(res.headers.get('Retry-After')).toBe('123')
+    expect(mockSend).not.toHaveBeenCalled()
+  })
+
+  it('keeps provider idempotency keys and content stable for retries', async () => {
+    const payload = {
+      ...validPayload,
+      request_id: 'browser-request-123456',
+      submitted_at: Date.now(),
+    }
+    await POST(makeRequest(payload))
+    await POST(makeRequest(payload))
+    expect(mockSend.mock.calls[0][1]).toEqual(mockSend.mock.calls[2][1])
+    expect(mockSend.mock.calls[0][0]).toEqual(mockSend.mock.calls[2][0])
+    expect(mockSend.mock.calls[0][1]).not.toEqual(mockSend.mock.calls[1][1])
+  })
+
+  it('does not infer provider acceptance without an email id', async () => {
+    mockSend.mockResolvedValueOnce({ data: null, error: null })
+    expect((await POST(makeRequest(validPayload))).status).toBe(500)
+  })
+
+  it('reports provider rejection of confirmation accurately', async () => {
+    mockSend
+      .mockResolvedValueOnce({ data: { id: 'agency-id' }, error: null })
+      .mockResolvedValueOnce({ data: null, error: { message: 'Rejected' } })
+    const res = await POST(makeRequest(validPayload))
+    expect(res.status).toBe(200)
+    expect((await res.json()).confirmationAccepted).toBe(false)
+  })
+
+  it('uses current approved branding in both email templates', async () => {
+    await POST(makeRequest(validPayload))
+    for (const call of mockSend.mock.calls) {
+      expect(call[0].html).toContain(
+        'https://www.nextxagency.com/logo-agency-black.png',
+      )
+      expect(call[0].html).not.toContain('logo-light.png')
+    }
   })
 })

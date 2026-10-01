@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import type { Project } from '@/content/projects'
-import { Arrow } from '@/components/Arrow'
+import { ArrowOut } from '@/components/Arrow'
 import { ProjectCover } from './ProjectCover'
 import { cn } from '@/lib/utils'
 
@@ -21,51 +20,40 @@ export function ProjectFeature({
   return (
     <article
       className={cn('project-feature', flip && 'project-feature-offset')}
+      data-presentation={project.presentation}
     >
       <Link
         href={href}
         className="project-feature-image group"
-        style={
-          project.presentation === 'website' ||
-          project.presentation === 'software'
-            ? undefined
-            : {
-                aspectRatio: `${project.cover.width} / ${project.cover.height}`,
-              }
-        }
+        style={{
+          aspectRatio: `${project.cover.width} / ${project.cover.height}`,
+        }}
         aria-label={`Bekijk ${project.name}`}
       >
         <ProjectCover project={project} priority={priority} />
-        {project.mobile && (
-          <div className="project-phone">
-            <Image
-              src={project.mobile.src}
-              alt=""
-              fill
-              sizes="(min-width: 768px) 14vw, 25vw"
-              className="object-cover object-top"
-            />
-          </div>
-        )}
+        <span className="project-image-link" aria-hidden="true">
+          <ArrowOut />
+        </span>
       </Link>
       <div className="project-feature-caption">
+        <p className="meta project-index">
+          {project.index} /{' '}
+          {project.origin === 'studio' ? 'Eigen product' : 'Klantwerk'}
+        </p>
         <div>
-          <p className="meta mb-2">
-            {project.type}
-            {project.origin === 'studio' ? ' / Eigen product' : ''}
-          </p>
           <Heading className="t-h2">
             <Link href={href} className="link-line">
               {project.name}
             </Link>
           </Heading>
+          <p className="meta mt-4">
+            {project.type} / {project.stack ?? project.presentation}
+          </p>
         </div>
-        <div>
-          <p className="t-body max-w-[38ch]">{project.summary}</p>
-          <Link href={href} className="link-arrow link-line mt-4">
-            Bekijk project <Arrow />
-          </Link>
-        </div>
+        <p className="t-body">{project.summary}</p>
+        <Link href={href} className="link-arrow link-line project-case-link">
+          Ontdek het project <ArrowOut />
+        </Link>
       </div>
     </article>
   )

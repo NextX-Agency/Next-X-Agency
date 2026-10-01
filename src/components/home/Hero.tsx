@@ -1,80 +1,61 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Arrow, ArrowOut } from '@/components/Arrow'
-import { findProject } from '@/content/projects'
+import { disciplines } from '@/content/disciplines'
 
 export function Hero() {
-  const shop = findProject('shop-nextx')
-  const indef = findProject('indef-design')
   return (
     <section className="hero wrap" aria-labelledby="hero-title">
       <div className="hero-intro">
-        <p className="meta text-fg">Creatieve & digitale studio</p>
+        <p className="meta text-fg">NextX / Creatieve & digitale studio</p>
         <p className="meta">Paramaribo, Suriname</p>
       </div>
-      <h1 id="hero-title" className="hero-title enter-rise">
-        Goed bedacht.
-        <br />
-        <span>Sterk gemaakt.</span>
-      </h1>
-      <div className="hero-bottom">
-        <p className="hero-description">
-          Web, software, fotografie, design en marketing. Met de juiste mensen,
-          van eerste idee tot uitvoering.
-        </p>
-        <div className="hero-actions">
-          <Link href="/contact" className="btn btn-primary">
-            Start een project <Arrow />
-          </Link>
-          <Link href="/portfolio" className="link-arrow link-line">
-            Bekijk ons werk <Arrow />
+      <div className="hero-composition">
+        <div className="hero-brand" data-theme="dark">
+          <div className="hero-brand-top">
+            <span className="meta">Ontwerp × Technologie</span>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <Image
+            src="/logo-agency-white.svg"
+            alt="NextX Agency"
+            width={1200}
+            height={519}
+            priority
+            sizes="(min-width: 1440px) 620px, (min-width: 768px) 48vw, 90vw"
+            className="hero-brand-logo"
+          />
+          <div className="hero-brand-bottom">
+            <span className="meta">Een idee. Alle verbindingen.</span>
+            <span className="meta">SR / 05.852° N</span>
+          </div>
+        </div>
+        <div className="hero-copy">
+          <h1 id="hero-title">
+            Ideeën <br />
+            krijgen <br />
+            <span>vorm.</span>
+          </h1>
+          <p className="hero-description">
+            Van merk en beeld tot website en software. NextX brengt ontwerp,
+            techniek en de juiste specialisten bij elkaar.
+          </p>
+          <Link href="/contact" className="link-arrow hero-contact">
+            Vertel ons uw idee <ArrowOut />
           </Link>
         </div>
       </div>
-      <div className="hero-work" aria-label="Een kijkje in ons werk">
-        {shop && (
-          <Link
-            href={`/portfolio/${shop.slug}`}
-            className="hero-work-main group"
-          >
-            <div className="hero-image">
-              <Image
-                src="/work/shop-nextx-audio.jpg"
-                alt="De audiowinkel van onze eigen webshop Shop NextX"
-                fill
-                priority
-                sizes="(min-width: 768px) 65vw, 100vw"
-                className="object-cover object-top"
-              />
-            </div>
-            <div className="hero-caption">
-              <span>Shop NextX</span>
-              <span className="meta">
-                Eigen product <ArrowOut />
-              </span>
-            </div>
-          </Link>
-        )}
-        {indef && (
-          <Link
-            href={`/portfolio/${indef.slug}`}
-            className="hero-work-secondary group"
-          >
-            <div className="hero-image">
-              <Image
-                src="/work/indef-hero.jpg"
-                alt="De website van Indef Design & Construction"
-                fill
-                sizes="(min-width: 768px) 30vw, 100vw"
-                className="object-cover object-top"
-              />
-            </div>
-            <div className="hero-caption">
-              <span>Indef Design</span>
-              <ArrowOut />
-            </div>
-          </Link>
-        )}
+      <div className="hero-index">
+        <div className="hero-disciplines">
+          {disciplines.map((discipline) => (
+            <Link key={discipline.id} href={`/services#${discipline.id}`}>
+              {discipline.name}
+            </Link>
+          ))}
+        </div>
+        <a href="#work" className="link-arrow">
+          Het werk <Arrow />
+        </a>
       </div>
     </section>
   )

@@ -9,6 +9,7 @@ import {
 import { findExample } from '@/content/examples'
 import { Arrow } from '@/components/Arrow'
 import { disciplines } from '@/content/disciplines'
+import '../../studio-services.css'
 
 export const metadata: Metadata = {
   title: 'Diensten',
@@ -78,18 +79,37 @@ function ServiceRow({ service }: { service: Service }) {
 
 export default function ServicesPage() {
   return (
-    <>
-      <header className="wrap page-heading">
-        <p className="meta">Diensten</p>
-        <h1>
-          Van digitaal
-          <br />
-          <span>tot tastbaar.</span>
-        </h1>
-        <p className="t-lead">
-          Vier disciplines die elkaar versterken. We bepalen samen wat uw
-          project nodig heeft.
-        </p>
+    <div className="services-page">
+      <header className="wrap services-opening">
+        <div className="services-opening-label meta">
+          <span>Diensten</span>
+          <span>Van idee tot uitvoering</span>
+        </div>
+        <div className="services-opening-grid">
+          <h1>
+            Wat uw merk
+            <br />
+            <span>verder brengt.</span>
+          </h1>
+          <div>
+            <p className="t-lead">
+              Een website, een identiteit, een beeld of een campagne. We bepalen
+              samen wat uw project nodig heeft.
+            </p>
+            <a href="#pakketten" className="link-arrow link-line">
+              Naar pakketten & prijzen <Arrow />
+            </a>
+          </div>
+        </div>
+        <nav aria-label="Disciplines" className="services-discipline-nav">
+          {disciplines.map((discipline, index) => (
+            <a key={discipline.id} href={`#${discipline.id}`}>
+              <span className="meta">0{index + 1}</span>
+              <span>{discipline.name}</span>
+              <Arrow />
+            </a>
+          ))}
+        </nav>
       </header>
 
       <div className="wrap">
@@ -97,7 +117,7 @@ export default function ServicesPage() {
           <section
             id={discipline.id}
             key={discipline.id}
-            className="service-discipline"
+            className="service-discipline services-capability"
             aria-labelledby={`${discipline.id}-heading`}
           >
             <div>
@@ -120,20 +140,31 @@ export default function ServicesPage() {
             </div>
           </section>
         ))}
-        <div className="package-heading package-catalog">
-          <h2 className="t-h2">
-            Pakketten &<br />
-            praktische afspraken.
-          </h2>
-          <p className="t-body max-w-[42ch]">
-            Voor afgebakend werk zijn er bestaande pakketten. Voor software,
-            fotografie, video en campagnes maken we een offerte op maat. Alle
-            bedragen zijn in USD.
-          </p>
+        <div
+          className="package-heading package-catalog services-catalog-heading"
+          id="pakketten"
+        >
+          <div>
+            <p className="meta">Afgebakend werk, heldere prijzen</p>
+            <h2 className="t-h2">
+              Pakketten &<br />
+              praktische afspraken.
+            </h2>
+          </div>
+          <div>
+            <p className="t-body max-w-[42ch]">
+              Voor afgebakend werk zijn er bestaande pakketten. Voor software,
+              fotografie, video en campagnes maken we een offerte op maat. Alle
+              bedragen zijn in USD.
+            </p>
+            <p className="meta services-catalog-note">
+              Open een pakket voor de inhoud en aanvraag.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="wrap grid-12 gap-y-10 pb-[var(--section)]">
+      <div className="wrap grid-12 gap-y-10 pb-[var(--section)] services-catalog">
         <nav
           aria-label="Categorieën"
           className="col-span-4 md:col-span-12 lg:col-span-3"
@@ -167,33 +198,33 @@ export default function ServicesPage() {
                 aria-labelledby={`${category.id}-title`}
                 className="package-category"
               >
-                <details className="svc" open={category.id === 'websites'}>
-                  <summary className="package-summary">
-                    <span className="meta">{category.index}</span>
-                    <h2 id={`${category.id}-title`} className="t-h3">
-                      {category.title}
-                    </h2>
-                    <span className="plus" aria-hidden="true" />
-                  </summary>
-                  <div className="pb-8">
-                    <p className="t-body mt-4 max-w-[46ch] md:ml-[calc(2ch+1rem)]">
-                      {category.line}
+                <div className="package-summary">
+                  <span className="meta">{category.index}</span>
+                  <h2 id={`${category.id}-title`} className="t-h3">
+                    {category.title}
+                  </h2>
+                  <span className="services-category-count meta">
+                    {category.services.length} pakketten
+                  </span>
+                </div>
+                <div className="pb-8">
+                  <p className="t-body mt-4 max-w-[46ch] md:ml-[calc(2ch+1rem)]">
+                    {category.line}
+                  </p>
+
+                  <ul className="mt-8 border-t border-line">
+                    {category.services.map((service) => (
+                      <ServiceRow key={service.id} service={service} />
+                    ))}
+                  </ul>
+
+                  {category.terms && (
+                    <p className="t-small mt-5 max-w-[62ch]">
+                      <span className="meta mr-3 text-fg">Let op</span>
+                      {category.terms}
                     </p>
-
-                    <ul className="mt-8 border-t border-line">
-                      {category.services.map((service) => (
-                        <ServiceRow key={service.id} service={service} />
-                      ))}
-                    </ul>
-
-                    {category.terms && (
-                      <p className="t-small mt-5 max-w-[62ch]">
-                        <span className="meta mr-3 text-fg">Let op</span>
-                        {category.terms}
-                      </p>
-                    )}
-                  </div>
-                </details>
+                  )}
+                </div>
               </section>
             ))}
 
@@ -218,6 +249,6 @@ export default function ServicesPage() {
           </section>
         </div>
       </div>
-    </>
+    </div>
   )
 }

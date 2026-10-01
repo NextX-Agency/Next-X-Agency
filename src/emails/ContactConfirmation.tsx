@@ -13,7 +13,6 @@ import {
   Button,
   Hr,
   Preview,
-  Font,
 } from '@react-email/components'
 import { CONTACT, whatsappHref } from '@/lib/contact'
 
@@ -37,18 +36,7 @@ export function ContactConfirmation({
 
   return (
     <Html lang="nl">
-      <Head>
-        <Font
-          fontFamily="Inter"
-          fallbackFontFamily="Helvetica"
-          webFont={{
-            url: 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
-            format: 'woff2',
-          }}
-          fontWeight={400}
-          fontStyle="normal"
-        />
-      </Head>
+      <Head />
       <Preview>
         Uw aanvraag is ontvangen — we nemen {CONTACT.responseTime} contact op.
       </Preview>
@@ -59,7 +47,7 @@ export function ContactConfirmation({
           {/* ── Logo ── */}
           <Section style={s.logoSection}>
             <Img
-              src="https://nextxagency.com/logo-light.png"
+              src={`${CONTACT.siteUrl}/logo-agency-black.png`}
               alt="NextX Agency"
               width="120"
               height="48"
@@ -116,7 +104,7 @@ export function ContactConfirmation({
             <Text style={s.tableLabel}>Hoe werkt het verder</Text>
             <ProcessStep number="1" text={`We nemen ${CONTACT.responseTime} contact met u op via e-mail of WhatsApp.`} />
             <ProcessStep number="2" text="We bespreken uw wensen en stellen een passend voorstel op." />
-            <ProcessStep number="3" text="Na uw akkoord starten we direct met het werk." />
+            <ProcessStep number="3" text="Na uw akkoord plannen we het werk samen in." />
 
             <Hr style={s.divider} />
 
@@ -173,7 +161,7 @@ const stepNumCol = { width: '28px', verticalAlign: 'top' as const }
 const stepNum = {
   backgroundColor: '#fff7ed',
   border: '1px solid #fed7aa',
-  color: '#c45a2b',
+  color: '#B34408',
   fontSize: '12px',
   fontWeight: '700' as const,
   width: '20px',
@@ -185,14 +173,14 @@ const stepNum = {
   padding: '0',
   display: 'block',
 }
-const stepText = { color: '#475569', fontSize: '14px', lineHeight: '1.6', margin: '0' }
+const stepText = { color: '#403B35', fontSize: '14px', lineHeight: '1.6', margin: '0' }
 
 // ──────────────────────────────────────────────────────────────────────────────
 
 const s = {
   body: {
-    backgroundColor: '#f8fafc',
-    fontFamily: '"Inter", Helvetica, Arial, sans-serif',
+    backgroundColor: '#F2F0EB',
+    fontFamily: 'Arial, Helvetica, sans-serif',
     margin: '0',
     padding: '0',
   },
@@ -216,14 +204,14 @@ const s = {
   /* Card */
   card: {
     backgroundColor: '#ffffff',
-    border: '1px solid #e2e8f0',
+    border: '1px solid #DEDAD1',
     borderRadius: '12px',
     padding: '36px 36px 28px',
     marginBottom: '12px',
   },
 
   heading: {
-    color: '#0f172a',
+    color: '#0E0D0C',
     fontSize: '22px',
     fontWeight: '700' as const,
     letterSpacing: '-0.01em',
@@ -231,30 +219,30 @@ const s = {
     lineHeight: '1.2',
   },
   subheading: {
-    color: '#0f172a',
+    color: '#0E0D0C',
     fontSize: '15px',
     fontWeight: '600' as const,
     margin: '0 0 10px',
   },
   body2: {
-    color: '#475569',
+    color: '#403B35',
     fontSize: '15px',
     lineHeight: '1.7',
     margin: '0',
   },
   strong: {
-    color: '#0f172a',
+    color: '#0E0D0C',
     fontWeight: '700' as const,
   },
 
   divider: {
-    borderColor: '#e2e8f0',
+    borderColor: '#DEDAD1',
     margin: '24px 0',
   },
 
   /* Summary table */
   tableLabel: {
-    color: '#94a3b8',
+    color: '#6D675F',
     fontSize: '11px',
     fontWeight: '600' as const,
     letterSpacing: '0.08em',
@@ -271,12 +259,12 @@ const s = {
     paddingBottom: '10px',
   },
   tableLabelText: {
-    color: '#94a3b8',
+    color: '#6D675F',
     fontSize: '13px',
     margin: '0',
   },
   tableValueText: {
-    color: '#0f172a',
+    color: '#0E0D0C',
     fontSize: '14px',
     fontWeight: '600' as const,
     margin: '0',
@@ -284,7 +272,7 @@ const s = {
     paddingBottom: '10px',
   },
   tableRowDivider: {
-    borderColor: '#f1f5f9',
+    borderColor: '#F2F0EB',
     margin: '0',
   },
 
@@ -293,7 +281,7 @@ const s = {
     paddingTop: '4px',
   },
   ctaBtn: {
-    backgroundColor: '#c45a2b',
+    backgroundColor: '#B34408',
     color: '#ffffff',
     padding: '12px 24px',
     borderRadius: '8px',
@@ -306,39 +294,39 @@ const s = {
   /* Contact bar */
   contactBar: {
     backgroundColor: '#ffffff',
-    border: '1px solid #e2e8f0',
+    border: '1px solid #DEDAD1',
     borderRadius: '10px',
     padding: '18px 24px',
     marginBottom: '16px',
     textAlign: 'center' as const,
   },
   contactBarTitle: {
-    color: '#0f172a',
+    color: '#0E0D0C',
     fontSize: '13px',
     fontWeight: '600' as const,
     margin: '0 0 6px',
   },
   contactBarLinks: {
-    color: '#64748b',
+    color: '#6D675F',
     fontSize: '13px',
     margin: '0',
   },
   contactLink: {
-    color: '#c45a2b',
+    color: '#B34408',
     textDecoration: 'none',
     fontWeight: '500' as const,
   },
 
   /* Footer */
   footerText: {
-    color: '#94a3b8',
+    color: '#6D675F',
     fontSize: '12px',
     textAlign: 'center' as const,
     margin: '0',
     lineHeight: '1.7',
   },
   footerLink: {
-    color: '#94a3b8',
+    color: '#6D675F',
     textDecoration: 'underline',
   },
 } as const

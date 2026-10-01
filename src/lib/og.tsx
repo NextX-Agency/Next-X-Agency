@@ -1,66 +1,84 @@
 /* eslint-disable @next/next/no-img-element */
-import type { CSSProperties, ReactElement } from 'react'
+import type { ReactElement } from 'react'
 
 export const socialImageSize = { width: 1200, height: 630 } as const
 
-type SocialImageProps = {
-  origin: string
-}
-
-const stack: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-}
-
-export function SocialImage({ origin }: SocialImageProps) {
-  const artUrl = `${origin}/og/nextx-social-v3-art.png`
-  const logoUrl = `${origin}/logo-agency-white.svg`
-
+export function SocialImage({ origin }: { origin: string }) {
   return (
     <div
       style={{
-        ...stack,
-        position: 'relative',
+        display: 'flex',
         width: '100%',
         height: '100%',
-        overflow: 'hidden',
-        background: '#0e0d0c',
-        color: '#f2f0eb',
+        background: '#f2f0eb',
+        color: '#0e0d0c',
+        padding: 48,
         fontFamily: 'Arial, sans-serif',
+        gap: 48,
       }}
     >
-      <img
-        src={artUrl}
-        alt=""
-        width={1200}
-        height={630}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(14, 13, 12, 0.12)' }} />
-
-      <div style={{ ...stack, position: 'absolute', left: 72, top: 52 }}>
-        <img src={logoUrl} alt="NextX Agency" width={248} height={107} style={{ objectFit: 'contain', objectPosition: 'left center' }} />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          background: '#0e0d0c',
+          width: 536,
+          padding: 34,
+        }}
+      >
+        <span
+          style={{ color: '#ed5f0f', fontSize: 16, letterSpacing: '0.08em' }}
+        >
+          ONTWERP × TECHNOLOGIE
+        </span>
+        <img
+          src={`${origin}/logo-agency-white.svg`}
+          alt="NextX Agency"
+          width={468}
+          height={202}
+        />
+        <span
+          style={{ color: '#aaa49b', fontSize: 14, letterSpacing: '0.07em' }}
+        >
+          CREATIEVE & DIGITALE STUDIO
+        </span>
       </div>
-
-      <div style={{ ...stack, position: 'absolute', left: 72, bottom: 66 }}>
-        <div style={{ ...stack, gap: 8, marginBottom: 22 }}>
-          <span style={{ fontSize: 19, fontWeight: 700, letterSpacing: '0.18em', color: '#ed5f0f' }}>CREATIEVE & DIGITALE STUDIO</span>
-          <span style={{ width: 88, height: 3, background: '#ed5f0f' }} />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          width: 472,
+          paddingTop: 12,
+        }}
+      >
+        <span style={{ fontSize: 16, letterSpacing: '0.06em' }}>
+          PARAMARIBO, SURINAME
+        </span>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            fontSize: 88,
+            fontWeight: 700,
+            letterSpacing: '-0.065em',
+            lineHeight: 0.98,
+          }}
+        >
+          <span>Ideeën</span>
+          <span>krijgen</span>
+          <span style={{ color: '#b54607' }}>vorm.</span>
         </div>
-        <div style={{ ...stack, fontSize: 92, fontWeight: 800, letterSpacing: '-0.065em', lineHeight: 0.87 }}>
-          <span>DESIGN</span>
-          <span>BUILD</span>
-        </div>
-      </div>
-
-      <div style={{ ...stack, position: 'absolute', right: 72, bottom: 72, gap: 10, alignItems: 'flex-end' }}>
-        <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: '0.15em', color: '#f2f0eb' }}>PARAMARIBO, SR</span>
-        <span style={{ fontSize: 17, letterSpacing: '0.15em', color: 'rgba(242, 240, 235, 0.65)' }}>NEXTXAGENCY.COM</span>
-      </div>
-
-      <div style={{ position: 'absolute', right: 72, top: 72, display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ width: 8, height: 8, borderRadius: 999, background: '#ed5f0f' }} />
-        <span style={{ fontSize: 15, letterSpacing: '0.16em', color: 'rgba(242, 240, 235, 0.65)' }}>SR / 05°52′N</span>
+        <span
+          style={{
+            fontSize: 22,
+            borderTop: '1px solid #0e0d0c',
+            paddingTop: 18,
+          }}
+        >
+          nextxagency.com
+        </span>
       </div>
     </div>
   )

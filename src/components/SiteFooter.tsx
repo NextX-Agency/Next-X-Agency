@@ -9,16 +9,17 @@ export function SiteFooter() {
       <div className="wrap">
         <section className="footer-inquiry" aria-labelledby="footer-cta-title">
           <h2 id="footer-cta-title">
-            Wat gaan we
+            Uw volgende stap
             <br />
-            <span className="text-accent">maken?</span>
+            <span className="text-accent">begint hier.</span>
           </h2>
           <div>
             <p className="t-lead max-w-[29ch]">
               Een concreet plan of een eerste idee. Vertel ons waar u aan denkt.
             </p>
+            <a href={mailHref} className="footer-direct link-line">{site.email}</a>
             <Link href="/contact" className="btn btn-primary mt-7">
-              Start een project <Arrow />
+              Bespreek uw project <Arrow />
             </Link>
           </div>
         </section>
