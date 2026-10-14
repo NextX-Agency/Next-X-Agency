@@ -35,7 +35,11 @@ for (const route of routes) {
       await page.evaluate(() =>
         window.scrollTo({ top: 0, behavior: 'instant' }),
       )
+      // Every image that is rendered at this width must load. Art-directed
+      // alternates hidden with display:none are lazy and correctly never load.
       for (const image of await page.locator('img').all()) {
+        if (!(await image.evaluate((element) => element.getClientRects().length > 0)))
+          continue
         await image.evaluate((element) =>
           element.scrollIntoView({ behavior: 'instant' }),
         )
@@ -59,6 +63,7 @@ for (const route of routes) {
         .poll(() =>
           page.evaluate(() =>
             Array.from(document.images)
+              .filter((img) => img.getClientRects().length > 0)
               .filter((img) => !img.complete || img.naturalWidth === 0)
               .map((img) => img.getAttribute('src')),
           ),
@@ -79,6 +84,16 @@ for (const route of routes) {
           ),
           fullPage: true,
         })
+        // The full-page capture brings every scroll entrance into view; scan
+        // the settled page, not text that is still fading in.
+        await page.waitForFunction(() =>
+          document.getAnimations().every((a) => a.playState !== 'running'),
+        )
+        // The full-page capture brings every scroll entrance into view; scan
+        // the settled page, not text that is still fading in.
+        await page.waitForFunction(() =>
+          document.getAnimations().every((a) => a.playState !== 'running'),
+        )
         const accessibility = await new AxeBuilder({ page })
           .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
           .analyze()
@@ -100,7 +115,7 @@ test('mobile menu closes with Escape and navigation; keyboard focus returns', as
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
-  const menu = page.getByRole('button', { name: 'Menu +' })
+  const menu = page.getByRole('button', { name: 'Menu', exact: true })
   await menu.click()
   await expect(
     page.getByRole('navigation', { name: 'Mobiel menu' }),

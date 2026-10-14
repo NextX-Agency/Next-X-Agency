@@ -70,12 +70,10 @@ export function ProjectGallery({
                   ↗
                 </span>
               </button>
-              {(image.caption || image.credit) && (
-                <figcaption className="t-small mt-3">
-                  {image.caption}
-                  {image.credit && ` · ${image.credit}`}
-                </figcaption>
-              )}
+              <figcaption className="meta mt-3">
+                {image.caption ?? image.alt}
+                {image.credit && ` · ${image.credit}`}
+              </figcaption>
             </figure>
           ))}
         </div>

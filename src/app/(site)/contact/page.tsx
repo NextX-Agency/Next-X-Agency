@@ -14,18 +14,12 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="wrap contact-layout">
+    <div className="wrap pb-[var(--section)] pt-[calc(var(--nav-h)+4rem)] md:pt-[calc(var(--nav-h)+7rem)]">
       <header className="max-w-[44rem]">
-        <p className="meta mb-6">Contact</p>
-        <h1 className="contact-title">
-          Vertel ons
-          <br />
-          uw idee.
-        </h1>
-        <p className="t-lead mt-8 max-w-[36ch]">
-          Vertel kort wat u wilt maken. We reageren binnen{' '}
-          <span className="whitespace-nowrap">{site.responseTime}</span> op
-          werkdagen.
+        <h1 className="t-display">Start een project.</h1>
+        <p className="t-lead mt-8 max-w-[38ch]">
+          Vertel kort wat u wilt maken: een website, een shoot, een merk of een campagne. U krijgt binnen{' '}
+          <span className="whitespace-nowrap">{site.responseTime}</span> antwoord op werkdagen.
         </p>
       </header>
 

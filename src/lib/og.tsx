@@ -3,82 +3,63 @@ import type { ReactElement } from 'react'
 
 export const socialImageSize = { width: 1200, height: 630 } as const
 
+/** Mirrors the homepage hero: ink ground, three-line headline, orange full stop and glow. */
 export function SocialImage({ origin }: { origin: string }) {
   return (
     <div
       style={{
         display: 'flex',
+        position: 'relative',
         width: '100%',
         height: '100%',
-        background: '#f2f0eb',
-        color: '#0e0d0c',
-        padding: 48,
+        background: '#0e0d0c',
+        color: '#eeebe5',
+        padding: 64,
         fontFamily: 'Arial, sans-serif',
-        gap: 48,
+        overflow: 'hidden',
       }}
     >
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          background: '#0e0d0c',
-          width: 536,
-          padding: 34,
+          position: 'absolute',
+          right: -260,
+          bottom: -420,
+          width: 900,
+          height: 900,
+          borderRadius: 9999,
+          border: '2px solid rgba(237, 95, 15, 0.55)',
+          background: 'radial-gradient(closest-side, rgba(237,95,15,0.22), rgba(237,95,15,0.05) 60%, rgba(14,13,12,0) 100%)',
         }}
-      >
-        <span
-          style={{ color: '#ed5f0f', fontSize: 16, letterSpacing: '0.08em' }}
-        >
-          ONTWERP × TECHNOLOGIE
-        </span>
-        <img
-          src={`${origin}/logo-agency-white.svg`}
-          alt="NextX Agency"
-          width={468}
-          height={202}
-        />
-        <span
-          style={{ color: '#aaa49b', fontSize: 14, letterSpacing: '0.07em' }}
-        >
-          CREATIEVE & DIGITALE STUDIO
-        </span>
-      </div>
+      />
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: 472,
-          paddingTop: 12,
+          width: '100%',
         }}
       >
-        <span style={{ fontSize: 16, letterSpacing: '0.06em' }}>
-          PARAMARIBO, SURINAME
-        </span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <img src={`${origin}/logo-agency-white.svg`} alt="NextX Agency" width={152} height={66} />
+          <span style={{ color: '#8f8980', fontSize: 16, letterSpacing: '0.08em' }}>PARAMARIBO, SURINAME</span>
+        </div>
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            fontSize: 88,
+            fontSize: 112,
             fontWeight: 700,
-            letterSpacing: '-0.065em',
-            lineHeight: 0.98,
+            letterSpacing: '-0.05em',
+            lineHeight: 0.92,
           }}
         >
-          <span>Ideeën</span>
-          <span>krijgen</span>
-          <span style={{ color: '#b54607' }}>vorm.</span>
+          <span>Websites,</span>
+          <span>beeld</span>
+          <span style={{ display: 'flex' }}>
+            en merken<span style={{ color: '#ed5f0f' }}>.</span>
+          </span>
         </div>
-        <span
-          style={{
-            fontSize: 22,
-            borderTop: '1px solid #0e0d0c',
-            paddingTop: 18,
-          }}
-        >
-          nextxagency.com
-        </span>
+        <span style={{ color: '#b3ada5', fontSize: 22 }}>Creatieve & digitale studio · nextxagency.com</span>
       </div>
     </div>
   )

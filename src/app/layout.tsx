@@ -58,7 +58,7 @@ const description =
   'NextX is een creatieve en digitale studio in Paramaribo voor web, software, fotografie, media, branding en marketing. Eén aanspreekpunt, de juiste expertise per project.'
 
 const socialImage = {
-  url: '/og/nextx-social-v4.png',
+  url: '/og/nextx-social-v5.png',
   width: 1200,
   height: 630,
   alt: 'NextX creatieve en digitale studio in Paramaribo',

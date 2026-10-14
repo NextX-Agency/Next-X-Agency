@@ -1,23 +1,20 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import {
-  formatPrice,
-  includedEverywhere,
-  serviceCategories,
-  type Service,
-} from '@/content/services'
+import { formatPrice, includedEverywhere, serviceCategories, websiteFrom, type Service } from '@/content/services'
 import { findExample } from '@/content/examples'
-import { Arrow } from '@/components/Arrow'
 import { disciplines } from '@/content/disciplines'
-import '../../studio-services.css'
+import { Arrow } from '@/components/Arrow'
 
 export const metadata: Metadata = {
-  title: 'Diensten',
+  title: 'Diensten en prijzen',
   description:
-    'Web en software, fotografie en media, branding en design, marketing. Bekijk de disciplines en bestaande pakketten van NextX. Projecten op maat met een offerte vooraf.',
+    'Web en software, fotografie en media, branding en design, marketing. Bekijk de disciplines en pakketten van NextX. Websites met een vanafprijs, ander werk op offerte.',
   alternates: { canonical: '/services' },
   openGraph: { title: 'Diensten en prijzen — NextX Agency', url: '/services' },
 }
+
+/** Fixed-price packages; the per-discipline "op aanvraag" entries are shown as disciplines above. */
+const packages = serviceCategories.filter((category) => category.id !== 'creative-production')
 
 function ServiceRow({ service }: { service: Service }) {
   const example = service.example ? findExample(service.example) : undefined
@@ -25,19 +22,14 @@ function ServiceRow({ service }: { service: Service }) {
     <li className="border-b border-line">
       <details className="svc group/row">
         <summary className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-baseline gap-x-6 gap-y-1 py-5 lg:grid-cols-[minmax(0,15rem)_1fr_auto_auto] lg:py-6">
-          <span className="t-h3 transition-colors group-hover/row:text-accent-text lg:col-start-1 lg:row-start-1">
-            {service.name}
-          </span>
+          <span className="t-h3 transition-colors group-hover/row:text-accent-text lg:col-start-1 lg:row-start-1">{service.name}</span>
           <span className="t-small col-span-3 row-start-2 max-w-[48ch] lg:col-span-1 lg:col-start-2 lg:row-start-1">
             {service.summary}
           </span>
           <span className="num col-start-2 row-start-1 whitespace-nowrap text-[0.9375rem] lg:col-start-3 lg:row-start-1">
             {formatPrice(service.price)}
           </span>
-          <span
-            className="plus col-start-3 row-start-1 block self-center text-fg-3 lg:col-start-4"
-            aria-hidden="true"
-          />
+          <span className="plus col-start-3 row-start-1 block self-center text-fg-3 lg:col-start-4" aria-hidden="true" />
         </summary>
         <div className="grid gap-6 pb-7 lg:grid-cols-[minmax(0,15rem)_1fr] lg:gap-x-6">
           <p className="meta lg:pt-1">Inbegrepen</p>
@@ -45,27 +37,18 @@ function ServiceRow({ service }: { service: Service }) {
             <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
               {service.includes.map((item) => (
                 <li key={item} className="flex gap-3 text-[0.9375rem]">
-                  <span
-                    className="mt-[0.6em] h-px w-3 shrink-0 bg-accent"
-                    aria-hidden="true"
-                  />
+                  <span className="mt-[0.6em] h-px w-3 shrink-0 bg-accent" aria-hidden="true" />
                   {item}
                 </li>
               ))}
             </ul>
             <div className="mt-6 flex flex-wrap gap-x-7 gap-y-3 text-[0.9375rem]">
-              <Link
-                href={`/contact?dienst=${service.id}`}
-                className="link-arrow link-line"
-              >
+              <Link href={`/contact?dienst=${service.id}`} className="link-arrow link-line">
                 Aanvragen
                 <Arrow />
               </Link>
               {example && (
-                <Link
-                  href={`/examples/${example.slug}`}
-                  className="link-arrow link-line text-fg-2"
-                >
+                <Link href={`/examples/${example.slug}`} className="link-arrow link-line text-fg-2">
                   Bekijk voorbeeld
                 </Link>
               )}
@@ -79,169 +62,120 @@ function ServiceRow({ service }: { service: Service }) {
 
 export default function ServicesPage() {
   return (
-    <div className="services-page">
-      <header className="wrap services-opening">
-        <div className="services-opening-label meta">
-          <span>Diensten</span>
-          <span>Van idee tot uitvoering</span>
-        </div>
-        <div className="services-opening-grid">
-          <h1>
-            Wat uw merk
-            <br />
-            <span>verder brengt.</span>
-          </h1>
-          <div>
-            <p className="t-lead">
-              Een website, een identiteit, een beeld of een campagne. We bepalen
-              samen wat uw project nodig heeft.
-            </p>
-            <a href="#pakketten" className="link-arrow link-line">
-              Naar pakketten & prijzen <Arrow />
-            </a>
-          </div>
-        </div>
-        <nav aria-label="Disciplines" className="services-discipline-nav">
-          {disciplines.map((discipline, index) => (
-            <a key={discipline.id} href={`#${discipline.id}`}>
-              <span className="meta">0{index + 1}</span>
-              <span>{discipline.name}</span>
-              <Arrow />
-            </a>
-          ))}
-        </nav>
+    <>
+      <header className="wrap pb-16 pt-[calc(var(--nav-h)+4rem)] md:pb-24 md:pt-[calc(var(--nav-h)+7rem)]">
+        <p className="meta mb-6">Diensten</p>
+        <h1 className="t-h1 max-w-[12ch]">Wat we maken en wat het kost</h1>
+        <p className="t-lead mt-8 max-w-[44ch]">
+          Websites en webshops hebben een vanafprijs. Software, fotografie, video, design en marketing prijzen we per project, met een offerte vóór de start.
+        </p>
       </header>
 
-      <div className="wrap">
+      {/* The four disciplines, each with its own route to an inquiry */}
+      <div className="wrap pb-[var(--section)]">
         {disciplines.map((discipline, i) => (
           <section
-            id={discipline.id}
             key={discipline.id}
-            className="service-discipline services-capability"
-            aria-labelledby={`${discipline.id}-heading`}
+            id={discipline.id}
+            aria-labelledby={`${discipline.id}-title`}
+            className="grid-12 gap-y-6 border-t border-line-strong pb-14 pt-5 last:border-b last:border-b-line md:pb-20"
           >
-            <div>
-              <p className="meta mb-4">0{i + 1}</p>
-              <h2 id={`${discipline.id}-heading`}>{discipline.name}</h2>
-              <p className="t-body">{discipline.description}</p>
+            <span className="meta col-span-4 md:col-span-1 md:pt-3">{String(i + 1).padStart(2, '0')}</span>
+            <div className="col-span-4 md:col-span-5">
+              <h2 id={`${discipline.id}-title`} className="t-h2">
+                {discipline.name}
+              </h2>
+              <p className="t-body mt-5 max-w-[42ch]">{discipline.description}</p>
             </div>
-            <div>
-              <ul>
+            <div className="col-span-4 md:col-span-5 md:col-start-8 md:pt-3">
+              <ul className="grid gap-2">
                 {discipline.services.map((service) => (
-                  <li key={service}>{service}</li>
+                  <li key={service} className="flex gap-3 text-[0.9375rem]">
+                    <span className="mt-[0.6em] h-px w-3 shrink-0 bg-accent" aria-hidden="true" />
+                    {service}
+                  </li>
                 ))}
               </ul>
-              <Link
-                href={`/contact?dienst=${discipline.id}`}
-                className="link-arrow link-line mt-7"
-              >
-                Bespreek uw project <Arrow />
-              </Link>
+              <div className="mt-7 flex flex-wrap items-baseline gap-x-7 gap-y-3 text-[0.9375rem]">
+                <Link href={`/contact?dienst=${discipline.id}`} className="link-arrow link-line">
+                  Bespreek uw project
+                  <Arrow />
+                </Link>
+                {discipline.id === 'web-software' ? (
+                  <a href="#websites" className="meta link-line hover:text-fg">
+                    Websites {formatPrice(websiteFrom)}
+                  </a>
+                ) : (
+                  <span className="meta">Op aanvraag</span>
+                )}
+              </div>
             </div>
           </section>
         ))}
-        <div
-          className="package-heading package-catalog services-catalog-heading"
-          id="pakketten"
-        >
-          <div>
-            <p className="meta">Afgebakend werk, heldere prijzen</p>
-            <h2 className="t-h2">
-              Pakketten &<br />
-              praktische afspraken.
+      </div>
+
+      <section data-theme="dark" aria-labelledby="packages-title">
+        <div className="wrap grid-12 gap-y-6 py-16 md:py-24">
+          <p className="meta col-span-4 md:col-span-3">Vaste pakketten</p>
+          <div className="col-span-4 md:col-span-7 md:col-start-6">
+            <h2 id="packages-title" className="t-h2">
+              Pakketten en prijzen
             </h2>
-          </div>
-          <div>
-            <p className="t-body max-w-[42ch]">
-              Voor afgebakend werk zijn er bestaande pakketten. Voor software,
-              fotografie, video en campagnes maken we een offerte op maat. Alle
-              bedragen zijn in USD.
-            </p>
-            <p className="meta services-catalog-note">
-              Open een pakket voor de inhoud en aanvraag.
+            <p className="t-body mt-5 max-w-[46ch]">
+              Voor websites, webshops en afgebakend ontwerpwerk. Na het eerste gesprek weet u de exacte prijs; pas daarna beginnen we. Alle bedragen in USD.
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="wrap grid-12 gap-y-10 pb-[var(--section)] services-catalog">
-        <nav
-          aria-label="Categorieën"
-          className="col-span-4 md:col-span-12 lg:col-span-3"
-        >
+      <div className="wrap grid-12 gap-y-10 py-[var(--section)]">
+        <nav aria-label="Categorieën" className="col-span-4 md:col-span-12 lg:col-span-3">
           <ol className="flex flex-wrap gap-x-5 gap-y-2 border-t border-line-strong pt-4 lg:sticky lg:top-24 lg:block lg:space-y-2">
-            {serviceCategories
-              .filter((category) => category.id !== 'creative-production')
-              .map((category) => (
-                <li key={category.id}>
-                  <a
-                    href={`#${category.id}`}
-                    className="group flex items-baseline gap-3 text-[0.9375rem]"
-                  >
-                    <span className="meta group-hover:text-accent-text">
-                      {category.index}
-                    </span>
-                    <span className="link-line">{category.title}</span>
-                  </a>
-                </li>
-              ))}
+            {packages.map((category) => (
+              <li key={category.id}>
+                <a href={`#${category.id}`} className="group flex items-baseline gap-3 text-[0.9375rem]">
+                  <span className="meta group-hover:text-accent-text">{category.index}</span>
+                  <span className="link-line">{category.title}</span>
+                </a>
+              </li>
+            ))}
           </ol>
         </nav>
 
         <div className="col-span-4 md:col-span-12 lg:col-span-9">
-          {serviceCategories
-            .filter((category) => category.id !== 'creative-production')
-            .map((category) => (
-              <section
-                key={category.id}
-                id={category.id}
-                aria-labelledby={`${category.id}-title`}
-                className="package-category"
-              >
-                <div className="package-summary">
-                  <span className="meta">{category.index}</span>
-                  <h2 id={`${category.id}-title`} className="t-h3">
-                    {category.title}
-                  </h2>
-                  <span className="services-category-count meta">
-                    {category.services.length} pakketten
-                  </span>
-                </div>
-                <div className="pb-8">
-                  <p className="t-body mt-4 max-w-[46ch] md:ml-[calc(2ch+1rem)]">
-                    {category.line}
-                  </p>
+          {packages.map((category) => (
+            <section key={category.id} id={category.id} aria-labelledby={`${category.id}-title`} className="mb-20 last:mb-0 md:mb-28">
+              <div className="flex items-baseline gap-4 border-t border-line-strong pt-4">
+                <span className="meta">{category.index}</span>
+                <h3 id={`${category.id}-title`} className="t-h2">
+                  {category.title}
+                </h3>
+              </div>
+              <p className="t-body mt-4 max-w-[46ch] md:ml-[calc(2ch+1rem)]">{category.line}</p>
 
-                  <ul className="mt-8 border-t border-line">
-                    {category.services.map((service) => (
-                      <ServiceRow key={service.id} service={service} />
-                    ))}
-                  </ul>
+              <ul className="mt-8 border-t border-line">
+                {category.services.map((service) => (
+                  <ServiceRow key={service.id} service={service} />
+                ))}
+              </ul>
 
-                  {category.terms && (
-                    <p className="t-small mt-5 max-w-[62ch]">
-                      <span className="meta mr-3 text-fg">Let op</span>
-                      {category.terms}
-                    </p>
-                  )}
-                </div>
-              </section>
-            ))}
+              {category.terms && (
+                <p className="t-small mt-5 max-w-[62ch]">
+                  <span className="meta mr-3 text-fg">Let op</span>
+                  {category.terms}
+                </p>
+              )}
+            </section>
+          ))}
 
-          <section
-            aria-labelledby="included-title"
-            className="mt-24 bg-bg-2 p-6 md:mt-32 md:p-10"
-          >
-            <h2 id="included-title" className="t-h3">
+          <section aria-labelledby="included-title" className="mt-24 bg-bg-2 p-6 md:mt-32 md:p-10">
+            <h3 id="included-title" className="t-h3">
               Bij elke website en webshop
-            </h2>
+            </h3>
             <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
               {includedEverywhere.map((item) => (
                 <li key={item} className="flex gap-3 text-[0.9375rem]">
-                  <span
-                    className="mt-[0.6em] h-px w-3 shrink-0 bg-accent"
-                    aria-hidden="true"
-                  />
+                  <span className="mt-[0.6em] h-px w-3 shrink-0 bg-accent" aria-hidden="true" />
                   {item}
                 </li>
               ))}
@@ -249,6 +183,6 @@ export default function ServicesPage() {
           </section>
         </div>
       </div>
-    </div>
+    </>
   )
 }

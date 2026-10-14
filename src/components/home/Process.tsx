@@ -1,46 +1,41 @@
-export const steps = [
-  {
-    title: 'Brief',
-    text: 'We bespreken het doel, het publiek en wat er nodig is. Scope, budget en planning leggen we samen vast.',
-  },
-  {
-    title: 'Richting',
-    text: 'We kiezen een aanpak en werken de eerste ideeën uit. U kijkt mee en geeft feedback.',
-  },
-  {
-    title: 'Productie',
-    text: 'De afgesproken richting wordt ontwerp, code, beeld of content. NextX houdt het overzicht.',
-  },
-  {
-    title: 'Oplevering',
-    text: 'We controleren het werk en leveren de bestanden of het product op. Met uitleg en afspraken voor het vervolg.',
-  },
+import { Reveal } from '@/components/Reveal'
+
+/** The same four steps for a website, a shoot or a campaign; the planning follows the project. */
+const steps = [
+  { title: 'Gesprek', when: 'Start', text: 'Doel, publiek en scope bespreken. Budget en planning samen vastleggen.' },
+  { title: 'Richting', when: 'Daarna', text: 'Een aanpak kiezen en de eerste ideeën voorleggen en aanscherpen.' },
+  { title: 'Productie', when: 'Na akkoord', text: 'Ontwerp, code, beeld of content maken. NextX houdt het overzicht.' },
+  { title: 'Oplevering', when: 'Afronding', text: 'Controleren, opleveren en afspraken maken voor het vervolg.' },
 ]
 
 export function Process() {
   return (
-    <section className="section process" aria-labelledby="process-title">
+    <section className="section bg-bg-2" aria-labelledby="process-title">
       <div className="wrap">
-        <div className="process-heading">
+        <Reveal>
           <h2 id="process-title" className="t-h2">
-            Van vraag
-            <br />
-            naar resultaat.
+            Zo werken we
           </h2>
-          <p className="t-body max-w-[32ch]">
-            Duidelijke stappen, ruimte voor feedback. De planning volgt uit uw
-            project.
-          </p>
-        </div>
-        <ol className="process-steps">
+        </Reveal>
+
+        {/* A measured line with a node per step, horizontal from tablet up */}
+        <ol className="mt-14 grid gap-10 md:mt-20 md:grid-cols-4 md:gap-6">
           {steps.map((step, i) => (
-            <li key={step.title}>
-              <span className="meta">0{i + 1}</span>
-              <h3 className="t-h3">{step.title}</h3>
-              <p className="t-small">{step.text}</p>
-            </li>
+            <Reveal as="li" key={step.title} delay={i * 0.08} className="relative border-l border-line-strong pl-6 md:border-l-0 md:border-t md:pl-0 md:pt-8">
+              <span className="absolute -left-[4px] top-0 size-[7px] bg-accent md:-top-[4px] md:left-0" aria-hidden="true" />
+              <p className="meta mb-3">{String(i + 1).padStart(2, '0')}</p>
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="t-h3">{step.title}</h3>
+                <span className="meta text-accent-text">{step.when}</span>
+              </div>
+              <p className="t-small mt-3 max-w-[28ch]">{step.text}</p>
+            </Reveal>
           ))}
         </ol>
+
+        <p className="meta mt-16 border-t border-line pt-5 md:mt-24">
+          Scope, prijs en planning vóór de start, met één aanspreekpunt.
+        </p>
       </div>
     </section>
   )
