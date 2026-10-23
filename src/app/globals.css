@@ -466,6 +466,15 @@ textarea.field {
   opacity: 0;
 }
 
+.globe-label-copy { display: grid; gap: .15rem; padding: .3rem .6rem; background: rgba(10,10,9,.86); }
+.globe-label-copy strong { font-family: var(--font-sans); font-size: .95rem; font-weight: 800; letter-spacing: -.02em; line-height: 1; text-transform: uppercase; color: var(--orange); }
+.globe-label-copy small { font-family: var(--font-mono); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; color: var(--paper); }
+
+.nx-hero-origin { position: absolute; left: var(--gutter); bottom: 1.5rem; z-index: 2; display: grid; gap: .2rem; border-left: 2px solid var(--orange); padding-left: .85rem; text-transform: uppercase; }
+.nx-hero-origin > span, .nx-hero-origin small { font-family: var(--font-mono); font-size: .58rem; font-weight: 500; letter-spacing: .09em; color: #aaa49b; }
+.nx-hero-origin strong { font-family: var(--font-sans); font-size: clamp(1.8rem, 2.5vw, 3rem); font-weight: 900; letter-spacing: -.055em; line-height: .95; color: var(--paper); }
+@media (max-width: 47.99rem) { .nx-hero-origin { bottom: 1rem; } .nx-hero-origin strong { font-size: 1.8rem; } }
+
 @supports (anchor-name: --a) {
   .globe-label {
     position: absolute;

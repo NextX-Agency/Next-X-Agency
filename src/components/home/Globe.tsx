@@ -94,7 +94,7 @@ export function Globe({ className }: { className?: string }) {
         theta: HOME_THETA + lean.y,
         width: width * dpr,
         height: width * dpr,
-        markers: [{ location: [lat, lng], size: 0.028 + pulse * 0.02, id: 'pbm' }],
+        markers: [{ location: [lat, lng], size: 0.042 + pulse * 0.022, id: 'pbm' }],
       })
       // Reduced motion: draw once, then only while the visitor turns the globe.
       if (reduced && settled) return
@@ -130,7 +130,7 @@ export function Globe({ className }: { className?: string }) {
             baseColor: [0.24, 0.225, 0.21],
             markerColor: [0.93, 0.37, 0.06],
             glowColor: [0.2, 0.11, 0.06],
-            markers: [{ location: [lat, lng], size: 0.032, id: 'pbm' }],
+            markers: [{ location: [lat, lng], size: 0.048, id: 'pbm' }],
             markerElevation: 0.01,
             opacity: 0.95,
           }) as typeof globe
@@ -173,9 +173,9 @@ export function Globe({ className }: { className?: string }) {
           ready ? 'opacity-100' : 'opacity-0'
         )}
       />
-      <div className="globe-label pointer-events-none flex items-end gap-2 pb-3 pl-3">
+      <div className="globe-label pointer-events-none flex items-center gap-2 pb-3 pl-3">
         <span className="block h-px w-8 bg-accent" />
-        <span className="meta whitespace-nowrap text-fg">{site.location.city}</span>
+        <span className="globe-label-copy whitespace-nowrap"><strong>{site.location.country}</strong><small>{site.location.city}</small></span>
       </div>
     </div>
   )

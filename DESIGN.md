@@ -8,7 +8,7 @@ The October 2026 redesign uses the supplied NextX logo as its starting point. Th
 
 The visual language is near-black, warm paper and logo orange (`#ED5F0F`), oversized Archivo, IBM Plex Mono for small factual labels, circuit traces, and large views of working concept demos. Use editorial image compositions rather than generic card towers, ornamental counters or stock team photography. Respect reduced motion and keep all text readable without JavaScript.
 
-The homepage hero uses the interactive Paramaribo globe from the original NextX design. The Concept Lab follows immediately below, where fictional status is visible beside each demo preview. Motion is a short entrance sequence and reveal of concept cards as they enter view. The headline and calls to action remain readable without JavaScript; the globe draws once under reduced motion.
+The homepage hero uses the interactive globe from the original NextX design, centered on Paramaribo. Suriname is named in the opening copy, geographic marker and origin lockup. The Concept Lab follows immediately below, where fictional status is visible beside each demo preview. Motion is a short entrance sequence and reveal of concept cards as they enter view. The headline and calls to action remain readable without JavaScript; the globe draws once under reduced motion.
 
 ## Content hierarchy
 

@@ -35,7 +35,7 @@ export default function AboutPage() {
       <header data-theme="dark" className="overflow-hidden">
         <div className="wrap grid-12 items-center gap-y-10 pb-20 pt-[calc(var(--nav-h)+4rem)] md:min-h-[48rem] md:pb-28 md:pt-[calc(var(--nav-h)+7rem)]">
           <div className="col-span-4 md:col-span-7">
-            <p className="meta mb-6 text-accent">De studio · Paramaribo</p>
+            <p className="meta mb-6 text-accent">De studio · Paramaribo, Suriname</p>
             <h1 className="t-h1 max-w-[13ch]">Digitaal gebouwd. Visueel gedacht.</h1>
             <p className="t-lead mt-8 max-w-[42ch]">NextX maakt websites, software, fotografie, video, merkidentiteiten en campagnes voor ondernemers die helder en herkenbaar naar buiten willen treden.</p>
             <p className="t-body mt-5 max-w-[52ch]">Per project brengen we de juiste specialisten bij elkaar. NextX houdt de regie en blijft uw aanspreekpunt.</p>
