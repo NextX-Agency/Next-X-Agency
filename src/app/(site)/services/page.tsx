@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { formatPrice, includedEverywhere, serviceCategories, websiteFrom, type Service } from '@/content/services'
 import { findExample } from '@/content/examples'
 import { disciplines } from '@/content/disciplines'
@@ -14,7 +15,14 @@ export const metadata: Metadata = {
 }
 
 /** Fixed-price packages; the per-discipline "op aanvraag" entries are shown as disciplines above. */
-const packages = serviceCategories.filter((category) => category.id !== 'creative-production')
+const packages = serviceCategories.filter((category) => !['creative-production', 'website-subscriptions'].includes(category.id))
+const subscriptions = serviceCategories.find((category) => category.id === 'website-subscriptions')!
+const disciplineImages: Record<string, string> = {
+  'web-software': '/work/shop-nextx-entry.jpg',
+  'photography-media': '/demo-assets/savana-packaging.webp',
+  'branding-design': '/demo-assets/savana-menu.jpg',
+  marketing: '/demo-assets/portfolio-savana.jpg',
+}
 
 function ServiceRow({ service }: { service: Service }) {
   const example = service.example ? findExample(service.example) : undefined
@@ -67,20 +75,20 @@ export default function ServicesPage() {
         <p className="meta mb-6">Diensten</p>
         <h1 className="t-h1 max-w-[12ch]">Wat we maken en wat het kost</h1>
         <p className="t-lead mt-8 max-w-[44ch]">
-          Websites en webshops hebben een vanafprijs. Software, fotografie, video, design en marketing prijzen we per project, met een offerte vóór de start.
+          Kies een website-abonnement met onderhoud en maandelijkse wijzigingen, of start met een eenmalig project. Voor software, fotografie, video, design en marketing maken we een offerte op maat.
         </p>
       </header>
 
       {/* The four disciplines, each with its own route to an inquiry */}
       <div className="wrap pb-[var(--section)]">
-        {disciplines.map((discipline, i) => (
+        {disciplines.map((discipline) => (
           <section
             key={discipline.id}
             id={discipline.id}
             aria-labelledby={`${discipline.id}-title`}
             className="grid-12 gap-y-6 border-t border-line-strong pb-14 pt-5 last:border-b last:border-b-line md:pb-20"
           >
-            <span className="meta col-span-4 md:col-span-1 md:pt-3">{String(i + 1).padStart(2, '0')}</span>
+            <span className="col-span-4 mt-4 h-px w-8 bg-accent md:col-span-1 md:mt-5" aria-hidden="true" />
             <div className="col-span-4 md:col-span-5">
               <h2 id={`${discipline.id}-title`} className="t-h2">
                 {discipline.name}
@@ -88,6 +96,9 @@ export default function ServicesPage() {
               <p className="t-body mt-5 max-w-[42ch]">{discipline.description}</p>
             </div>
             <div className="col-span-4 md:col-span-5 md:col-start-8 md:pt-3">
+              <div className="relative mb-7 aspect-[8/3] overflow-hidden bg-bg-2" aria-hidden="true">
+                <Image src={disciplineImages[discipline.id]} alt="" fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
+              </div>
               <ul className="grid gap-2">
                 {discipline.services.map((service) => (
                   <li key={service} className="flex gap-3 text-[0.9375rem]">
@@ -103,7 +114,7 @@ export default function ServicesPage() {
                 </Link>
                 {discipline.id === 'web-software' ? (
                   <a href="#websites" className="meta link-line hover:text-fg">
-                    Websites {formatPrice(websiteFrom)}
+                    Eenmalig {formatPrice(websiteFrom)}
                   </a>
                 ) : (
                   <span className="meta">Op aanvraag</span>
@@ -113,6 +124,54 @@ export default function ServicesPage() {
           </section>
         ))}
       </div>
+
+      <section id="website-subscriptions" aria-labelledby="subscriptions-title" className="scroll-mt-24 bg-bg-2 py-[var(--section)]">
+        <div className="wrap">
+          <div className="grid-12 items-end gap-y-10">
+            <div className="col-span-4 md:col-span-6">
+              <p className="meta mb-5 text-accent-text">Doorlopend samenwerken</p>
+              <h2 id="subscriptions-title" className="t-h2 max-w-[13ch]">Een website die meegroeit</h2>
+              <p className="t-body mt-5 max-w-[48ch]">
+                We bouwen uw website als onderdeel van het abonnement en houden hem daarna bij. Kies hoeveel ruimte u elke maand nodig hebt voor nieuwe inhoud en functies.
+              </p>
+            </div>
+            <div className="col-span-4 md:col-span-5 md:col-start-8">
+              <div className="relative aspect-[8/5] overflow-hidden bg-bg">
+                <Image src="/demo-previews/service-website.webp" alt="Voorbeeld van een website met een heldere indeling voor diensten en contact" fill sizes="(min-width: 768px) 40vw, 100vw" loading="eager" className="object-cover" />
+              </div>
+              <p className="meta mt-3">Voorbeeld van een servicewebsite</p>
+            </div>
+          </div>
+
+          <div className="mt-16 border-t border-line-strong md:mt-24">
+            {subscriptions.services.map((plan) => (
+              <article key={plan.id} className="grid-12 gap-y-4 border-b border-line py-7 md:items-start md:py-9">
+                <div className="col-span-4 md:col-span-4">
+                  <h3 className="t-h3">{plan.name}</h3>
+                  <p className="t-small mt-2 max-w-[32ch]">{plan.summary}</p>
+                </div>
+                <div className="col-span-4 md:col-span-5">
+                  <ul className="grid gap-2">
+                    {plan.includes.map((item) => (
+                      <li key={item} className="flex gap-3 text-[0.9375rem]">
+                        <span className="mt-[0.6em] h-px w-3 shrink-0 bg-accent" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="col-span-4 flex items-center justify-between gap-5 md:col-span-3 md:flex-col md:items-end">
+                  <span className="num whitespace-nowrap text-lg">{formatPrice(plan.price)}</span>
+                  <Link href={`/contact?dienst=${plan.id}`} className="link-arrow link-line whitespace-nowrap">
+                    Bespreek dit plan <Arrow />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="t-small mt-7 max-w-[90ch]">{subscriptions.terms}</p>
+        </div>
+      </section>
 
       <section data-theme="dark" aria-labelledby="packages-title">
         <div className="wrap grid-12 gap-y-6 py-16 md:py-24">
@@ -134,7 +193,6 @@ export default function ServicesPage() {
             {packages.map((category) => (
               <li key={category.id}>
                 <a href={`#${category.id}`} className="group flex items-baseline gap-3 text-[0.9375rem]">
-                  <span className="meta group-hover:text-accent-text">{category.index}</span>
                   <span className="link-line">{category.title}</span>
                 </a>
               </li>
@@ -146,12 +204,12 @@ export default function ServicesPage() {
           {packages.map((category) => (
             <section key={category.id} id={category.id} aria-labelledby={`${category.id}-title`} className="mb-20 last:mb-0 md:mb-28">
               <div className="flex items-baseline gap-4 border-t border-line-strong pt-4">
-                <span className="meta">{category.index}</span>
+                <span className="h-px w-8 shrink-0 bg-accent" aria-hidden="true" />
                 <h3 id={`${category.id}-title`} className="t-h2">
                   {category.title}
                 </h3>
               </div>
-              <p className="t-body mt-4 max-w-[46ch] md:ml-[calc(2ch+1rem)]">{category.line}</p>
+              <p className="t-body mt-4 max-w-[46ch]">{category.line}</p>
 
               <ul className="mt-8 border-t border-line">
                 {category.services.map((service) => (

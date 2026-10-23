@@ -23,10 +23,9 @@ export function Process() {
           {steps.map((step, i) => (
             <Reveal as="li" key={step.title} delay={i * 0.08} className="relative border-l border-line-strong pl-6 md:border-l-0 md:border-t md:pl-0 md:pt-8">
               <span className="absolute -left-[4px] top-0 size-[7px] bg-accent md:-top-[4px] md:left-0" aria-hidden="true" />
-              <p className="meta mb-3">{String(i + 1).padStart(2, '0')}</p>
+              <p className="meta mb-3 text-accent-text">{step.when}</p>
               <div className="flex items-baseline justify-between gap-4">
                 <h3 className="t-h3">{step.title}</h3>
-                <span className="meta text-accent-text">{step.when}</span>
               </div>
               <p className="t-small mt-3 max-w-[28ch]">{step.text}</p>
             </Reveal>
