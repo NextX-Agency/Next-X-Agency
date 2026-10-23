@@ -25,7 +25,7 @@ export function Hero() {
       </div>
 
       <div className="wrap flex flex-1 flex-col justify-center pb-[22vh] pt-12 sm:pb-24 lg:pb-16">
-        <p className="meta mb-8 text-accent" data-nx-motion="kicker">Creatieve & digitale studio uit Suriname</p>
+        <p className="meta mb-8 text-accent" data-nx-motion="kicker">Creatieve & digitale studio · Paramaribo</p>
         <h1 id="hero-title" className="t-display" aria-label="Websites, beeld en merken.">
           <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true"><span className="block" data-nx-motion="line">Websites,</span></span>
           <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true"><span className="block" data-nx-motion="line">beeld</span></span>
@@ -42,11 +42,6 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="nx-hero-origin" aria-label="NextX is gevestigd in Paramaribo, Suriname">
-        <span>Onze thuisbasis</span>
-        <strong>Suriname<span className="text-accent">.</span></strong>
-        <small>Paramaribo · 05.852° N, 55.204° W</small>
-      </div>
     </section>
   )
 }
