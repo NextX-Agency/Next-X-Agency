@@ -1,0 +1,54 @@
+/* Only JavaScript-enhanced pages opt into the reveal. Without JS, every item is visible. */
+@media (prefers-reduced-motion: no-preference) {
+  .nx-motion-ready .nx-hero [data-nx-motion],
+  .nx-motion-ready .nx-concept-showcase [data-nx-motion] {
+    opacity: 0;
+    translate: 0 1.35rem;
+    transition: opacity 700ms cubic-bezier(.22, 1, .36, 1),
+                translate 850ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .nx-motion-ready .nx-hero [data-nx-motion="visual"] {
+    translate: 0 2rem;
+    transition-duration: 950ms;
+  }
+
+  .nx-motion-ready .nx-hero [data-nx-motion="line"] {
+    translate: 0 .65em;
+  }
+
+  .nx-motion-ready .nx-hero [data-nx-motion="kicker"] { transition-delay: 80ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="line"]:nth-child(1) { transition-delay: 130ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="line"]:nth-child(2) { transition-delay: 210ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="line"]:nth-child(3) { transition-delay: 290ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="copy"] { transition-delay: 350ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="action"] { transition-delay: 440ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="visual"] { transition-delay: 260ms; }
+
+  .nx-motion-ready .nx-hero [data-nx-motion].nx-motion-visible,
+  .nx-motion-ready .nx-concept-showcase [data-nx-motion].nx-motion-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .nx-motion-ready .nx-concept-showcase [data-nx-motion="card"]:nth-child(2) {
+    transition-delay: 100ms;
+  }
+
+  @media (max-width: 767px) {
+    .nx-motion-ready .nx-hero [data-nx-motion],
+    .nx-motion-ready .nx-concept-showcase [data-nx-motion] {
+      transition-duration: 560ms;
+      transition-delay: 0ms;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-hero [data-nx-motion],
+  .nx-concept-showcase [data-nx-motion] {
+    opacity: 1 !important;
+    translate: none !important;
+    transition: none !important;
+  }
+}

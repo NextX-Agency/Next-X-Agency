@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Hero } from '@/components/home/Hero'
+import { HeroMotion } from '@/components/home/HeroMotion'
 import { Capabilities } from '@/components/home/Capabilities'
 import { Process } from '@/components/home/Process'
 import { Signal } from '@/components/home/Signal'
@@ -10,6 +11,7 @@ import { Arrow } from '@/components/Arrow'
 export default function HomePage() {
   return (
     <>
+      <HeroMotion />
       <Hero />
 
       <section className="section nx-concept-showcase" aria-labelledby="work-title">
@@ -30,7 +32,7 @@ export default function HomePage() {
               { name: 'Bloom Boutique', type: 'Webshop', detail: 'Collectie verkennen, favorieten kiezen en afrekenen in een demo.', image: '/demo-previews/starter-webshop.webp', slug: 'starter-webshop' },
               { name: 'Warung Indah', type: 'Restaurantwebsite', detail: 'Menukaart bekijken en een tafel reserveren.', image: '/demo-previews/restaurant-menu-site.webp', slug: 'restaurant-menu-site' },
             ].map((concept) => (
-              <article key={concept.slug} className="nx-concept-card">
+              <article key={concept.slug} className="nx-concept-card" data-nx-motion="card">
                 <Link href={`/examples/${concept.slug}`} className="nx-concept-media group" aria-label={`Open de werkende ${concept.name} conceptdemo`}>
                   <Image src={concept.image} alt={`Schermbeeld van de ${concept.name} conceptdemo`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.025]" />
                   <span className="nx-capability-image-label">Conceptdemo · fictief merk</span>
