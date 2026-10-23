@@ -40,7 +40,7 @@ export function whatsappHref(message?: string) {
 export const mailHref = `mailto:${site.email}`
 
 export const navigation = [
-  { href: '/portfolio', label: 'Werk' },
+  { href: '/portfolio', label: 'Concepten' },
   { href: '/services', label: 'Diensten' },
   { href: '/about', label: 'Studio' },
   { href: '/contact', label: 'Contact' },

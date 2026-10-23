@@ -132,23 +132,23 @@ export function SiteHeader() {
         <div className="wrap flex h-[var(--nav-h)] items-center justify-between">
           <Link
             href="/"
-            className="relative block aspect-[1200/519] w-[70px] shrink-0"
+            className="relative block aspect-[620/260] w-[104px] shrink-0 sm:w-[116px]"
             aria-label="NextX Agency, naar de homepage"
           >
             <Image
-              src="/logo-agency-black.svg"
+              src="/logo-agency-black-v2.svg"
               alt=""
               fill
               priority
-              sizes="70px"
+              sizes="116px"
               className={cn('object-contain transition-opacity duration-300', shownTheme === 'dark' && 'opacity-0')}
             />
             <Image
-              src="/logo-agency-white.svg"
+              src="/logo-agency-white-v2.svg"
               alt=""
               fill
               priority
-              sizes="70px"
+              sizes="116px"
               className={cn('object-contain transition-opacity duration-300', shownTheme === 'light' && 'opacity-0')}
             />
           </Link>
@@ -208,7 +208,7 @@ export function SiteHeader() {
           >
             <nav aria-label="Mobiel menu" className="wrap flex-1 overflow-y-auto pt-10">
               <ul>
-                {[{ href: '/', label: 'Home' }, ...navigation].map((item, i) => (
+                {[{ href: '/', label: 'Home' }, ...navigation].map((item) => (
                   <li key={item.href} className="border-b border-line">
                     <Link
                       href={item.href}
@@ -217,7 +217,7 @@ export function SiteHeader() {
                       onClick={() => setOpen(false)}
                     >
                       <span className="t-h2">{item.label}</span>
-                      <span className="meta">{String(i).padStart(2, '0')}</span>
+                      <span className="text-accent" aria-hidden="true">↗</span>
                     </Link>
                   </li>
                 ))}

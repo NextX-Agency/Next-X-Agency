@@ -75,8 +75,8 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   icons: {
-    icon: { url: '/favicon-64.png', sizes: '64x64', type: 'image/png' },
-    apple: { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    icon: { url: '/nextx-icon-v2.svg', type: 'image/svg+xml' },
+    apple: { url: '/apple-touch-icon-v2.png', sizes: '180x180', type: 'image/png' },
   },
   openGraph: {
     title: 'NextX Agency · Creatieve & digitale studio in Paramaribo',
@@ -111,7 +111,7 @@ const jsonLd = {
   name: site.name,
   description,
   url: site.url,
-  logo: `${site.url}/logo-agency-white.svg`,
+  logo: `${site.url}/logo-agency-white-v2.svg`,
   image: `${site.url}${socialImage.url}`,
   email: site.email,
   telephone: site.phone.e164,

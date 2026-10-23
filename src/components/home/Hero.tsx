@@ -1,66 +1,47 @@
-'use client'
-
+import Image from 'next/image'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import { Arrow } from '@/components/Arrow'
-
-const Globe = dynamic(() => import('./Globe').then((m) => m.Globe), { ssr: false })
-
-// Web and software, image (photo and video), and the brand around it.
-const lines = ['Websites,', 'beeld', 'en merken.']
-
-// Entrance runs in CSS so the headline never waits on hydration.
-const delay = (s: number) => ({ animationDelay: `${s}s` }) as React.CSSProperties
 
 export function Hero() {
   return (
-    <section
-      data-theme="dark"
-      aria-labelledby="hero-title"
-      className="relative isolate flex min-h-[max(40rem,100svh)] flex-col overflow-hidden pt-[var(--nav-h)]"
-    >
-      {/* The globe rises out of the bottom right, lit from below in the brand orange */}
-      <div
-        className="enter-globe pointer-events-none absolute -z-10 bottom-[-30vw] right-[-12vw] w-[130vw] sm:bottom-[-24vw] sm:right-[-18vw] sm:w-[96vw] lg:bottom-[-26vw] lg:right-[-14vw] lg:w-[74vw] [&_canvas]:pointer-events-auto"
-        style={delay(0.2)}
-      >
-        <div
-          className="absolute inset-[8%] rounded-full bg-[radial-gradient(closest-side,rgba(237,95,15,0.22),rgba(237,95,15,0.06)_60%,transparent)] blur-2xl"
-          aria-hidden="true"
-        />
-        <Globe />
-      </div>
+    <section data-theme="dark" aria-labelledby="hero-title" className="nx-hero">
+      <div className="wrap nx-hero-inner">
+        <div className="nx-hero-copy">
+          <p className="meta nx-hero-kicker">Creatieve & digitale studio · Paramaribo</p>
+          <h1 id="hero-title" className="nx-hero-title">
+            <span>Websites</span>
+            <span>die werken<span className="text-accent">.</span></span>
+            <span className="nx-hero-outline">Beeld dat blijft.</span>
+          </h1>
+          <p className="nx-hero-intro">
+            NextX ontwerpt en bouwt websites en software, maakt foto- en videoproducties en geeft merken een herkenbare vorm. Eén aanspreekpunt, van idee tot livegang.
+          </p>
+          <div className="nx-hero-actions">
+            <Link href="/services" className="btn btn-primary">Bekijk de diensten <Arrow /></Link>
+            <Link href="/portfolio" className="link-arrow link-line">Bekijk werkende concepten <Arrow /></Link>
+          </div>
+        </div>
 
-      <div className="wrap flex flex-1 flex-col justify-center pb-[22vh] pt-12 sm:pb-24 lg:pb-16">
-        <h1 id="hero-title" className="t-display" aria-label="Websites, beeld en merken.">
-          {lines.map((line, i) => (
-            <span key={line} className="block overflow-hidden pb-[0.06em]" aria-hidden="true">
-              <span className="enter-rise block" style={delay(0.1 + i * 0.09)}>
-                {i === lines.length - 1 ? (
-                  <>
-                    {line.slice(0, -1)}
-                    <span className="text-accent">.</span>
-                  </>
-                ) : (
-                  line
-                )}
-              </span>
-            </span>
-          ))}
-        </h1>
+        <div className="nx-hero-stage" aria-label="Werkende NextX conceptdemo’s voor fictieve merken">
+          <div className="nx-hero-orbit" aria-hidden="true" />
+          <figure className="nx-hero-window nx-hero-window-main">
+            <div className="nx-window-bar"><span /><span /><span /><b>BLOOM BOUTIQUE / CONCEPTDEMO</b></div>
+            <div className="nx-hero-window-image">
+              <Image src="/demo-previews/starter-webshop.webp" alt="Bloom Boutique: webshopconcept voor een fictief merk" fill priority sizes="(min-width: 900px) 48vw, 86vw" className="object-cover object-top" />
+            </div>
+          </figure>
+          <figure className="nx-hero-window nx-hero-window-second">
+            <div className="nx-window-bar"><span /><span /><span /><b>DENTACARE / CONCEPTDEMO</b></div>
+            <div className="nx-hero-window-image">
+              <Image src="/demo-previews/service-website.webp" alt="DentaCare: servicewebsiteconcept voor een fictieve praktijk" fill sizes="(min-width: 900px) 26vw, 54vw" className="object-cover object-top" />
+            </div>
+          </figure>
+          <div className="nx-hero-stamp" aria-hidden="true">NX<span>↗</span></div>
+          <span className="nx-hero-concept-label">Werkende demo’s · fictieve merken</span>
+        </div>
 
-        <p style={delay(0.5)} className="enter-fade t-lead mt-8 max-w-[29rem] sm:mt-10">
-          Een creatieve en digitale studio in Paramaribo. Web en software, fotografie en video, design en marketing.
-        </p>
-
-        <div style={delay(0.6)} className="enter-fade mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <Link href="/contact" className="btn btn-primary">
-            Start een project
-            <Arrow />
-          </Link>
-          <Link href="/portfolio" className="link-arrow link-line py-1">
-            Bekijk werk
-          </Link>
+        <div className="nx-hero-foot">
+          <span>Web & software</span><span>Fotografie & media</span><span>Branding & design</span><span>Marketing</span>
         </div>
       </div>
     </section>

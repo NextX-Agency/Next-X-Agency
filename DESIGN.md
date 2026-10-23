@@ -1,26 +1,27 @@
 # NextX design
 
-## Source of truth
+## Direction
 
-The visual identity is the one approved by the owner at commit `1ab0bf5` (23 September 2026, "differentiate NextX demos and refresh previews"). Later redesigns (`2897c34`, `b722cd8`) moved away from it and were reverted visually in October 2026; the pre-restoration state is kept on the branch `backup/pre-restore-a5703a4`.
+NextX is a creative and digital studio in Paramaribo. The site should make the work visible immediately and explain how to engage the studio without asking visitors to decode a long catalogue.
 
-Do not redesign. Refine within this identity:
+The October 2026 redesign uses the supplied NextX logo as its starting point. The cleaned vector mark is in `public/logo-agency-white-v2.svg` and `public/logo-agency-black-v2.svg`; the square app icon is `public/nextx-icon-v2.svg`. Use these assets on new NextX pages.
 
-- Dark, full-height hero with large three-line Archivo display type, the interactive COBE globe held on Paramaribo and lit in the logo orange, CSS-only entrance so the headline never waits on hydration.
-- Header that reads the `data-theme` of the section beneath it and switches between the black and white logo; a small orange square marks the active page; full-screen dark mobile menu.
-- Projects as editorial compositions, not cards: a large cover with a scroll-linked opening (`CoverReveal`), a second view in the remaining columns, mirrored on alternate projects.
-- A typography-led capabilities index with strong dividers and hover-revealed detail.
-- The NextX signal: the logo's circuit traces drawn out to the page edges on canvas, with orange pulses (`Signal`, `SignalField`).
-- Tokens: paper `#F2F0EB`, ink `#0E0D0C`, orange `#ED5F0F`; Archivo with its width axis, IBM Plex Mono for metadata. One easing, three speeds.
+The visual language is near-black, warm paper and logo orange (`#ED5F0F`), oversized Archivo, IBM Plex Mono for small factual labels, circuit traces, and large views of working concept demos. Use editorial image compositions rather than generic card towers, ornamental counters or stock team photography. Respect reduced motion and keep all text readable without JavaScript.
 
-## Business content
+## Content hierarchy
 
-Four disciplines: Web & Software, Fotografie & Media, Branding & Design, Marketing (`src/content/disciplines.ts`). Only web packages carry advertised prices; the other disciplines are "Op aanvraag". NextX is the single point of contact and brings in independent specialists per project; copy never claims that everyone is employed in-house and never names contributors.
+The main paths on `/services` are:
 
-## Architecture kept from the later work
+- A monthly website subscription: Landing Page, Starter, Growth and Premium. The website is built in the subscription and maintenance, bug fixes and a defined monthly change allowance are included. The exact plans and rules live in `src/content/services.ts`.
+- A one-time website or webshop with an agreed scope and starting price.
+- Creative production: custom software, photography and media, branding and design, and marketing, scoped and quoted per project.
 
-Flexible project model with draft/published state, optional gallery, phone view, video and technical facts; lightbox gallery; discipline filter on /portfolio (shown once more than one discipline has published work); hardened contact form and API with rate limiting and WhatsApp fallback; metadata and OG image; unit and Playwright tests.
+Supporting offers such as SEO, hosting, SLA, UX Kukru and extra work remain accessible below those paths. `src/content/services.ts` is the single source for prices and inclusions, and the contact form uses the same catalogue. Do not invent outcomes, clients, testimonials or team structure. NextX is the single point of contact and may coordinate independent specialists for a project.
+
+## Work and prototypes
+
+NextX is a new studio and does not claim an established portfolio. The `/portfolio` landing page leads with the Concept Lab: curated, interactive prototypes for fictional businesses. The fictional status must be visible next to each preview and each demo. Existing real work remains accessible at its original URL but is secondary to the demonstrations. When a concept image is used to show visual direction, describe it as a concept, not a delivered client project.
 
 ## Motion and performance
 
-Everything is readable without JavaScript and with reduced motion. The globe and signal canvases only render while on screen; under reduced motion the globe draws once and only redraws while being dragged, and the signal shows a still frame. Phones render the globe at a 1.5x backing store. Art-directed covers use one `<picture>` so only the visible image is downloaded.
+Static content renders first. Image compositions may use short entrance and hover motion, with a reduced-motion fallback. Keep art-directed images responsive, supply meaningful alt text where images carry information, and avoid loading off-screen media eagerly. The globe and signal canvas remain available only where they serve the visual story.

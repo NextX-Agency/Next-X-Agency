@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: project.seo?.title ?? project.name,
     description: project.seo?.description ?? project.summary,
     alternates: { canonical: `/portfolio/${project.slug}` },
+    robots: { index: false, follow: true },
     openGraph: {
       title: `${project.name} — NextX Agency`,
       description: project.summary,
@@ -62,10 +63,10 @@ export default async function ProjectPage({ params }: Props) {
       <header className="wrap pb-12 pt-[calc(var(--nav-h)+3rem)] md:pb-16 md:pt-[calc(var(--nav-h)+5rem)]">
         <nav aria-label="Kruimelpad" className="meta mb-10">
           <Link href="/portfolio" className="link-line hover:text-fg">
-            Werk
+            Concept Lab
           </Link>
           <span className="mx-2" aria-hidden="true">/</span>
-          <span className="text-accent-text">{project.index}</span>
+          <span className="text-accent-text">Eerder werk · {project.type}</span>
         </nav>
 
         <div className="grid-12 gap-y-8">
@@ -118,14 +119,14 @@ export default async function ProjectPage({ params }: Props) {
           {project.features && project.features.length > 0 && (
             <div className="col-span-4 md:col-span-5 md:col-start-8">
               <h2 className="meta mb-5">{screens ? 'Op de site' : 'In het project'}</h2>
-              <ol className="border-t border-line">
-                {project.features.map((feature, i) => (
+              <ul className="border-t border-line">
+                {project.features.map((feature) => (
                   <li key={feature} className="flex gap-4 border-b border-line py-3 text-[0.9375rem]">
-                    <span className="meta pt-0.5">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="mt-[.65em] h-px w-4 shrink-0 bg-accent" aria-hidden="true" />
                     {feature}
                   </li>
                 ))}
-              </ol>
+              </ul>
             </div>
           )}
         </div>

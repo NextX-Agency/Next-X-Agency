@@ -52,7 +52,6 @@ export function PortfolioIndex({ projects }: { projects: Project[] }) {
 
             <div className="grid-12 mt-6 gap-y-5 md:mt-8">
               <p className="meta col-span-4 flex flex-wrap gap-x-3 gap-y-1 md:col-span-2">
-                <span className="text-accent-text">{project.index}</span>
                 <span>{project.type}</span>
                 <span className="md:hidden">{projectRelation(project)}</span>
               </p>

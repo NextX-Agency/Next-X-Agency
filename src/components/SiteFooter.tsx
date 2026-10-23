@@ -26,10 +26,10 @@ export function SiteFooter() {
         <div className="border-b border-line py-12 md:py-16">
           <Link href="/" className="group inline-block" aria-label="NextX, naar de homepage">
             <Image
-              src="/logo-agency-white.svg"
+              src="/logo-agency-white-v2.svg"
               alt=""
-              width={1200}
-              height={519}
+              width={620}
+              height={260}
               className="h-auto w-[min(60vw,24rem)] transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-2"
             />
           </Link>
@@ -48,7 +48,7 @@ export function SiteFooter() {
               ))}
               <li>
                 <Link href="/examples" className="link-line">
-                  Voorbeelden
+                  Alle conceptdemo’s
                 </Link>
               </li>
             </ul>
@@ -74,17 +74,9 @@ export function SiteFooter() {
           </div>
 
           <div className="col-span-4 md:col-span-3 md:col-start-10">
-            <p className="meta mb-5">Eigen product</p>
-            <a
-              href={site.sisterSite.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-arrow link-line"
-            >
-              {site.sisterSite.label}
-              <ArrowOut />
-            </a>
-            <p className="t-small mt-3 max-w-[24ch]">Onze eigen webshop voor audio en horloges.</p>
+            <p className="meta mb-5">Bekijk het zelf</p>
+            <Link href="/portfolio" className="link-arrow link-line">NextX conceptlab <Arrow /></Link>
+            <p className="t-small mt-3 max-w-[28ch]">Werkende websites voor fictieve merken. Ontdek wat we kunnen ontwerpen en bouwen.</p>
           </div>
         </div>
 

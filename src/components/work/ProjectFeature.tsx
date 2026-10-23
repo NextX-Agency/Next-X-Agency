@@ -84,7 +84,6 @@ export function ProjectFeature({
           )}
         >
           <p className="meta mb-4 flex flex-wrap gap-x-3 gap-y-1">
-            <span className="text-accent-text">{project.index}</span>
             <span>{project.type}</span>
             <span>{projectRelation(project)}</span>
           </p>

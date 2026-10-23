@@ -40,7 +40,7 @@ export function SocialImage({ origin }: { origin: string }) {
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <img src={`${origin}/logo-agency-white.svg`} alt="NextX Agency" width={152} height={66} />
+          <img src={`${origin}/logo-agency-white-v2.svg`} alt="NextX Agency" width={155} height={65} />
           <span style={{ color: '#8f8980', fontSize: 16, letterSpacing: '0.08em' }}>PARAMARIBO, SURINAME</span>
         </div>
         <div

@@ -15,9 +15,38 @@ export type Example = {
   serviceId: string
   summary: string
   image: string
+  /** A concrete interaction visitors can try in this working concept. */
+  demonstrates?: string
 }
 
 export const examples: Example[] = [
+  {
+    slug: 'service-website',
+    business: 'DentaCare Paramaribo',
+    group: 'Websites',
+    serviceId: 'service-website',
+    summary: 'Een zorgsite die helder uitlegt, geruststelt en bezoekers naar een afspraak leidt.',
+    image: '/demo-previews/service-website.webp',
+    demonstrates: 'Verken behandelingen en probeer de afspraakflow.',
+  },
+  {
+    slug: 'starter-webshop',
+    business: 'Bloom Boutique',
+    group: 'Webshops',
+    serviceId: 'starter-webshop',
+    summary: 'Een expressieve boutique shop, van collectie tot winkelmand.',
+    image: '/demo-previews/starter-webshop.webp',
+    demonstrates: 'Filter de collectie en voeg een product toe aan de tas.',
+  },
+  {
+    slug: 'restaurant-menu-site',
+    business: 'Warung Indah',
+    group: 'Websites',
+    serviceId: 'restaurant-website',
+    summary: 'Een levendige restaurantsite die smaak, menu en reserveren samenbrengt.',
+    image: '/demo-previews/restaurant-menu-site.webp',
+    demonstrates: 'Bekijk het menu en doorloop de reserveringsinteractie.',
+  },
   {
     slug: 'business-card-site',
     business: 'KaderBouw NV',
@@ -27,36 +56,12 @@ export const examples: Example[] = [
     image: '/demo-previews/business-card-site.webp',
   },
   {
-    slug: 'service-website',
-    business: 'DentaCare Paramaribo',
-    group: 'Websites',
-    serviceId: 'service-website',
-    summary: 'Rustige tandartspraktijk met behandelingen en afspraakflow.',
-    image: '/demo-previews/service-website.webp',
-  },
-  {
     slug: 'portfolio-website',
     business: 'Studio Vibe',
     group: 'Websites',
     serviceId: 'portfolio-website',
     summary: 'Portfolio voor een creatieve studio.',
     image: '/demo-previews/portfolio-website.webp',
-  },
-  {
-    slug: 'restaurant-menu-site',
-    business: 'Warung Indah',
-    group: 'Websites',
-    serviceId: 'restaurant-website',
-    summary: 'Surinaamse menukaart met open-status en reserveren.',
-    image: '/demo-previews/restaurant-menu-site.webp',
-  },
-  {
-    slug: 'starter-webshop',
-    business: 'Bloom Boutique',
-    group: 'Webshops',
-    serviceId: 'starter-webshop',
-    summary: 'Tropical contemporary shop met collectie, bag en demo-checkout.',
-    image: '/demo-previews/starter-webshop.webp',
   },
   {
     slug: 'grotere-webshop',
@@ -109,6 +114,11 @@ export const examples: Example[] = [
 ]
 
 export const exampleGroups: ExampleGroup[] = ['Websites', 'Webshops', 'Ontwerp', 'Tools en support']
+
+/** The strongest working concepts lead the public showcase. All brands are fictional. */
+export const featuredExamples = ['service-website', 'starter-webshop', 'restaurant-menu-site']
+  .map((slug) => examples.find((example) => example.slug === slug))
+  .filter((example): example is Example => Boolean(example))
 
 export function findExample(slug: string) {
   return examples.find((example) => example.slug === slug)

@@ -25,24 +25,26 @@ const principles = [
   },
   {
     title: 'Eigen ontwerp',
-    text: 'Geen gekocht thema of standaardbeeld. Elk ontwerp, elke shoot en elke campagne begint bij uw merk.',
+    text: 'We ontwikkelen een richting vanuit uw merk en bespreken ontwerp, beeld en inhoud voordat we iets produceren.',
   },
 ]
 
 export default function AboutPage() {
   return (
     <>
-      <header className="wrap grid-12 gap-y-10 pb-20 pt-[calc(var(--nav-h)+4rem)] md:pb-32 md:pt-[calc(var(--nav-h)+7rem)]">
-        <p className="meta col-span-4 md:col-span-2">De studio</p>
-        <div className="col-span-4 md:col-span-10">
-          <h1 className="t-h1 max-w-[16ch]">Een creatieve en digitale studio in Paramaribo.</h1>
-          <div className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-12">
-            <p className="t-lead text-fg">
-              We begonnen met websites en webshops. Nu maken we ook software, fotografie, video, merkidentiteiten en campagnes, vooral voor Surinaamse ondernemers.
-            </p>
-            <p className="t-lead">
-              Per project brengen we de juiste ontwikkelaars, ontwerpers, fotografen en andere specialisten bij elkaar. NextX houdt de regie en blijft uw aanspreekpunt.
-            </p>
+      <header data-theme="dark" className="overflow-hidden">
+        <div className="wrap grid-12 items-center gap-y-10 pb-20 pt-[calc(var(--nav-h)+4rem)] md:min-h-[48rem] md:pb-28 md:pt-[calc(var(--nav-h)+7rem)]">
+          <div className="col-span-4 md:col-span-7">
+            <p className="meta mb-6 text-accent">De studio · Paramaribo</p>
+            <h1 className="t-h1 max-w-[13ch]">Digitaal gebouwd. Visueel gedacht.</h1>
+            <p className="t-lead mt-8 max-w-[42ch]">NextX maakt websites, software, fotografie, video, merkidentiteiten en campagnes voor ondernemers die helder en herkenbaar naar buiten willen treden.</p>
+            <p className="t-body mt-5 max-w-[52ch]">Per project brengen we de juiste specialisten bij elkaar. NextX houdt de regie en blijft uw aanspreekpunt.</p>
+          </div>
+          <div className="col-span-4 md:col-span-5 md:col-start-8">
+            <div className="relative aspect-[4/5] overflow-hidden border-[8px] border-paper/90 md:rotate-[5deg]">
+              <Image src="/demo-assets/savana-menu.jpg" alt="Een tafel met typografisch ontwerp en grafische elementen" fill priority sizes="(min-width: 768px) 38vw, 100vw" className="object-cover" />
+            </div>
+            <p className="meta mt-5 text-right">Conceptbeeld · Visuele richting</p>
           </div>
         </div>
       </header>
@@ -51,7 +53,7 @@ export default function AboutPage() {
       <Reveal>
         <figure data-theme="dark" className="relative mx-auto max-w-[var(--max)]">
           <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden sm:aspect-[21/9]">
-            <Image src="/logo-agency-white.svg" alt="Het NextX Agency-logo" width={1200} height={519} className="h-auto w-[min(70vw,34rem)]" />
+            <Image src="/logo-agency-white-v2.svg" alt="Het vernieuwde NextX Agency-logo" width={620} height={260} className="h-auto w-[min(70vw,34rem)]" />
             <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-8 gap-y-3 p-5 md:p-8">
               <span className="meta flex items-center gap-3">
                 <span className="size-3 bg-accent" aria-hidden="true" />
@@ -74,7 +76,7 @@ export default function AboutPage() {
           <ol className="col-span-4 md:col-span-7 md:col-start-6">
             {principles.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 0.06} className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-t border-line py-7 first:border-line-strong md:grid-cols-[3.5rem_1fr_1.2fr] md:gap-x-6">
-                <span className="meta pt-1.5">{String(i + 1).padStart(2, '0')}</span>
+                <span className="mt-3 h-px w-7 bg-accent" aria-hidden="true" />
                 <h3 className="t-h3">{item.title}</h3>
                 <p className="t-body col-start-2 mt-2 md:col-start-3 md:mt-0">{item.text}</p>
               </Reveal>
@@ -90,10 +92,10 @@ export default function AboutPage() {
           </h2>
           <div className="col-span-4 md:col-span-7 md:col-start-6">
             <p className="t-h3 max-w-[30ch] font-[500]">
-              Naast klantwerk runnen we Shop NextX, onze eigen webshop voor audio en horloges.
+              We bouwen een studio op. Daarom laten we in ons conceptlab zien hoe onze websites eruitzien en werken, met openheid over de fictieve merken.
             </p>
-            <Link href="/portfolio/shop-nextx" className="link-arrow link-line mt-6 py-1">
-              Bekijk Shop NextX
+            <Link href="/portfolio" className="link-arrow link-line mt-6 py-1">
+              Ontdek de werkende concepten
               <Arrow />
             </Link>
           </div>
