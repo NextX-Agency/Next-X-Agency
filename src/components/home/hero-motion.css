@@ -18,9 +18,9 @@
   }
 
   .nx-motion-ready .nx-hero [data-nx-motion="kicker"] { transition-delay: 80ms; }
-  .nx-motion-ready .nx-hero [data-nx-motion="line"]:nth-child(1) { transition-delay: 130ms; }
-  .nx-motion-ready .nx-hero [data-nx-motion="line"]:nth-child(2) { transition-delay: 210ms; }
-  .nx-motion-ready .nx-hero [data-nx-motion="line"]:nth-child(3) { transition-delay: 290ms; }
+  .nx-motion-ready .nx-hero h1 > span:nth-child(1) [data-nx-motion="line"] { transition-delay: 130ms; }
+  .nx-motion-ready .nx-hero h1 > span:nth-child(2) [data-nx-motion="line"] { transition-delay: 210ms; }
+  .nx-motion-ready .nx-hero h1 > span:nth-child(3) [data-nx-motion="line"] { transition-delay: 290ms; }
   .nx-motion-ready .nx-hero [data-nx-motion="copy"] { transition-delay: 350ms; }
   .nx-motion-ready .nx-hero [data-nx-motion="action"] { transition-delay: 440ms; }
   .nx-motion-ready .nx-hero [data-nx-motion="visual"] { transition-delay: 260ms; }

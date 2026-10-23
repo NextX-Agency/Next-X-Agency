@@ -697,71 +697,7 @@ textarea.field {
   background: var(--ink);
 }
 
-/* Homepage hero: one honest, usable concept takes the stage. */
-.nx-hero { min-height: 0; background: #0a0a09; }
-.nx-hero-inner { display: block; min-height: 0; padding-top: calc(var(--nav-h) + 2.5rem); padding-bottom: 2rem; }
-.nx-hero-topline, .nx-hero-bottomline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid rgba(242,240,235,.28); padding-top: .8rem; font-family: var(--font-mono); font-size: .65rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #aaa49b; }
-.nx-hero-topline span:first-child { color: var(--orange); }
-.nx-hero-lead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 21rem); align-items: end; gap: 2rem; padding: clamp(2.8rem, 5vw, 5rem) 0 clamp(2.5rem, 3.5vw, 3.5rem); }
-.nx-hero-title { max-width: none; font-size: clamp(4.15rem, 6.15vw, 7.75rem); font-weight: 900; font-variation-settings: 'wdth' 112; letter-spacing: -.075em; line-height: .91; text-wrap: balance; }
-.nx-hero-title > span { display: block; }
-.nx-hero-title em { color: var(--orange); font-style: normal; }
-.nx-hero-lead-aside { display: grid; gap: 1.5rem; padding-bottom: .35rem; }
-.nx-hero-lead-aside p { max-width: 32ch; font-size: clamp(1rem, 1.25vw, 1.2rem); line-height: 1.48; color: #c7c1b8; }
-.nx-hero-lead-aside .link-arrow { justify-self: start; }
-.nx-hero-proof { display: grid; grid-template-columns: minmax(0, 1.95fr) minmax(18rem, 1fr); min-height: clamp(26rem, 43vw, 42rem); background: var(--orange); }
-.nx-hero-proof-image { position: relative; display: block; min-height: 100%; overflow: hidden; background: #d9d7cf; }
-.nx-hero-proof-image img { animation: nx-preview-enter 420ms var(--ease) both; transition: transform 500ms var(--ease); }
-@keyframes nx-preview-enter { from { opacity: .55; transform: scale(1.025); } to { opacity: 1; transform: scale(1); } }
-.nx-hero-proof-image:hover img, .nx-hero-proof-image:focus-visible img { transform: scale(1.025); }
 .nx-concept-media:focus-visible img { transform: scale(1.025); }
-.nx-hero-proof-image-tag { position: absolute; left: 1.25rem; top: 1.25rem; z-index: 1; padding: .55rem .7rem; background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
-.nx-hero-proof-open { position: absolute; right: 1.25rem; bottom: 1.25rem; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; background: var(--ink); color: var(--paper); font-size: 1.75rem; transition: background-color 250ms var(--ease), color 250ms var(--ease); }
-.nx-hero-proof-image:hover .nx-hero-proof-open, .nx-hero-proof-image:focus-visible .nx-hero-proof-open { background: var(--orange); color: var(--ink); }
-.nx-hero-proof-panel { display: flex; flex-direction: column; min-width: 0; padding: clamp(1.2rem, 2.5vw, 2.5rem); color: var(--ink); }
-.nx-hero-proof-panel-head { display: flex; align-items: start; justify-content: space-between; gap: 1rem; font-family: var(--font-mono); font-size: .66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-.nx-hero-proof-panel-head span { font-family: var(--font-sans); font-size: 2.2rem; font-weight: 400; line-height: .7; }
-.nx-hero-proof-panel-body { margin: auto 0; padding: 3rem 0; }
-.nx-hero-proof-eyebrow { margin-bottom: 1rem; font-family: var(--font-mono); font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-.nx-hero-proof-panel-body h2 { max-width: 9ch; font-size: clamp(3rem, 4.6vw, 6rem); font-weight: 900; letter-spacing: -.065em; line-height: .91; }
-.nx-hero-proof-line { max-width: 29ch; margin-top: 1.3rem; font-size: clamp(1rem, 1.2vw, 1.2rem); line-height: 1.35; }
-.nx-hero-proof-cta { display: inline-flex; align-items: center; gap: 1rem; margin-top: 2rem; border-bottom: 2px solid var(--ink); padding-bottom: .45rem; font-size: .95rem; font-weight: 700; }
-.nx-hero-proof-cta svg { width: 1.1rem; }
-.nx-hero-proof-tabs { display: grid; border-top: 1px solid rgba(14,13,12,.48); }
-.nx-hero-proof-tab { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid rgba(14,13,12,.48); padding: .8rem 0; text-align: left; font-size: .95rem; font-weight: 600; transition: padding-left 250ms var(--ease), background-color 250ms var(--ease); }
-.nx-hero-proof-tab[aria-pressed='true'] { padding-left: .65rem; background: var(--ink); color: var(--paper); }
-.nx-hero-proof-tab[aria-pressed='true'] span:last-child { padding-right: .65rem; }
-.nx-hero-proof-tab:not([aria-pressed='true']):hover, .nx-hero-proof-tab:not([aria-pressed='true']):focus-visible { padding-left: .65rem; }
-.nx-hero-bottomline { position: static; margin-top: 1.5rem; padding: 0; border-top: 0; color: #aaa49b; }
-.nx-hero-bottomline .link-arrow { color: var(--paper); }
-
-@media (prefers-reduced-motion: reduce) { .nx-hero-proof-image img { animation: none; } }
-
-@media (max-width: 64rem) {
-  .nx-hero-lead { display: block; }
-  .nx-hero-title { font-size: clamp(3.5rem, 7.8vw, 6rem); }
-  .nx-hero-lead-aside { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-top: 2rem; }
-  .nx-hero-proof { grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr); }
-}
-
-@media (max-width: 47.99rem) {
-  .nx-hero-inner { display: block; min-height: 0; padding-top: calc(var(--nav-h) + 1.7rem); padding-bottom: 1.5rem; }
-  .nx-hero-topline span:first-child { display: none; }
-  .nx-hero-lead { display: block; padding: 2.2rem 0 2rem; }
-  .nx-hero-title { font-size: clamp(2.65rem, 11.1vw, 4rem); line-height: .96; }
-  .nx-hero-title > span + span { margin-top: .08em; }
-  .nx-hero-lead-aside { display: grid; margin-top: 1.4rem; gap: 1rem; }
-  .nx-hero-proof { display: block; min-height: 0; }
-  .nx-hero-proof-image { min-height: 0; aspect-ratio: 16 / 11; }
-  .nx-hero-proof-image-tag { left: .7rem; top: .7rem; max-width: calc(100% - 1.4rem); font-size: .5rem; }
-  .nx-hero-proof-open { right: .7rem; bottom: .7rem; width: 2.5rem; height: 2.5rem; font-size: 1.35rem; }
-  .nx-hero-proof-panel { padding: 1.25rem; }
-  .nx-hero-proof-panel-body { padding: 2.5rem 0 2rem; }
-  .nx-hero-proof-panel-body h2 { font-size: clamp(3rem, 12vw, 4.5rem); }
-  .nx-hero-proof-tabs { margin-top: .5rem; }
-  .nx-hero-bottomline { flex-wrap: wrap; margin-top: 1.25rem; font-size: .57rem; }
-  .nx-hero-bottomline .link-arrow { width: 100%; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .frame img,

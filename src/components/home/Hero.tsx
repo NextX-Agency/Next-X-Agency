@@ -1,33 +1,44 @@
+'use client'
+
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Arrow } from '@/components/Arrow'
-import { HeroShowcase } from './HeroShowcase'
+
+const Globe = dynamic(() => import('./Globe').then((module) => module.Globe), { ssr: false })
 
 export function Hero() {
   return (
-    <section data-theme="dark" aria-labelledby="hero-title" className="nx-hero">
-      <div className="wrap nx-hero-inner">
-        <div className="nx-hero-topline" data-nx-motion="kicker">
-          <span>NextX Agency</span>
-          <span>Creatieve & digitale studio · Paramaribo</span>
-        </div>
+    <section
+      data-theme="dark"
+      aria-labelledby="hero-title"
+      className="nx-hero relative isolate flex min-h-[max(40rem,100svh)] flex-col overflow-hidden pt-[var(--nav-h)]"
+    >
+      <div
+        className="pointer-events-none absolute -z-10 bottom-[-30vw] right-[-12vw] w-[130vw] sm:bottom-[-24vw] sm:right-[-18vw] sm:w-[96vw] lg:bottom-[-26vw] lg:right-[-14vw] lg:w-[74vw] [&_canvas]:pointer-events-auto"
+        data-nx-motion="visual"
+      >
+        <div
+          className="absolute inset-[8%] rounded-full bg-[radial-gradient(closest-side,rgba(237,95,15,0.22),rgba(237,95,15,0.06)_60%,transparent)] blur-2xl"
+          aria-hidden="true"
+        />
+        <Globe />
+      </div>
 
-        <div className="nx-hero-lead">
-          <h1 id="hero-title" className="nx-hero-title">
-            <span data-nx-motion="line">Maak indruk.</span>
-            <span data-nx-motion="line">Vanaf de <em>eerste klik.</em></span>
-          </h1>
-          <div className="nx-hero-lead-aside" data-nx-motion="copy">
-            <p>NextX ontwerpt en bouwt websites, webshops en visuele merken die uw bedrijf helder en herkenbaar presenteren.</p>
-            <Link href="/services" className="link-arrow link-line">Ontdek onze diensten <Arrow /></Link>
-          </div>
-        </div>
+      <div className="wrap flex flex-1 flex-col justify-center pb-[22vh] pt-12 sm:pb-24 lg:pb-16">
+        <p className="meta mb-8 text-accent" data-nx-motion="kicker">Creatieve & digitale studio · Paramaribo</p>
+        <h1 id="hero-title" className="t-display" aria-label="Websites, beeld en merken.">
+          <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true"><span className="block" data-nx-motion="line">Websites,</span></span>
+          <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true"><span className="block" data-nx-motion="line">beeld</span></span>
+          <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true"><span className="block" data-nx-motion="line">en merken<span className="text-accent">.</span></span></span>
+        </h1>
 
-        <HeroShowcase />
+        <p className="t-lead mt-8 max-w-[29rem] sm:mt-10" data-nx-motion="copy">
+          NextX ontwerpt en bouwt websites en software, maakt foto en video, en geeft merken een herkenbare vorm.
+        </p>
 
-        <div className="nx-hero-bottomline" data-nx-motion="action">
-          <span>Websites & webshops</span>
-          <span>Branding & beeld</span>
-          <Link href="/contact" className="link-arrow">Bespreek uw idee <Arrow /></Link>
+        <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4" data-nx-motion="action">
+          <Link href="/contact" className="btn btn-primary">Start een project <Arrow /></Link>
+          <Link href="/portfolio" className="link-arrow link-line py-1">Bekijk werkende concepten <Arrow /></Link>
         </div>
       </div>
     </section>
