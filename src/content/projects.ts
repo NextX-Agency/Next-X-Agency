@@ -24,6 +24,10 @@ export type Project = {
     'website' | 'software' | 'photography' | 'branding' | 'marketing' | 'video'
   status: 'draft' | 'published'
   origin: 'client' | 'studio'
+  /** A few words under the name on a project stage. */
+  tagline: string
+  /** Stage colours taken from the project's own brand. */
+  tone: { bg: string; fg: string; dark: boolean }
   /** Shown large on the homepage. Keep to two or three. */
   featured?: boolean
   contribution: string
@@ -68,6 +72,8 @@ export const projectCatalog: Project[] = [
     status: 'published',
     origin: 'client',
     featured: true,
+    tagline: 'Een autodealer met de hele voorraad online.',
+    tone: { bg: '#1146c2', fg: '#ffffff', dark: true },
     contribution: 'Ontwerp en ontwikkeling van de website.',
     client: 'Bhaggoes Car Palace',
     summary:
@@ -125,6 +131,8 @@ export const projectCatalog: Project[] = [
     status: 'published',
     origin: 'studio',
     featured: true,
+    tagline: 'Onze eigen webshop. Bestellen gaat via WhatsApp.',
+    tone: { bg: '#e4dfd5', fg: '#0e0d0c', dark: false },
     contribution: 'Ontwerp en ontwikkeling van onze eigen webshop.',
     relation: 'Eigen product',
     summary:
@@ -182,6 +190,8 @@ export const projectCatalog: Project[] = [
     presentation: 'website',
     status: 'published',
     origin: 'client',
+    tagline: 'Architectuur en bouw, rustig gepresenteerd.',
+    tone: { bg: '#131c2b', fg: '#f3efe6', dark: true },
     contribution:
       'Websiteontwerp en ontwikkeling voor inDEF Design & Construction.',
     client: 'inDEF Design & Construction',

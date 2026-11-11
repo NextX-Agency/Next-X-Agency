@@ -18,14 +18,14 @@ export function PortfolioIndex({ projects }: { projects: Project[] }) {
   return (
     <>
       {available.length > 1 && (
-        <div role="group" aria-label="Filter werk op discipline" className="mb-12 flex flex-wrap gap-x-6 gap-y-3 md:mb-16">
+        <div role="group" aria-label="Filter werk op discipline" className="wrap flex flex-wrap gap-x-6 gap-y-3 py-8">
           {[{ id: 'all' as const, name: 'Alles' }, ...available].map((d) => (
             <button
               key={d.id}
               type="button"
               aria-pressed={filter === d.id}
               onClick={() => setFilter(d.id)}
-              className={cn('meta link-line min-h-11 py-1', filter === d.id ? 'text-fg [background-size:100%_1px]' : 'hover:text-fg')}
+              className={cn('min-h-11 px-4 text-[0.9375rem] font-semibold transition-colors', filter === d.id ? 'bg-fg text-bg' : 'bg-bg-2 hover:bg-fg hover:text-bg')}
             >
               {d.name}
             </button>
@@ -33,9 +33,9 @@ export function PortfolioIndex({ projects }: { projects: Project[] }) {
         </div>
       )}
 
-      <div className="grid gap-20 md:gap-32" aria-live="polite">
+      <div aria-live="polite">
         {visible.map((project, i) => (
-          <ProjectShowcase key={project.slug} project={project} flip={i % 2 === 1} headingLevel="h3" priority={i === 0} />
+          <ProjectShowcase key={project.slug} project={project} flip={i % 2 === 1} headingLevel="h2" priority={i === 0} />
         ))}
       </div>
     </>

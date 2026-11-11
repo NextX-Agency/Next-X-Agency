@@ -24,6 +24,8 @@ describe('portfolio publication and media', () => {
       summary: 'Test only',
       intro: 'Test only',
       contribution: 'Test only',
+      tagline: 'Test only',
+      tone: { bg: '#000000', fg: '#ffffff', dark: true },
       cover: projects[0].cover,
       status: 'draft',
       origin: 'client',

@@ -49,7 +49,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="meta flex justify-between text-fg">
+      <label htmlFor={id} className="mb-2 flex justify-between text-[0.875rem] font-semibold">
         {label}
         {optional && <span className="text-fg-3">Optioneel</span>}
       </label>
@@ -178,7 +178,7 @@ export function ContactForm() {
       <div
         ref={doneRef}
         tabIndex={-1}
-        className="scroll-mt-28 border-t border-line-strong pt-8 outline-none"
+        className="scroll-mt-28 bg-bg-2 p-8 outline-none"
         role="status"
       >
         <p className="meta mb-5 text-ok">Verstuurd</p>

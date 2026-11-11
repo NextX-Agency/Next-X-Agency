@@ -3,13 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { findProject, projects } from '@/content/projects'
-import { disciplines } from '@/content/disciplines'
-import { Arrow, ArrowOut } from '@/components/Arrow'
-import { Reveal } from '@/components/Reveal'
+import { ArrowOut } from '@/components/Arrow'
 import { ProjectGallery } from '@/components/work/ProjectGallery'
-import { coverPosition } from '@/components/work/ProjectCover'
-import { projectRelation } from '@/components/work/ProjectShowcase'
-import { BrowserFrame } from '@/components/work/DeviceFrames'
+import { ProjectMini, projectRelation, toneStyle, toneTheme } from '@/components/work/ProjectShowcase'
+import { BrowserFrame, PhoneFrame } from '@/components/work/DeviceFrames'
 import { site } from '@/content/site'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -45,16 +42,14 @@ export default async function ProjectPage({ params }: Props) {
   const project = findProject((await params).slug)
   if (!project) notFound()
 
-  const next = projects[(projects.indexOf(project) + 1) % projects.length]
+  const others = projects.filter((item) => item.slug !== project.slug)
   const screens = project.presentation === 'website' || project.presentation === 'software'
 
   const facts = [
-    { label: 'Discipline', value: disciplines.find((d) => d.id === project.discipline)?.name },
-    { label: 'Type', value: project.type },
-    { label: 'Relatie', value: projectRelation(project) },
-    ...(project.client ? [{ label: 'Opdrachtgever', value: project.client }] : []),
-    ...(project.stack ? [{ label: 'Gebouwd met', value: project.stack }] : []),
-    ...(project.year ? [{ label: 'Jaar', value: String(project.year) }] : []),
+    projectRelation(project),
+    ...(project.client ? [project.client] : []),
+    ...(project.stack ? [project.stack] : []),
+    ...(project.year ? [String(project.year)] : []),
   ]
 
   const jsonLd = {
@@ -68,90 +63,60 @@ export default async function ProjectPage({ params }: Props) {
     ...(project.url ? { sameAs: project.url } : {}),
   }
 
-  const images = [...(project.gallery ?? []), ...(project.mobile ? [project.mobile] : [])]
+  // The phone view sits in the hero for screen projects, so the gallery holds the other views.
+  const images = [...(project.gallery ?? []), ...(project.mobile && !screens ? [project.mobile] : [])]
 
   return (
     <article>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <header className="wrap pb-12 pt-[calc(var(--nav-h)+3rem)] md:pb-16 md:pt-[calc(var(--nav-h)+5rem)]">
-        <nav aria-label="Kruimelpad" className="meta mb-10">
-          <Link href="/portfolio" className="link-line hover:text-fg">
-            Werk
-          </Link>
-          <span className="mx-2" aria-hidden="true">/</span>
-          <span className="text-accent-text">{project.index} · {project.type}</span>
-        </nav>
-
-        <div className="grid-12 gap-y-8">
-          <div className="col-span-4 md:col-span-8">
-            <h1 className="t-display">{project.name}</h1>
-            <p className="t-lead mt-6 max-w-[40ch]">{project.summary}</p>
-            {project.url && (
-              <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8">
-                Bekijk de live website
-                <ArrowOut />
-              </a>
+      <header data-theme={toneTheme(project)} className="nx-stage" style={toneStyle(project)}>
+        <div className="wrap">
+          <div className="nx-stage-head !pt-[calc(var(--nav-h)+3.5rem)] md:!pt-[calc(var(--nav-h)+6rem)]">
+            <div>
+              <p className="nx-stage-kind">
+                <Link href="/portfolio" className="link-line">Werk</Link> / {project.type}
+              </p>
+              <h1 className="nx-stage-name">{project.name}</h1>
+            </div>
+            <div>
+              <p className="nx-stage-line">{project.tagline}</p>
+              {project.url && (
+                <div className="nx-stage-actions">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn nx-stage-btn">
+                    Bekijk live
+                    <ArrowOut />
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="nx-stage-devices">
+            <BrowserFrame label={project.host} className="nx-stage-browser">
+              <Image src={project.cover.src} alt={project.cover.alt} fill priority sizes="(min-width: 90rem) 66rem, (min-width: 48rem) 74vw, 88vw" className="object-cover object-top" />
+            </BrowserFrame>
+            {screens && project.mobile && (
+              <PhoneFrame className="nx-stage-phone">
+                <Image src={project.mobile.src} alt={project.mobile.alt} fill sizes="(min-width: 90rem) 14rem, (min-width: 48rem) 16vw, 27vw" className="object-cover object-top" />
+              </PhoneFrame>
             )}
           </div>
-          <dl className="col-span-4 grid grid-cols-2 gap-x-6 gap-y-4 self-end md:col-span-3 md:col-start-10 md:grid-cols-1">
-            {facts.map((fact) => (
-              <div key={fact.label}>
-                <dt className="meta">{fact.label}</dt>
-                <dd className="mt-1">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </header>
 
       <div className="wrap">
-        <Reveal>
-          {screens ? (
-            <div className="bg-bg-2 px-[5%] pt-[5%] md:px-[8%] md:pt-[6%]">
-              <BrowserFrame label={project.host} className="!rounded-b-none !border-b-0 !shadow-none">
-                <Image
-                  src={project.cover.src}
-                  alt={project.cover.alt}
-                  fill
-                  priority
-                  sizes="(min-width: 90rem) 72rem, 90vw"
-                  className="object-cover object-top"
-                />
-              </BrowserFrame>
-            </div>
-          ) : (
-            <div className="frame aspect-[4/3] sm:aspect-[16/10]">
-              <Image
-                src={project.cover.src}
-                alt={project.cover.alt}
-                fill
-                priority
-                sizes="(min-width: 90rem) 84rem, 100vw"
-                className={`object-cover ${coverPosition(project)}`}
-              />
-            </div>
-          )}
-        </Reveal>
-
-        <div className="grid-12 gap-y-12 py-20 md:py-32">
+        <div className="grid-12 gap-y-12 py-[var(--section)]">
           <div className="col-span-4 md:col-span-6">
-            <p className="t-lead text-fg">{project.intro}</p>
-            <p className="t-body mt-8 max-w-[44ch]">
-              <span className="meta mr-3 text-fg">Bijdrage NextX</span>
-              {project.contribution}
-            </p>
+            <p className="t-h3 font-[500] leading-snug">{project.intro}</p>
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {facts.map((fact) => <li key={fact} className="bg-bg-2 px-3 py-2 text-[0.875rem] font-semibold">{fact}</li>)}
+            </ul>
           </div>
 
           {project.features && project.features.length > 0 && (
             <div className="col-span-4 md:col-span-5 md:col-start-8">
-              <h2 className="meta mb-5">{screens ? 'Op de site' : 'In het project'}</h2>
-              <ul className="border-t border-line">
-                {project.features.map((feature) => (
-                  <li key={feature} className="flex gap-4 border-b border-line py-3 text-[0.9375rem]">
-                    <span className="mt-[.65em] h-px w-4 shrink-0 bg-accent" aria-hidden="true" />
-                    {feature}
-                  </li>
-                ))}
+              <h2 className="t-h3 mb-5">{screens ? 'Op de site' : 'In het project'}</h2>
+              <ul className="nx-dots">
+                {project.features.map((feature) => <li key={feature}>{feature}</li>)}
               </ul>
             </div>
           )}
@@ -159,7 +124,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {project.video && (
           <section className="pb-20 md:pb-32" aria-labelledby="video-title">
-            <h2 id="video-title" className="meta mb-5">
+            <h2 id="video-title" className="t-h3 mb-5">
               {project.video.title}
             </h2>
             <div className="project-video frame">
@@ -181,16 +146,15 @@ export default async function ProjectPage({ params }: Props) {
         )}
       </div>
 
-      {next && next.slug !== project.slug && (
-        <Link href={`/portfolio/${next.slug}`} data-theme="dark" className="group block border-b border-line">
-          <div className="wrap flex flex-wrap items-end justify-between gap-6 py-16 md:py-24">
-            <div>
-              <p className="meta mb-4">Volgend project · {next.type}</p>
-              <p className="t-h1 transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-3">{next.name}</p>
+      {others.length > 0 && (
+        <section data-theme="dark" className="section" aria-labelledby="more-title">
+          <div className="wrap">
+            <h2 id="more-title" className="t-h1 mb-10 md:mb-14">Meer werk<span className="text-accent">.</span></h2>
+            <div className="grid gap-3 md:grid-cols-2">
+              {others.slice(0, 2).map((item) => <ProjectMini key={item.slug} project={item} />)}
             </div>
-            <span className="nx-arrow-box mb-2"><Arrow /></span>
           </div>
-        </Link>
+        </section>
       )}
     </article>
   )

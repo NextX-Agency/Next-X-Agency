@@ -70,7 +70,7 @@ export function ProjectGallery({
                   ↗
                 </span>
               </button>
-              <figcaption className="meta mt-3">
+              <figcaption className="mt-3 text-[0.875rem] font-medium text-fg-2">
                 {image.caption ?? image.alt}
                 {image.credit && ` · ${image.credit}`}
               </figcaption>

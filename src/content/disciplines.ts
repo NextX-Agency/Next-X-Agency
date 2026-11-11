@@ -1,7 +1,7 @@
 /**
  * What NextX does. The three core specialties lead every overview; the
  * supporting disciplines stay available for enquiries but never get equal
- * billing. Ids double as anchors on /services and as ?dienst= values.
+ * billing. `word` is the one-word name used on tiles and big headings. Ids double as anchors on /services and as ?dienst= values.
  */
 export const disciplines = [
   {
@@ -9,9 +9,10 @@ export const disciplines = [
     index: '01',
     core: true,
     name: 'Grafisch ontwerp & Branding',
+    word: 'Design',
+    line: 'Logo’s, huisstijlen en drukwerk',
     short: 'Een herkenbaar merk, in elk detail.',
-    description:
-      'Een logo, een huisstijl en het ontwerp dat daaruit volgt. We zorgen dat uw bedrijf er op elk kanaal hetzelfde uitziet, van visitekaartje tot social media.',
+    description: 'Een merk dat u overal herkent, van logo tot social media.',
     services: [
       'Logo en visuele identiteit',
       'Social media- en campagnebeelden',
@@ -23,9 +24,10 @@ export const disciplines = [
     index: '02',
     core: true,
     name: 'Webdesign & Development',
+    word: 'Websites',
+    line: 'Bedrijfssites en webshops',
     short: 'Websites en webshops die werken.',
-    description:
-      'Bedrijfswebsites, webshops en digitale ervaringen op maat. We ontwerpen de pagina’s en bouwen ze zelf, zodat wat u goedkeurt ook is wat online komt.',
+    description: 'Ontworpen en gebouwd door dezelfde studio.',
     services: [
       'Bedrijfswebsites',
       'Webshops en bestellen via WhatsApp',
@@ -37,9 +39,10 @@ export const disciplines = [
     index: '03',
     core: true,
     name: 'Software op maat',
+    word: 'Software',
+    line: 'Webapps, dashboards en systemen',
     short: 'Systemen rond uw manier van werken.',
-    description:
-      'Webapplicaties, dashboards en interne systemen voor werk dat niet in een standaardpakket past. Gebouwd rond uw proces en gekoppeld aan de tools die u al gebruikt.',
+    description: 'Voor werk dat niet in een standaardpakket past.',
     services: [
       'Webapplicaties',
       'Dashboards en beheeromgevingen',
@@ -51,9 +54,10 @@ export const disciplines = [
     index: '04',
     core: false,
     name: 'Fotografie & Media',
+    word: 'Fotografie',
+    line: 'Foto en video bij uw merk',
     short: 'Beeld bij uw merk of website.',
-    description:
-      'Product- en bedrijfsfotografie of video bij een website, webshop of campagne. We stemmen het beeld af op waar het gebruikt wordt.',
+    description: 'Product- en bedrijfsbeeld bij een website, webshop of campagne.',
     services: [
       'Product- en bedrijfsfotografie',
       'Portretten en evenementen',
@@ -65,9 +69,10 @@ export const disciplines = [
     index: '05',
     core: false,
     name: 'Marketing',
+    word: 'Marketing',
+    line: 'Content en campagnes',
     short: 'Content en campagnes.',
-    description:
-      'Content en campagnes rond een duidelijke boodschap. We bepalen samen wat u wilt vertellen, aan wie en via welke kanalen.',
+    description: 'Content en campagnes rond één duidelijke boodschap.',
     services: [
       'Contentcreatie',
       'Social media marketing',

@@ -19,7 +19,7 @@ Playwright needs Chromium: `pnpm exec playwright install chromium`. Set `TEST_BA
 | -------------------------------------------- | ---------------------------- |
 | Contact details and navigation               | `src/content/site.ts`        |
 | Three specialties and supporting disciplines | `src/content/disciplines.ts` |
-| Custom software copy and live proof          | `src/content/software.ts`    |
+| Kinds of custom software                     | `src/content/software.ts`    |
 | Services, package prices and enquiry options | `src/content/services.ts`    |
 | Portfolio catalogue                          | `src/content/projects.ts`    |
 | Clearly fictional example sites              | `src/content/examples.ts`    |
@@ -30,7 +30,7 @@ Pages under `src/app/(site)` share the header and footer. Demos under `src/app/e
 ## Add a portfolio project
 
 1. Put authorized, optimized images in `public/work/`, named `<project-slug>-<view>.jpg`. For a website, capture the live site at 1600×1000 (cover and gallery) and 430×932 (phone); a 1.5× or 2× capture keeps the device mockups sharp. Supply actual dimensions, descriptive Dutch alt text, and optional captions or credits. Do not bake device frames into images: the browser and phone frames are drawn in CSS.
-2. Add a `Project` entry to `projectCatalog` in `src/content/projects.ts`. Begin with `status: 'draft'`. Supply slug, index, name, type, discipline, presentation, origin, actual contribution, summary, intro and cover. Choose `origin: 'client'` or `'studio'` accurately. Never invent work, results or testimonials.
+2. Add a `Project` entry to `projectCatalog` in `src/content/projects.ts`. Begin with `status: 'draft'`. Supply slug, index, name, type, tagline, tone, discipline, presentation, origin, actual contribution, summary, intro and cover. Choose `origin: 'client'` or `'studio'` accurately. Never invent work, results or testimonials.
 3. Choose a discipline: `branding-design`, `web`, `software`, `photography-media` or `marketing`. Choose a presentation: `website`, `software`, `photography`, `branding`, `marketing` or `video`.
 4. Add only relevant facts. Client, year, website URL/host, technology stack, features, gallery and mobile screenshot are optional. Photography uses a responsive photo album; other galleries retain image proportions. Video accepts a source, poster, title and optional WebVTT captions; it uses native controls without autoplay. Optional `seo.title` and `seo.description` override detail-page metadata.
 5. Review the real media, factual copy and mobile layout, then set `published`. Published projects automatically appear on `/portfolio`, their detail route, next-project navigation and the sitemap. Add `featured: true` to show a project large on the homepage (keep it to two or three). Drafts are excluded and return 404. Discipline filters appear only when at least two published disciplines have work.

@@ -88,13 +88,23 @@ for (const route of routes) {
         })
         // The full-page capture brings every scroll entrance into view; scan
         // the settled page, not text that is still fading in.
+        // The concept strip moves continuously by design; everything else must settle.
         await page.waitForFunction(() =>
-          document.getAnimations().every((a) => a.playState !== 'running'),
+          document.getAnimations().every(
+            (a) =>
+              a.playState !== 'running' ||
+              ((a.effect as KeyframeEffect | null)?.target as Element | null)?.closest('.nx-marquee'),
+          ),
         )
         // The full-page capture brings every scroll entrance into view; scan
         // the settled page, not text that is still fading in.
+        // The concept strip moves continuously by design; everything else must settle.
         await page.waitForFunction(() =>
-          document.getAnimations().every((a) => a.playState !== 'running'),
+          document.getAnimations().every(
+            (a) =>
+              a.playState !== 'running' ||
+              ((a.effect as KeyframeEffect | null)?.target as Element | null)?.closest('.nx-marquee'),
+          ),
         )
         const accessibility = await new AxeBuilder({ page })
           .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])

@@ -15,14 +15,11 @@ export const metadata: Metadata = {
 export default function ExamplesPage() {
   return (
     <div data-theme="dark" className="min-h-screen pb-[var(--section)]">
-      <header className="wrap grid-12 gap-y-8 pb-16 pt-[calc(var(--nav-h)+4rem)] md:pb-24 md:pt-[calc(var(--nav-h)+7rem)]">
-        <div className="col-span-4 md:col-span-8">
-          <p className="meta mb-5 text-accent">Conceptlab · {examples.length} experimenten</p>
-          <h1 className="t-display">Probeer het zelf<span className="text-accent">.</span></h1>
-        </div>
-        <div className="col-span-4 self-end md:col-span-4">
-          <p className="t-body">Werkende ontwerpconcepten voor verzonnen bedrijven. Elk concept laat een andere dienst, stijl of interactie zien. De merken zijn geen klanten van NextX.</p>
-          <Link href="/portfolio" className="link-arrow link-line mt-6 py-1">Naar het echte werk <Arrow /></Link>
+      <header className="wrap pb-14 pt-[calc(var(--nav-h)+4rem)] md:pb-20 md:pt-[calc(var(--nav-h)+7rem)]">
+        <h1 className="t-display">Conceptlab<span className="text-accent">.</span></h1>
+        <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+          <p className="t-lead max-w-[30ch] text-fg">Werkende demo’s voor verzonnen merken. Geen klanten, wel ideeën.</p>
+          <Link href="/portfolio" className="btn btn-quiet">Naar het echte werk <Arrow /></Link>
         </div>
       </header>
 
@@ -31,10 +28,7 @@ export default function ExamplesPage() {
           const items = examples.filter((example) => example.group === group)
           return (
             <section key={group} aria-labelledby={`group-${group}`}>
-              <div className="mb-8 flex flex-wrap items-baseline justify-between gap-2 border-t border-line-strong pt-4">
-                <h2 id={`group-${group}`} className="t-h3">{group}</h2>
-                <p className="meta text-fg-2">Fictieve merken · interactieve concepten</p>
-              </div>
+              <h2 id={`group-${group}`} className="t-h1 mb-8 md:mb-10">{group}</h2>
               <ul className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-12">
                 {items.map((example) => {
                   const featured = featuredExamples.some((item) => item.slug === example.slug)
@@ -50,14 +44,12 @@ export default function ExamplesPage() {
                             priority={example.slug === featuredExamples[0].slug}
                             className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"
                           />
-                          <span className="absolute bottom-3 left-3 border border-white/30 bg-black/70 px-2.5 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">Fictief merk · conceptdemo</span>
+                          <span className="nx-label">Fictief merk</span>
                         </div>
                         <div className="mt-4 flex items-baseline justify-between gap-4">
                           <h3 className="text-xl font-semibold">{example.business}</h3>
-                          <span className="meta shrink-0 text-fg-2">{group}</span>
                         </div>
                         <p className="t-small mt-2 max-w-[50ch]">{example.summary}</p>
-                        {example.demonstrates && <p className="t-small mt-2 max-w-[50ch] text-fg-2">{example.demonstrates}</p>}
                         <span className="link-arrow mt-4 text-[0.9375rem] text-fg">Open de demo <Arrow /></span>
                       </Link>
                     </li>

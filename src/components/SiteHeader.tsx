@@ -123,9 +123,7 @@ export function SiteHeader() {
         ref={barRef}
         data-theme={shownTheme}
         className={cn(
-          'relative z-20 transition-[background-color,border-color] duration-300',
-          'border-b',
-          scrolled && !open ? 'border-line' : 'border-transparent',
+          'relative z-20 transition-[background-color] duration-300',
           scrolled || open ? '' : '!bg-transparent'
         )}
       >
@@ -163,7 +161,7 @@ export function SiteHeader() {
                       <Link
                         href={item.href}
                         aria-current={active ? 'page' : undefined}
-                        className="btn btn-quiet !min-h-10 !px-4 !text-[0.875rem] aria-[current=page]:border-accent"
+                        className="btn !min-h-10 bg-fg !px-4 !text-[0.875rem] text-bg hover:bg-accent hover:text-ink aria-[current=page]:bg-accent aria-[current=page]:text-ink"
                       >
                         {item.label}
                       </Link>
@@ -221,14 +219,14 @@ export function SiteHeader() {
             <nav aria-label="Mobiel menu" className="wrap flex-1 overflow-y-auto pt-6">
               <ul>
                 {[{ href: '/', label: 'Home' }, ...navigation].map((item) => (
-                  <li key={item.href} className="border-b border-line">
+                  <li key={item.href}>
                     <Link
                       href={item.href}
                       aria-current={(item.href === '/' ? pathname === '/' : isActive(pathname, item.href)) ? 'page' : undefined}
-                      className="flex items-baseline justify-between py-3.5"
+                      className="flex items-baseline justify-between py-2.5"
                       onClick={() => setOpen(false)}
                     >
-                      <span className="t-h2">{item.label}</span>
+                      <span className="t-h1">{item.label}</span>
                       <span className="text-accent" aria-hidden="true">↗</span>
                     </Link>
                   </li>
@@ -242,9 +240,6 @@ export function SiteHeader() {
               <a href={mailHref} className="t-small text-fg">
                 {site.email}
               </a>
-              <p className="meta mt-3">
-                {site.location.city}, {site.location.countryCode}
-              </p>
             </div>
           </motion.div>
         )}

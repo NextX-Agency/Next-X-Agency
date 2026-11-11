@@ -17,15 +17,14 @@ export default function NotFound() {
       <main id="main" data-theme="dark" className="flex min-h-[80svh] flex-col justify-end">
         <div className="wrap grid-12 gap-y-12 pb-16 pt-[calc(var(--nav-h)+5rem)] md:pb-24">
           <div className="col-span-4 md:col-span-7">
-            <p className="meta mb-6">404</p>
-            <h1 className="t-h1 max-w-[12ch]">Deze pagina bestaat niet.</h1>
+            <h1 className="t-display max-w-[10ch]">Deze pagina bestaat niet<span className="text-accent">.</span></h1>
             <p className="t-body mt-6 max-w-[38ch]">De link is verouderd of het adres bevat een typefout.</p>
           </div>
           <nav aria-label="Verder naar" className="col-span-4 self-end md:col-span-4 md:col-start-9">
-            <ul className="border-t border-line-strong">
+            <ul>
               {[{ href: '/', label: 'Home' }, ...navigation].map((item) => (
-                <li key={item.href} className="border-b border-line">
-                  <Link href={item.href} className="group flex items-center justify-between py-4">
+                <li key={item.href}>
+                  <Link href={item.href} className="group flex items-center justify-between py-2.5">
                     <span className="t-h3">{item.label}</span>
                     <Arrow />
                   </Link>

@@ -11,10 +11,9 @@ export function Subscriptions() {
     <section className="nx-subscriptions" aria-labelledby="subscription-teaser-title">
       <div className="wrap nx-subscriptions-inner">
         <div className="nx-subscriptions-copy">
-          <p className="meta mb-5 !text-ink">Website-abonnementen</p>
-          <h2 id="subscription-teaser-title" className="nx-subscriptions-title">Een website die niet stilstaat.</h2>
-          <p className="mt-6 max-w-[43ch] text-lg leading-snug">Wij bouwen de site en blijven eraan werken. Onderhoud en bugfixes zijn inbegrepen; u kiest hoeveel wijzigingen u per maand nodig hebt.</p>
-          <Link href="/services#website-subscriptions" className="nx-subscriptions-link">Vergelijk de abonnementen <Arrow /></Link>
+                    <h2 id="subscription-teaser-title" className="nx-subscriptions-title">Een website die niet stilstaat.</h2>
+          <p className="mt-6 max-w-[30ch] text-xl font-medium leading-snug">Een website-abonnement: wij bouwen, onderhouden en passen aan.</p>
+          <Link href="/services#website-subscriptions" className="btn mt-9 bg-ink text-paper hover:bg-paper hover:text-ink">Bekijk de abonnementen <Arrow /></Link>
         </div>
         <div className="nx-subscriptions-art">
           <BrowserFrame label="Conceptdemo · fictief merk" className="nx-subscriptions-browser">
@@ -23,9 +22,6 @@ export function Subscriptions() {
           <div className="nx-subscriptions-price">Vanaf <strong>{formatPrice(plans[0].price)}</strong></div>
         </div>
       </div>
-      <div className="wrap"><div className="nx-subscriptions-rail">
-        {plans.map((plan) => <span key={plan.id}>{plan.name.replace(' abonnement', '')} <b>{formatPrice(plan.price)}</b></span>)}
-      </div></div>
     </section>
   )
 }
