@@ -10,6 +10,8 @@ const routes = [
   '/services',
   '/about',
   '/contact',
+  '/examples',
+  '/portfolio/bhaggoes-car-palace',
   '/portfolio/shop-nextx',
   '/portfolio/indef-design',
 ]
@@ -235,6 +237,7 @@ test('internal links, demo routes, sitemap and missing projects', async ({
   const sitemap = await request.get('/sitemap.xml')
   expect(sitemap.status()).toBe(200)
   expect(await sitemap.text()).toContain('/portfolio/shop-nextx')
+  expect(await sitemap.text()).toContain('/portfolio/bhaggoes-car-palace')
   expect(await sitemap.text()).not.toContain('private-draft')
   expect(await sitemap.text()).not.toContain('/examples/')
   expect(await sitemap.text()).not.toContain('<lastmod>')

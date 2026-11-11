@@ -416,13 +416,13 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: 'creative-production',
     index: '10',
-    title: 'Creatieve productie',
-    line: 'Fotografie, media, merken en marketing op basis van uw project.',
+    title: 'Op maat',
+    line: 'Software, merkidentiteit, fotografie en marketing met een offerte per project.',
     discipline: false,
     services: [
-      { id: 'web-software', name: 'Web & Software op maat', summary: 'Applicaties, bedrijfssystemen en technische integraties.', price: { label: 'Op aanvraag' }, includes: ['Scope en planning in overleg', 'Offerte vóór de start'] },
+      { id: 'web-software', name: 'Software op maat', aliases: ['Web & Software op maat', 'Web & Software', 'software'], summary: 'Webapplicaties, dashboards, interne systemen en koppelingen.', price: { label: 'Op aanvraag' }, includes: ['Scope en planning in overleg', 'Offerte vóór de start'] },
       { id: 'photography-media', name: 'Fotografie & Media', summary: 'Commerciële fotografie, portretten, evenementen en videoproductie.', price: { label: 'Op aanvraag' }, includes: ['Brief en beeldrichting in overleg', 'Productie en oplevering volgens afspraak'] },
-      { id: 'branding-design', name: 'Branding & Design', summary: 'Visuele identiteiten en ontwerp voor een herkenbaar merk.', price: { label: 'Op aanvraag' }, includes: ['Scope en toepassingen in overleg', 'Offerte vóór de start'] },
+      { id: 'branding-design', name: 'Grafisch ontwerp & Branding', aliases: ['Branding & Design'], summary: 'Visuele identiteiten en ontwerp voor een herkenbaar merk.', price: { label: 'Op aanvraag' }, includes: ['Scope en toepassingen in overleg', 'Offerte vóór de start'] },
       { id: 'marketing', name: 'Marketing', summary: 'Content, campagnes en merkcommunicatie.', price: { label: 'Op aanvraag' }, includes: ['Doel en kanalen samen bepalen', 'Content en planning volgens afspraak'] },
     ],
   },

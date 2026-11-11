@@ -34,7 +34,7 @@ describe('portfolio publication and media', () => {
     expect(publishedProjects([creative])).toEqual([])
   })
   it('only publishes the genuine projects and existing media', () => {
-    expect(projects.map((p) => p.slug)).toEqual(['shop-nextx', 'indef-design'])
+    expect(projects.map((p) => p.slug)).toEqual(['bhaggoes-car-palace', 'shop-nextx', 'indef-design'])
     for (const project of projects) {
       for (const image of [
         project.cover,

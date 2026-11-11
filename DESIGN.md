@@ -2,28 +2,27 @@
 
 ## Direction
 
-NextX is a creative and digital studio in Paramaribo. The site should make the work visible immediately and explain how to engage the studio without asking visitors to decode a long catalogue.
+NextX is a design studio and software builder in Paramaribo. The site says three things, in this order: graphic design and branding, web design and development, custom software. Real, live projects carry the proof; experiments are kept visibly separate.
 
-The October 2026 redesign uses the supplied NextX logo as its starting point. The cleaned vector mark is in `public/logo-agency-white-v2.svg` and `public/logo-agency-black-v2.svg`; the square app icon is `public/nextx-icon-v2.svg`. Use these assets on new NextX pages.
+The cleaned vector mark is in `public/logo-agency-white-v2.svg` and `public/logo-agency-black-v2.svg`; the square app icon is `public/nextx-icon-v2.svg`.
 
-The visual language is near-black, warm paper and logo orange (`#ED5F0F`), oversized Archivo, IBM Plex Mono for small factual labels, circuit traces, and large views of working concept demos. Use editorial image compositions rather than generic card towers, ornamental counters or stock team photography. Respect reduced motion and keep all text readable without JavaScript.
+The visual language is near-black, warm paper and logo orange (`#ED5F0F`), oversized Archivo, IBM Plex Mono for small factual labels, the logo's circuit traces, and large views of real work in CSS device frames. Use editorial compositions on the 12-column grid, hairline rules and numbered indexes rather than card towers, gradients, heavy shadows or stock photography. Orange is an accent: one primary button per view, index numbers, the full stop of a headline. On paper, small orange text uses `--accent-text` to meet AA contrast.
 
-The homepage hero uses the interactive globe from the original NextX design, centered on Paramaribo. Suriname is identified at the geographic marker without a separate coordinate lockup. The Concept Lab follows immediately below, where fictional status is visible beside each demo preview. Motion is a short entrance sequence and reveal of concept cards as they enter view. The headline and calls to action remain readable without JavaScript; the globe draws once under reduced motion.
+The homepage hero keeps the interactive globe centred on Paramaribo. The headline names the three specialties ("Design, websites en software.") and a rail beneath the calls to action links each one to its section on `/services`. The headline and calls to action remain readable without JavaScript; the globe draws once under reduced motion.
 
 ## Content hierarchy
 
-The main paths on `/services` are:
+- `src/content/disciplines.ts` holds the three core specialties (`core: true`) and the supporting disciplines (photography and media, marketing). Only the core three appear in the hero, homepage, footer and at the top of `/services`. Supporting disciplines are listed once on `/services` as "Ook mogelijk" and remain selectable in the contact form.
+- `/services` follows the specialties: graphic design (fixed prices plus identity on quote), web (subscription or one-time project, with the full price list), software (what we build, how a project runs, quoted per project), then supporting and additional services. `src/content/services.ts` is the single source for prices and inclusions, and the contact form uses the same catalogue.
+- `src/content/software.ts` describes custom software and points to behaviour that can be checked in live projects. Add a line there only when the behaviour is visible on the live site.
+- Do not invent outcomes, clients, testimonials, team members or statistics. NextX is the single point of contact and may bring in a specialist for a project.
 
-- A monthly website subscription: Landing Page, Starter, Growth and Premium. The website is built in the subscription and maintenance, bug fixes and a defined monthly change allowance are included. The exact plans and rules live in `src/content/services.ts`.
-- A one-time website or webshop with an agreed scope and starting price.
-- Creative production: custom software, photography and media, branding and design, and marketing, scoped and quoted per project.
+## Work and Conceptlab
 
-Supporting offers such as SEO, hosting, SLA, UX Kukru and extra work remain accessible below those paths. `src/content/services.ts` is the single source for prices and inclusions, and the contact form uses the same catalogue. Do not invent outcomes, clients, testimonials or team structure. NextX is the single point of contact and may coordinate independent specialists for a project.
+"Werk" (`/portfolio`) shows real projects only: client work and NextX's own products, each live and linked. Projects are presented with `ProjectShowcase`: the cover in a browser frame, the phone screenshot in a phone frame, and the facts beneath. Projects marked `featured` lead the homepage.
 
-## Work and prototypes
-
-NextX is a new studio and does not claim an established portfolio. The `/portfolio` landing page leads with the Concept Lab: curated, interactive prototypes for fictional businesses. The fictional status must be visible next to each preview and each demo. Existing real work remains accessible at its original URL but is secondary to the demonstrations. When a concept image is used to show visual direction, describe it as a concept, not a delivered client project.
+The Conceptlab (`/examples`) holds interactive prototypes for fictional businesses. Every preview carries the label "Conceptdemo · fictief merk" and the section copy states that these are not clients. Concepts never appear inside "Werk", and concept imagery is not used to illustrate services; the specialties are illustrated with the NextX identity sheet and screenshots of live projects.
 
 ## Motion and performance
 
-Static content renders first. Image compositions may use short entrance and hover motion, with a reduced-motion fallback. Keep art-directed images responsive, supply meaningful alt text where images carry information, and avoid loading off-screen media eagerly. The globe and signal canvas remain available only where they serve the visual story.
+Static content renders first. Motion is limited to one entrance (`Reveal`: a short rise and fade), the hero sequence, device frames that lift on hover, and the circuit traces behind the software statement. All of it has a reduced-motion fallback. Keep images responsive, supply meaningful alt text where images carry information, and avoid loading off-screen media eagerly.

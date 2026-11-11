@@ -24,6 +24,7 @@
   .nx-motion-ready .nx-hero [data-nx-motion="copy"] { transition-delay: 350ms; }
   .nx-motion-ready .nx-hero [data-nx-motion="action"] { transition-delay: 440ms; }
   .nx-motion-ready .nx-hero [data-nx-motion="visual"] { transition-delay: 260ms; }
+  .nx-motion-ready .nx-hero [data-nx-motion="rail"] { transition-delay: 540ms; }
 
   .nx-motion-ready .nx-hero [data-nx-motion].nx-motion-visible,
   .nx-motion-ready .nx-concept-showcase [data-nx-motion].nx-motion-visible {
@@ -31,9 +32,8 @@
     translate: 0 0;
   }
 
-  .nx-motion-ready .nx-concept-showcase [data-nx-motion="card"]:nth-child(2) {
-    transition-delay: 100ms;
-  }
+  .nx-motion-ready .nx-concept-showcase [data-nx-motion="card"]:nth-child(2) { transition-delay: 90ms; }
+  .nx-motion-ready .nx-concept-showcase [data-nx-motion="card"]:nth-child(3) { transition-delay: 180ms; }
 
   @media (max-width: 767px) {
     .nx-motion-ready .nx-hero [data-nx-motion],

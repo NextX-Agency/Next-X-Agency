@@ -55,19 +55,19 @@ const lora = Lora({
 })
 
 const description =
-  'NextX is een creatieve en digitale studio uit Paramaribo, Suriname, voor web, software, fotografie, media, branding en marketing. Eén aanspreekpunt, de juiste expertise per project.'
+  'NextX is een ontwerpstudio en softwarebouwer uit Paramaribo, Suriname. Grafisch ontwerp en branding, websites en webshops, en software op maat, van één studio.'
 
 const socialImage = {
-  url: '/og/nextx-social-v5.png',
+  url: '/og/nextx-social-v6.png',
   width: 1200,
   height: 630,
-  alt: 'NextX creatieve en digitale studio uit Paramaribo, Suriname',
+  alt: 'NextX Agency: design, websites en software uit Paramaribo, Suriname',
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'NextX Agency · Creatieve & digitale studio uit Suriname',
+    default: 'NextX Agency · Design, websites en software uit Suriname',
     template: '%s — NextX Agency',
   },
   description,
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     apple: { url: '/apple-touch-icon-v2.png', sizes: '180x180', type: 'image/png' },
   },
   openGraph: {
-    title: 'NextX Agency · Creatieve & digitale studio uit Suriname',
+    title: 'NextX Agency · Design, websites en software uit Suriname',
     description,
     url: site.url,
     siteName: site.name,
@@ -126,6 +126,8 @@ const jsonLd = {
     longitude: site.location.lng,
   },
   areaServed: { '@type': 'Country', name: site.location.country },
+  knowsAbout: ['Grafisch ontwerp', 'Branding', 'Webdesign', 'Webdevelopment', 'E-commerce', 'Software op maat'],
+  sameAs: [site.sisterSite.href],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Diensten',

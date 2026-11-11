@@ -90,7 +90,8 @@ function pointAt(t: Trace, d: number): Pt {
   return t.pts[t.pts.length - 1]
 }
 
-export function SignalField({ anchorId }: { anchorId: string }) {
+/** `logoInset` trims the transparent margin of the logo file; pass false for a plain box. */
+export function SignalField({ anchorId, logoInset = true }: { anchorId: string; logoInset?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -119,8 +120,8 @@ export function SignalField({ anchorId }: { anchorId: string }) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       const anchor = document.getElementById(anchorId)?.getBoundingClientRect()
       // The logo file has transparent margins around its frame (≈6.5% / 10%).
-      const ix = anchor ? anchor.width * 0.065 : 0
-      const iy = anchor ? anchor.height * 0.1 : 0
+      const ix = anchor && logoInset ? anchor.width * 0.065 : 0
+      const iy = anchor && logoInset ? anchor.height * 0.1 : 0
       const box = anchor
         ? {
             left: anchor.left - rect.left + ix,
@@ -268,7 +269,7 @@ export function SignalField({ anchorId }: { anchorId: string }) {
       canvas.removeEventListener('pointermove', onMove)
       canvas.removeEventListener('pointerdown', onDown)
     }
-  }, [anchorId])
+  }, [anchorId, logoInset])
 
   return <canvas ref={canvasRef} className="absolute inset-0 size-full touch-pan-y" aria-hidden="true" />
 }

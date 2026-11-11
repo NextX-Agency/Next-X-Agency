@@ -8,7 +8,9 @@ import { Arrow, ArrowOut } from '@/components/Arrow'
 import { Reveal } from '@/components/Reveal'
 import { ProjectGallery } from '@/components/work/ProjectGallery'
 import { coverPosition } from '@/components/work/ProjectCover'
-import { projectRelation } from '@/components/work/ProjectFeature'
+import { projectRelation } from '@/components/work/ProjectShowcase'
+import { BrowserFrame } from '@/components/work/DeviceFrames'
+import { site } from '@/content/site'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -23,7 +25,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: project.seo?.title ?? project.name,
     description: project.seo?.description ?? project.summary,
     alternates: { canonical: `/portfolio/${project.slug}` },
-    robots: { index: false, follow: true },
     openGraph: {
       title: `${project.name} — NextX Agency`,
       description: project.summary,
@@ -56,21 +57,42 @@ export default async function ProjectPage({ params }: Props) {
     ...(project.year ? [{ label: 'Jaar', value: String(project.year) }] : []),
   ]
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.name,
+    description: project.summary,
+    url: `${site.url}/portfolio/${project.slug}`,
+    image: `${site.url}${project.cover.src}`,
+    creator: { '@type': 'Organization', name: site.name, url: site.url },
+    ...(project.url ? { sameAs: project.url } : {}),
+  }
+
   const images = [...(project.gallery ?? []), ...(project.mobile ? [project.mobile] : [])]
 
   return (
     <article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="wrap pb-12 pt-[calc(var(--nav-h)+3rem)] md:pb-16 md:pt-[calc(var(--nav-h)+5rem)]">
         <nav aria-label="Kruimelpad" className="meta mb-10">
           <Link href="/portfolio" className="link-line hover:text-fg">
-            Concept Lab
+            Werk
           </Link>
           <span className="mx-2" aria-hidden="true">/</span>
-          <span className="text-accent-text">Eerder werk · {project.type}</span>
+          <span className="text-accent-text">{project.index} · {project.type}</span>
         </nav>
 
         <div className="grid-12 gap-y-8">
-          <h1 className="t-display col-span-4 md:col-span-8">{project.name}</h1>
+          <div className="col-span-4 md:col-span-8">
+            <h1 className="t-display">{project.name}</h1>
+            <p className="t-lead mt-6 max-w-[40ch]">{project.summary}</p>
+            {project.url && (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8">
+                Bekijk de live website
+                <ArrowOut />
+              </a>
+            )}
+          </div>
           <dl className="col-span-4 grid grid-cols-2 gap-x-6 gap-y-4 self-end md:col-span-3 md:col-start-10 md:grid-cols-1">
             {facts.map((fact) => (
               <div key={fact.label}>
@@ -78,33 +100,37 @@ export default async function ProjectPage({ params }: Props) {
                 <dd className="mt-1">{fact.value}</dd>
               </div>
             ))}
-            {project.url && (
-              <div>
-                <dt className="meta">Live</dt>
-                <dd className="mt-1">
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="link-arrow link-line">
-                    {project.host ?? 'Open website'}
-                    <ArrowOut />
-                  </a>
-                </dd>
-              </div>
-            )}
           </dl>
         </div>
       </header>
 
       <div className="wrap">
         <Reveal>
-          <div className="frame aspect-[4/3] sm:aspect-[16/10]">
-            <Image
-              src={project.cover.src}
-              alt={project.cover.alt}
-              fill
-              priority
-              sizes="(min-width: 90rem) 84rem, 100vw"
-              className={`object-cover ${coverPosition(project)}`}
-            />
-          </div>
+          {screens ? (
+            <div className="bg-bg-2 px-[5%] pt-[5%] md:px-[8%] md:pt-[6%]">
+              <BrowserFrame label={project.host} className="!rounded-b-none !border-b-0 !shadow-none">
+                <Image
+                  src={project.cover.src}
+                  alt={project.cover.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 90rem) 72rem, 90vw"
+                  className="object-cover object-top"
+                />
+              </BrowserFrame>
+            </div>
+          ) : (
+            <div className="frame aspect-[4/3] sm:aspect-[16/10]">
+              <Image
+                src={project.cover.src}
+                alt={project.cover.alt}
+                fill
+                priority
+                sizes="(min-width: 90rem) 84rem, 100vw"
+                className={`object-cover ${coverPosition(project)}`}
+              />
+            </div>
+          )}
         </Reveal>
 
         <div className="grid-12 gap-y-12 py-20 md:py-32">
@@ -156,13 +182,13 @@ export default async function ProjectPage({ params }: Props) {
       </div>
 
       {next && next.slug !== project.slug && (
-        <Link href={`/portfolio/${next.slug}`} data-theme="dark" className="group block">
+        <Link href={`/portfolio/${next.slug}`} data-theme="dark" className="group block border-b border-line">
           <div className="wrap flex flex-wrap items-end justify-between gap-6 py-16 md:py-24">
             <div>
-              <p className="meta mb-4">Volgend project</p>
+              <p className="meta mb-4">Volgend project · {next.type}</p>
               <p className="t-h1 transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-3">{next.name}</p>
             </div>
-            <Arrow className="mb-3 h-5 w-8 text-accent" />
+            <span className="nx-arrow-box mb-2"><Arrow /></span>
           </div>
         </Link>
       )}

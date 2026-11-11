@@ -23,7 +23,7 @@ test('confirmation failure preserves accepted inquiry; double submission is prev
   })
   await page.goto('/contact?dienst=web-software')
   await expect(page.locator('#service_type')).toHaveValue(
-    'Web & Software op maat',
+    'Software op maat',
   )
   await page.getByLabel('Naam', { exact: true }).fill('Test Klant')
   await page.getByLabel('E-mail', { exact: true }).fill('test@example.com')

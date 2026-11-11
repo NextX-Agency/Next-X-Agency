@@ -24,6 +24,8 @@ export type Project = {
     'website' | 'software' | 'photography' | 'branding' | 'marketing' | 'video'
   status: 'draft' | 'published'
   origin: 'client' | 'studio'
+  /** Shown large on the homepage. Keep to two or three. */
+  featured?: boolean
   contribution: string
   /** One line for overviews. */
   summary: string
@@ -51,67 +53,132 @@ export type Project = {
 
 const desktop = { width: 1600, height: 1000 }
 const phone = { width: 430, height: 932 }
+/** Captures made at 1.5× and 2× for sharp device mockups. */
+const desktopHd = { width: 2400, height: 1500 }
+const phoneHd = { width: 860, height: 1864 }
 
 export const projectCatalog: Project[] = [
   {
-    slug: 'shop-nextx',
+    slug: 'bhaggoes-car-palace',
     index: '01',
+    name: 'Bhaggoes Car Palace',
+    type: 'Dealerwebsite',
+    discipline: 'web',
+    presentation: 'website',
+    status: 'published',
+    origin: 'client',
+    featured: true,
+    contribution: 'Ontwerp en ontwikkeling van de website.',
+    client: 'Bhaggoes Car Palace',
+    summary:
+      'Website voor een autodealer in Suriname, met een doorzoekbare voorraad en een directe lijn naar WhatsApp.',
+    intro:
+      'Bhaggoes Car Palace verkoopt auto’s vanaf twee locaties in Suriname. De website zet de voorraad centraal: bezoekers zoeken op merk, model, prijs en bouwjaar, bekijken per auto de foto’s en prijzen, en stellen hun vraag direct via WhatsApp.',
+    url: 'https://www.bhaggoescarpalace.com/',
+    host: 'bhaggoescarpalace.com',
+    stack: 'Next.js',
+    features: [
+      'Voorraad zoeken en filteren op merk, model, prijs, bouwjaar, carrosserie, brandstof en transmissie',
+      'Een pagina per auto met fotogalerij, specificaties en prijzen',
+      'Auto’s bewaren als favoriet, op het eigen apparaat',
+      'Financiering en inruil uitgelegd op een eigen pagina',
+      'WhatsApp, telefoon en route naar beide locaties',
+    ],
+    cover: {
+      src: '/work/bhaggoes-home.jpg',
+      alt: 'Startpagina van Bhaggoes Car Palace met zoekbalk voor de voorraad',
+      ...desktopHd,
+    },
+    gallery: [
+      {
+        src: '/work/bhaggoes-inventory.jpg',
+        alt: 'Voorraadoverzicht van Bhaggoes Car Palace met filters',
+        caption: 'De voorraad, met filters op merk, prijs, bouwjaar en meer',
+        ...desktopHd,
+      },
+      {
+        src: '/work/bhaggoes-car.jpg',
+        alt: 'Detailpagina van een auto met fotogalerij, prijzen en WhatsApp-knop',
+        caption: 'Een pagina per auto, met galerij, prijzen en direct contact',
+        ...desktopHd,
+      },
+      {
+        src: '/work/bhaggoes-financing.jpg',
+        alt: 'Financieringspagina van Bhaggoes Car Palace',
+        caption: 'Financiering en inruil op een eigen pagina',
+        ...desktopHd,
+      },
+    ],
+    mobile: {
+      src: '/work/bhaggoes-mobile.jpg',
+      alt: 'Bhaggoes Car Palace op een telefoon',
+      ...phoneHd,
+    },
+  },
+  {
+    slug: 'shop-nextx',
+    index: '02',
     name: 'Shop NextX',
     type: 'Webshop',
-    discipline: 'web-software',
+    discipline: 'web',
     presentation: 'website',
     status: 'published',
     origin: 'studio',
+    featured: true,
     contribution: 'Ontwerp en ontwikkeling van onze eigen webshop.',
     relation: 'Eigen product',
     summary:
-      'Twee winkels onder één merk: audio en horloges, met prijzen in SRD en USD.',
+      'Onze eigen webshop voor in-ear monitors en audio-accessoires. De winkelwagen stuurt de bestelling door naar WhatsApp.',
     intro:
-      'Onze eigen webshop. De startpagina splitst meteen in twee winkels met elk een eigen sfeer: licht en oranje voor audio, donker en goud voor horloges. Bestellen gaat via de winkelwagen of direct via WhatsApp.',
+      'Shop NextX is ons eigen product: een webshop voor in-ear monitors, earbuds en accessoires in Paramaribo. Bezoekers stellen een winkelwagen samen, kiezen een afhaallocatie en datum, en sturen de bestelling met één knop via WhatsApp. Een bestelling is pas definitief nadat prijs en voorraad zijn bevestigd.',
     url: 'https://www.shop-nextx.com/',
     host: 'shop-nextx.com',
     stack: 'Next.js',
     features: [
-      'Keuze tussen de audio- en horlogewinkel op de startpagina',
-      'Prijzen omschakelen tussen SRD en USD',
-      'Voorraad per product zichtbaar',
-      'Filteren op merk, prijs en beschikbaarheid',
-      'Bestellen via winkelwagen of WhatsApp',
+      'Catalogus met categorieën, prijsfilter en sortering',
+      'Zoeken op product of merk',
+      'Prijzen in SRD met een richtbedrag in USD',
+      'Voorraad per product; uitverkochte artikelen zijn gemarkeerd',
+      'Winkelwagen die op het apparaat bewaard blijft',
+      'Bestelling met afhaallocatie en datum, verstuurd via WhatsApp',
     ],
     cover: {
-      src: '/work/shop-nextx-entry.jpg',
-      alt: 'Startpagina van Shop NextX, gesplitst in Audio en Watches',
-      ...desktop,
+      src: '/work/shop-nextx-home.jpg',
+      alt: 'Startpagina van Shop NextX met drie uitgelichte audioproducten',
+      ...desktopHd,
     },
     gallery: [
       {
-        src: '/work/shop-nextx-audio.jpg',
-        alt: 'De audiowinkel van Shop NextX met categorieën en combo-deals',
-        ...desktop,
+        src: '/work/shop-nextx-catalogue.jpg',
+        alt: 'Productoverzicht van Shop NextX met prijsfilter en sortering',
+        caption: 'De catalogus, met prijsfilter, sortering en voorraadstatus',
+        ...desktopHd,
       },
       {
-        src: '/work/shop-nextx-products.jpg',
-        alt: 'Productoverzicht met prijzen in SRD en voorraadlabels',
-        ...desktop,
+        src: '/work/shop-nextx-product.jpg',
+        alt: 'Productpagina van een in-ear monitor met prijs in SRD en USD',
+        caption: 'Productpagina met prijs in SRD en een richtbedrag in USD',
+        ...desktopHd,
       },
       {
-        src: '/work/shop-nextx-watches.jpg',
-        alt: 'De horlogewinkel met zoekveld, filters en merken',
-        ...desktop,
+        src: '/work/shop-nextx-cart.jpg',
+        alt: 'Winkelwagen van Shop NextX met afhaallocatie en verzendknop naar WhatsApp',
+        caption: 'De winkelwagen zet de bestelling klaar voor WhatsApp',
+        ...desktopHd,
       },
     ],
     mobile: {
       src: '/work/shop-nextx-mobile.jpg',
       alt: 'Shop NextX op een telefoon',
-      ...phone,
+      ...phoneHd,
     },
   },
   {
     slug: 'indef-design',
-    index: '02',
+    index: '03',
     name: 'Indef Design',
-    type: 'Website',
-    discipline: 'web-software',
+    type: 'Bedrijfswebsite',
+    discipline: 'web',
     presentation: 'website',
     status: 'published',
     origin: 'client',
@@ -161,6 +228,7 @@ export function publishedProjects(catalog: readonly Project[]) {
   return catalog.filter((project) => project.status === 'published')
 }
 export const projects = publishedProjects(projectCatalog)
+export const featuredProjects = projects.filter((project) => project.featured)
 
 export function findProject(slug: string) {
   return projects.find((project) => project.slug === slug)

@@ -53,13 +53,13 @@ export function SocialImage({ origin }: { origin: string }) {
             lineHeight: 0.92,
           }}
         >
-          <span>Websites,</span>
-          <span>beeld</span>
+          <span>Design,</span>
+          <span>websites</span>
           <span style={{ display: 'flex' }}>
-            en merken<span style={{ color: '#ed5f0f' }}>.</span>
+            en software<span style={{ color: '#ed5f0f' }}>.</span>
           </span>
         </div>
-        <span style={{ color: '#b3ada5', fontSize: 22 }}>Creatieve & digitale studio · nextxagency.com</span>
+        <span style={{ color: '#b3ada5', fontSize: 22 }}>Grafisch ontwerp · Websites · Software op maat</span>
       </div>
     </div>
   )

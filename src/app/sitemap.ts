@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { site } from '@/content/site'
+import { projects } from '@/content/projects'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const page = (path: string, priority: number, changeFrequency: 'weekly' | 'monthly' = 'monthly') => ({
@@ -11,7 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     page('', 1, 'weekly'),
     page('/services', 0.9, 'weekly'),
-    page('/portfolio', 0.8),
+    page('/portfolio', 0.9),
+    ...projects.map((project) => page(`/portfolio/${project.slug}`, 0.7)),
     page('/examples', 0.8),
     page('/about', 0.7),
     page('/contact', 0.8),

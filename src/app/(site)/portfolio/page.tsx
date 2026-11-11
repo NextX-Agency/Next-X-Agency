@@ -2,86 +2,75 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Arrow } from '@/components/Arrow'
+import { PortfolioIndex } from '@/components/work/PortfolioIndex'
 import { examples, featuredExamples } from '@/content/examples'
+import { projects } from '@/content/projects'
 
 export const metadata: Metadata = {
-  title: 'Concept Lab',
+  title: 'Werk',
   description:
-    'Ontdek werkende website- en webshopconcepten van NextX Agency. Alle getoonde merken zijn fictief en de demo’s tonen wat we voor jouw bedrijf kunnen ontwerpen.',
+    'Websites en webshops die NextX Agency heeft ontworpen en gebouwd, waaronder Bhaggoes Car Palace en Shop NextX. Elk project is live te bekijken.',
   alternates: { canonical: '/portfolio' },
-  openGraph: { title: 'Concept Lab — NextX Agency', url: '/portfolio' },
+  openGraph: { title: 'Werk — NextX Agency', url: '/portfolio' },
 }
 
 export default function WorkPage() {
   return (
-    <div data-theme="dark" className="min-h-screen">
-      <header className="wrap grid-12 items-end gap-y-10 pb-16 pt-[calc(var(--nav-h)+4rem)] md:pb-24 md:pt-[calc(var(--nav-h)+7rem)]">
-        <div className="col-span-4 md:col-span-8">
-          <p className="meta mb-6 text-accent">Het NextX Concept Lab</p>
-          <h1 className="t-display max-w-[12ch]">Zie wat we kunnen maken.</h1>
-        </div>
-        <div className="col-span-4 md:col-span-4 md:pb-3">
-          <p className="t-body max-w-[34ch]">
-            We zijn een nieuwe studio. Daarom laten we ons werk zien met interactieve concepten voor fictieve merken. Open een demo, klik rond en ontdek de ideeën achter het ontwerp.
-          </p>
-          <p className="meta mt-6 border-l-2 border-accent pl-4 text-fg-2">Conceptdemo’s · fictieve merken · geen klantprojecten</p>
+    <>
+      <header data-theme="dark">
+        <div className="wrap grid-12 items-end gap-y-8 pb-14 pt-[calc(var(--nav-h)+4rem)] md:pb-20 md:pt-[calc(var(--nav-h)+7rem)]">
+          <div className="col-span-4 md:col-span-8">
+            <p className="meta mb-6 text-accent">Werk · {projects.length} projecten</p>
+            <h1 className="t-display max-w-[11ch]">Gemaakt en in gebruik<span className="text-accent">.</span></h1>
+          </div>
+          <div className="col-span-4 md:col-span-4 md:pb-3">
+            <p className="t-lead max-w-[34ch]">
+              Projecten die we hebben ontworpen en gebouwd. Ze staan online; u kunt ze zelf openen en gebruiken.
+            </p>
+          </div>
         </div>
       </header>
 
-      <section className="wrap border-t border-line-strong pb-20 pt-5 md:pb-28" aria-labelledby="featured-title">
-        <div className="mb-9 flex flex-wrap items-baseline justify-between gap-4 md:mb-14">
-          <h2 id="featured-title" className="t-h3">Stap binnen in een demo</h2>
-          <p className="meta text-fg-2">Websites en webshops die je kunt gebruiken</p>
+      <section className="section" aria-labelledby="projects-title">
+        <div className="wrap">
+          <h2 id="projects-title" className="sr-only">Projecten</h2>
+          <PortfolioIndex projects={projects} />
         </div>
+      </section>
 
-        <div className="grid gap-16 md:gap-24">
-          {featuredExamples.map((example, index) => (
-            <article key={example.slug} className="grid items-center gap-7 md:grid-cols-12 md:gap-8">
-              <Link
-                href={`/examples/${example.slug}`}
-                className={`group block md:col-span-8 ${index === 1 ? 'md:col-start-5 md:row-start-1' : ''}`}
-                aria-label={`Open de conceptdemo ${example.business}`}
-              >
-                <div className="frame relative aspect-[16/10] overflow-hidden bg-[#262522]">
-                  <Image
-                    src={example.image}
-                    alt={`Preview van de ${example.business} conceptdemo`}
-                    fill
-                    sizes="(min-width: 64rem) 66vw, 100vw"
-                    priority={index === 0}
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"
-                  />
-                  <span className="absolute bottom-4 left-4 border border-white/30 bg-black/70 px-3 py-2 text-[0.67rem] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm md:bottom-6 md:left-6">
-                    Fictief merk · conceptdemo
+      <section data-theme="dark" className="section" aria-labelledby="concepts-title">
+        <div className="wrap">
+          <div className="grid-12 items-end gap-y-6">
+            <div className="col-span-4 md:col-span-8">
+              <p className="meta mb-5 text-accent">Conceptlab · experimenten</p>
+              <h2 id="concepts-title" className="t-h2 max-w-[18ch]">Ook nog: ideeën op proef.</h2>
+            </div>
+            <div className="col-span-4 md:col-span-4">
+              <p className="t-body max-w-[38ch]">Werkende demo’s voor verzonnen merken, waarin we stijlen en interacties uitproberen. Dit is geen klantwerk.</p>
+              <Link href="/examples" className="link-arrow link-line mt-5 py-1">Alle {examples.length} concepten <Arrow /></Link>
+            </div>
+          </div>
+          <ul className="nx-concept-grid mt-12 md:mt-16">
+            {featuredExamples.map((concept) => (
+              <li key={concept.slug}>
+                <Link href={`/examples/${concept.slug}`} className="group block" aria-label={`Open de conceptdemo ${concept.business}`}>
+                  <span className="nx-concept-media">
+                    <Image src={concept.image} alt="" fill sizes="(min-width: 48rem) 32vw, 100vw" className="object-cover object-top" />
+                    <span className="nx-label">Conceptdemo · fictief merk</span>
                   </span>
-                </div>
-              </Link>
-              <div className={`md:col-span-4 ${index === 1 ? 'md:col-start-1 md:row-start-1' : ''}`}>
-                <p className="meta mb-3 text-accent">{example.group} / conceptdemo</p>
-                <h3 className="t-h2">{example.business}</h3>
-                <p className="t-body mt-4 max-w-[37ch]">{example.summary}</p>
-                <p className="t-small mt-5 max-w-[36ch] border-t border-line-strong pt-4 text-fg-2">{example.demonstrates}</p>
-                <Link href={`/examples/${example.slug}`} className="link-arrow link-line mt-6 py-1">
-                  Open de demo <Arrow />
+                  <span className="mt-4 flex items-start justify-between gap-4 border-t border-line-strong pt-4">
+                    <span>
+                      <span className="t-h3 block">{concept.business}</span>
+                      <span className="t-small mt-1 block max-w-[36ch]">{concept.summary}</span>
+                    </span>
+                    <Arrow className="mt-2" />
+                  </span>
                 </Link>
-              </div>
-            </article>
-          ))}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-
-      <section className="border-t border-line-strong bg-[#151515] py-20 md:py-28" aria-labelledby="more-title">
-        <div className="wrap grid-12 gap-y-8">
-          <div className="col-span-4 md:col-span-7">
-            <p className="meta mb-5 text-accent">Meer richtingen</p>
-            <h2 id="more-title" className="t-h2">Een goed idee krijgt zijn eigen vorm.</h2>
-          </div>
-          <div className="col-span-4 md:col-span-4 md:col-start-9 md:pt-5">
-            <p className="t-body">Bekijk alle {examples.length} concepten: van een compacte bedrijfssite tot een grotere shop, merkwereld en tools.</p>
-            <Link href="/examples" className="link-arrow link-line mt-7 py-1">Bekijk alle concepten <Arrow /></Link>
-          </div>
-        </div>
-      </section>
-    </div>
+    </>
   )
 }

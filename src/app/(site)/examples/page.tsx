@@ -5,11 +5,11 @@ import { exampleGroups, examples, featuredExamples } from '@/content/examples'
 import { Arrow } from '@/components/Arrow'
 
 export const metadata: Metadata = {
-  title: 'Alle concepten',
+  title: 'Conceptlab',
   description:
     'Verken interactieve conceptdemo’s van NextX Agency voor fictieve bedrijven: websites, webshops, merkontwerp en digitale tools.',
   alternates: { canonical: '/examples' },
-  openGraph: { title: 'Alle concepten — NextX Agency', url: '/examples' },
+  openGraph: { title: 'Conceptlab — NextX Agency', url: '/examples' },
 }
 
 export default function ExamplesPage() {
@@ -17,12 +17,12 @@ export default function ExamplesPage() {
     <div data-theme="dark" className="min-h-screen pb-[var(--section)]">
       <header className="wrap grid-12 gap-y-8 pb-16 pt-[calc(var(--nav-h)+4rem)] md:pb-24 md:pt-[calc(var(--nav-h)+7rem)]">
         <div className="col-span-4 md:col-span-8">
-          <p className="meta mb-5 text-accent">Het NextX Concept Lab / alle richtingen</p>
-          <h1 className="t-display">Probeer het zelf.</h1>
+          <p className="meta mb-5 text-accent">Conceptlab · {examples.length} experimenten</p>
+          <h1 className="t-display">Probeer het zelf<span className="text-accent">.</span></h1>
         </div>
         <div className="col-span-4 self-end md:col-span-4">
-          <p className="t-body">Dit zijn werkende ontwerpconcepten voor fictieve bedrijven. Elk concept laat een andere dienst, stijl of interactie zien. De merken zijn geen klanten van NextX.</p>
-          <Link href="/portfolio" className="link-arrow link-line mt-6 py-1">Bekijk de uitgelichte demo’s <Arrow /></Link>
+          <p className="t-body">Werkende ontwerpconcepten voor verzonnen bedrijven. Elk concept laat een andere dienst, stijl of interactie zien. De merken zijn geen klanten van NextX.</p>
+          <Link href="/portfolio" className="link-arrow link-line mt-6 py-1">Naar het echte werk <Arrow /></Link>
         </div>
       </header>
 
