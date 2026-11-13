@@ -25,6 +25,8 @@ Playwright needs Chromium: `pnpm exec playwright install chromium`. Set `TEST_BA
 | Clearly fictional example sites              | `src/content/examples.ts`    |
 | Shared visual system                         | `src/app/globals.css`        |
 
+The social image (`src/lib/og.tsx`) is drawn with `src/assets/Archivo-ExtraBold.ttf` (Archivo, SIL Open Font License) and shows real project screenshots.
+
 Pages under `src/app/(site)` share the header and footer. Demos under `src/app/examples` retain their independent designs. Design decisions are in [DESIGN.md](DESIGN.md).
 
 ## Add a portfolio project

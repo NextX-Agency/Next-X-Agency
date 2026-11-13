@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { findProject, projects } from '@/content/projects'
 import { ArrowOut } from '@/components/Arrow'
+import { Parallax } from '@/components/Parallax'
 import { ProjectGallery } from '@/components/work/ProjectGallery'
 import { ProjectMini, projectRelation, toneStyle, toneTheme } from '@/components/work/ProjectShowcase'
 import { BrowserFrame, PhoneFrame } from '@/components/work/DeviceFrames'
@@ -91,13 +92,17 @@ export default async function ProjectPage({ params }: Props) {
             </div>
           </div>
           <div className="nx-stage-devices">
-            <BrowserFrame label={project.host} className="nx-stage-browser">
-              <Image src={project.cover.src} alt={project.cover.alt} fill priority sizes="(min-width: 90rem) 66rem, (min-width: 48rem) 74vw, 88vw" className="object-cover object-top" />
-            </BrowserFrame>
+            <Parallax className="nx-stage-browser" distance={50}>
+              <BrowserFrame label={project.host}>
+                <Image src={project.cover.src} alt={project.cover.alt} fill priority sizes="(min-width: 90rem) 66rem, (min-width: 48rem) 74vw, 88vw" className="object-cover object-top" />
+              </BrowserFrame>
+            </Parallax>
             {screens && project.mobile && (
-              <PhoneFrame className="nx-stage-phone">
-                <Image src={project.mobile.src} alt={project.mobile.alt} fill sizes="(min-width: 90rem) 14rem, (min-width: 48rem) 16vw, 27vw" className="object-cover object-top" />
-              </PhoneFrame>
+              <Parallax className="nx-stage-phone" distance={150}>
+                <PhoneFrame>
+                  <Image src={project.mobile.src} alt={project.mobile.alt} fill sizes="(min-width: 90rem) 14rem, (min-width: 48rem) 16vw, 27vw" className="object-cover object-top" />
+                </PhoneFrame>
+              </Parallax>
             )}
           </div>
         </div>
@@ -106,7 +111,7 @@ export default async function ProjectPage({ params }: Props) {
       <div className="wrap">
         <div className="grid-12 gap-y-12 py-[var(--section)]">
           <div className="col-span-4 md:col-span-6">
-            <p className="t-h3 font-[500] leading-snug">{project.intro}</p>
+            <p className="text-[1.0625rem] leading-relaxed md:text-[1.375rem] md:leading-snug md:tracking-[-0.015em]">{project.intro}</p>
             <ul className="mt-8 flex flex-wrap gap-2">
               {facts.map((fact) => <li key={fact} className="bg-bg-2 px-3 py-2 text-[0.875rem] font-semibold">{fact}</li>)}
             </ul>

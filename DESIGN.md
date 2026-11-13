@@ -27,4 +27,4 @@ The Conceptlab (`/examples`) holds interactive prototypes for fictional business
 
 ## Motion and performance
 
-Static content renders first. Motion is limited to one entrance (`Reveal`: a short rise and fade), the hero sequence, device frames and tiles that shift on hover, the concept strip, and the circuit traces behind the software statement. All of it has a reduced-motion fallback. Keep images responsive, supply meaningful alt text where images carry information, and avoid loading off-screen media eagerly.
+Static content renders first. Motion is limited to one entrance (`Reveal`: a short rise and fade), the hero sequence, device frames and tiles that shift on hover, a slight scroll parallax between browser and phone on project stages (`Parallax`), the concept strip, and the circuit traces behind the software statement. All of it has a reduced-motion fallback. Keep images responsive, supply meaningful alt text where images carry information, and avoid loading off-screen media eagerly.

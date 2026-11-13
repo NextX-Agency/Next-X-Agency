@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Project } from '@/content/projects'
 import { Arrow, ArrowOut } from '@/components/Arrow'
+import { Parallax } from '@/components/Parallax'
 import { Reveal } from '@/components/Reveal'
 import { BrowserFrame, PhoneFrame } from './DeviceFrames'
 import { cn } from '@/lib/utils'
@@ -67,13 +68,17 @@ export function ProjectShowcase({
         </Reveal>
 
         <Link href={href} className="nx-stage-devices" tabIndex={-1} aria-hidden="true">
-          <BrowserFrame label={project.host} className="nx-stage-browser">
-            <Image src={project.cover.src} alt="" fill priority={priority} sizes="(min-width: 90rem) 66rem, (min-width: 48rem) 74vw, 88vw" className="object-cover object-top" />
-          </BrowserFrame>
+          <Parallax className="nx-stage-browser" distance={70}>
+            <BrowserFrame label={project.host}>
+              <Image src={project.cover.src} alt="" fill priority={priority} sizes="(min-width: 90rem) 66rem, (min-width: 48rem) 74vw, 88vw" className="object-cover object-top" />
+            </BrowserFrame>
+          </Parallax>
           {project.mobile && (
-            <PhoneFrame className="nx-stage-phone">
-              <Image src={project.mobile.src} alt="" fill sizes="(min-width: 90rem) 14rem, (min-width: 48rem) 16vw, 27vw" className="object-cover object-top" />
-            </PhoneFrame>
+            <Parallax className="nx-stage-phone" distance={190}>
+              <PhoneFrame>
+                <Image src={project.mobile.src} alt="" fill sizes="(min-width: 90rem) 14rem, (min-width: 48rem) 16vw, 27vw" className="object-cover object-top" />
+              </PhoneFrame>
+            </Parallax>
           )}
         </Link>
       </div>

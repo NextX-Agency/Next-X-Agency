@@ -6,10 +6,12 @@ import { Process } from '@/components/home/Process'
 import { Subscriptions } from '@/components/home/Subscriptions'
 import { ConceptStrip } from '@/components/ConceptStrip'
 import { SpecialtyTiles } from '@/components/SpecialtyTiles'
-import { ProjectShowcase } from '@/components/work/ProjectShowcase'
+import { ProjectMini, ProjectShowcase } from '@/components/work/ProjectShowcase'
 import { Arrow } from '@/components/Arrow'
 import { Reveal } from '@/components/Reveal'
-import { featuredProjects } from '@/content/projects'
+import { featuredProjects, projects } from '@/content/projects'
+
+const moreProjects = projects.filter((project) => !project.featured).slice(0, 1)
 
 export default function HomePage() {
   return (
@@ -22,12 +24,16 @@ export default function HomePage() {
         {featuredProjects.map((project, i) => (
           <ProjectShowcase key={project.slug} project={project} flip={i % 2 === 1} priority={i === 0} />
         ))}
-        <div className="wrap flex justify-center py-10 md:py-14">
-          <Link href="/portfolio" className="btn btn-quiet">Al ons werk <Arrow /></Link>
+        <div className="wrap grid gap-3 py-3 md:grid-cols-2">
+          {moreProjects.map((project) => <ProjectMini key={project.slug} project={project} />)}
+          <Link href="/portfolio" className="nx-action min-h-[14rem]" style={{ '--card': 'var(--orange)', '--card-fg': 'var(--ink)' } as React.CSSProperties}>
+            <strong>Al ons werk</strong>
+            <Arrow className="mb-2 h-4 w-7" />
+          </Link>
         </div>
       </section>
 
-      <section className="pb-[var(--section)] pt-6 md:pt-10" aria-labelledby="specialties-title">
+      <section className="pb-[var(--section)] pt-16 md:pt-28" aria-labelledby="specialties-title">
         <div className="wrap">
           <Reveal>
             <h2 id="specialties-title" className="t-h1 mb-10 max-w-[14ch] md:mb-14">Drie dingen doen we goed<span className="text-accent">.</span></h2>

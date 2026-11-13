@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { specialties } from '@/content/disciplines'
 import { Arrow } from '@/components/Arrow'
+import { Reveal } from '@/components/Reveal'
 import { BrowserFrame } from '@/components/work/DeviceFrames'
 
 type Tone = { bg: string; fg: string }
@@ -38,11 +39,11 @@ function Visual({ id }: { id: string }) {
 export function SpecialtyTiles({ base = '/services' }: { base?: string }) {
   return (
     <div className="nx-tiles">
-      {specialties.map((specialty) => {
+      {specialties.map((specialty, i) => {
         const tone = tones[specialty.id]
         return (
+          <Reveal key={specialty.id} delay={i * 0.08}>
           <Link
-            key={specialty.id}
             href={`${base}#${specialty.id}`}
             className="nx-tile"
             style={{ '--tile-bg': tone.bg, '--tile-fg': tone.fg } as React.CSSProperties}
@@ -57,6 +58,7 @@ export function SpecialtyTiles({ base = '/services' }: { base?: string }) {
               <span className="nx-tile-go"><Arrow /></span>
             </span>
           </Link>
+          </Reveal>
         )
       })}
     </div>

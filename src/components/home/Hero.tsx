@@ -11,7 +11,7 @@ export function Hero() {
     <section
       data-theme="dark"
       aria-labelledby="hero-title"
-      className="nx-hero relative isolate flex md:min-h-[max(42rem,100svh)] flex-col overflow-hidden pt-[var(--nav-h)]"
+      className="nx-hero relative isolate flex min-h-[max(36rem,100svh)] flex-col md:min-h-[max(42rem,100svh)] overflow-hidden pt-[var(--nav-h)]"
     >
       <div
         className="pointer-events-none absolute -z-10 bottom-[-52vw] right-[2vw] w-[128vw] sm:bottom-[-18vw] sm:right-[-18vw] sm:w-[96vw] lg:bottom-[-18vw] lg:right-[-14vw] lg:w-[72vw] [&_canvas]:pointer-events-auto"
@@ -24,7 +24,7 @@ export function Hero() {
         <Globe />
       </div>
 
-      <div className="wrap flex flex-1 flex-col justify-start pb-[52vw] pt-12 md:justify-center sm:pb-[22vw] md:pb-20 md:pt-14">
+      <div className="wrap flex flex-1 flex-col justify-start pb-[58vw] pt-12 md:justify-center sm:pb-[22vw] md:pb-20 md:pt-14">
                 <h1 id="hero-title" className="t-display nx-hero-title" aria-label="Design, websites en software.">
           <span className="block overflow-hidden pb-[0.08em]" aria-hidden="true"><span className="block" data-nx-motion="line">Design,</span></span>
           <span className="block overflow-hidden pb-[0.08em]" aria-hidden="true"><span className="block" data-nx-motion="line">websites</span></span>
