@@ -574,7 +574,10 @@ textarea.field {
   display: block;
   width: 100%;
   overflow: hidden;
+  border-radius: 8px;
   background: var(--bg-2);
+  /* Paper-coloured screenshots need an edge to read as a screen on a paper page. */
+  box-shadow: 0 0 0 1px var(--line), 0 2rem 3.5rem -2.25rem rgba(14, 13, 12, 0.45);
   cursor: zoom-in;
 }
 
@@ -731,6 +734,8 @@ textarea.field {
 .nx-price > summary { display: grid; gap: .5rem; padding: 1.5rem; list-style: none; cursor: pointer; }
 .nx-price > summary::-webkit-details-marker { display: none; }
 .nx-price > summary > .t-small { order: 3; }
+/* Two lines reserved, so tiles in a row stay the same height while closed. */
+@media (min-width: 40rem) { .nx-price > summary > .t-small { min-height: 2lh; } }
 .nx-price-more { order: 4; }
 @media (max-width: 39.99rem) {
   .nx-price > summary { grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .35rem 1rem; padding: 1.15rem 1.25rem; }
