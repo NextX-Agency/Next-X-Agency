@@ -16,8 +16,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ['image/avif', 'image/webp'],
-    // The example prototypes use stock photography for their made-up businesses.
-    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
   },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }]
