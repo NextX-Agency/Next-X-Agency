@@ -51,7 +51,7 @@ export default function AboutPage() {
           <h2 id="principles-title" className="t-h1 mb-10 md:mb-14">Hoe we werken<span className="text-accent">.</span></h2>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {principles.map((item, i) => (
-              <Reveal as="li" key={item.title} delay={i * 0.06} className="flex min-h-[13rem] flex-col justify-between gap-8 bg-bg p-6">
+              <Reveal as="li" key={item.title} delay={i * 0.06} className="flex flex-col justify-between gap-6 bg-bg p-6 sm:min-h-[13rem] sm:gap-8">
                 <span className="size-3 bg-accent" aria-hidden="true" />
                 <span>
                   <span className="t-h3 block">{item.title}</span>

@@ -138,24 +138,32 @@ export const projectCatalog: Project[] = [
     summary:
       'Onze eigen webshop voor in-ear monitors en audio-accessoires. De winkelwagen stuurt de bestelling door naar WhatsApp.',
     intro:
-      'Shop NextX is ons eigen product: een webshop voor in-ear monitors, earbuds en accessoires in Paramaribo. Bezoekers stellen een winkelwagen samen, kiezen een afhaallocatie en datum, en sturen de bestelling met één knop via WhatsApp. Een bestelling is pas definitief nadat prijs en voorraad zijn bevestigd.',
+      'Shop NextX is ons eigen product: een webshop voor in-ear monitors, earbuds en accessoires in Paramaribo. In 2026 kreeg de winkel een nieuwe voorkant in de huisstijl van NextX, met grote productfoto’s en categorieën in kleur. Bezoekers stellen een winkelwagen samen, kiezen een afhaaldatum en sturen de bestelling met één knop via WhatsApp. Een bestelling is pas definitief nadat prijs en voorraad zijn bevestigd.',
     url: 'https://www.shop-nextx.com/',
     host: 'shop-nextx.com',
     stack: 'Next.js',
+    year: 2026,
     features: [
       'Catalogus met categorieën, prijsfilter en sortering',
       'Zoeken op product of merk',
       'Prijzen in SRD met een richtbedrag in USD',
-      'Voorraad per product; uitverkochte artikelen zijn gemarkeerd',
+      'Voorraad per product; uitverkochte artikelen zijn gemarkeerd en weg te filteren',
       'Winkelwagen die op het apparaat bewaard blijft',
       'Bestelling met afhaallocatie en datum, verstuurd via WhatsApp',
+      'Per product een offerte aanvragen',
     ],
     cover: {
       src: '/work/shop-nextx-home.jpg',
-      alt: 'Startpagina van Shop NextX met drie uitgelichte audioproducten',
+      alt: 'Startpagina van Shop NextX met drie uitgelichte audioproducten in een oranje kader',
       ...desktopHd,
     },
     gallery: [
+      {
+        src: '/work/shop-nextx-categories.jpg',
+        alt: 'Drie categorietegels op de startpagina van Shop NextX, in oranje, zwart en zand',
+        caption: 'Categorieën in kleur, met aantal producten en vanafprijs',
+        ...desktopHd,
+      },
       {
         src: '/work/shop-nextx-catalogue.jpg',
         alt: 'Productoverzicht van Shop NextX met prijsfilter en sortering',
@@ -170,7 +178,7 @@ export const projectCatalog: Project[] = [
       },
       {
         src: '/work/shop-nextx-cart.jpg',
-        alt: 'Winkelwagen van Shop NextX met afhaallocatie en verzendknop naar WhatsApp',
+        alt: 'Winkelwagen van Shop NextX met afhaallocatie, afhaaldatum en verzendknop naar WhatsApp',
         caption: 'De winkelwagen zet de bestelling klaar voor WhatsApp',
         ...desktopHd,
       },

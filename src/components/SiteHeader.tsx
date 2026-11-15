@@ -234,6 +234,10 @@ export function SiteHeader() {
               </ul>
             </nav>
             <div className="wrap grid gap-1 pb-8 pt-6">
+              <Link href="/contact" className="btn btn-primary mb-5 w-full justify-between" onClick={() => setOpen(false)}>
+                Start een project
+                <span aria-hidden="true">→</span>
+              </Link>
               <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="t-small text-fg">
                 WhatsApp {site.phone.display}
               </a>

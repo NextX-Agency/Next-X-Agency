@@ -26,14 +26,16 @@ export default function ExamplesPage() {
       <div className="wrap grid gap-20 md:gap-28">
         {exampleGroups.map((group) => {
           const items = examples.filter((example) => example.group === group)
+          const isFeatured = (slug: string) => featuredExamples.some((item) => item.slug === slug)
+          // Smaller tiles sit three to a row only when they fill it; otherwise two, so no row ends in a gap.
+          const smallSpan = items.filter((item) => !isFeatured(item.slug)).length % 3 === 0 ? 'lg:col-span-4' : 'lg:col-span-6'
           return (
             <section key={group} aria-labelledby={`group-${group}`}>
               <h2 id={`group-${group}`} className="t-h1 mb-8 md:mb-10">{group}</h2>
               <ul className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-12">
                 {items.map((example) => {
-                  const featured = featuredExamples.some((item) => item.slug === example.slug)
                   return (
-                    <li key={example.slug} className={featured ? 'lg:col-span-6' : 'lg:col-span-4'}>
+                    <li key={example.slug} className={isFeatured(example.slug) ? 'lg:col-span-6' : smallSpan}>
                       <Link href={`/examples/${example.slug}`} className="group block h-full">
                         <div className="frame relative aspect-[16/10] overflow-hidden bg-[#262522]">
                           <Image

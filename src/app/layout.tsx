@@ -58,7 +58,7 @@ const description =
   'NextX is een ontwerpstudio en softwarebouwer uit Paramaribo, Suriname. Grafisch ontwerp en branding, websites en webshops, en software op maat, van één studio.'
 
 const socialImage = {
-  url: '/og/nextx-social-v6.png',
+  url: '/og/nextx-social-v7.png',
   width: 1200,
   height: 630,
   alt: 'NextX Agency: design, websites en software uit Paramaribo, Suriname',
