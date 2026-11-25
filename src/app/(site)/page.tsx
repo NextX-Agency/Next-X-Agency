@@ -4,12 +4,13 @@ import { HeroMotion } from '@/components/home/HeroMotion'
 import { Software } from '@/components/home/Software'
 import { Process } from '@/components/home/Process'
 import { Subscriptions } from '@/components/home/Subscriptions'
-import { ConceptStrip } from '@/components/ConceptStrip'
+import { ConceptBrowser } from '@/components/concepts/ConceptBrowser'
 import { SpecialtyTiles } from '@/components/SpecialtyTiles'
 import { ProjectMini, ProjectShowcase } from '@/components/work/ProjectShowcase'
 import { Arrow } from '@/components/Arrow'
 import { Reveal } from '@/components/Reveal'
 import { featuredProjects, projects } from '@/content/projects'
+import { examples } from '@/content/examples'
 
 const moreProjects = projects.filter((project) => !project.featured).slice(0, 1)
 
@@ -48,11 +49,13 @@ export default function HomePage() {
         <div className="wrap mb-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-5 md:mb-14">
           <div>
             <h2 id="concept-title" className="t-h1">Conceptlab</h2>
-            <p className="t-lead mt-4 max-w-[30ch]">Werkende demo’s voor verzonnen merken. Geen klanten, wel ideeën.</p>
+            <p className="t-lead mt-4 max-w-[34ch]">Werkende demo’s voor verzonnen merken. Zie je een stijl die past? Tik op <b className="font-semibold text-fg">Ik wil dit</b>.</p>
           </div>
-          <Link href="/examples" className="btn btn-quiet">Alle concepten <Arrow /></Link>
+          <Link href="/examples" className="btn btn-quiet">Alle {examples.length} concepten <Arrow /></Link>
         </div>
-        <ConceptStrip />
+        <div className="wrap">
+          <ConceptBrowser items={examples} limit={6} />
+        </div>
       </section>
 
       <Subscriptions />

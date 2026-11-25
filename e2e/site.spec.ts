@@ -88,21 +88,25 @@ for (const route of routes) {
         })
         // The full-page capture brings every scroll entrance into view; scan
         // the settled page, not text that is still fading in.
-        // The concept strip moves continuously by design; everything else must settle.
+        // Ambient loops (the concept strip, floating mockups) never finish by
+        // design; every entrance must settle.
         await page.waitForFunction(() =>
           document.getAnimations().every(
             (a) =>
               a.playState !== 'running' ||
+              a.effect?.getTiming().iterations === Infinity ||
               ((a.effect as KeyframeEffect | null)?.target as Element | null)?.closest('.nx-marquee'),
           ),
         )
         // The full-page capture brings every scroll entrance into view; scan
         // the settled page, not text that is still fading in.
-        // The concept strip moves continuously by design; everything else must settle.
+        // Ambient loops (the concept strip, floating mockups) never finish by
+        // design; every entrance must settle.
         await page.waitForFunction(() =>
           document.getAnimations().every(
             (a) =>
               a.playState !== 'running' ||
+              a.effect?.getTiming().iterations === Infinity ||
               ((a.effect as KeyframeEffect | null)?.target as Element | null)?.closest('.nx-marquee'),
           ),
         )

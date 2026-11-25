@@ -75,8 +75,11 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   icons: {
-    icon: { url: '/nextx-icon-v2.svg', type: 'image/svg+xml' },
-    apple: { url: '/apple-touch-icon-v2.png', sizes: '180x180', type: 'image/png' },
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: { url: '/apple-touch-icon-v3.png', sizes: '180x180', type: 'image/png' },
   },
   openGraph: {
     title: 'NextX Agency · Design, websites en software uit Suriname',
