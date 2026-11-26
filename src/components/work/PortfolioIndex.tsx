@@ -18,8 +18,8 @@ export function PortfolioIndex({ projects }: { projects: Project[] }) {
   return (
     <>
       {available.length > 1 && (
-        <div role="group" aria-label="Filter werk op discipline" className="wrap flex flex-wrap gap-x-6 gap-y-3 py-8">
-          {[{ id: 'all' as const, name: 'Alles' }, ...available].map((d) => (
+        <div role="group" aria-label="Filter work by discipline" className="wrap flex flex-wrap gap-x-6 gap-y-3 py-8">
+          {[{ id: 'all' as const, name: 'All' }, ...available].map((d) => (
             <button
               key={d.id}
               type="button"

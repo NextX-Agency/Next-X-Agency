@@ -71,7 +71,7 @@ export function SocialImage({ origin }: { origin: string }) {
           <span>Design,</span>
           <span>websites</span>
           <span style={{ display: 'flex' }}>
-            en software<span style={{ color: '#ed5f0f' }}>.</span>
+            and software<span style={{ color: '#ed5f0f' }}>.</span>
           </span>
         </div>
         <span style={{ color: '#b3ada5', fontSize: 24, fontWeight: 800, letterSpacing: '-0.01em' }}>NextX Agency · Paramaribo, Suriname</span>

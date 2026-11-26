@@ -5,8 +5,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: site.name,
     short_name: site.shortName,
-    description: 'Ontwerpstudio en softwarebouwer in Paramaribo: design, websites en software.',
-    lang: 'nl',
+    description: 'Design studio and software builder in Paramaribo: design, websites and software.',
+    lang: 'en',
     start_url: '/',
     display: 'standalone',
     background_color: '#0e0d0c',

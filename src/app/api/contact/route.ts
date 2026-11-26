@@ -23,20 +23,20 @@ export async function POST(request: NextRequest) {
     const origin = request.headers.get('origin')
     if (origin && origin !== request.nextUrl.origin) {
       return NextResponse.json(
-        { error: 'Dit verzoek is niet toegestaan.' },
+        { error: 'This request is not allowed.' },
         { status: 403 },
       )
     }
     if (Number(request.headers.get('content-length')) > 24000) {
       return NextResponse.json(
-        { error: 'Uw bericht is te groot.' },
+        { error: 'Your message is too large.' },
         { status: 413 },
       )
     }
     const text = await request.text()
     if (new TextEncoder().encode(text).length > 24000) {
       return NextResponse.json(
-        { error: 'Uw bericht is te groot.' },
+        { error: 'Your message is too large.' },
         { status: 413 },
       )
     }
@@ -45,13 +45,13 @@ export async function POST(request: NextRequest) {
       input = JSON.parse(text)
     } catch {
       return NextResponse.json(
-        { error: 'Controleer de ingevulde velden.' },
+        { error: 'Please check the fields you filled in.' },
         { status: 400 },
       )
     }
     if (!input || typeof input !== 'object' || Array.isArray(input)) {
       return NextResponse.json(
-        { error: 'Vul alle verplichte velden in.' },
+        { error: 'Please fill in all required fields.' },
         { status: 400 },
       )
     }
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Dit verzoek kon niet worden verwerkt. Neem contact op via WhatsApp.',
+            'This request could not be processed. Please contact us on WhatsApp.',
         },
         { status: 400 },
       )
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
       )
     ) {
       return NextResponse.json(
-        { error: 'Controleer de ingevulde velden.' },
+        { error: 'Please check the fields you filled in.' },
         { status: 400 },
       )
     }
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'U heeft meerdere berichten gestuurd. Wacht even of gebruik WhatsApp.',
+            'You have sent several messages. Please wait a moment or use WhatsApp.',
         },
         { status: 429, headers: { 'Retry-After': String(rate.retryAfter) } },
       )
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Het formulier is tijdelijk niet beschikbaar. Neem contact op via WhatsApp of e-mail.',
+            'The form is temporarily unavailable. Please contact us on WhatsApp or by email.',
         },
         { status: 503 },
       )
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
       Math.abs(Date.now() - raw.submitted_at) <= 86400000
         ? raw.submitted_at
         : Math.floor(Date.now() / 600000) * 600000
-    const receivedAt = new Date(submittedAt).toLocaleString('nl-NL', {
+    const receivedAt = new Date(submittedAt).toLocaleString('en-GB', {
       timeZone: 'America/Paramaribo',
       day: '2-digit',
       month: 'long',
@@ -164,21 +164,21 @@ export async function POST(request: NextRequest) {
         from,
         to: agencyTo,
         replyTo: body.email,
-        subject: `Nieuw contactverzoek: ${body.service_type} van ${body.name}`,
+        subject: `New enquiry: ${body.service_type} from ${body.name}`,
         html: notificationHtml,
         text: [
-          `Nieuw contactverzoek via nextxagency.com`,
+          `New enquiry from nextxagency.com`,
           ``,
-          `Naam:     ${body.name}`,
-          `E-mail:   ${body.email}`,
-          body.phone ? `Telefoon: ${body.phone}` : '',
-          `Dienst:   ${body.service_type}`,
+          `Name:     ${body.name}`,
+          `Email:    ${body.email}`,
+          body.phone ? `Phone:    ${body.phone}` : '',
+          `Service:  ${body.service_type}`,
           body.budget ? `Budget:   ${body.budget}` : '',
           ``,
-          `Bericht:`,
+          `Message:`,
           body.message,
           ``,
-          receivedAt ? `Ontvangen: ${receivedAt}` : '',
+          receivedAt ? `Received: ${receivedAt}` : '',
         ]
           .filter(Boolean)
           .join('\n'),
@@ -220,19 +220,19 @@ export async function POST(request: NextRequest) {
         {
           from,
           to: body.email,
-          subject: `Wij hebben uw aanvraag ontvangen — NextX Agency`,
+          subject: `We received your request — NextX Agency`,
           html: confirmationHtml,
           text: [
-            `Beste ${body.name},`,
+            `Dear ${body.name},`,
             ``,
-            `Bedankt voor uw aanvraag! We hebben het volgende ontvangen:`,
+            `Thank you for your request! We received the following:`,
             ``,
-            `Dienst:   ${body.service_type}`,
+            `Service:  ${body.service_type}`,
             body.budget ? `Budget:   ${body.budget}` : '',
             ``,
-            `Wij nemen ${CONTACT.responseTime} contact met u op.`,
+            `We will get in touch ${CONTACT.responseTime}.`,
             ``,
-            `Met vriendelijke groet,`,
+            `Kind regards,`,
             `NextX Agency`,
             `nextxagency.com · ${CONTACT.phoneDisplay}`,
           ]
@@ -257,7 +257,7 @@ export async function POST(request: NextRequest) {
       success: true,
       notificationAccepted: true,
       confirmationAccepted,
-      message: `Uw aanvraag is ontvangen. Wij nemen ${CONTACT.responseTime} contact op.`,
+      message: `Your request was received. We will get in touch ${CONTACT.responseTime}.`,
     })
   } catch (error) {
     console.error(
@@ -267,7 +267,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          'Het versturen is niet bevestigd. Probeer het opnieuw of neem contact op via WhatsApp.',
+          'Sending was not confirmed. Please try again or contact us on WhatsApp.',
       },
       { status: 500 },
     )

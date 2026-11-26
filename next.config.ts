@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }]
   },
+  // The site went English in November 2026; the one Dutch URL keeps working.
+  async redirects() {
+    return [{ source: '/examples/grotere-webshop', destination: '/examples/larger-webshop', permanent: true }]
+  },
 }
 
 export default nextConfig

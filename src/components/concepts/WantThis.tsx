@@ -18,7 +18,7 @@ export function WhatsAppIcon({ className }: { className?: string }) {
 export function WantThis({
   example,
   className,
-  label = 'Ik wil een website zoals deze',
+  label = 'I want a website like this',
   shortLabel,
   variant = 'solid',
 }: {
@@ -35,7 +35,7 @@ export function WantThis({
       target="_blank"
       rel="noopener noreferrer"
       className={cn('btn btn-sm', variant === 'solid' ? 'btn-whatsapp' : 'btn-quiet', className)}
-      aria-label={`${label}: ${example.business} (opent WhatsApp)`}
+      aria-label={`${label}: ${example.business} (opens WhatsApp)`}
     >
       <WhatsAppIcon />
       {shortLabel ? (

@@ -10,10 +10,10 @@ export type ExampleGroup = 'ecommerce' | 'websites' | 'saas' | 'branding'
 
 /** Categories visitors filter by. Labels are what a client would call the work. */
 export const exampleCategories: { id: ExampleGroup; label: string; line: string }[] = [
-  { id: 'ecommerce', label: 'E-commerce', line: 'Webshops met catalogus, filters en winkelmand.' },
-  { id: 'websites', label: 'Websites', line: 'Bedrijfs-, restaurant- en portfoliosites.' },
-  { id: 'saas', label: 'SaaS & dashboards', line: 'Werkruimtes, panelen en tools voor dagelijks gebruik.' },
-  { id: 'branding', label: 'Branding & UX', line: 'Merkwerelden en ontwerpcases.' },
+  { id: 'ecommerce', label: 'E-commerce', line: 'Webshops with a catalogue, filters and a cart.' },
+  { id: 'websites', label: 'Websites', line: 'Business, restaurant and portfolio sites.' },
+  { id: 'saas', label: 'SaaS & dashboards', line: 'Workspaces, panels and tools for daily use.' },
+  { id: 'branding', label: 'Branding & UX', line: 'Brand worlds and design cases.' },
 ]
 
 export type Example = {
@@ -36,11 +36,11 @@ export const examples: Example[] = [
     slug: 'service-website',
     business: 'DentaCare Paramaribo',
     group: 'websites',
-    kind: 'Servicewebsite',
+    kind: 'Service website',
     serviceId: 'service-website',
-    summary: 'Een zorgsite die helder uitlegt, geruststelt en bezoekers naar een afspraak leidt.',
-    image: '/demo-previews/service-website.webp',
-    demonstrates: 'Verken behandelingen en probeer de afspraakflow.',
+    summary: 'A healthcare site that explains clearly, reassures and guides visitors to an appointment.',
+    image: '/demo-previews/service-website-en.webp',
+    demonstrates: 'Explore the treatments and try the booking flow.',
   },
   {
     slug: 'starter-webshop',
@@ -48,91 +48,91 @@ export const examples: Example[] = [
     group: 'ecommerce',
     kind: 'Webshop',
     serviceId: 'starter-webshop',
-    summary: 'Een expressieve boutique shop, van collectie tot winkelmand.',
-    image: '/demo-previews/starter-webshop.webp',
-    demonstrates: 'Filter de collectie en voeg een product toe aan de tas.',
+    summary: 'An expressive boutique shop, from collection to cart.',
+    image: '/demo-previews/starter-webshop-en.webp',
+    demonstrates: 'Filter the collection and add a product to the bag.',
   },
   {
     slug: 'restaurant-menu-site',
     business: 'Warung Indah',
     group: 'websites',
-    kind: 'Restaurantwebsite',
+    kind: 'Restaurant website',
     serviceId: 'restaurant-website',
-    summary: 'Een levendige restaurantsite die smaak, menu en reserveren samenbrengt.',
-    image: '/demo-previews/restaurant-menu-site.webp',
-    demonstrates: 'Bekijk het menu en doorloop de reserveringsinteractie.',
+    summary: 'A lively restaurant site that brings flavour, menu and bookings together.',
+    image: '/demo-previews/restaurant-menu-site-en.webp',
+    demonstrates: 'Browse the menu and walk through the booking flow.',
   },
   {
     slug: 'business-card-site',
     business: 'KaderBouw NV',
     group: 'websites',
-    kind: 'Bedrijfswebsite',
+    kind: 'Business website',
     serviceId: 'one-page',
-    summary: 'Projectgerichte bouwsite met projectfilter en offerteformulier.',
-    image: '/demo-previews/business-card-site.webp',
+    summary: 'Project-led construction site with a project filter and quote form.',
+    image: '/demo-previews/business-card-site-en.webp',
   },
   {
     slug: 'portfolio-website',
     business: 'Studio Vibe',
     group: 'websites',
-    kind: 'Portfoliowebsite',
+    kind: 'Portfolio website',
     serviceId: 'portfolio-website',
-    summary: 'Portfolio voor een creatieve studio.',
-    image: '/demo-previews/portfolio-website.webp',
+    summary: 'Portfolio for a creative studio.',
+    image: '/demo-previews/portfolio-website-en.webp',
   },
   {
-    slug: 'grotere-webshop',
+    slug: 'larger-webshop',
     business: 'TechMart SUR',
     group: 'ecommerce',
-    kind: 'Grote webshop',
+    kind: 'Large webshop',
     serviceId: 'large-webshop',
-    summary: 'Dichte elektronicacatalogus met zoeken, filters en cart.',
-    image: '/demo-previews/grotere-webshop.webp',
+    summary: 'Dense electronics catalogue with search, filters and a cart.',
+    image: '/demo-previews/larger-webshop-en.webp',
   },
   {
     slug: 'logo-branding',
     business: 'Savana Coffee',
     group: 'branding',
-    kind: 'Merkidentiteit',
+    kind: 'Brand identity',
     serviceId: 'logo',
-    summary: 'Redactionele brand world voor een fictief koffiemerk.',
-    image: '/demo-previews/logo-branding.webp',
+    summary: 'Editorial brand world for a fictional coffee brand.',
+    image: '/demo-previews/logo-branding-en.webp',
   },
   {
     slug: 'ux-ui-design',
     business: 'ShopPlaza',
     group: 'branding',
-    kind: 'UX-case',
+    kind: 'UX case',
     serviceId: 'ux-audit',
-    summary: 'Conceptcase met voor/na, ontwerpkeuzes en mobile check.',
-    image: '/demo-previews/ux-ui-design.webp',
+    summary: 'Concept case with before and after, design decisions and a mobile check.',
+    image: '/demo-previews/ux-ui-design-en.webp',
   },
   {
     slug: 'seo',
-    business: 'SEO-dashboard',
+    business: 'SEO dashboard',
     group: 'saas',
-    kind: 'SEO-dashboard',
+    kind: 'SEO dashboard',
     serviceId: 'seo-monthly',
-    summary: 'Taakgerichte werkruimte voor zoektermen en SEO-acties.',
-    image: '/demo-previews/seo.webp',
+    summary: 'Task-led workspace for keywords and SEO actions.',
+    image: '/demo-previews/seo-en.webp',
   },
   {
     slug: 'hosting',
-    business: 'Hostingpaneel',
+    business: 'Hosting panel',
     group: 'saas',
-    kind: 'Beheerpaneel',
+    kind: 'Control panel',
     serviceId: 'hosting-basic',
-    summary: 'Status, verbruik en back-ups van een website.',
-    image: '/demo-previews/hosting.webp',
+    summary: 'Status, usage and backups for a website.',
+    image: '/demo-previews/hosting-en.webp',
   },
   {
     slug: 'ux-kukru',
     business: 'UX Kukru',
     group: 'saas',
-    kind: 'Abonnementsportaal',
+    kind: 'Subscription portal',
     serviceId: 'kukru-business',
-    summary: 'Hoe een maandpakket met vaste uren werkt.',
-    image: '/demo-previews/ux-kukru.webp',
+    summary: 'How a monthly package with set hours works.',
+    image: '/demo-previews/ux-kukru-en.webp',
   },
 ]
 
@@ -151,8 +151,9 @@ export function findExample(slug: string) {
 
 /** Pre-filled WhatsApp text for "I want a website like this", so the request arrives with context. */
 export function wantThisMessage(example: Pick<Example, 'slug' | 'business' | 'kind'>, origin: string = site.url) {
-  return `Hoi NextX! Ik wil een ${example.kind.toLowerCase()} zoals het concept "${example.business}". ${origin}/examples/${example.slug}
+  const article = /^[aeiou]/i.test(example.kind) ? 'an' : 'a'
+  return `Hi NextX! I want ${article} ${example.kind.toLowerCase()} like the "${example.business}" concept. ${origin}/examples/${example.slug}
 
-Mijn bedrijf: 
-Wat ik nodig heb: `
+My business: 
+What I need: `
 }

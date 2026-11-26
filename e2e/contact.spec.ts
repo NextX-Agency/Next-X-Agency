@@ -21,17 +21,17 @@ test('confirmation failure preserves accepted inquiry; double submission is prev
       }),
     })
   })
-  await page.goto('/contact?dienst=web-software')
+  await page.goto('/contact?service=web-software')
   await expect(page.locator('#service_type')).toHaveValue(
-    'Software op maat',
+    'Custom software',
   )
-  await page.getByLabel('Naam', { exact: true }).fill('Test Klant')
-  await page.getByLabel('E-mail', { exact: true }).fill('test@example.com')
+  await page.getByLabel('Name', { exact: true }).fill('Test Client')
+  await page.getByLabel('Email', { exact: true }).fill('test@example.com')
   await page
-    .getByLabel('Uw project', { exact: true })
-    .fill('Dit is een aanvraag met een optioneel budget.')
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
-  await expect(page.getByRole('button', { name: 'Versturen…' })).toBeDisabled()
+    .getByLabel('Your project', { exact: true })
+    .fill('This is a request with an optional budget.')
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Sending…' })).toBeDisabled()
   await page
     .locator('form')
     .evaluate((form) =>
@@ -42,9 +42,9 @@ test('confirmation failure preserves accepted inquiry; double submission is prev
   await expect.poll(() => submissions).toBe(1)
   release()
   await expect(page.getByRole('status')).toContainText(
-    'bevestigingsmail kon niet worden verstuurd',
+    'confirmation email could not be sent',
   )
-  await expect(page.getByRole('status')).toContainText('niet opnieuw')
+  await expect(page.getByRole('status')).toContainText('do not need to fill in the form again')
   await expect(page.getByRole('status')).toBeFocused()
 })
 
@@ -58,30 +58,30 @@ test('unavailable provider retains the inquiry and offers WhatsApp; retries keep
       status: 503,
       contentType: 'application/json',
       body: JSON.stringify({
-        error: 'Het formulier is tijdelijk niet beschikbaar.',
+        error: 'The form is temporarily unavailable.',
       }),
     })
   })
   await page.goto('/contact')
-  await page.getByLabel('Naam', { exact: true }).fill('Test Klant')
-  await page.getByLabel('E-mail', { exact: true }).fill('test@example.com')
+  await page.getByLabel('Name', { exact: true }).fill('Test Client')
+  await page.getByLabel('Email', { exact: true }).fill('test@example.com')
   await page
-    .getByLabel('Waar gaat het om?', { exact: true })
-    .selectOption('Iets anders')
+    .getByLabel('What is it about?', { exact: true })
+    .selectOption('Something else')
   await page
-    .getByLabel('Uw project', { exact: true })
-    .fill('Dit is een aanvraag die behouden moet blijven.')
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
+    .getByLabel('Your project', { exact: true })
+    .fill('This is a request that must be kept.')
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
   await expect(page.locator('form').getByRole('alert')).toContainText(
-    'tijdelijk niet beschikbaar',
+    'temporarily unavailable',
   )
   await expect(
-    page.getByRole('link', { name: 'WhatsApp-bericht' }),
+    page.getByRole('link', { name: 'WhatsApp message' }),
   ).toHaveAttribute('href', 'https://wa.me/5978318508')
   await expect(page.locator('#message')).toHaveValue(
-    'Dit is een aanvraag die behouden moet blijven.',
+    'This is a request that must be kept.',
   )
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
   await expect.poll(() => payloads.length).toBe(2)
   expect(payloads[0].request_id).toBe(payloads[1].request_id)
   expect(payloads[0].submitted_at).toBe(payloads[1].submitted_at)

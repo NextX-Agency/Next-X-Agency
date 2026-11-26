@@ -17,7 +17,7 @@ import {
   validateContact,
 } from "@/lib/contact-validation";
 
-const OTHER = "Iets anders";
+const OTHER = "Something else";
 
 const budgets = contactBudgets;
 
@@ -51,7 +51,7 @@ function Field({
     <div>
       <label htmlFor={id} className="mb-2 flex justify-between text-[0.875rem] font-semibold">
         {label}
-        {optional && <span className="text-fg-3">Optioneel</span>}
+        {optional && <span className="text-fg-3">Optional</span>}
       </label>
       {children}
       <p
@@ -67,7 +67,8 @@ function Field({
 
 export function ContactForm() {
   const params = useSearchParams();
-  const requested = params.get("dienst") ?? "";
+  // ?dienst= is the parameter from before the site went English; old links still use it.
+  const requested = params.get("service") ?? params.get("dienst") ?? "";
   const preset = findService(requested);
   const presetDiscipline = disciplines.find(
     (discipline) =>
@@ -157,7 +158,7 @@ export function ContactForm() {
         result.notificationAccepted !== true
       ) {
         if (result.errors) setErrors(result.errors);
-        throw new Error(result.error || "Het versturen is niet bevestigd.");
+        throw new Error(result.error || "Sending was not confirmed.");
       }
       setConfirmationAccepted(result.confirmationAccepted === true);
       setStatus("sent");
@@ -165,7 +166,7 @@ export function ContactForm() {
       setFailureMessage(
         error instanceof Error && error.name === "Error"
           ? error.message
-          : "Het versturen is niet bevestigd. Probeer het opnieuw.",
+          : "Sending was not confirmed. Please try again.",
       );
       setStatus("failed");
     } finally {
@@ -181,17 +182,17 @@ export function ContactForm() {
         className="scroll-mt-28 bg-bg-2 p-8 outline-none"
         role="status"
       >
-        <p className="meta mb-5 text-ok">Verstuurd</p>
+        <p className="meta mb-5 text-ok">Sent</p>
         <p className="t-h2 max-w-[16ch]">
-          Bedankt, {values.name.split(" ")[0]}.
+          Thank you, {values.name.split(" ")[0]}.
         </p>
         <p className="t-body mt-5 max-w-[40ch]">
-          We reageren binnen {site.responseTime} op werkdagen op {values.email}.
+          We reply within {site.responseTime} on working days at {values.email}.
         </p>
         <p className="t-small mt-4 max-w-[44ch]">
           {confirmationAccepted
-            ? "De e-mailprovider heeft uw bevestiging geaccepteerd. Controleer ook uw spammap; bezorging in uw mailbox is nog niet bevestigd."
-            : "Uw aanvraag is ontvangen, maar de bevestigingsmail kon niet worden verstuurd. U hoeft het formulier niet opnieuw in te vullen."}
+            ? "The email provider accepted your confirmation. Please check your spam folder too; delivery to your inbox is not confirmed yet."
+            : "Your request was received, but the confirmation email could not be sent. You do not need to fill in the form again."}
         </p>
         <button
           type="button"
@@ -212,7 +213,7 @@ export function ContactForm() {
             setStatus("idle");
           }}
         >
-          Nog een bericht sturen
+          Send another message
         </button>
       </div>
     );
@@ -228,7 +229,7 @@ export function ContactForm() {
     >
       <fieldset disabled={status === "sending"} className="contents">
         <div className="sr-only" aria-hidden="true">
-          <label htmlFor="website">Laat dit veld leeg</label>
+          <label htmlFor="website">Leave this field empty</label>
           <input
             ref={honeypotRef}
             id="website"
@@ -238,7 +239,7 @@ export function ContactForm() {
           />
         </div>
         <div className="grid gap-8 sm:grid-cols-2 sm:gap-x-8">
-          <Field id="name" label="Naam" error={errors.name}>
+          <Field id="name" label="Name" error={errors.name}>
             <input
               id="name"
               name="name"
@@ -251,7 +252,7 @@ export function ContactForm() {
               {...describe("name")}
             />
           </Field>
-          <Field id="email" label="E-mail" error={errors.email}>
+          <Field id="email" label="Email" error={errors.email}>
             <input
               id="email"
               name="email"
@@ -268,7 +269,7 @@ export function ContactForm() {
           </Field>
           <Field
             id="service_type"
-            label="Waar gaat het om?"
+            label="What is it about?"
             error={errors.service_type}
           >
             <select
@@ -280,7 +281,7 @@ export function ContactForm() {
               onChange={update}
               {...describe("service_type")}
             >
-              <option value="">Kies een dienst</option>
+              <option value="">Choose a service</option>
               <optgroup label="Disciplines">
                 {disciplines.map((discipline) => (
                   <option key={discipline.id} value={discipline.name}>
@@ -313,7 +314,7 @@ export function ContactForm() {
           </Field>
           <Field
             id="phone"
-            label="Telefoon of WhatsApp"
+            label="Phone or WhatsApp"
             optional
             error={errors.phone}
           >
@@ -340,7 +341,7 @@ export function ContactForm() {
             value={values.budget}
             onChange={update}
           >
-            <option value="">Geen voorkeur</option>
+            <option value="">No preference</option>
             {budgets.map((budget) => (
               <option key={budget} value={budget}>
                 {budget}
@@ -349,7 +350,7 @@ export function ContactForm() {
           </select>
         </Field>
 
-        <Field id="message" label="Uw project" error={errors.message}>
+        <Field id="message" label="Your project" error={errors.message}>
           <textarea
             id="message"
             name="message"
@@ -358,7 +359,7 @@ export function ContactForm() {
             maxLength={contactLimits.message}
             rows={5}
             className="field"
-            placeholder="Wat voor bedrijf heeft u, en wat moet er gemaakt worden?"
+            placeholder="What kind of business do you have, and what needs to be made?"
             value={values.message}
             onChange={update}
             {...describe("message")}
@@ -370,14 +371,14 @@ export function ContactForm() {
             role="alert"
             className="border-l-2 border-danger pl-4 text-[0.9375rem]"
           >
-            {failureMessage} U kunt ons ook bereiken met een{" "}
+            {failureMessage} You can also reach us with a{" "}
             <a
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
             >
-              WhatsApp-bericht
+              WhatsApp message
             </a>
             .
           </p>
@@ -389,7 +390,7 @@ export function ContactForm() {
             className="btn btn-primary"
             disabled={status === "sending"}
           >
-            {status === "sending" ? "Versturen…" : "Verstuur"}
+            {status === "sending" ? "Sending…" : "Send"}
             {status !== "sending" && <Arrow />}
           </button>
         </div>

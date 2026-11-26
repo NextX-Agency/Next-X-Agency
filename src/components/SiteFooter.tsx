@@ -13,14 +13,14 @@ export function SiteFooter() {
 
         <div className="grid-12 gap-y-12 pb-12 pt-16 md:pb-16 md:pt-24">
           <div className="col-span-4 md:col-span-12 lg:col-span-4">
-            <Link href="/" className="inline-block" aria-label="NextX, naar de homepage">
+            <Link href="/" className="inline-block" aria-label="NextX, to the home page">
               <Image src="/logo-agency-white-v2.svg" alt="" width={620} height={260} className="h-auto w-[11rem]" />
             </Link>
-            <p className="t-small mt-5 max-w-[30ch]">Design, websites en software uit {site.location.city}.</p>
+            <p className="t-small mt-5 max-w-[30ch]">Design, websites and software from {site.location.city}.</p>
           </div>
 
           <nav aria-label="Footer" className="col-span-2 md:col-span-3 lg:col-span-2 lg:col-start-6">
-            <p className="mb-5 text-[0.8125rem] font-semibold text-fg-3">Pagina’s</p>
+            <p className="mb-5 text-[0.8125rem] font-semibold text-fg-3">Pages</p>
             <ul className="grid gap-2">
               {navigation.map((item) => (
                 <li key={item.href}>
@@ -32,8 +32,8 @@ export function SiteFooter() {
             </ul>
           </nav>
 
-          <nav aria-label="Diensten" className="col-span-2 md:col-span-4 lg:col-span-2">
-            <p className="mb-5 text-[0.8125rem] font-semibold text-fg-3">Diensten</p>
+          <nav aria-label="Services" className="col-span-2 md:col-span-4 lg:col-span-2">
+            <p className="mb-5 text-[0.8125rem] font-semibold text-fg-3">Services</p>
             <ul className="grid gap-2">
               {specialties.map((specialty) => (
                 <li key={specialty.id}>
@@ -43,7 +43,7 @@ export function SiteFooter() {
                 </li>
               ))}
               <li>
-                <Link href="/services#website-subscriptions" className="link-line">Website-abonnementen</Link>
+                <Link href="/services#website-subscriptions" className="link-line">Website subscriptions</Link>
               </li>
             </ul>
           </nav>

@@ -7,9 +7,9 @@ import { Reveal } from '@/components/Reveal'
 import { BrowserFrame, PhoneFrame } from './DeviceFrames'
 import { cn } from '@/lib/utils'
 
-/** Eigen product, or the client relation, for the small caption above a title. */
+/** Our own product, or the client relation, for the small caption above a title. */
 export function projectRelation(project: Project) {
-  return project.relation ?? (project.origin === 'studio' ? 'Eigen product' : 'Klantproject')
+  return project.relation ?? (project.origin === 'studio' ? 'Our own product' : 'Client project')
 }
 
 export function toneStyle(project: Project) {
@@ -53,12 +53,12 @@ export function ProjectShowcase({
           <div>
             <p className="nx-stage-line">{project.tagline}</p>
             <div className="nx-stage-actions">
-              <Link href={href} className="btn nx-stage-btn" aria-label={`Bekijk het project ${project.name}`}>
-                Bekijk project
+              <Link href={href} className="btn nx-stage-btn" aria-label={`View the ${project.name} project`}>
+                View project
                 <Arrow />
               </Link>
               {project.url && (
-                <a href={project.url} target="_blank" rel="noopener noreferrer" className="link-arrow link-line py-1" aria-label={`${project.host ?? project.name}, opent in een nieuw tabblad`}>
+                <a href={project.url} target="_blank" rel="noopener noreferrer" className="link-arrow link-line py-1" aria-label={`${project.host ?? project.name}, opens in a new tab`}>
                   Live
                   <ArrowOut />
                 </a>

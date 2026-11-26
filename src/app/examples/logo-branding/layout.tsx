@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Savana Coffee - Brand Identity Demo',
-  description: 'Redactionele brand identity conceptdemo met systeem, packaging en merkstem.',
+  description: 'Editorial brand identity concept demo with a system, packaging and brand voice.',
   openGraph: {
     title: 'Savana Coffee - Brand Identity Demo - NextX Agency',
-    description: 'Brand world voor een fictief koffiemerk.',
+    description: 'Brand world for a fictional coffee brand.',
     url: '/examples/logo-branding',
   },
   alternates: { canonical: '/examples/logo-branding' },

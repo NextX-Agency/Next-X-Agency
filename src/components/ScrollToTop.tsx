@@ -26,7 +26,7 @@ export function ScrollToTop() {
         <motion.button
           type="button"
           className="nx-to-top"
-          aria-label="Terug naar boven"
+          aria-label="Back to top"
           onClick={() => window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })}
           initial={{ opacity: 0, y: 16, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

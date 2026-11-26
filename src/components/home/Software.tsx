@@ -16,7 +16,7 @@ export function Software() {
       <div className="nx-software-signal">
         <SignalField anchorId="software-core" logoInset={false} />
         <div id="software-core" className="nx-software-core">
-          <h2 id="software-title" className="t-h1 mx-auto max-w-[12ch]">Software die past bij hoe u werkt<span className="text-accent">.</span></h2>
+          <h2 id="software-title" className="t-h1 mx-auto max-w-[12ch]">Software that fits how you work<span className="text-accent">.</span></h2>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ export function Software() {
         <p className="nx-bigwords">
           {softwareKinds.map((kind) => <span key={kind}>{kind}</span>)}
         </p>
-        <Link href="/services#software" className="btn btn-primary mt-12">Software op maat <Arrow /></Link>
+        <Link href="/services#software" className="btn btn-primary mt-12">Custom software <Arrow /></Link>
       </Reveal>
     </section>
   )

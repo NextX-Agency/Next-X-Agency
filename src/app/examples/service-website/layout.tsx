@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'DentaCare Paramaribo - Dental Website Demo',
-  description: 'Conceptdemo van een rustige tandartspraktijk met behandelingen, praktische info en afspraakflow.',
+  description: 'Concept demo of a calm dental practice with treatments, practical information and a booking flow.',
   openGraph: {
     title: 'DentaCare Paramaribo - Dental Website Demo - NextX Agency',
-    description: 'Toegankelijke conceptwebsite voor een fictieve tandartspraktijk.',
+    description: 'Accessible concept website for a fictional dental practice.',
     url: '/examples/service-website',
   },
   alternates: { canonical: '/examples/service-website' },

@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Bloom Boutique - Fashion Commerce Demo',
-  description: 'Conceptdemo van een tropical contemporary boutique met collectie, bag en demo-checkout.',
+  description: 'Concept demo of a tropical contemporary boutique with a collection, bag and demo checkout.',
   openGraph: {
     title: 'Bloom Boutique - Fashion Commerce Demo - NextX Agency',
-    description: 'Editorial commerce-richting voor een fictieve kledingboutique.',
+    description: 'Editorial commerce direction for a fictional clothing boutique.',
     url: '/examples/starter-webshop',
   },
   alternates: { canonical: '/examples/starter-webshop' },

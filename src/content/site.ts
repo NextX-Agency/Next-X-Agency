@@ -22,9 +22,9 @@ export const site = {
     coordinates: '05.8520° N  55.2038° W',
   },
   /** How quickly a written enquiry gets an answer, on working days. */
-  responseTime: '24 uur',
+  responseTime: '24 hours',
   /** Typical build time for a website once the design is approved. */
-  delivery: 'volgens de afgesproken planning',
+  delivery: 'on the agreed schedule',
   sisterSite: {
     name: 'Shop NextX',
     href: 'https://www.shop-nextx.com',
@@ -40,9 +40,9 @@ export function whatsappHref(message?: string) {
 export const mailHref = `mailto:${site.email}`
 
 export const navigation = [
-  { href: '/portfolio', label: 'Werk' },
-  { href: '/services', label: 'Diensten' },
-  { href: '/examples', label: 'Conceptlab' },
+  { href: '/portfolio', label: 'Work' },
+  { href: '/services', label: 'Services' },
+  { href: '/examples', label: 'Concept Lab' },
   { href: '/about', label: 'Studio' },
   { href: '/contact', label: 'Contact' },
 ] as const

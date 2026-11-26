@@ -35,10 +35,10 @@ export function ContactConfirmation({
   const firstName = name.split(' ')[0]
 
   return (
-    <Html lang="nl">
+    <Html lang="en">
       <Head />
       <Preview>
-        Uw aanvraag is ontvangen — we nemen {CONTACT.responseTime} contact op.
+        Your request was received — we will get in touch {CONTACT.responseTime}.
       </Preview>
 
       <Body style={s.body}>
@@ -59,24 +59,24 @@ export function ContactConfirmation({
           <Section style={s.card}>
 
             {/* Heading */}
-            <Text style={s.heading}>Aanvraag ontvangen</Text>
+            <Text style={s.heading}>Request received</Text>
             <Text style={s.subheading}>
-              Goedendag {firstName},
+              Hello {firstName},
             </Text>
             <Text style={s.body2}>
-              Bedankt voor uw interesse. We hebben uw aanvraag in goede orde
-              ontvangen. Wij nemen{' '}
-              <strong style={s.strong}>{CONTACT.responseTime}</strong> contact
-              met u op om de details te bespreken.
+              Thank you for your interest. We have received your request and
+              will get in touch{' '}
+              <strong style={s.strong}>{CONTACT.responseTime}</strong> to
+              talk through the details.
             </Text>
 
             <Hr style={s.divider} />
 
             {/* Summary table */}
-            <Text style={s.tableLabel}>Samenvatting</Text>
+            <Text style={s.tableLabel}>Summary</Text>
 
             <Row style={s.tableRow}>
-              <Column style={s.tableLabelCol}><Text style={s.tableLabelText}>Dienst</Text></Column>
+              <Column style={s.tableLabelCol}><Text style={s.tableLabelText}>Service</Text></Column>
               <Column><Text style={s.tableValueText}>{service_type}</Text></Column>
             </Row>
             {budget ? (
@@ -92,7 +92,7 @@ export function ContactConfirmation({
               <>
                 <Hr style={s.tableRowDivider} />
                 <Row style={s.tableRow}>
-                  <Column style={s.tableLabelCol}><Text style={s.tableLabelText}>Ingediend</Text></Column>
+                  <Column style={s.tableLabelCol}><Text style={s.tableLabelText}>Submitted</Text></Column>
                   <Column><Text style={s.tableValueText}>{receivedAt}</Text></Column>
                 </Row>
               </>
@@ -101,16 +101,16 @@ export function ContactConfirmation({
             <Hr style={s.divider} />
 
             {/* Process steps */}
-            <Text style={s.tableLabel}>Hoe werkt het verder</Text>
-            <ProcessStep number="1" text={`We nemen ${CONTACT.responseTime} contact met u op via e-mail of WhatsApp.`} />
-            <ProcessStep number="2" text="We bespreken uw wensen en stellen een passend voorstel op." />
-            <ProcessStep number="3" text="Na uw akkoord plannen we het werk samen in." />
+            <Text style={s.tableLabel}>What happens next</Text>
+            <ProcessStep number="1" text={`We get in touch ${CONTACT.responseTime} by email or WhatsApp.`} />
+            <ProcessStep number="2" text="We talk through what you need and put together a proposal that fits." />
+            <ProcessStep number="3" text="Once you approve, we plan the work together." />
 
             <Hr style={s.divider} />
 
             <Section style={s.ctaSection}>
               <Button href={CONTACT.siteUrl} style={s.ctaBtn}>
-                Bekijk onze website
+                Visit our website
               </Button>
             </Section>
 
@@ -118,7 +118,7 @@ export function ContactConfirmation({
 
           {/* ── Contact bar ── */}
           <Section style={s.contactBar}>
-            <Text style={s.contactBarTitle}>Vragen? Neem direct contact op</Text>
+            <Text style={s.contactBarTitle}>Questions? Get in touch directly</Text>
             <Text style={s.contactBarLinks}>
               <Link href={`mailto:${CONTACT.email}`} style={s.contactLink}>
                 {CONTACT.email}
@@ -132,7 +132,7 @@ export function ContactConfirmation({
 
           {/* ── Footer ── */}
           <Text style={s.footerText}>
-            Dit bericht werd verzonden naar{' '}
+            This message was sent to{' '}
             <Link href={`mailto:${email}`} style={s.footerLink}>{email}</Link>
             {' '}· © {new Date().getFullYear()} NextX Agency · {CONTACT.location}
           </Text>

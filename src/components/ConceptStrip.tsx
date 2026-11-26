@@ -18,13 +18,13 @@ export function ConceptStrip() {
         key={`${copy}-${example.slug}`}
         href={`/examples/${example.slug}`}
         className="nx-marquee-item"
-        aria-label={`Open de conceptdemo ${example.business}`}
+        aria-label={`Open the ${example.business} concept demo`}
         aria-hidden={copy || undefined}
         tabIndex={copy ? -1 : undefined}
       >
         <span className="nx-marquee-media">
           <Image src={example.image} alt="" fill sizes="(min-width: 48rem) 31vw, 17rem" className="object-cover object-top" />
-          <span className="nx-label">Fictief merk</span>
+          <span className="nx-label">Fictional brand</span>
         </span>
         <span className="mt-3 block text-[0.9375rem] font-semibold">{example.business}</span>
       </Link>
@@ -40,7 +40,7 @@ export function ConceptStrip() {
       </div>
       <div className="wrap mt-6 flex justify-end motion-reduce:hidden">
         <button type="button" className="min-h-11 text-[0.875rem] font-semibold text-fg-2 transition-colors hover:text-fg" aria-pressed={paused} onClick={() => setPaused(!paused)}>
-          {paused ? 'Speel af' : 'Pauzeer'}
+          {paused ? 'Play' : 'Pause'}
         </button>
       </div>
     </div>

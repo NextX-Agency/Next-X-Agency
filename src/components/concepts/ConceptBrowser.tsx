@@ -35,8 +35,8 @@ export function ConceptBrowser({
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
-        <div role="group" aria-label="Filter concepten op categorie" aria-controls={listId} className="nx-chips">
-          {[{ id: 'all' as const, label: 'Alles' }, ...categories].map((category) => {
+        <div role="group" aria-label="Filter concepts by category" aria-controls={listId} className="nx-chips">
+          {[{ id: 'all' as const, label: 'All' }, ...categories].map((category) => {
             const count = category.id === 'all' ? items.length : items.filter((item) => item.group === category.id).length
             const pressed = filter === category.id
             return (
@@ -76,13 +76,13 @@ export function ConceptBrowser({
               <Link href={`/examples/${example.slug}`} className="nx-concept-media group" aria-label={`Open de ${example.business} conceptdemo`}>
                 <Image
                   src={example.image}
-                  alt={`Schermbeeld van de ${example.business} conceptdemo`}
+                  alt={`Screenshot of the ${example.business} concept demo`}
                   fill
                   sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
                   priority={priorityFirst && index === 0}
                   className="object-cover object-top"
                 />
-                <span className="nx-pill-label">Fictief merk</span>
+                <span className="nx-pill-label">Fictional brand</span>
                 <span className="nx-concept-open" aria-hidden="true">
                   <Arrow />
                 </span>
@@ -95,7 +95,7 @@ export function ConceptBrowser({
               </div>
               <p className="t-small mt-2 max-w-[44ch]">{example.summary}</p>
               <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <WantThis example={example} label="Ik wil dit" variant="quiet" />
+                <WantThis example={example} label="I want this" variant="quiet" />
                 <Link href={`/examples/${example.slug}`} className="link-arrow link-line text-[0.9375rem]">Open demo <Arrow /></Link>
               </div>
             </motion.li>

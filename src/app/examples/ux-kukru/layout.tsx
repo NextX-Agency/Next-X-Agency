@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'UX Kukru - Monthly Support Demo',
-  description: 'Conceptdemo van een maandelijkse capaciteitsplanner voor design, website en support.',
+  description: 'Concept demo of a monthly capacity planner for design, website and support.',
   openGraph: {
     title: 'UX Kukru - Monthly Support Demo - NextX Agency',
-    description: 'Werkruimte voor aanvragen, uren en maandplanning.',
+    description: 'Workspace for requests, hours and monthly planning.',
     url: '/examples/ux-kukru',
   },
   alternates: { canonical: '/examples/ux-kukru' },

@@ -15,7 +15,7 @@ export const CONTACT = {
   country: site.location.country,
   location: `${site.location.city}, ${site.location.country}`,
   coordinates: site.location.coordinates,
-  responseTime: `binnen ${site.responseTime}`,
+  responseTime: `within ${site.responseTime}`,
   deliveryTime: site.delivery,
   siteUrl: site.url,
   shopUrl: site.sisterSite.href,

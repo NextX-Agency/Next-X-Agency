@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Hosting Panel - Infrastructure UI Demo',
-  description: 'Conceptdemo van een rustig hostingpanel voor sites, domeinen, back-ups en logs.',
+  description: 'Concept demo of a calm hosting panel for sites, domains, backups and logs.',
   openGraph: {
     title: 'Hosting Panel - Infrastructure UI Demo - NextX Agency',
-    description: 'Operationele interface voor een fictieve hostingomgeving.',
+    description: 'Operational interface for a fictional hosting environment.',
     url: '/examples/hosting',
   },
   alternates: { canonical: '/examples/hosting' },

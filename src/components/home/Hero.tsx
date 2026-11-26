@@ -25,19 +25,19 @@ export function Hero() {
       </div>
 
       <div className="wrap flex flex-1 flex-col justify-start pb-[58vw] pt-12 md:justify-center sm:pb-[22vw] md:pb-20 md:pt-14">
-                <h1 id="hero-title" className="t-display nx-hero-title" aria-label="Design, websites en software.">
+                <h1 id="hero-title" className="t-display nx-hero-title" aria-label="Design, websites and software.">
           <span className="block overflow-hidden pb-[0.08em]" aria-hidden="true"><span className="block" data-nx-motion="line">Design,</span></span>
           <span className="block overflow-hidden pb-[0.08em]" aria-hidden="true"><span className="block" data-nx-motion="line">websites</span></span>
-          <span className="block overflow-hidden pb-[0.08em]" aria-hidden="true"><span className="block" data-nx-motion="line">en software<span className="text-accent">.</span></span></span>
+          <span className="block overflow-hidden pb-[0.08em]" aria-hidden="true"><span className="block" data-nx-motion="line">and software<span className="text-accent">.</span></span></span>
         </h1>
 
         <p className="t-lead mt-7 max-w-[26rem] text-fg md:mt-9" data-nx-motion="copy">
-          Eén studio in Paramaribo voor uw merk, uw website en uw software.
+          One studio in Paramaribo for your brand, your website and your software.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4" data-nx-motion="action">
-          <Link href="/contact" className="btn btn-primary">Start een project <Arrow /></Link>
-          <Link href="/portfolio" className="link-arrow link-line py-1">Bekijk ons werk <Arrow /></Link>
+          <Link href="/contact" className="btn btn-primary">Start a project <Arrow /></Link>
+          <Link href="/portfolio" className="link-arrow link-line py-1">See our work <Arrow /></Link>
         </div>
       </div>
 

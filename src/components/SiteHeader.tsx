@@ -131,7 +131,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="relative block aspect-[620/260] w-[104px] shrink-0 sm:w-[116px]"
-            aria-label="NextX Agency, naar de homepage"
+            aria-label="NextX Agency, to the home page"
           >
             <Image
               src="/logo-agency-black-v2.svg"
@@ -151,7 +151,7 @@ export function SiteHeader() {
             />
           </Link>
 
-          <nav aria-label="Hoofdmenu" className="hidden md:block">
+          <nav aria-label="Main menu" className="hidden md:block">
             <ul className="flex items-center gap-6 lg:gap-9">
               {navigation.map((item) => {
                 const active = isActive(pathname, item.href)
@@ -193,7 +193,7 @@ export function SiteHeader() {
             aria-controls="mobile-menu"
             onClick={() => setOpen(!open)}
           >
-            {open ? 'Sluiten' : 'Menu'}
+            {open ? 'Close' : 'Menu'}
             <span className="relative block h-2.5 w-4" aria-hidden="true">
               <span className={cn('absolute left-0 h-px w-4 bg-current transition-transform duration-300', open ? 'top-1 rotate-45' : 'top-0')} />
               <span className={cn('absolute left-0 h-px w-4 bg-current transition-transform duration-300', open ? 'top-1 -rotate-45' : 'top-2')} />
@@ -216,7 +216,7 @@ export function SiteHeader() {
             exit={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.45, ease: [0.2, 0.7, 0.1, 1] }}
           >
-            <nav aria-label="Mobiel menu" className="wrap flex-1 overflow-y-auto pt-6">
+            <nav aria-label="Mobile menu" className="wrap flex-1 overflow-y-auto pt-6">
               <ul>
                 {[{ href: '/', label: 'Home' }, ...navigation].map((item) => (
                   <li key={item.href}>
@@ -235,7 +235,7 @@ export function SiteHeader() {
             </nav>
             <div className="wrap grid gap-1 pb-8 pt-6">
               <Link href="/contact" className="btn btn-primary mb-5 w-full justify-between" onClick={() => setOpen(false)}>
-                Start een project
+                Start a project
                 <span aria-hidden="true">→</span>
               </Link>
               <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="t-small text-fg">

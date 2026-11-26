@@ -8,36 +8,36 @@ type Query = {
   query: string
   position: number
   change: number
-  intent: 'Dienst' | 'Oriëntatie' | 'Lokaal'
+  intent: 'Service' | 'Research' | 'Local'
   page: string
 }
 
 const queries: Query[] = [
-  { query: 'webdesign suriname', position: 4, change: 3, intent: 'Dienst', page: '/websites' },
-  { query: 'website laten maken paramaribo', position: 7, change: -2, intent: 'Lokaal', page: '/websites' },
-  { query: 'seo bureau suriname', position: 11, change: 4, intent: 'Dienst', page: '/seo' },
-  { query: 'restaurant website paramaribo', position: 18, change: 8, intent: 'Lokaal', page: '/voorbeelden' },
-  { query: 'webshop laten maken', position: 21, change: -5, intent: 'Oriëntatie', page: '/webshops' },
-  { query: 'logo ontwerp suriname', position: 28, change: 1, intent: 'Dienst', page: '/branding' },
+  { query: 'web design suriname', position: 4, change: 3, intent: 'Service', page: '/websites' },
+  { query: 'website design paramaribo', position: 7, change: -2, intent: 'Local', page: '/websites' },
+  { query: 'seo agency suriname', position: 11, change: 4, intent: 'Service', page: '/seo' },
+  { query: 'restaurant website paramaribo', position: 18, change: 8, intent: 'Local', page: '/examples' },
+  { query: 'how to build a webshop', position: 21, change: -5, intent: 'Research', page: '/webshops' },
+  { query: 'logo design suriname', position: 28, change: 1, intent: 'Service', page: '/branding' },
 ]
 
 const pages = [
-  { path: '/websites', title: 'Websites voor bedrijven', clicks: '—', note: 'Titel inkorten' },
-  { path: '/seo', title: 'SEO voor Surinaamse bedrijven', clicks: '—', note: 'Nieuwe intro nodig' },
-  { path: '/voorbeelden', title: 'Voorbeelden van websites', clicks: '—', note: 'Interne links toevoegen' },
-  { path: '/contact', title: 'Contact met NextX Agency', clicks: '—', note: 'In orde' },
+  { path: '/websites', title: 'Websites for businesses', clicks: '—', note: 'Shorten the title' },
+  { path: '/seo', title: 'SEO for Surinamese businesses', clicks: '—', note: 'Needs a new intro' },
+  { path: '/examples', title: 'Website examples', clicks: '—', note: 'Add internal links' },
+  { path: '/contact', title: 'Contact NextX Agency', clicks: '—', note: 'All good' },
 ]
 
 const issues = [
-  { label: 'Titels', count: 2, tone: 'warn', detail: 'Pagina’s met een te lange titel' },
-  { label: 'Interne links', count: 4, tone: 'focus', detail: 'Kansen naar relevante voorbeelden' },
-  { label: 'Crawlen', count: 0, tone: 'good', detail: 'Geen geblokkeerde demo-pagina’s' },
+  { label: 'Titles', count: 2, tone: 'warn', detail: 'Pages with a title that is too long' },
+  { label: 'Internal links', count: 4, tone: 'focus', detail: 'Chances to link to relevant examples' },
+  { label: 'Crawling', count: 0, tone: 'good', detail: 'No blocked demo pages' },
 ]
 
 export default function SeoDashboardPage() {
-  const [view, setView] = useState<'overzicht' | 'zoektermen' | 'pagina\'s' | 'techniek' | 'acties'>('overzicht')
+  const [view, setView] = useState<'overview' | 'keywords' | 'pages' | 'technical' | 'actions'>('overview')
   const [query, setQuery] = useState('')
-  const [period, setPeriod] = useState('28 dagen')
+  const [period, setPeriod] = useState('28 days')
   const [done, setDone] = useState<string[]>([])
 
   const visibleQueries = useMemo(() => queries.filter(item => item.query.includes(query.toLowerCase())), [query])
@@ -47,23 +47,23 @@ export default function SeoDashboardPage() {
     <>
       <div className="seo-shell">
         <header className="seo-topline">
-          <Link href="/examples/seo" className="seo-brand" aria-label="SEO Dashboard overzicht">
+          <Link href="/examples/seo" className="seo-brand" aria-label="SEO Dashboard overview">
             <span className="seo-mark" aria-hidden="true">↗</span>
             <span>signal / seo</span>
           </Link>
-          <span className="seo-account">Voorbeeldomgeving <i aria-hidden="true" /></span>
+          <span className="seo-account">Sample environment <i aria-hidden="true" /></span>
         </header>
 
         <div className="seo-layout">
-          <aside className="seo-sidebar" aria-label="SEO Dashboard navigatie">
-            <p className="seo-kicker">WERKRUIMTE</p>
+          <aside className="seo-sidebar" aria-label="SEO Dashboard navigation">
+            <p className="seo-kicker">WORKSPACE</p>
             <nav>
               {[
-                ['overzicht', 'Overzicht'],
-                ['zoektermen', 'Zoektermen'],
-                ['pagina\'s', 'Pagina\'s'],
-                ['techniek', 'Technische punten'],
-                ['acties', 'Acties'],
+                ['overview', 'Overview'],
+                ['keywords', 'Keywords'],
+                ['pages', 'Pages'],
+                ['technical', 'Technical issues'],
+                ['actions', 'Actions'],
               ].map(([value, label]) => (
                 <button key={value} type="button" className={view === value ? 'seo-nav-active' : ''} onClick={() => setView(value as typeof view)}>
                   <span>{label}</span><span aria-hidden="true">{view === value ? '•' : '↗'}</span>
@@ -72,58 +72,58 @@ export default function SeoDashboardPage() {
             </nav>
             <div className="seo-sidebar-note">
               <span>DATASET</span>
-              <strong>Voorbeelddata</strong>
-              <p>Deze waarden illustreren de interface. Er is geen externe SEO-koppeling actief.</p>
+              <strong>Sample data</strong>
+              <p>These values illustrate the interface. No external SEO integration is active.</p>
             </div>
           </aside>
 
           <main className="seo-content">
             <div className="seo-heading-row">
               <div>
-                <p className="seo-kicker">SEO / KLANTPORTAAL</p>
-                <h1>{view === 'overzicht' ? 'Wat verdient aandacht?' : view === 'zoektermen' ? 'Zoektermen die we volgen' : view === 'pagina\'s' ? 'Pagina’s in beeld' : view === 'techniek' ? 'Technische punten' : 'Acties voor deze maand'}</h1>
-                <p className="seo-intro">Een compacte werkruimte voor beslissingen, niet voor indrukwekkende grafieken.</p>
+                <p className="seo-kicker">SEO / CLIENT PORTAL</p>
+                <h1>{view === 'overview' ? 'What needs attention?' : view === 'keywords' ? 'Keywords we track' : view === 'pages' ? 'Pages in view' : view === 'technical' ? 'Technical issues' : 'Actions for this month'}</h1>
+                <p className="seo-intro">A compact workspace for decisions, not for impressive charts.</p>
               </div>
-              <div className="seo-period" role="group" aria-label="Periode">
-                {['7 dagen', '28 dagen', '90 dagen'].map(option => <button key={option} type="button" className={period === option ? 'seo-period-active' : ''} onClick={() => setPeriod(option)}>{option}</button>)}
+              <div className="seo-period" role="group" aria-label="Period">
+                {['7 days', '28 days', '90 days'].map(option => <button key={option} type="button" className={period === option ? 'seo-period-active' : ''} onClick={() => setPeriod(option)}>{option}</button>)}
               </div>
             </div>
 
-            {view === 'overzicht' && <>
+            {view === 'overview' && <>
               <div className="seo-attention">
-                <div><span className="seo-kicker">SAMENVATTING / {period}</span><h2>Vier dingen om vandaag op te pakken.</h2></div>
-                <p>De zoekvraag is duidelijker dan vorige maand. De grootste winst zit nu in betere paginatitels, interne links en drie pagina’s die nog dun aanvoelen.</p>
+                <div><span className="seo-kicker">SUMMARY / {period}</span><h2>Four things to pick up today.</h2></div>
+                <p>Search demand is clearer than last month. The biggest gains now are in better page titles, internal links and three pages that still feel thin.</p>
               </div>
               <div className="seo-grid-three">
                 {issues.map(issue => <article className={`seo-issue ${issue.tone}`} key={issue.label}><span>{issue.label}</span><strong>{issue.count}</strong><p>{issue.detail}</p></article>)}
               </div>
               <div className="seo-split">
                 <article className="seo-panel">
-                  <div className="seo-panel-head"><div><span className="seo-kicker">BEWEGING</span><h2>Zoekvraag per week</h2></div><span className="seo-legend"><i /> zichtbaarheid</span></div>
-                  <div className="seo-bars" aria-label="Illustratieve grafiek van zichtbaarheid per week">
+                  <div className="seo-panel-head"><div><span className="seo-kicker">MOVEMENT</span><h2>Search demand per week</h2></div><span className="seo-legend"><i /> visibility</span></div>
+                  <div className="seo-bars" aria-label="Illustrative chart of visibility per week">
                     {[42, 48, 45, 59, 62, 70, 66, 78, 82, 88, 91, 95].map((height, index) => <span key={index} style={{ height: `${height}%` }} />)}
                   </div>
                   <div className="seo-axis"><span>W1</span><span>W4</span><span>W8</span><span>W12</span></div>
                 </article>
                 <article className="seo-panel seo-next">
-                  <span className="seo-kicker">VOLGENDE BESLISSING</span><h2>Maak /websites specifieker.</h2><p>De pagina verschijnt op relevante vragen, maar deelt nog te weinig context met de zoekterm.</p><button type="button" onClick={() => setView('acties')}>Bekijk actie <span aria-hidden="true">↗</span></button>
+                  <span className="seo-kicker">NEXT DECISION</span><h2>Make /websites more specific.</h2><p>The page shows up for relevant searches but still shares too little context with the keyword.</p><button type="button" onClick={() => setView('actions')}>View action <span aria-hidden="true">↗</span></button>
                 </article>
               </div>
             </>}
 
-            {(view === 'zoektermen' || view === 'overzicht') && <section className="seo-panel seo-table-panel">
-              <div className="seo-panel-head"><div><span className="seo-kicker">ZOEKTERMEN</span><h2>{view === 'overzicht' ? 'Waar komen bezoekers voor?' : 'Alle gevolgde termen'}</h2></div><label className="seo-search"><span className="sr-only">Zoekterm filteren</span><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Filter zoekterm" /><span aria-hidden="true">⌕</span></label></div>
-              <div className="seo-table-wrap"><table><thead><tr><th>Zoekterm</th><th>Positie</th><th>Verandering</th><th>Intentie</th><th>Pagina</th></tr></thead><tbody>{visibleQueries.map(item => <tr key={item.query}><td><strong>{item.query}</strong></td><td className="seo-position">{item.position}</td><td className={item.change >= 0 ? 'seo-up' : 'seo-down'}>{item.change >= 0 ? '+' : ''}{item.change}</td><td><span className="seo-tag">{item.intent}</span></td><td><code>{item.page}</code></td></tr>)}</tbody></table></div>
-              {visibleQueries.length === 0 && <p className="seo-empty">Geen zoekterm gevonden. Probeer een kortere filter.</p>}
+            {(view === 'keywords' || view === 'overview') && <section className="seo-panel seo-table-panel">
+              <div className="seo-panel-head"><div><span className="seo-kicker">KEYWORDS</span><h2>{view === 'overview' ? 'What do visitors come for?' : 'All tracked keywords'}</h2></div><label className="seo-search"><span className="sr-only">Filter keywords</span><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Filter keywords" /><span aria-hidden="true">⌕</span></label></div>
+              <div className="seo-table-wrap"><table><thead><tr><th>Keyword</th><th>Position</th><th>Change</th><th>Intent</th><th>Page</th></tr></thead><tbody>{visibleQueries.map(item => <tr key={item.query}><td><strong>{item.query}</strong></td><td className="seo-position">{item.position}</td><td className={item.change >= 0 ? 'seo-up' : 'seo-down'}>{item.change >= 0 ? '+' : ''}{item.change}</td><td><span className="seo-tag">{item.intent}</span></td><td><code>{item.page}</code></td></tr>)}</tbody></table></div>
+              {visibleQueries.length === 0 && <p className="seo-empty">No keyword found. Try a shorter filter.</p>}
             </section>}
 
-            {view === 'pagina\'s' && <section className="seo-panel seo-table-panel"><div className="seo-panel-head"><div><span className="seo-kicker">PAGINA’S</span><h2>Waar kan de inhoud scherper?</h2></div></div><div className="seo-table-wrap"><table><thead><tr><th>Pagina</th><th>Titel</th><th>Clicks</th><th>Notitie</th></tr></thead><tbody>{pages.map(page => <tr key={page.path}><td><code>{page.path}</code></td><td><strong>{page.title}</strong></td><td>{page.clicks}</td><td>{page.note}</td></tr>)}</tbody></table></div></section>}
+            {view === 'pages' && <section className="seo-panel seo-table-panel"><div className="seo-panel-head"><div><span className="seo-kicker">PAGES</span><h2>Where can the content be sharper?</h2></div></div><div className="seo-table-wrap"><table><thead><tr><th>Page</th><th>Title</th><th>Clicks</th><th>Note</th></tr></thead><tbody>{pages.map(page => <tr key={page.path}><td><code>{page.path}</code></td><td><strong>{page.title}</strong></td><td>{page.clicks}</td><td>{page.note}</td></tr>)}</tbody></table></div></section>}
 
-            {view === 'techniek' && <section className="seo-panel seo-technical"><div className="seo-panel-head"><div><span className="seo-kicker">TECHNISCHE PUNTEN</span><h2>Kleine blokkades, helder gerangschikt.</h2></div></div>{['Metatitel van /websites inkorten', 'Vier interne links toevoegen naar voorbeelden', 'Controleren of nieuwe pagina’s een beschrijving hebben', 'Indexering van conceptdemo’s uitsluiten'].map((item, index) => <div className="seo-check-row" key={item}><span className={`seo-status seo-status-${index === 3 ? 'good' : index === 0 ? 'warn' : 'open'}`}>{index === 3 ? 'OK' : index === 0 ? 'LET OP' : 'OPEN'}</span><strong>{item}</strong><span className="seo-muted">{index === 3 ? 'Ingesteld' : 'Handmatige controle'}</span></div>)}</section>}
+            {view === 'technical' && <section className="seo-panel seo-technical"><div className="seo-panel-head"><div><span className="seo-kicker">TECHNICAL ISSUES</span><h2>Small blockers, clearly ranked.</h2></div></div>{['Shorten the meta title of /websites', 'Add four internal links to examples', 'Check that new pages have a description', 'Exclude concept demos from indexing'].map((item, index) => <div className="seo-check-row" key={item}><span className={`seo-status seo-status-${index === 3 ? 'good' : index === 0 ? 'warn' : 'open'}`}>{index === 3 ? 'OK' : index === 0 ? 'CHECK' : 'OPEN'}</span><strong>{item}</strong><span className="seo-muted">{index === 3 ? 'Configured' : 'Manual check'}</span></div>)}</section>}
 
-            {view === 'acties' && <section className="seo-panel seo-actions"><div className="seo-panel-head"><div><span className="seo-kicker">ACTIELIJST</span><h2>Van inzicht naar volgende stap.</h2></div><span className="seo-muted">{done.length} / 3 klaar</span></div>{['Schrijf de intro van /websites opnieuw rond de zoekvraag', 'Voeg een link toe van de voorbeelden naar SEO', 'Controleer de titel en beschrijving van /seo'].map(item => <label className={`seo-action-row ${done.includes(item) ? 'is-done' : ''}`} key={item}><input type="checkbox" checked={done.includes(item)} onChange={() => toggleDone(item)} /><span>{item}</span><small>Deze maand</small></label>)}</section>}
+            {view === 'actions' && <section className="seo-panel seo-actions"><div className="seo-panel-head"><div><span className="seo-kicker">ACTION LIST</span><h2>From insight to next step.</h2></div><span className="seo-muted">{done.length} / 3 done</span></div>{['Rewrite the /websites intro around the search demand', 'Add a link from the examples to SEO', 'Check the title and description of /seo'].map(item => <label className={`seo-action-row ${done.includes(item) ? 'is-done' : ''}`} key={item}><input type="checkbox" checked={done.includes(item)} onChange={() => toggleDone(item)} /><span>{item}</span><small>This month</small></label>)}</section>}
 
-            <p className="seo-footnote">Voorbeeldomgeving · periode: {period} · cijfers en pagina’s zijn illustratief.</p>
+            <p className="seo-footnote">Sample environment · period: {period} · figures and pages are illustrative.</p>
           </main>
         </div>
       </div>

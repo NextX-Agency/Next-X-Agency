@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'ShopPlaza Redesign - UX/UI Concept Case',
-  description: 'Conceptcase met voor/na interface, ontwerpkeuzes en een mobile check zonder verzonnen onderzoek.',
+  description: 'Concept case with a before and after interface, design decisions and a mobile check, without invented research.',
   openGraph: {
     title: 'ShopPlaza Redesign - UX/UI Concept Case - NextX Agency',
-    description: 'Demonstratie van product- en interfacebeslissingen voor een fictieve webshop.',
+    description: 'A demonstration of product and interface decisions for a fictional webshop.',
     url: '/examples/ux-ui-design',
   },
   alternates: { canonical: '/examples/ux-ui-design' },

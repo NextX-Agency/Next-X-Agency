@@ -23,13 +23,13 @@ export function ExampleBar() {
           href="/examples"
           className="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/15 px-3.5 text-[0.72rem] font-semibold tracking-[0.08em] uppercase transition-colors hover:bg-white/10"
         >
-          <span aria-hidden="true">←</span> <span className="hidden xs:inline">Concepten</span><span className="xs:hidden">Terug</span>
+          <span aria-hidden="true">←</span> <span className="hidden xs:inline">Concepts</span><span className="xs:hidden">Back</span>
         </Link>
         <p className="hidden truncate text-[0.68rem] tracking-[0.16em] text-white/55 uppercase md:block">
-          Conceptdemo door NextX · fictief merk
+          Concept demo by NextX · fictional brand
         </p>
         {example ? (
-          <WantThis example={example} className="!min-h-9 shrink-0" label="Ik wil een website zoals deze" shortLabel="Ik wil dit" />
+          <WantThis example={example} className="!min-h-9 shrink-0" label="I want a website like this" shortLabel="I want this" />
         ) : (
           <Link href="/contact" className="btn btn-sm btn-primary !min-h-9 shrink-0">Eigen versie bespreken</Link>
         )}

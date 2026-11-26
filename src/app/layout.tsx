@@ -55,19 +55,19 @@ const lora = Lora({
 })
 
 const description =
-  'NextX is een ontwerpstudio en softwarebouwer uit Paramaribo, Suriname. Grafisch ontwerp en branding, websites en webshops, en software op maat, van één studio.'
+  'NextX is a design studio and software builder from Paramaribo, Suriname. Graphic design and branding, websites and webshops, and custom software, from one studio.'
 
 const socialImage = {
-  url: '/og/nextx-social-v7.png',
+  url: '/og/nextx-social-v8.png',
   width: 1200,
   height: 630,
-  alt: 'NextX Agency: design, websites en software uit Paramaribo, Suriname',
+  alt: 'NextX Agency: design, websites and software from Paramaribo, Suriname',
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'NextX Agency · Design, websites en software uit Suriname',
+    default: 'NextX Agency · Design, websites and software from Suriname',
     template: '%s — NextX Agency',
   },
   description,
@@ -82,12 +82,12 @@ export const metadata: Metadata = {
     apple: { url: '/apple-touch-icon-v3.png', sizes: '180x180', type: 'image/png' },
   },
   openGraph: {
-    title: 'NextX Agency · Design, websites en software uit Suriname',
+    title: 'NextX Agency · Design, websites and software from Suriname',
     description,
     url: site.url,
     siteName: site.name,
     type: 'website',
-    locale: 'nl_SR',
+    locale: 'en_US',
     images: [socialImage],
   },
   twitter: {
@@ -129,11 +129,11 @@ const jsonLd = {
     longitude: site.location.lng,
   },
   areaServed: { '@type': 'Country', name: site.location.country },
-  knowsAbout: ['Grafisch ontwerp', 'Branding', 'Webdesign', 'Webdevelopment', 'E-commerce', 'Software op maat'],
+  knowsAbout: ['Graphic design', 'Branding', 'Web design', 'Web development', 'E-commerce', 'Custom software'],
   sameAs: [site.sisterSite.href],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Diensten',
+    name: 'Services',
     itemListElement: serviceCategories.map((category) => ({
       '@type': 'OfferCatalog',
       name: category.title,
@@ -164,7 +164,7 @@ const jsonLd = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="nl"
+      lang="en"
       className={`${archivo.variable} ${plexMono.variable} ${oswald.variable} ${playfair.variable} ${inter.variable} ${lora.variable}`}
     >
       <body>
@@ -173,7 +173,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <a href="#main" className="skip-link">
-          Direct naar de inhoud
+          Skip to content
         </a>
         {children}
       </body>

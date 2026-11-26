@@ -21,14 +21,14 @@ export default function HomePage() {
       <Hero />
 
       <section aria-labelledby="work-title">
-        <h2 id="work-title" className="sr-only">Ons werk</h2>
+        <h2 id="work-title" className="sr-only">Our work</h2>
         {featuredProjects.map((project, i) => (
           <ProjectShowcase key={project.slug} project={project} flip={i % 2 === 1} priority={i === 0} />
         ))}
         <div className="wrap grid gap-3 py-3 md:grid-cols-2">
           {moreProjects.map((project) => <ProjectMini key={project.slug} project={project} />)}
           <Link href="/portfolio" className="nx-action min-h-[14rem]" style={{ '--card': 'var(--orange)', '--card-fg': 'var(--ink)' } as React.CSSProperties}>
-            <strong>Al ons werk</strong>
+            <strong>All our work</strong>
             <Arrow className="mb-2 h-4 w-7" />
           </Link>
         </div>
@@ -37,7 +37,7 @@ export default function HomePage() {
       <section className="pb-[var(--section)] pt-16 md:pt-28" aria-labelledby="specialties-title">
         <div className="wrap">
           <Reveal>
-            <h2 id="specialties-title" className="t-h1 mb-10 max-w-[14ch] md:mb-14">Drie dingen doen we goed<span className="text-accent">.</span></h2>
+            <h2 id="specialties-title" className="t-h1 mb-10 max-w-[14ch] md:mb-14">Three things we do well<span className="text-accent">.</span></h2>
           </Reveal>
           <SpecialtyTiles />
         </div>
@@ -48,10 +48,10 @@ export default function HomePage() {
       <section className="section" aria-labelledby="concept-title">
         <div className="wrap mb-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-5 md:mb-14">
           <div>
-            <h2 id="concept-title" className="t-h1">Conceptlab</h2>
-            <p className="t-lead mt-4 max-w-[34ch]">Werkende demo’s voor verzonnen merken. Zie je een stijl die past? Tik op <b className="font-semibold text-fg">Ik wil dit</b>.</p>
+            <h2 id="concept-title" className="t-h1">Concept Lab</h2>
+            <p className="t-lead mt-4 max-w-[34ch]">Working demos for made-up brands. See a style that fits? Tap <b className="font-semibold text-fg">I want this</b>.</p>
           </div>
-          <Link href="/examples" className="btn btn-quiet">Alle {examples.length} concepten <Arrow /></Link>
+          <Link href="/examples" className="btn btn-quiet">All {examples.length} concepts <Arrow /></Link>
         </div>
         <div className="wrap">
           <ConceptBrowser items={examples} limit={6} />

@@ -75,7 +75,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="nx-stage-head !pt-[calc(var(--nav-h)+3.5rem)] md:!pt-[calc(var(--nav-h)+6rem)]">
             <div>
               <p className="nx-stage-kind">
-                <Link href="/portfolio" className="link-line">Werk</Link> / {project.type}
+                <Link href="/portfolio" className="link-line">Work</Link> / {project.type}
               </p>
               <h1 className="nx-stage-name">{project.name}</h1>
             </div>
@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: Props) {
               {project.url && (
                 <div className="nx-stage-actions">
                   <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn nx-stage-btn">
-                    Bekijk live
+                    View live
                     <ArrowOut />
                   </a>
                 </div>
@@ -119,7 +119,7 @@ export default async function ProjectPage({ params }: Props) {
 
           {project.features && project.features.length > 0 && (
             <div className="col-span-4 md:col-span-5 md:col-start-8">
-              <h2 className="t-h3 mb-5">{screens ? 'Op de site' : 'In het project'}</h2>
+              <h2 className="t-h3 mb-5">{screens ? 'On the site' : 'In the project'}</h2>
               <ul className="nx-dots">
                 {project.features.map((feature) => <li key={feature}>{feature}</li>)}
               </ul>
@@ -136,16 +136,16 @@ export default async function ProjectPage({ params }: Props) {
               <video controls playsInline preload="none" poster={project.video.poster.src} aria-labelledby="video-title">
                 <source src={project.video.src} />
                 {project.video.captions && (
-                  <track kind="captions" src={project.video.captions} srcLang="nl" label="Nederlands" default />
+                  <track kind="captions" src={project.video.captions} srcLang="en" label="English" default />
                 )}
-                Uw browser ondersteunt deze video niet. <a href={project.video.src}>Open de video</a>
+                Your browser does not support this video. <a href={project.video.src}>Open the video</a>
               </video>
             </div>
           </section>
         )}
 
         {images.length > 0 && (
-          <section className="pb-[var(--section)]" aria-label="Beelden van het project">
+          <section className="pb-[var(--section)]" aria-label="Project images">
             <ProjectGallery images={images} layout={project.presentation === 'photography' ? 'album' : 'editorial'} />
           </section>
         )}
@@ -154,7 +154,7 @@ export default async function ProjectPage({ params }: Props) {
       {others.length > 0 && (
         <section data-theme="dark" className="section" aria-labelledby="more-title">
           <div className="wrap">
-            <h2 id="more-title" className="t-h1 mb-10 md:mb-14">Meer werk<span className="text-accent">.</span></h2>
+            <h2 id="more-title" className="t-h1 mb-10 md:mb-14">More work<span className="text-accent">.</span></h2>
             <div className="grid gap-3 md:grid-cols-2">
               {others.slice(0, 2).map((item) => <ProjectMini key={item.slug} project={item} />)}
             </div>

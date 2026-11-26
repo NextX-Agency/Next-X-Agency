@@ -35,15 +35,15 @@ export function ContactNotification({
   message,
   receivedAt,
 }: ContactNotificationProps) {
-  const replySubject = `Re: ${service_type} aanvraag van ${name}`
-  const replyBody = `Beste ${name},%0A%0ABedankt voor uw interesse in onze ${service_type} dienst.%0A%0AGroeten,%0ANextX Agency`
+  const replySubject = `Re: ${service_type} request from ${name}`
+  const replyBody = `Dear ${name},%0A%0AThank you for your interest in our ${service_type} service.%0A%0AKind regards,%0ANextX Agency`
   const replyHref = `mailto:${email}?subject=${encodeURIComponent(replySubject)}&body=${replyBody}`
 
   return (
-    <Html lang="nl">
+    <Html lang="en">
       <Head />
       <Preview>
-        {name} — {service_type}{budget ? ` · ${budget}` : ''} · Beantwoord direct via deze mail
+        {name} — {service_type}{budget ? ` · ${budget}` : ''} · Reply straight from this email
       </Preview>
 
       <Body style={s.body}>
@@ -66,7 +66,7 @@ export function ContactNotification({
             {/* Service + meta */}
             <Row style={s.metaRow}>
               <Column>
-                <Text style={s.metaLabel}>Dienst</Text>
+                <Text style={s.metaLabel}>Service</Text>
                 <Text style={s.metaValue}>{service_type}</Text>
               </Column>
               {budget ? (
@@ -80,22 +80,22 @@ export function ContactNotification({
             <Hr style={s.divider} />
 
             {/* Client details */}
-            <Text style={s.sectionLabel}>Van</Text>
+            <Text style={s.sectionLabel}>From</Text>
 
             <Row style={s.fieldRow}>
-              <Column style={s.fieldLabelCol}><Text style={s.fieldLabel}>Naam</Text></Column>
+              <Column style={s.fieldLabelCol}><Text style={s.fieldLabel}>Name</Text></Column>
               <Column><Text style={s.fieldValue}>{name}</Text></Column>
             </Row>
             <Hr style={s.rowDivider} />
             <Row style={s.fieldRow}>
-              <Column style={s.fieldLabelCol}><Text style={s.fieldLabel}>E-mail</Text></Column>
+              <Column style={s.fieldLabelCol}><Text style={s.fieldLabel}>Email</Text></Column>
               <Column><Link href={`mailto:${email}`} style={s.fieldLink}>{email}</Link></Column>
             </Row>
             {phone ? (
               <>
                 <Hr style={s.rowDivider} />
                 <Row style={s.fieldRow}>
-                  <Column style={s.fieldLabelCol}><Text style={s.fieldLabel}>Telefoon</Text></Column>
+                  <Column style={s.fieldLabelCol}><Text style={s.fieldLabel}>Phone</Text></Column>
                   <Column><Link href={`tel:${phone.replace(/\s/g, '')}`} style={s.fieldLink}>{phone}</Link></Column>
                 </Row>
               </>
@@ -104,7 +104,7 @@ export function ContactNotification({
             <Hr style={s.divider} />
 
             {/* Message */}
-            <Text style={s.sectionLabel}>Bericht</Text>
+            <Text style={s.sectionLabel}>Message</Text>
             <Text style={s.messageText}>{message}</Text>
 
             <Hr style={s.divider} />
@@ -112,7 +112,7 @@ export function ContactNotification({
             {/* Reply CTA */}
             <Section style={s.ctaWrap}>
               <Button href={replyHref} style={s.ctaBtn}>
-                Beantwoorden
+                Reply
               </Button>
             </Section>
 
@@ -120,7 +120,7 @@ export function ContactNotification({
 
           {/* ── Footer ── */}
           <Text style={s.footerText}>
-            Ontvangen via{' '}
+            Received through{' '}
             <Link href={`${CONTACT.siteUrl}/contact`} style={s.footerLink}>
               nextxagency.com/contact
             </Link>

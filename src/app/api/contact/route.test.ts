@@ -36,7 +36,7 @@ const validPayload = {
   phone: '+597 123456',
   service_type: 'Service Website',
   budget: '$150 – $300',
-  message: 'Dit is een testbericht via de contactpagina.',
+  message: 'This is a test message from the contact page.',
 }
 
 // ── Tests ────────────────────────────────────────────────────────────────────
@@ -81,7 +81,7 @@ describe('POST /api/contact', () => {
     )
     expect(res.status).toBe(400)
     const json = await res.json()
-    expect(json.error).toMatch(/e-mailadres/i)
+    expect(json.error).toMatch(/email address/i)
   })
 
   // ── Happy path ─────────────────────────────────────────────────────────────

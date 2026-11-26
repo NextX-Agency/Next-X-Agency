@@ -18,10 +18,10 @@ import {
 } from '@/content/services'
 
 export const metadata: Metadata = {
-  title: 'Diensten en prijzen',
-  description: 'Grafisch ontwerp en branding, websites en webshops, en software op maat. Bekijk wat NextX Agency maakt, met pakketten en prijzen in USD.',
+  title: 'Services and pricing',
+  description: 'Graphic design and branding, websites and webshops, and custom software. See what NextX Agency makes, with packages and prices in USD.',
   alternates: { canonical: '/services' },
-  openGraph: { title: 'Diensten en prijzen — NextX Agency', url: '/services' },
+  openGraph: { title: 'Services and pricing — NextX Agency', url: '/services' },
 }
 
 const category = (id: string) => serviceCategories.find((item) => item.id === id)!
@@ -44,18 +44,18 @@ function PriceTile({ service }: { service: Service }) {
         <span className="nx-price-amount">
           {'label' in price ? price.label : (
             <>
-              {price.from && <small className="!ml-0 mr-[.35em]">vanaf</small>}${formatAmount(price.amount)}
+              {price.from && <small className="!ml-0 mr-[.35em]">from</small>}${formatAmount(price.amount)}
               {price.unit && <small>{price.unit}</small>}
             </>
           )}
         </span>
-        <span className="nx-price-more">Wat u krijgt</span>
+        <span className="nx-price-more">What you get</span>
       </summary>
       <div className="nx-price-body">
         <ul className="nx-dots">{service.includes.map((item) => <li key={item}>{item}</li>)}</ul>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[0.9375rem]">
-          <Link href={`/contact?dienst=${service.id}`} className="btn btn-primary !min-h-11" aria-label={`${service.name} aanvragen`}>Aanvragen <Arrow /></Link>
-          {example && <Link href={`/examples/${example.slug}`} className="link-arrow link-line py-1">Demo · fictief merk</Link>}
+          <Link href={`/contact?service=${service.id}`} className="btn btn-primary !min-h-11" aria-label={`Request ${service.name}`}>Request <Arrow /></Link>
+          {example && <Link href={`/examples/${example.slug}`} className="link-arrow link-line py-1">Demo · fictional brand</Link>}
         </div>
       </div>
     </details>
@@ -69,7 +69,7 @@ function PriceGroup({ group, columns = 3, titled = true }: { group: ServiceCateg
       <div className={`nx-prices nx-prices-${columns}`}>{group.services.map((service) => <PriceTile key={service.id} service={service} />)}</div>
       {group.terms && (
         <details className="nx-fine mt-5">
-          <summary>Voorwaarden</summary>
+          <summary>Terms</summary>
           <p className="t-small mt-3 max-w-[80ch]">{group.terms}</p>
         </details>
       )}
@@ -82,7 +82,7 @@ export default function ServicesPage() {
     <>
       <header data-theme="dark">
         <div className="wrap pb-12 pt-[calc(var(--nav-h)+4rem)] md:pb-16 md:pt-[calc(var(--nav-h)+6rem)]">
-          <h1 className="nx-services-hero-title">Wat wilt u <em>laten maken?</em></h1>
+          <h1 className="nx-services-hero-title">What do you <em>want made?</em></h1>
           <div className="mt-12 md:mt-16"><SpecialtyTiles base="" /></div>
         </div>
       </header>
@@ -93,8 +93,8 @@ export default function ServicesPage() {
           <h2 id="design-title" className="nx-section-word">{design.word}<span className="text-accent">.</span></h2>
           <p className="t-lead mt-6 max-w-[30ch] text-fg">{design.description}</p>
           <div className="mt-12 md:mt-16"><PriceGroup group={graphicDesign} titled={false} /></div>
-          <Link href={`/contact?dienst=${design.id}`} className="nx-action mt-3" style={{ '--card': 'var(--orange)', '--card-fg': 'var(--ink)' } as React.CSSProperties}>
-            <span><strong>Complete merkidentiteit</strong><span className="mt-2 block font-medium">Logo, kleur en typografie als één geheel. Op offerte.</span></span>
+          <Link href={`/contact?service=${design.id}`} className="nx-action mt-3" style={{ '--card': 'var(--orange)', '--card-fg': 'var(--ink)' } as React.CSSProperties}>
+            <span><strong>Complete brand identity</strong><span className="mt-2 block font-medium">Logo, colour and typography as one system. Quoted per project.</span></span>
             <Arrow className="mb-2 h-4 w-7" />
           </Link>
         </div>
@@ -110,7 +110,7 @@ export default function ServicesPage() {
             </div>
             <div className="col-span-4 md:col-span-6">
               <BrowserFrame label="bhaggoescarpalace.com">
-                <Image src="/work/bhaggoes-home.jpg" alt="De website van Bhaggoes Car Palace, een klantproject van NextX" fill sizes="(min-width: 48rem) 46vw, 100vw" className="object-cover object-top" />
+                <Image src="/work/bhaggoes-home.jpg" alt="The Bhaggoes Car Palace website, a NextX client project" fill sizes="(min-width: 48rem) 46vw, 100vw" className="object-cover object-top" />
               </BrowserFrame>
             </div>
           </div>
@@ -119,10 +119,10 @@ export default function ServicesPage() {
             <div>
               <PriceGroup group={subscriptions} columns={4} />
             </div>
-            <div id="eenmalige-projecten" className="scroll-mt-28"><PriceGroup group={websites} columns={4} /></div>
+            <div id="one-off-projects" className="scroll-mt-28"><PriceGroup group={websites} columns={4} /></div>
             <PriceGroup group={webshops} />
             <div>
-              <h3 className="t-h2 mb-8">Altijd inbegrepen</h3>
+              <h3 className="t-h2 mb-8">Always included</h3>
               <ul className="nx-dots sm:grid-cols-2 lg:grid-cols-3">{includedEverywhere.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
@@ -141,26 +141,26 @@ export default function ServicesPage() {
             {featuredProjects.map((project) => <ProjectMini key={project.slug} project={project} />)}
           </div>
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <Link href={`/contact?dienst=${software.id}`} className="btn btn-primary">Bespreek uw software <Arrow /></Link>
-            <p className="t-body">Op offerte. De prijs ligt vast voordat we beginnen.</p>
+            <Link href={`/contact?service=${software.id}`} className="btn btn-primary">Discuss your software <Arrow /></Link>
+            <p className="t-body">Quoted per project. The price is fixed before we start.</p>
           </div>
         </div>
       </section>
 
       {/* Supporting */}
-      <section id="creatieve-productie" className="section scroll-mt-20" aria-labelledby="supporting-title">
+      <section id="more-services" className="section scroll-mt-20" aria-labelledby="supporting-title">
         <div className="wrap">
-          <h2 id="supporting-title" className="t-h1 mb-10 md:mb-14">Ook mogelijk<span className="text-accent">.</span></h2>
+          <h2 id="supporting-title" className="t-h1 mb-10 md:mb-14">Also available<span className="text-accent">.</span></h2>
           <div className="grid gap-3 md:grid-cols-2">
             {supportingDisciplines.map((discipline) => (
-              <Link id={discipline.id} key={discipline.id} href={`/contact?dienst=${discipline.id}`} className="nx-action scroll-mt-28" aria-label={`${discipline.name} aanvragen`}>
+              <Link id={discipline.id} key={discipline.id} href={`/contact?service=${discipline.id}`} className="nx-action scroll-mt-28" aria-label={`Request ${discipline.name}`}>
                 <span><strong>{discipline.word}</strong><span className="mt-2 block max-w-[34ch] text-fg-2">{discipline.description}</span></span>
                 <Arrow className="mb-2 h-4 w-7" />
               </Link>
             ))}
           </div>
 
-          <h2 className="t-h2 mb-8 mt-20 md:mt-28">Aanvullend</h2>
+          <h2 className="t-h2 mb-8 mt-20 md:mt-28">Add-ons</h2>
           <div className="grid gap-3">
             {extraPackages.map((group) => (
               <details id={group.id} key={group.id} className="nx-price scroll-mt-28">

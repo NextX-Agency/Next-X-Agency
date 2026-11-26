@@ -56,7 +56,7 @@ export function ProjectGallery({
               <button
                 type="button"
                 className="gallery-open group"
-                aria-label={`Vergroot afbeelding ${i + 1}: ${image.alt}`}
+                aria-label={`Enlarge image ${i + 1}: ${image.alt}`}
                 onClick={() => setIndex(i)}
               >
                 <Image
@@ -87,9 +87,9 @@ export function ProjectGallery({
           controller={{ aria: true }}
           animation={reduced ? { fade: 0, swipe: 0, navigation: 0 } : undefined}
           labels={{
-            Close: 'Sluiten',
-            Next: 'Volgende afbeelding',
-            Previous: 'Vorige afbeelding',
+            Close: 'Close',
+            Next: 'Next image',
+            Previous: 'Previous image',
           }}
         />
       )}

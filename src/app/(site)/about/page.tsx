@@ -12,16 +12,16 @@ import { ProjectMini } from '@/components/work/ProjectShowcase'
 export const metadata: Metadata = {
   title: 'Studio',
   description:
-    'NextX is een ontwerpstudio en softwarebouwer in Paramaribo. Grafisch ontwerp, websites en software op maat, met één aanspreekpunt en afspraken vooraf.',
+    'NextX is a design studio and software builder in Paramaribo. Graphic design, websites and custom software, with one point of contact and clear agreements up front.',
   alternates: { canonical: '/about' },
   openGraph: { title: 'Studio — NextX Agency', url: '/about' },
 }
 
 const principles = [
-  { title: 'Afspraken vooraf', text: 'Wat u krijgt, wat het kost en wanneer het klaar is.' },
-  { title: 'Eén aanspreekpunt', text: 'Via WhatsApp, e-mail of op locatie in Paramaribo.' },
-  { title: 'Ontwerp en techniek samen', text: 'Wat u goedkeurt is wat u krijgt.' },
-  { title: 'Alleen echt werk', text: 'Experimenten staan apart in het conceptlab.' },
+  { title: 'Agreed up front', text: 'What you get, what it costs and when it is ready.' },
+  { title: 'One point of contact', text: 'On WhatsApp, by email or in person in Paramaribo.' },
+  { title: 'Design and build together', text: 'What you approve is what you get.' },
+  { title: 'Only real work', text: 'Experiments live separately in the Concept Lab.' },
 ]
 
 export default function AboutPage() {
@@ -30,8 +30,8 @@ export default function AboutPage() {
       <header data-theme="dark" className="overflow-hidden">
         <div className="wrap grid-12 items-center gap-y-12 pb-16 pt-[calc(var(--nav-h)+4rem)] md:pb-24 md:pt-[calc(var(--nav-h)+7rem)]">
           <div className="col-span-4 md:col-span-7">
-            <h1 className="t-display max-w-[9ch]">Digitaal gebouwd. Visueel gedacht<span className="text-accent">.</span></h1>
-            <p className="t-lead mt-8 max-w-[30ch] text-fg">Een studio uit {site.location.city} die ontwerp en software onder één dak houdt.</p>
+            <h1 className="t-display max-w-[9ch]">Built digitally. Thought visually<span className="text-accent">.</span></h1>
+            <p className="t-lead mt-8 max-w-[30ch] text-fg">A studio from {site.location.city} that keeps design and software under one roof.</p>
           </div>
           <div className="col-span-4 md:col-span-5 md:col-start-8">
             <div className="aspect-[4/3] md:rotate-[3deg]"><IdentitySheet /></div>
@@ -41,14 +41,14 @@ export default function AboutPage() {
 
       <section className="section" aria-labelledby="specialties-title">
         <div className="wrap">
-          <h2 id="specialties-title" className="t-h1 mb-10 md:mb-14">Wat we maken<span className="text-accent">.</span></h2>
+          <h2 id="specialties-title" className="t-h1 mb-10 md:mb-14">What we make<span className="text-accent">.</span></h2>
           <SpecialtyTiles />
         </div>
       </section>
 
       <section className="bg-bg-2 py-[var(--section)]" aria-labelledby="principles-title">
         <div className="wrap">
-          <h2 id="principles-title" className="t-h1 mb-10 md:mb-14">Hoe we werken<span className="text-accent">.</span></h2>
+          <h2 id="principles-title" className="t-h1 mb-10 md:mb-14">How we work<span className="text-accent">.</span></h2>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {principles.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 0.06} className="flex flex-col justify-between gap-6 bg-bg p-6 sm:min-h-[13rem] sm:gap-8">
@@ -66,8 +66,8 @@ export default function AboutPage() {
       <section className="section" aria-labelledby="own-title">
         <div className="wrap">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6 md:mb-14">
-            <h2 id="own-title" className="t-h1">Wat er staat<span className="text-accent">.</span></h2>
-            <Link href="/portfolio" className="btn btn-quiet">Al ons werk <Arrow /></Link>
+            <h2 id="own-title" className="t-h1">What is live<span className="text-accent">.</span></h2>
+            <Link href="/portfolio" className="btn btn-quiet">All our work <Arrow /></Link>
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             {projects.map((project) => <ProjectMini key={project.slug} project={project} />)}
@@ -82,11 +82,11 @@ export default function AboutPage() {
               {site.location.city}, {site.location.country}
             </h2>
             <p className="t-display">
-              Nu <span className="text-accent"><LocalTime /></span>
+              Now <span className="text-accent"><LocalTime /></span>
             </p>
           </div>
           <Link href="/contact" className="btn btn-primary">
-            Start een project
+            Start a project
             <Arrow />
           </Link>
         </div>

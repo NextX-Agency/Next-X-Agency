@@ -12,18 +12,18 @@ export function FooterCta() {
     <section className="grid-12 gap-y-10 py-20 md:py-32" aria-labelledby="footer-cta-title">
       <div className="col-span-4 md:col-span-7">
         <h2 id="footer-cta-title" className="t-display max-w-[9ch]">
-          Heeft u een idee<span className="text-accent">?</span>
+          Got an idea<span className="text-accent">?</span>
         </h2>
       </div>
       <div className="col-span-4 flex flex-col items-start justify-end gap-5 md:col-span-4 md:col-start-9">
-        <p className="t-lead max-w-[24ch]">Antwoord binnen {site.responseTime}, op werkdagen.</p>
+        <p className="t-lead max-w-[24ch]">A reply within {site.responseTime}, on working days.</p>
         <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
           <Link href="/contact" className="btn btn-primary">
-            Start een project
+            Start a project
             <Arrow />
           </Link>
           <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="link-arrow link-line py-1">
-            Of via WhatsApp
+            Or on WhatsApp
             <ArrowOut />
           </a>
         </div>

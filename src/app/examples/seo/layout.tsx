@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'SEO Dashboard - Analytics UI Demo',
-  description: 'Conceptdemo van een taakgerichte SEO-werkruimte met illustratieve voorbeelddata.',
+  description: 'Concept demo of a task-led SEO workspace with illustrative sample data.',
   openGraph: {
     title: 'SEO Dashboard - Analytics UI Demo - NextX Agency',
-    description: 'Data-first interface voor zoektermen, pagina’s en technische acties.',
+    description: 'Data-first interface for keywords, pages and technical actions.',
     url: '/examples/seo',
   },
   alternates: { canonical: '/examples/seo' },

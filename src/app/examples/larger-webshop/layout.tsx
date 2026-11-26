@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'TechMart SUR - Electronics Commerce Demo',
-  description: 'Conceptdemo van een elektronicacatalogus met zoeken, filters, productdetails en cart.',
+  description: 'Concept demo of an electronics catalogue with search, filters, product details and a cart.',
   openGraph: {
     title: 'TechMart SUR - Electronics Commerce Demo - NextX Agency',
-    description: 'Functionele commerce-richting voor een fictieve elektronicawinkel.',
-    url: '/examples/grotere-webshop',
+    description: 'Functional commerce direction for a fictional electronics store.',
+    url: '/examples/larger-webshop',
   },
-  alternates: { canonical: '/examples/grotere-webshop' },
+  alternates: { canonical: '/examples/larger-webshop' },
   robots: { index: false, follow: true },
 }
 

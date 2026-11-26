@@ -6,7 +6,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { Arrow } from '@/components/Arrow'
 
 export const metadata: Metadata = {
-  title: 'Pagina niet gevonden',
+  title: 'Page not found',
   robots: { index: false, follow: true },
 }
 
@@ -17,10 +17,10 @@ export default function NotFound() {
       <main id="main" data-theme="dark" className="flex min-h-[80svh] flex-col justify-end">
         <div className="wrap grid-12 gap-y-12 pb-16 pt-[calc(var(--nav-h)+5rem)] md:pb-24">
           <div className="col-span-4 md:col-span-7">
-            <h1 className="t-display max-w-[10ch]">Deze pagina bestaat niet<span className="text-accent">.</span></h1>
-            <p className="t-body mt-6 max-w-[38ch]">De link is verouderd of het adres bevat een typefout.</p>
+            <h1 className="t-display max-w-[10ch]">This page does not exist<span className="text-accent">.</span></h1>
+            <p className="t-body mt-6 max-w-[38ch]">The link is out of date or the address has a typo.</p>
           </div>
-          <nav aria-label="Verder naar" className="col-span-4 self-end md:col-span-4 md:col-start-9">
+          <nav aria-label="Go to" className="col-span-4 self-end md:col-span-4 md:col-start-9">
             <ul>
               {[{ href: '/', label: 'Home' }, ...navigation].map((item) => (
                 <li key={item.href}>

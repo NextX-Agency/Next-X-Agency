@@ -7,23 +7,23 @@ import { ConceptBrowser } from '@/components/concepts/ConceptBrowser'
 import { WhatsAppIcon } from '@/components/concepts/WantThis'
 
 export const metadata: Metadata = {
-  title: 'Conceptlab',
+  title: 'Concept Lab',
   description:
-    'Verken interactieve conceptdemo’s van NextX Agency per categorie: e-commerce, websites, SaaS-dashboards en branding. Alle merken zijn fictief.',
+    'Explore interactive concept demos from NextX Agency by category: e-commerce, websites, SaaS dashboards and branding. All brands are fictional.',
   alternates: { canonical: '/examples' },
-  openGraph: { title: 'Conceptlab — NextX Agency', url: '/examples' },
+  openGraph: { title: 'Concept Lab — NextX Agency', url: '/examples' },
 }
 
 export default function ExamplesPage() {
   return (
     <div data-theme="dark" className="min-h-screen pb-[var(--section)]">
       <header className="wrap pb-14 pt-[calc(var(--nav-h)+4rem)] md:pb-20 md:pt-[calc(var(--nav-h)+7rem)]">
-        <h1 className="t-display">Conceptlab<span className="text-accent">.</span></h1>
+        <h1 className="t-display">Concept Lab<span className="text-accent">.</span></h1>
         <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
           <p className="t-lead max-w-[34ch] text-fg">
-            Werkende demo’s voor verzonnen merken, per categorie. Zie je iets dat past? Tik op <b className="font-semibold">Ik wil dit</b> en stuur het via WhatsApp.
+            Working demos for made-up brands, by category. See something that fits? Tap <b className="font-semibold">I want this</b> and send it on WhatsApp.
           </p>
-          <Link href="/portfolio" className="btn btn-quiet">Naar het echte werk <Arrow /></Link>
+          <Link href="/portfolio" className="btn btn-quiet">See the real work <Arrow /></Link>
         </div>
       </header>
 
@@ -31,15 +31,15 @@ export default function ExamplesPage() {
         <ConceptBrowser items={examples} priorityFirst />
 
         <aside className="nx-cta-card mt-20 md:mt-28" aria-labelledby="custom-title">
-          <h2 id="custom-title" className="t-h2 max-w-[18ch]">Niets dat precies past? We ontwerpen het met je.</h2>
+          <h2 id="custom-title" className="t-h2 max-w-[18ch]">Nothing quite right? We will design it with you.</h2>
           <a
-            href={whatsappHref('Hoi NextX! Ik heb een idee voor een website of app en wil graag sparren.')}
+            href={whatsappHref('Hi NextX! I have an idea for a website or app and would like to talk it through.')}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-whatsapp"
           >
             <WhatsAppIcon />
-            Stuur je idee via WhatsApp
+            Message us on WhatsApp
           </a>
         </aside>
       </div>

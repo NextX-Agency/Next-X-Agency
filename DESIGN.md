@@ -21,12 +21,16 @@ Recurring pieces: `ProjectShowcase` (a full-width stage in the project's own `to
 - `src/content/software.ts` describes custom software and points to behaviour that can be checked in live projects. Add a line there only when the behaviour is visible on the live site.
 - Do not invent outcomes, clients, testimonials, team members or statistics. NextX is the single point of contact and may bring in a specialist for a project.
 
-## Work and Conceptlab
+## Work and Concept Lab
 
-"Werk" (`/portfolio`) shows real projects only: client work and NextX's own products, each live and linked. Each project needs a `tagline` (a few words) and a `tone` (background, text colour and whether it is dark) taken from the project's own brand. Projects marked `featured` lead the homepage.
+"Work" (`/portfolio`) shows real projects only: client work and NextX's own products, each live and linked. Each project needs a `tagline` (a few words) and a `tone` (background, text colour and whether it is dark) taken from the project's own brand. Projects marked `featured` lead the homepage.
 
-The Conceptlab (`/examples`) holds interactive prototypes for fictional businesses, grouped in `src/content/examples.ts` by category: E-commerce, Websites, SaaS & dashboards, Branding & UX. Each concept has an "Ik wil dit" action, on its card and as "Ik wil een website zoals deze" in the bar above the demo, that opens WhatsApp with the concept named and linked, so a visitor goes from "I want it to look like this" to a conversation in one tap. Every preview carries the label "Fictief merk" and the section copy states that these are not clients. Concepts never appear inside "Werk", and concept imagery is not used to illustrate services; the specialties are illustrated with the NextX identity sheet and screenshots of live projects.
+The Concept Lab (`/examples`) holds interactive prototypes for fictional businesses, grouped in `src/content/examples.ts` by category: E-commerce, Websites, SaaS & dashboards, Branding & UX. Each concept has an "I want this" action, on its card and as "I want a website like this" in the bar above the demo, that opens WhatsApp with the concept named and linked, so a visitor goes from "I want it to look like this" to a conversation in one tap. Every preview carries the label "Fictional brand" and the section copy states that these are not clients. Concepts never appear inside "Work", and concept imagery is not used to illustrate services; the specialties are illustrated with the NextX identity sheet and screenshots of live projects.
 
 ## Motion and performance
 
 Static content renders first. Motion is limited to one entrance (`Reveal`: a short rise and fade), the hero sequence, device frames and tiles that shift on hover, a slight scroll parallax between browser and phone on project stages (`Parallax`), the concept strip, the animated category filter and card lift, gently floating mockups in the subscriptions band, a back-to-top button with a scroll-progress ring, and the circuit traces behind the software statement. All of it has a reduced-motion fallback. Keep images responsive, supply meaningful alt text where images carry information, and avoid loading off-screen media eagerly.
+
+## Language
+
+The site is English: copy, metadata, emails, form messages and the concept demos (`<html lang="en">`). Prices stay in USD with `from` for starting prices. Old Dutch links keep working: `/examples/grotere-webshop` redirects to `/examples/larger-webshop`, `?dienst=` is still read next to `?service=`, and the Dutch service names live on as aliases in `src/content/services.ts`.

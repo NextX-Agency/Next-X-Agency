@@ -134,7 +134,7 @@ test('mobile menu closes with Escape and navigation; keyboard focus returns', as
   const menu = page.getByRole('button', { name: 'Menu', exact: true })
   await menu.click()
   await expect(
-    page.getByRole('navigation', { name: 'Mobiel menu' }),
+    page.getByRole('navigation', { name: 'Mobile menu' }),
   ).toBeVisible()
   expect(
     (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze())
@@ -143,16 +143,16 @@ test('mobile menu closes with Escape and navigation; keyboard focus returns', as
   await page.keyboard.press('Escape')
   await expect(menu).toBeFocused()
   await expect(
-    page.getByRole('navigation', { name: 'Mobiel menu' }),
+    page.getByRole('navigation', { name: 'Mobile menu' }),
   ).toHaveCount(0)
   await menu.click()
   await page
-    .getByRole('navigation', { name: 'Mobiel menu' })
+    .getByRole('navigation', { name: 'Mobile menu' })
     .getByRole('link', { name: 'Studio' })
     .click()
   await expect(page).toHaveURL(/\/about$/)
   await expect(
-    page.getByRole('navigation', { name: 'Mobiel menu' }),
+    page.getByRole('navigation', { name: 'Mobile menu' }),
   ).toHaveCount(0)
 })
 
@@ -171,24 +171,24 @@ test('contact validation, preset, failure and success without real email', async
     })
   })
   await page.goto('/contact?dienst=photography-media')
-  await expect(page.locator('#service_type')).toHaveValue('Fotografie & Media')
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
+  await expect(page.locator('#service_type')).toHaveValue('Photography & Media')
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
   await expect(page.locator('#name')).toBeFocused()
-  await expect(page.locator('#name-error')).toHaveText('Vul uw naam in.')
+  await expect(page.locator('#name-error')).toHaveText('Please enter your name.')
   expect(submissions).toBe(0)
   await page.locator('#name').fill('Browser Test')
   await page.locator('#email').fill('invalid')
-  await page.locator('#message').fill('Een test zonder echte e-mailbezorging.')
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
+  await page.locator('#message').fill('A test without real email delivery.')
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
   await expect(page.locator('#email')).toBeFocused()
   expect(submissions).toBe(0)
   await page.locator('#email').fill('browser@example.com')
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
   await expect(page.locator('form').getByRole('alert')).toContainText(
     'Test failure',
   )
-  await page.getByRole('button', { name: 'Verstuur', exact: true }).click()
-  await expect(page.getByRole('status')).toContainText('Bedankt, Browser.')
+  await page.getByRole('button', { name: 'Send', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('Thank you, Browser.')
   await expect(page.getByRole('status')).toBeFocused()
   expect(submissions).toBe(2)
 })
@@ -197,13 +197,13 @@ test('gallery full-screen viewing, keyboard navigation, close and focus restorat
   page,
 }) => {
   await page.goto('/portfolio/shop-nextx')
-  const image = page.getByRole('button', { name: /^Vergroot afbeelding 1:/ })
+  const image = page.getByRole('button', { name: /^Enlarge image 1:/ })
   await image.click()
   const viewer = page.getByRole('dialog')
   await expect(viewer).toBeVisible()
   await page.keyboard.press('ArrowRight')
   await expect(
-    page.getByRole('button', { name: 'Volgende afbeelding' }),
+    page.getByRole('button', { name: 'Next image' }),
   ).toBeVisible()
   expect(
     (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze())
@@ -224,7 +224,7 @@ test('reduced motion leaves content and galleries usable', async ({ page }) => {
       .evaluate((el) => parseFloat(getComputedStyle(el).animationDuration)),
   ).toBeLessThan(0.01)
   await page.goto('/portfolio/indef-design')
-  await page.getByRole('button', { name: /^Vergroot afbeelding 1:/ }).click()
+  await page.getByRole('button', { name: /^Enlarge image 1:/ }).click()
   await expect(page.getByRole('dialog')).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).toHaveCount(0)

@@ -61,9 +61,9 @@ describe('contact details', () => {
   })
 
   it('promises the same response time everywhere', () => {
-    expect(CONTACT.responseTime).toBe('binnen 24 uur')
+    expect(CONTACT.responseTime).toBe('within 24 hours')
     const offenders = files
-      .filter(({ text }) => /binnen 24[-–]48 uur|binnen 1 uur/.test(text))
+      .filter(({ text }) => /within 24[-–]48 hours|within 1 hour\b/.test(text))
       .map(({ path }) => path)
     expect(offenders).toEqual([])
   })
@@ -82,43 +82,43 @@ describe('service catalogue', () => {
     expect(form.text).toContain('serviceLabel(service, category)')
   })
 
-  it('resolves every ?dienst= value the site and the prototypes link to', () => {
+  it('resolves every ?service= value the site and the prototypes link to', () => {
     for (const service of allServices) {
       expect(findService(service.id)?.id).toBe(service.id)
       expect(findService(serviceLabel(service, service.category))?.id).toBe(service.id)
       for (const alias of service.aliases ?? []) expect(findService(alias)?.id).toBe(service.id)
     }
     const linked = files.flatMap(({ text }) =>
-      [...text.matchAll(/dienst=([A-Za-z0-9%-]+)/g)].map((m) => decodeURIComponent(m[1]))
+      [...text.matchAll(/[?&](?:service|dienst)=([A-Za-z0-9%-]+)/g)].map((m) => decodeURIComponent(m[1]))
     )
-    for (const value of linked) expect(findService(value), `?dienst=${value}`).toBeDefined()
+    for (const value of linked) expect(findService(value), `?service=${value}`).toBeDefined()
   })
 
-  it('ignores a ?dienst= value that is not a real service', () => {
+  it('ignores a ?service= value that is not a real service', () => {
     expect(findService(null)).toBeUndefined()
-    expect(findService('Gratis website')).toBeUndefined()
+    expect(findService('Free website')).toBeUndefined()
   })
 
   it('writes prices in one file only', () => {
-    // Pages format prices from the catalogue; a literal "vanaf $" elsewhere
+    // Pages format prices from the catalogue; a literal "from $" elsewhere
     // is a copy that will drift the next time prices change.
     const offenders = files
       .filter(({ path }) => !path.includes('content/services.ts'))
-      .filter(({ text }) => /vanaf \$\d/i.test(text))
+      .filter(({ text }) => /\bfrom \$\d/i.test(text))
       .map(({ path }) => path)
     expect(offenders).toEqual([])
   })
 
   it('offers budget bands that reach the cheapest website', () => {
-    const bands = contactBudgets.join(' ').match(/\$[\d.]+/g)?.map((b) => Number(b.slice(1).replaceAll('.', ''))) ?? []
+    const bands = contactBudgets.join(' ').match(/\$[\d,]+/g)?.map((b) => Number(b.slice(1).replaceAll(',', ''))) ?? []
     expect(Math.max(...bands)).toBeGreaterThanOrEqual(websiteFrom.amount)
   })
 
   it('names an SLA tier and a rate for work after delivery', () => {
     const sla = serviceCategories.find((category) => category.id === 'service-sla')
     expect(sla).toBeDefined()
-    expect(sla!.services.flatMap((s) => s.includes).join(' ')).toMatch(/Reactie binnen \d+ werkuren/)
-    expect(serviceCategories.find((c) => c.id === 'websites')!.terms).toMatch(/\$\d+ per uur/)
+    expect(sla!.services.flatMap((s) => s.includes).join(' ')).toMatch(/Reply within \d+ working hours/)
+    expect(serviceCategories.find((c) => c.id === 'websites')!.terms).toMatch(/\$\d+ per hour/)
   })
 
   it('only references well-formed remote image ids', () => {
@@ -157,6 +157,6 @@ describe('service catalogue', () => {
         .flatMap(({ text }) => text.match(/\/examples\/[a-z-]+/g) ?? [])
         .map((href) => href.replace('/examples/', '')),
     ])
-    for (const slug of linked) expect(slugs.has(slug), `/examples/${slug} bestaat niet`).toBe(true)
+    for (const slug of linked) expect(slugs.has(slug), `/examples/${slug} does not exist`).toBe(true)
   })
 })

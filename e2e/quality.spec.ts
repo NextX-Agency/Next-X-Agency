@@ -16,7 +16,7 @@ for (const example of examples) {
       expect(response?.status()).toBe(200)
       await expect(page.locator('main')).toHaveCount(1)
       await expect(page.locator('main h1')).toBeVisible()
-      await expect(page.locator('.demo-chrome')).toContainText('Conceptdemo')
+      await expect(page.locator('.demo-chrome')).toContainText('Concept demo')
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
         'content',
         /noindex/,
@@ -83,9 +83,9 @@ test('service inquiry links select a valid service and section anchors resolve',
       elements.map((element) => element.getAttribute('href')!),
     )
   for (const href of new Set(
-    links.filter((href) => href.startsWith('/contact?dienst=')),
+    links.filter((href) => href.startsWith('/contact?service=')),
   )) {
-    const id = new URL(href, 'http://localhost').searchParams.get('dienst')
+    const id = new URL(href, 'http://localhost').searchParams.get('service')
     const service = findService(id)
     expect(service, href).toBeTruthy()
     await page.goto(href)
